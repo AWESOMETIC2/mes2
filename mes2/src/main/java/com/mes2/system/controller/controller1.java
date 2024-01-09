@@ -83,7 +83,7 @@ public class controller1 {
 	
 		
 		int totalMembers = mService.totalMember();
-		int totalProduct = mService.totalPd();
+		Integer totalProduct = mService.totalPd();
 		Integer totalInP = mService.totalIn();
 		Integer totalOutP = mService.totalOut();
 		Integer totalOk = mService.totalOk();

@@ -199,7 +199,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 
 	@Override
-	public int totalPd() {
+	public Integer totalPd() {
 		
 		return sqlSession.selectOne(NAMESPACE+".totalPd");	}
 

@@ -1,65 +1,77 @@
- function up(idx){
-	  updateBtn = true;
-	  goContent(idx);
-  }
+
+var radioCnt;
   
-
- 
-  function save(idx){
-	  var title = $("#titlec").val();
-	  var contents = $("#contentsc").val();
+  $(document).ready(function() {
 	  
-	  $.ajax({
-		  
-		  url:"testUpdate.do",
-		  type:"post",
-		  dataType:"json",
-		  data: {"idx":idx,"title": title , "contents":contents },
-		  success: function (data) {
-			
-	            loadList();
-	            
-	            var receivedIdx = data.idx;
-	            goContent(receivedIdx);
-	            updateBtn = false;
-	            
-	        },
-		  error: function(){alert("error");}
-	  });
-	 
+		radioCnt =0;
+		
+		
+		
+
 	  
-  }
+	});
+  
+  function showStatus() {
+  const inputOptions = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        "Y": "처리완료",
+        "N": "처리대기",
+        "true": "신규"
+      });
+    }, 1000);
+  });
 
+  Swal.fire({
+    title: "진행현황을 선택하세요.",
+    input: "radio",
+    inputOptions,
+    inputValidator: (value) => {
+      if (!value) {
+        return "아무것도 선택하지 않았습니다.";
+      }
+    }
+  }).then((result) => {
+    if (!result.isConfirmed) {
+      return;
+    }
 
- function upCon(data){
-	  content(data);
-	  
-  }
-
-function cancle(){
-	  $("#view2").html("");
-  }
-
-
-function load(){
-	
-	location.href="salesAccept";
+    const selectedValue = result.value;
+    if (selectedValue === "true") {
+    	radioCnt++;
+        $("#newO").val(selectedValue);
+        $("#sfrm").submit();
+    } else {
+    	radioCnt++;
+    	$("#instruct").val(selectedValue);
+        $("#sfrm").submit();
+    }
+  });
 }
+function checkSearchSub(e){
+	if(radioCnt>=1){
+		return true;
+	}
+	
+	else if($("#searchType").val() === ""){
+		alert("검색타입을 선택하세요.");
+		$("#searchType").focus();
+		return false;
+	}
+	
+	else if($("#searchType").val() == "order_code" && $("#putSearch").val() == ""){
+		alert("검색어를 입력하세요.");
+		$("#putSearch").focus();
+		return false;
+	}
+	
+	else if($("#searchType").val() == "company_name" && $("#putSearch").val() == ""){
+		alert("검색어를 입력하세요.");
+		$("#putSearch").focus();
+		return false;
+	}
+	
 
-
-function del(){
-	  var ckArr = $(".ck");
-	    var count = ckArr.filter(":checked").length; 
-
-	   if (count < 1) {
-	       alert("최소 하나는 선택하세여");
-		   return false; // 선택된 항목이 없을 때 폼 제출을 막기 위해 false 반환
-	    }
-	    	 else {
-	    	        let result = confirm('삭제하시겠습니까?');
-	    	        if(result){
-	    	        	$('#delForm').submit();
-	    	        }
-	    	    }   
-		       
-  }
+	
+	
+}

@@ -75,7 +75,7 @@ public interface MemberDAO {
 	
 	
 	//합산제품갯수출력
-	public int totalPd();
+	public Integer totalPd();
 	
 	
 	//합산입고수출력

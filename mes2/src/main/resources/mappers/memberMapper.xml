@@ -107,7 +107,7 @@
   	
   	
   	<!--  합산제품수  -->
-  	<select id="totalPd" resultType="int"> 
+  	<select id="totalPd" resultType="Integer"> 
   		select sum(pd_quantity) AS total_quantity from product
   	 </select>
   	 
