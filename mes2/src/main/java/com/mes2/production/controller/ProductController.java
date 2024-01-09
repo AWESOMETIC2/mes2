@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mes2.production.domain.ProductDTO;
+import com.mes2.production.etc.Criteria;
+import com.mes2.production.etc.PageVO;
 import com.mes2.production.etc.ProductSearchParam;
 import com.mes2.production.persistence.ProductDAO;
 import com.mes2.production.service.ProductService;
@@ -48,7 +50,8 @@ public class ProductController {
 	// http://localhost:8088/product/search
 	@GetMapping("/search")
 	public String searchGet(Model model,@RequestParam(value = "startDate", required = false) String startDate
-			,@RequestParam(value="endDate", required = false) String endDate, @RequestParam(value = "name", required = false)String name) {
+			,@RequestParam(value="endDate", required = false) String endDate, @RequestParam(value = "name", required = false)String name,
+			Criteria cri) {
 
 		//@ModelAttribute("searchParam") SearchParam searchParam
 		
@@ -69,6 +72,17 @@ public class ProductController {
 		productSearchParam.setName(name);
 		
 		//
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(productService.selectBySearchForTotalCount(productSearchParam));
+		log.debug("@@@@@@@@@@@@@ 여기까지는 호출@@@@@@@@@@@@@@@@@@@@@@@");
+		model.addAttribute("pageVO", pageVO);
+		
+		productSearchParam.setPage(cri.getPage());
+		productSearchParam.setPageSize(cri.getPageSize());
+		
+		
+		
 		
 		
 		log.debug("입력받은 시작날짜 : "+ productSearchParam.getStartDate());
@@ -137,25 +151,4 @@ public class ProductController {
 	}
 
 	
-	
-	@ResponseBody
-	@GetMapping("/dateTest2")
-	public String testDate2(@RequestParam("selectDate") Date selectDate) {
-		
-		log.debug("입력받은 날짜 : " + selectDate);
-	
-		
-		
-		
-		return null;
-	}
-	
-	@ResponseBody
-	@GetMapping("/dateTest77")
-	public Date testDate77() {
-		
-		return productService.getTime();
-		
-		
-	}
 }

@@ -239,6 +239,62 @@ public class MemberDAOImpl implements MemberDAO {
 
 
 
+
+	@Override
+	public Integer firstLine() {
+		return sqlSession.selectOne(NAMESPACE+".firstLine");
+	}
+
+
+
+
+	@Override
+	public Integer secondLine() {
+		return sqlSession.selectOne(NAMESPACE+".secondLine");
+	}
+
+
+
+
+	@Override
+	public Integer thirdLine() {
+		return sqlSession.selectOne(NAMESPACE+".thirdLine");
+	}
+
+
+
+
+	@Override
+	public Integer forthLine() {
+		return sqlSession.selectOne(NAMESPACE+".forthLine");
+	}
+
+
+
+
+	@Override
+	public Integer fifthLine() {
+		return sqlSession.selectOne(NAMESPACE+".fifthLine");
+	}
+
+
+
+
+	@Override
+	public Integer sixthLine() {
+		return sqlSession.selectOne(NAMESPACE+".sixthLine");
+	}
+
+
+
+
+	@Override
+	public Integer sevenLine() {
+		return sqlSession.selectOne(NAMESPACE+".sevenLine");
+	}
+
+
+	
 	
 	
 	

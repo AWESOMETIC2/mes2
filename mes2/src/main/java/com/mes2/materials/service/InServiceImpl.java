@@ -1,5 +1,8 @@
 package com.mes2.materials.service;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.mes2.materials.domain.Criteria;
 import com.mes2.materials.domain.InDTO;
+import com.mes2.materials.domain.SearchDTO;
 import com.mes2.materials.persistence.InDAO;
 
 @Service
@@ -21,33 +25,101 @@ public class InServiceImpl implements InService {
 	private InDAO idao;
 
 	@Override
-	public void registerIncomingStock(InDTO idto) throws Exception {
-		idao.registerInbound(idto);
+	public int updateIncomingRequest(String in_code, String pd_lot) throws Exception {
+		return idao.updateIncomingRequest(in_code, pd_lot);
+	}
+
+	@Override
+	public List<InDTO> getIncomingStockInfo(String searchType, String keyword, Criteria cri, SearchDTO sdto)
+			throws Exception {
+		return idao.getAllInboundInfo(searchType, keyword, cri, sdto);
+	}
+
+
+	@Override
+	public int totalInCount(Criteria cri, String searchType, String keyword) throws Exception {
+		return idao.getInCount(cri, searchType, keyword);
+	}
+
+	@Override
+	public List<InDTO> searchIn(String searchType, String keyword, Criteria cri) throws Exception {
+		return idao.searchIn(searchType, keyword, cri);
+	}
+
+	@Override
+	public void insertStock(int quantity, String product_code, String category, String pd_lot) throws Exception {
+		idao.insertStock(quantity, product_code, category, pd_lot);
 
 	}
 
 	@Override
-	public List<InDTO> getIncomingStockInfo(InDTO idto) throws Exception {
-		return idao.getAllInboundInfo(idto);
+	public void updateStockOnIncoming(int quantity, String product_code) throws Exception {
+		idao.updateStockOnIncoming(quantity, product_code);
+
+	}
+
+	@Override
+	public List<InDTO> selectStock(String product_code) throws Exception {
+		return idao.selectStock(product_code);
+	}
+
+	@Override
+	public InDTO listIncomingProductCodes(String pd_lot) throws Exception {
+		return idao.listIncomingProductCodes(pd_lot);
+	}
+
+	@Override
+	public List<InDTO> InDetailCompletedWarehouse(String searchType, String keyword, Criteria cri, SearchDTO sdto)
+			throws Exception {
+		return idao.InDetailCompletedWarehouse(searchType, keyword, cri, sdto);
+	}
+
+	@Override
+	public int inDetailCount(Criteria cri, String searchType, String keyword) throws Exception {
+
+		return idao.inDetailCount(cri, searchType, keyword);
+	}
+
+	@Override
+	public String selectMaxMaterialsLot(String pd_lot) throws Exception {
+
+		return idao.selectMaxMaterialsLot(pd_lot);
 	}
 
 	
 	@Override
-	public void updateQuantity(String product_code, int quantity, String category) throws Exception {
-		idao.updateQuantity(product_code, quantity, category);
+	public String createRmLOT(String product_code) throws Exception {
+
+		SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
+
+		String inputStrDate = sf.format(Date.valueOf(LocalDate.now()));
+
+		String paramLot = inputStrDate + "-RM-" + product_code + "-";
+
+		System.out.println("instruction : paramCode 값 : " + paramLot);
+
+		String result = selectMaxMaterialsLot(paramLot);
+
+		if (result == null) {
+			result = paramLot + "0001";
+		} else {
+			int tmpCount = Integer.valueOf(result.substring(20));
+			   logger.debug("tmpCount 작업 전 값 : "+tmpCount);
+
+			tmpCount += 1;
+			logger.debug("tmpCount 작업 전 후 : "+tmpCount);
+			result = paramLot + String.format("%04d", tmpCount);
+			logger.debug("최종 생성된 LOT : "+result);
+		}
+
+		return result;
 	}
 
 	@Override
-	public List<InDTO> InListPage(Criteria cri) throws Exception {
-		return idao.getInListPage(cri);
+	public List<InDTO> getAllInData(InDTO idto) throws Exception {
+		return idao.getAllInData(idto);
 	}
-
-	@Override
-	public int totalInCount() throws Exception {
-		return idao.getInCount();
-	}
-
-
 	
 	
+
 }

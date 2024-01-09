@@ -1,23 +1,18 @@
 package com.mes2.materials.domain;
 
+/**
+ *  페이징 처리를 위해서 생성한 객체
+ *   => 페이지번호, 페이지사이즈를 저장하는 객체  
+ */
 public class Criteria {
-	
 	private int page;
 	private int pageSize;
 	
-	private String type;
-	private String keyword;
-	
 	public Criteria() {
 		this.page = 1;
-		this.pageSize = 2;
+		this.pageSize = 10;
 	}
 		
-	
-	public String[] getTypeArr() {
-		return type == null? new String[] {} : type.split("");
-	}
-	
 	// alt shift s + r
 
 	// 페이지를 설정한다

@@ -4,22 +4,32 @@ import java.util.List;
 
 import com.mes2.materials.domain.Criteria;
 import com.mes2.materials.domain.InDTO;
+import com.mes2.materials.domain.SearchDTO;
+import com.mes2.materials.domain.productDTO;
 
 public interface InDAO {
 
-	// 입고 등록 
-	public void registerInbound(InDTO idto) throws Exception;
+	public int updateIncomingRequest(String in_code, String pd_lot) throws Exception;
 	
-	// 입고 전체 리스트 조회
-	public List<InDTO> getAllInboundInfo(InDTO idto) throws Exception;
+	public List<InDTO> getAllInboundInfo(String searchType, String keyword, Criteria cri, SearchDTO sdto) throws Exception;
 	
-	// 입고 수량 업데이트
-	public void updateQuantity(String product_code, int quantity, String category) throws Exception;
+	public void insertStock(int quantity, String product_code, String category, String pd_lot) throws Exception;
 
-	// 페이징 처리 
-	public List<InDTO> getInListPage(int page) throws Exception;
-	public List<InDTO> getInListPage(Criteria cri) throws Exception;
+	public void updateStockOnIncoming(int quantity, String product_code) throws Exception;
+	
+	public List<InDTO> selectStock(String product_code) throws Exception;
 
-	public int getInCount() throws Exception;
+	public InDTO listIncomingProductCodes(String pd_lot) throws Exception;
 
+	public List<InDTO> InDetailCompletedWarehouse(String searchType, String keyword, Criteria cri, SearchDTO sdto) throws Exception;
+	
+	public int inDetailCount(Criteria cri, String searchType, String keyword) throws Exception;
+	
+	public String selectMaxMaterialsLot(String pd_lot) throws Exception;
+	
+	public int getInCount(Criteria cri, String searchType, String keyword) throws Exception;
+
+	public List<InDTO> searchIn(String searchType, String keyword, Criteria cri) throws Exception;
+	
+	public List<InDTO> getAllInData(InDTO idto) throws Exception;
 }

@@ -15,5 +15,11 @@ public interface ProductService {
 	public ProductDTO selectByLot(String Lot);
 	
 	public int deleteByLot(List<String> lotList);
-	//
+	
+	//inWarehouse 입고 요청
+	public int saveInWarehouse(ProductDTO productDTO);
+	
+	public int selectBySearchForTotalCount(ProductSearchParam productSearchParam);
+
+	
 }

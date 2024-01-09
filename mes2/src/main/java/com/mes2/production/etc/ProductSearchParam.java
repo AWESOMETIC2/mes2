@@ -10,6 +10,10 @@ public class ProductSearchParam {
 	private Date startDate;
 	private Date endDate;
 	
+	private int page;
+	private int pageSize;
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -30,4 +34,11 @@ public class ProductSearchParam {
 	}
 	
 	//
+	
+	public int getStartPage() {
+		// 페이지 정보를 쿼리사용되는 값(시작인덱스)으로 변경
+		return (this.page - 1) * pageSize;
+	}
+	
+	
 }

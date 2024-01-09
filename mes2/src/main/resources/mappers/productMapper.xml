@@ -21,7 +21,28 @@
 		where pd_lot = #{pd_lot}
 	</select>
 	
+	<!-- 총 개수 구하기 -->
+	<select id="selectBySearchForTotal" resultType="int" >
+        select count(*) from product
+		
+		<where>
+            <if test="name !=null and !name.equals('')">
+                and pd_mdp_code like concat('%',#{name},'%')
+            </if>
+           
+            <if test="startDate != null  and endDate != null ">
+                AND pd_date BETWEEN #{startDate} AND #{endDate}
+            </if>	
+          <!--  
+            <if test="!startDate.equals('')  and !endDate.equals('') ">
+                AND pd_date BETWEEN #{startDate} AND #{endDate}
+            </if>	
+             -->
+         </where>
+	</select>
 	
+	
+	<!-- 서치 검색 (페이징) -->
 	<select id="selectBySearch" resultType="com.mes2.production.domain.ProductDTO" >
         select * from product
 		
@@ -39,7 +60,8 @@
             </if>	
              -->
          </where>
-
+         ORDER BY pd_lot desc
+		 LIMIT #{startPage}, #{pageSize}
 	</select>
 	
 	<delete id="deleteProduct" parameterType="java.util.List">
@@ -58,5 +80,13 @@
 		where pd_lot like concat (#{searchLot}, '%')
 		]]>
 	</select>
+	
+	<insert id="insertInWarehouse">
+		insert into in_warehouse
+		(product_code, pd_lot, quantity, status)
+		values 
+		(#{pd_mdp_code}, #{pd_lot}, #{pd_quantity}, 'requested') 
+	</insert>
+	
 	
 </mapper>

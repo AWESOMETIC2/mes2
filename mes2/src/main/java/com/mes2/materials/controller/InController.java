@@ -3,6 +3,7 @@ package com.mes2.materials.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mes2.materials.domain.Criteria;
 import com.mes2.materials.domain.InDTO;
 import com.mes2.materials.domain.PageVO;
+import com.mes2.materials.domain.SearchDTO;
 import com.mes2.materials.service.InService;
 
 @Controller
@@ -28,95 +30,66 @@ public class InController {
 	private InService iService;
 
 	// http://localhost:8080/materials/inlist
-	
-	// 입고 정보 입력 - GET
 	@GetMapping(value = "/in")
 	public void insertInGET() throws Exception {
 	}
-	
-	// 입고 정보 처리 - POST
-		@RequestMapping(value = "/in", method = RequestMethod.POST)
-		public String insertInPOST(InDTO idto, @RequestParam("product_code") String product_code,
-	            @RequestParam("quantity") int quantity,
-	            @RequestParam("category") String category) throws Exception {
-		
-			// 한글인코딩 (필터)
-			// 전달정보 저장
-			logger.debug(" idto : " + idto);
 
-			// 서비스 - DB에 글쓰기(insert) 동작 호출
-			iService.registerIncomingStock(idto);
-			
-		    // 서비스 - meta_data_product 수량 업데이트 호출
-		    iService.updateQuantity(product_code, quantity, category);
-			
-			logger.debug(" /materials/inlist 이동 ");
+	@RequestMapping(value = "/updateInStatus", method = RequestMethod.POST)
+	public String insertInPOST(@RequestParam("in_pd_lot") String pd_lot, Model model) throws Exception {
 
-			return "redirect:/materials/inlist";
+			InDTO idto = iService.listIncomingProductCodes(pd_lot);
+			if (!idto.getStatus().equals("complete")) {
+
+
+			iService.insertStock(idto.getQuantity(), idto.getProduct_code(), idto.getCategory(), idto.getPd_lot());
+
+			idto.setPd_lot(iService.selectMaxMaterialsLot(pd_lot));
+
+			String in_code = ("IN-" + pd_lot);
+			idto.setIn_code(in_code);
+			iService.updateIncomingRequest(in_code, pd_lot);
+			model.addAttribute("in_code", in_code);
+
+
 		}
+
+		idto.setPd_lot(iService.selectMaxMaterialsLot(pd_lot));
+
+		return "redirect:/materials/inDetailList";
+	}
+
+	@GetMapping(value = "/inlist")
+	public void listAllGET(Model model, SearchDTO sDTO, Criteria cri,
+			@RequestParam(value = "searchType", required = false) String searchType,
+			@RequestParam(value = "keyword", required = false) String keyword) throws Exception {
+
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(iService.totalInCount(cri, searchType, keyword));
+		List<InDTO> inlist = iService.searchIn(searchType, keyword, cri);
+
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("inlist", inlist);
+
+	}
+
+
+	// http://localhost:8080/materials/inDetailList
+	@GetMapping(value = "/inDetailList")
+	public void inDetailListGET(Model model, SearchDTO sdto, Criteria cri,
+			@RequestParam(value = "searchType", required = false) String searchType,
+			@RequestParam(value = "keyword", required = false) String keyword) throws Exception {
+
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(iService.inDetailCount(cri, searchType, keyword));
+		List<InDTO> inDetailList = iService.InDetailCompletedWarehouse(searchType, keyword, cri, sdto);
+
+		model.addAttribute("pageVO", pageVO);
+
 		
-		// 입고 리스트 - GET
-		@GetMapping(value = "/inlist")
-		public void listAllGET(Model model, InDTO idto, Criteria cri) throws Exception {
-			logger.debug("/purchase/inlist -> listAllGET() 호출 ");
-			logger.debug("/purchase/inlist  뷰페이지로 이동");
+		model.addAttribute("inDetailList", inDetailList);
 
-			// 서비스 - 디비에 저장된 글 가져오기
-			List<InDTO> inlist = iService.getIncomingStockInfo(idto);
+	}
 
-			inlist = iService.InListPage(cri);
-			
-			// 페이지 블럭 정보 준비 -> view 페이지 전달
-			PageVO pageVO = new PageVO();
-			pageVO.setCri(cri);		
-			pageVO.setTotalCount(iService.totalInCount());
-			
-			logger.debug(" 확인 :"+pageVO);
-			model.addAttribute("pageVO", pageVO);
-			
-			// 데이터를 연결된 뷰페이지로 전달(Model)
-			model.addAttribute("inlist", inlist);
-		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	@GetMapping(value = "/in")
-//	public String insertInGET(Model model, @RequestParam(name = "product_code", required = false) String product_code) throws Exception {
-//		List<InDTO> inList = iService.getSelect();
-//		model.addAttribute("inList", inList);
-//
-//		  List<InDTO> detailList = iService.detailList(product_code);
-//		model.addAttribute("detailList", detailList);
-//		
-//		
-//		return "/materials/in";
-//	}
-//	
-//
-//	@PostMapping(value = "/in")
-//	public String getSelectPOST(@RequestParam(name = "product_code", required = false) String product_code) throws Exception {
-//		
-//
-//		return "/materials/in";
-//	}
 }

@@ -90,21 +90,31 @@
 										<option value="플랫폼관리" ${memberDTO.user_auth eq '플랫폼관리' ? 'selected' : ''}>플랫폼관리</option>
 							    </select>
 							  </div>
-							  </div>	
-							  	<div class="mb-3">
-									 <label for="user_auth" class="form-label">권한메뉴상태</label>
-										<select  name="menu_status" id="menu_status">
-											<option value="Y">Y</option>  
-									  		<option value="N">N</option> 
-									   </select>
-								</div>		 
-  
-					  			<div class="mb-3">
-								  <div class="input-box">
-									<p>프로필사진</p>
-					             	 <input type="file" name="userimg" required/>
-					               </div>
-					             </div>
+							  
+								  <div class="mb-3">
+									    <label for="exampleInputPassword1" class="form-label">주소</label><br>
+									    <input type="text"  id="update_postcode" placeholder="우편번호" name="zip-code">
+									    <input type="button" class="btn btn-secondary"  id="join_button"  onclick="sample4_execDaumPostcode()" value="주소 검색"><br>
+									    <input type="text"  id="update_address" placeholder="주소" name="address">
+									    <input type="text"  id="update_detailAddress" placeholder="상세주소" name="address_detail">
+								  </div>
+							  
+			
+								  	<div class="mb-3">
+										 <label for="user_auth" class="form-label">권한메뉴상태</label>
+											<select  name="menu_status" id="menu_status">
+												<option value="Y">Y</option>  
+										  		<option value="N">N</option> 
+										   </select>
+									</div>		 
+	  
+						  			<div class="mb-3">
+									  <div class="input-box">
+										<p>프로필사진</p>
+						             	 <input type="file" name="userimg" required/>
+						               </div>
+						             </div>
+							     </div>	
   							  </div>	
   						   </div>
   					  	</div>

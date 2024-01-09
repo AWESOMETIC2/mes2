@@ -36,12 +36,7 @@
 
 
 <style text="text/css">
-#calendar {
-	width: 50%;
-	max-width: 50%;
-	margin-left: 830px;
-	margin-bottom: 10px;
-}
+
 
 .container {
 	display: flex;
@@ -60,7 +55,7 @@ div p {
 	margin-right: 130px;
 	margin-top: 20px;
 	height: 350px;
-	width: 900px;
+	width: 1060px;
 }
 
 
@@ -116,7 +111,7 @@ div p {
 
 <div class="col-sm-6" id="status">
 
-  <div class="row" style="margin-left: 50px;">
+  <div class="row" style="margin-left: 90px;">
   	<!-- 첫 번째 card -->
 		 <div class="col-md-3" id="card-odd" style="margin-top: 20px;">
             <div class="offset-sm-3 card border-success" style="width: 20rem; box-shadow: 0 0 10px rgba(60, 179, 113);">
@@ -128,9 +123,9 @@ div p {
 			</div>
 		  </div>
 	  	
-		 <div class="col-md-5" style="margin-top: 20px; margin-left: 50px;">
+		 <div class="col-md-4" style="margin-top: 20px; margin-left: 50px;">
 		   <!-- 두 번째 card -->
-            <div class="offset-sm-5 card border-warning" style="width: 20rem; box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);">
+            <div class="offset-sm-4 card border-warning" style="width: 20rem; box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);">
                 <div class="card-body" id="card-body-first">
                     <h5 class="card-title"><img src="${pageContext.request.contextPath}/resources/img/icons/factory.png" style="width:35px; height:35px;"></h5>
                     <h3>Productions</h3><br>
@@ -140,7 +135,7 @@ div p {
         </div>
 	</div>
 	
-	<div class="row" style="margin-left: 50px;">
+	<div class="row" style="margin-left: 90px;">
         <!-- 세 번째 card -->
         <div class="col-md-3" id="card-odd" style="margin-top: 20px;">
             <div class="offset-sm-3 card border-primary"" style="width: 20rem; box-shadow: 0 0 10px rgba(29, 117, 211, 1);">
@@ -153,9 +148,9 @@ div p {
         </div>
 	
   
-        <div class="col-md-5" style="margin-top: 20px; margin-left: 50px;">
+        <div class="col-md-4" style="margin-top: 20px; margin-left: 50px;">
            <!-- 네 번째 card -->
-            <div class="offset-sm-5 card border-danger " style="width: 20rem; box-shadow: 0 0 10px rgba(235, 62, 10, 1); ">
+            <div class="offset-sm-4 card border-danger " style="width: 20rem; box-shadow: 0 0 10px rgba(235, 62, 10, 1); ">
                 <div class="card-body" id="card-body-first">
                     <h5 class="card-title" ><img src="${pageContext.request.contextPath}/resources/img/icons/out-of-stock.png" style="width:35px; height:35px;"></h5>
                      <h3 >Out of Stocks</h3><br>
@@ -202,185 +197,29 @@ div p {
 
 
 
-<div class="row-second">
-        <div id='calendar' style="float: left;"></div>
-        <div id="piechart" style="width: 680px; height: 540px; margin-left: 140px; margin-top:10px;"></div>
-        
-</div>
-
-
-
-
-
-
-
-
-
-	<!-- 달력 -->
-	<script>
-		//full calander 	
-		document
-				.addEventListener(
-						'DOMContentLoaded',
-						function() {
-							var calendarEl = document
-									.getElementById('calendar');
-							var calendar = new FullCalendar.Calendar(
-									calendarEl,
-									{
-										height : '500px',
-										width : '900px',
-										headerToolbar : {
-											left : 'prev,next',
-											center : 'title',
-											right : 'dayGridMonth,dayGridWeek,dayGridDay'
-										},
-
-										selectable : true,
-										selectMirror : true,
-
-										navLinks : true, // can click day/week names to navigate views
-										editable : true,
-										locale : 'ko',
-										select : function(arg) {
-											Swal
-													.fire(
-															{
-																html : "<div class='mb-7'>Create new event?</div><div class='fw-bold mb-5'>Event Name:</div><input type='text' class='form-control' name='event_name' />",
-																icon : "info",
-																showCancelButton : true,
-																buttonsStyling : false,
-																confirmButtonText : "Yes, create it!",
-																cancelButtonText : "No, return",
-																customClass : {
-																	confirmButton : "btn btn-primary",
-																	cancelButton : "btn btn-active-light"
-																}
-															})
-													.then(
-															function(result) {
-																if (result.value) {
-																	var title = document
-																			.querySelector("input[name=;event_name']").value;
-																	if (title) {
-																		calendar
-																				.addEvent({
-																					title : title,
-																					start : arg.start,
-																					end : arg.end,
-																					allDay : arg.allDay
-																				})
-																	}
-																	calendar
-																			.unselect()
-																} else if (result.dismiss === "cancel") {
-																	Swal
-																			.fire({
-																				text : "Event creation was declined!.",
-																				icon : "error",
-																				buttonsStyling : false,
-																				confirmButtonText : "Ok, got it!",
-																				customClass : {
-																					confirmButton : "btn btn-primary",
-																				}
-																			});
-																}
-															});
-										},
-
-										// Delete event
-										eventClick : function(arg) {
-											Swal
-													.fire(
-															{
-																text : "Are you sure you want to delete this event?",
-																icon : "warning",
-																showCancelButton : true,
-																buttonsStyling : false,
-																confirmButtonText : "Yes, delete it!",
-																cancelButtonText : "No, return",
-																customClass : {
-																	confirmButton : "btn btn-primary",
-																	cancelButton : "btn btn-active-light"
-																}
-															})
-													.then(
-															function(result) {
-																if (result.value) {
-																	arg.event
-																			.remove()
-																} else if (result.dismiss === "cancel") {
-																	Swal
-																			.fire({
-																				text : "Event was not deleted!.",
-																				icon : "error",
-																				buttonsStyling : false,
-																				confirmButtonText : "Ok, got it!",
-																				customClass : {
-																					confirmButton : "btn btn-primary",
-																				}
-																			});
-																}
-															});
-										},
-										dayMaxEvents : true, // allow "more" link when too many events
-										// 이벤트 객체 필드 document : https://fullcalendar.io/docs/event-object
-										events : [ {
-											title : '신승민휴가',
-											start : '2024-01-18'
-										}, {
-											title : '김진수휴가',
-											start : '2024-01-19',
-											end : '2022-01-20'
-										}, {
-											groupId : 999,
-											title : 'Repeating Event',
-											start : '2022-07-09T16:00:00'
-										}, {
-											groupId : 999,
-											title : 'Repeating Event',
-											start : '2022-07-16T16:00:00'
-										}, {
-											title : '손보성휴가,정수아휴가',
-											start : '2024-01-02',
-											end : '2024-01-02'
-										}, {
-											title : 'Meeting',
-											start : '2022-07-12T10:30:00',
-											end : '2022-07-12T12:30:00'
-										}, {
-											title : 'Lunch',
-											start : '2022-07-12T12:00:00'
-										}, {
-											title : 'Meeting',
-											start : '2022-07-12T14:30:00'
-										}, {
-											title : 'Happy Hour',
-											start : '2022-07-12T17:30:00'
-										}, {
-											title : '손보성휴가',
-											start : '2024-01-17'
-										}, {
-											title : '종강',
-											start : '2024-01-16'
-										}, {
-											title : '2차프로젝트',
-											start : '2024-01-02',
-											end : '2024-01-16'
-										}
-
-										],
-										eventColor : '#378006'
-										
-									});
-
-							calendar.render();
-						});
-	</script>
+	<div class="row-second" style="display: flex; width: 100%; justify-content: space-between; margin-right: 13%; margin-top: 10px;">
 	
+		 <div style="width: 10%;"> <!-- 나열할 두 번째 요소 -->
+	        <div id="piechart" style="width: 580px; height: 600px; margin-left: 40px; margin-top: 10px;"></div>
+	    </div>
+		
+		 <div style="width: 10%;"> <!-- 나열할 두 번째 요소 -->
+	        <div id="chart_div" style="width: 600px; height: 500px; margin-left: -25px; margin-top: 10px;"></div>
+	    </div>
+		
+		
+		
 	
+	    <div style="width: 50%;  margin-right: 105px;"> <!-- 나열할 첫 번째 요소 -->
+	        <%@ include file="listAll2.jsp"%>
+	    </div>
 	
-	
+	 
+	</div>
+
+
+
+
 	
 	
 	
@@ -418,6 +257,54 @@ div p {
     </script>
 
 
+
+
+
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+			
+    	var	firstLineValue = ${firstLine != null && !firstLine.equals('[null]') ? firstLine : 0};  	
+      	var secondLineValue = ${secondLine != null && !secondLine.equals('[null]') ? secondLine : 0}; 
+      	var thirdLineValue = ${thirdLine != null && !thirdLine.equals('[null]') ? thirdLine : 0}; 
+      	var forthLineValue = ${forthLine != null && !forthLine.equals('[null]') ? forthLine : 0}; 
+      	var fifthLineValue = ${fifthLine != null && !fifthLine.equals('[null]') ? fifthLine : 0}; 
+      	var sixthLineValue = ${sixthLine != null && !sixthLine.equals('[null]') ? sixthLine : 0}; 
+      	var sevenLineValue = ${sevenLine != null && !sevenLine.equals('[null]') ? sevenLine : 0}; 
+    	
+    	
+    	
+    	
+          var data = google.visualization.arrayToDataTable([
+        	  ['Line', '공정률',{ role: 'style' }],
+              ['1번라인, 1L', firstLineValue,'#3366cc'],
+              ['2번라인, 2L', secondLineValue, '#dc3912'],
+              ['3번라인, 3L', thirdLineValue, '#ff9900'],
+              ['4번라인, 4L', forthLineValue, '#109618'],
+              ['5번라인, 5L', fifthLineValue, '#990099'],
+              ['6번라인, 6L', sixthLineValue, '#0099c6'],
+              ['7번라인, 7L', sevenLineValue, '#dd4477']
+          ]);
+
+          var options = {
+            title: '라인별공정률',
+            chartArea: {width: '55%'},
+            backgroundColor: '#F5FBF0',
+            hAxis: {
+              title: '라인별공정률',
+              minValue: 0
+            }
+           
+          };
+
+          var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+          chart.draw(data, options);
+        }
+    </script>
 
 
 

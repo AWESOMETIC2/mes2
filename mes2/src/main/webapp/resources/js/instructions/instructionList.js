@@ -6,8 +6,10 @@ function updateProgressing(isCode){
 	console.log(isCode);
 	
 	$.ajax({
-		type:"POST",
+		type:"GET",
 		url:"/restInstruction/updateProgressing",
+		contentType :"application/json; charset=UTF-8",
+		dataType:"text",
 		data:{"isCode" :isCode},
 		//asyn:false,
 		success : function(data){

@@ -5,6 +5,15 @@
 	background-color: #fafafa;
 }
 
+th {
+	text-align: center;
+	position: sticky;
+}
+
+td{
+	text-align: center;
+}
+
 .container2 {
 	padding: 10px;
 }
@@ -21,15 +30,15 @@
 }
 
 .section1 {
-	padding: 1px;
-	margin: 0 auto;
+	padding: 1px; 
+	margin: 0 auto; 
 }
 
 .list-box {
-	height: 300px;
+	/*  height: 450px;
 	margin: 0 auto;
-	overflow-y: auto; /* auto로 설정하여 필요할 때만 수직 스크롤바를 표시합니다 */
-	overflow-x: hidden; /* hidden으로 설정하여 수평 스크롤바를 숨깁니다 */
+	overflow-y: auto; auto로 설정하여 필요할 때만 수직 스크롤바를 표시합니다
+	overflow-x: hidden;  *//* hidden으로 설정하여 수평 스크롤바를 숨깁니다 */
 }
 
 .list-btn {

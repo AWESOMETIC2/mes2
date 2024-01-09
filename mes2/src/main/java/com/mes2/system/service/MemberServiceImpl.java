@@ -213,6 +213,68 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+
+
+	@Override
+	public Integer firstLine() {
+		return mdao.firstLine();
+	}
+
+
+
+
+	@Override
+	public Integer secondLine() {
+		// TODO Auto-generated method stub
+		return mdao.secondLine();
+	}
+
+
+
+
+	@Override
+	public Integer thirdLine() {
+		// TODO Auto-generated method stub
+		return mdao.thirdLine();
+	}
+
+
+
+
+	@Override
+	public Integer forthLine() {
+		// TODO Auto-generated method stub
+		return mdao.forthLine();
+	}
+
+
+
+
+	@Override
+	public Integer fifthLine() {
+		// TODO Auto-generated method stub
+		return mdao.fifthLine();
+	}
+
+
+
+
+	@Override
+	public Integer sixthLine() {
+		// TODO Auto-generated method stub
+		return mdao.sixthLine();
+	}
+
+
+
+
+	@Override
+	public Integer sevenLine() {
+		// TODO Auto-generated method stub
+		return mdao.sevenLine();
+	}
+
+
 	
 	
 	

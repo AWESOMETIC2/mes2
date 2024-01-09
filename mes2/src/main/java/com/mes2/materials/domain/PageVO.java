@@ -9,7 +9,7 @@ public class PageVO {
 	private boolean prev; 	 // 이전링크
 	private boolean next;	 // 다음링크
 	
-	private int displayPageNum = 5; //페이지 블럭의 크기
+	private int displayPageNum = 10; //페이지 블럭의 크기
 	
 	//private int page;
 	//private int pageSize;
@@ -29,6 +29,10 @@ public class PageVO {
 	private void calcData() {
 		// 페이징처리 정보를 모두 계산
 		
+		System.out.println("@@@@@@@@@@@@@@@@ 호출@@@@@@@@@@@@@@@@@@@@");
+
+		System.out.println(cri.getPage());
+			
 		// 끝 페이지번호
 		endPage =  (int)(Math.ceil(cri.getPage() / (double)displayPageNum)) * displayPageNum;
 		// 시작 페이지번호

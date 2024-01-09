@@ -55,12 +55,11 @@
     display: flex;
     justify-content: flex-start;
     align-items: center; 
-    margin-right: 1300px;
+    margin-right: 1460px;
 }
 
  .page-item {
        margin-right: 5px; /* 원하는 간격 크기로 조정 */
-       background-color : #28a745;
  }
 
 
@@ -145,7 +144,7 @@
 		   
 		  <c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
 		    <li class="page-item ${pageVO.cri.page == 1 ? 'active' : ''}">
-		    	<a class="page-link" href="/system/commoncodelist?page=${i }" style="background-color:#28a745;">
+		    	<a class="page-link" href="/system/commoncodelist?page=${i }" >
 		    			${i }
 		    	</a>
 			</li>

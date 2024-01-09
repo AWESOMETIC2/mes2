@@ -61,15 +61,18 @@
     display: flex;
     justify-content: flex-start;
     align-items: center; 
-    margin-right: 1300px;
+    margin-right: 1460px;
 }
 
 
 
  .page-item {
        margin-right: 5px; /* 원하는 간격 크기로 조정 */
-       background-color : #28a745;
  }
+
+
+
+
 
 
 
@@ -200,7 +203,7 @@
   <ul class="pagination">
    <c:if test="${pageVO.prev }">
     <li class="page-item">
-      <a class="page-link" href="/system/memberlist?page=${pageVO.startPage - 1 }" aria-label="Previous">
+      <a class="page-link" href="/system/memberlist?page=${pageVO.startPage - 1 }" aria-label="Previous" >
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
@@ -208,7 +211,7 @@
    
   <c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
     <li class="page-item ${pageVO.cri.page == 1 ? 'active' : ''}">
-    	<a class="page-link" href="/system/memberlist?page=${i }" style="background-color:#28a745;">
+    	<a class="page-link" href="/system/memberlist?page=${i }">
     			${i }
     	</a>
 	</li>
@@ -218,7 +221,7 @@
     
   <c:if test="${pageVO.next }">  
     <li class="page-item">
-      <a class="page-link" href="/system/memberlist?page=${pageVO.endPage + 1 }" aria-label="Next">
+      <a class="page-link" href="/system/memberlist?page=${pageVO.endPage + 1 }" aria-label="Next" >
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>

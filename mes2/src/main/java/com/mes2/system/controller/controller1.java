@@ -77,7 +77,7 @@ public class controller1 {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(MemberDTO dto,HttpSession session, HttpServletResponse response,
-			@RequestParam(value = "remember", required = false) String remember) {
+			@RequestParam(value = "remember", required = false) String remember,Criteria cri,Model model) throws Exception {
 		logger.debug("loginpost() 호출!");
 		logger.debug("전달정보 :" + dto);
 	
@@ -88,6 +88,22 @@ public class controller1 {
 		Integer totalOutP = mService.totalOut();
 		Integer totalOk = mService.totalOk();
 		Integer totalNo = mService.totalNo();
+		Integer firstLine = mService.firstLine();
+		Integer secondLine = mService.secondLine();
+		Integer thirdLine = mService.thirdLine();
+		Integer forthLine = mService.forthLine();
+		Integer fifthLine = mService.fifthLine();
+		Integer sixthLine = mService.sixthLine();
+		Integer sevenLine = mService.sevenLine();
+		
+		
+		
+		
+		
+		
+		
+		session.setAttribute("viewcntCheck", true);
+		
 		MemberDTO resultDTO = mService.memberLogin(dto);
 		
 		
@@ -109,7 +125,15 @@ public class controller1 {
 			session.setAttribute("totalOut", totalOutP);
 			session.setAttribute("totalOk", totalOk);
 			session.setAttribute("totalNo", totalNo);
-				
+			session.setAttribute("firstLine", firstLine);
+			session.setAttribute("secondLine", secondLine);
+			session.setAttribute("thirdLine", thirdLine);
+			session.setAttribute("forthLine", forthLine);
+			session.setAttribute("fifthLine", fifthLine);
+			session.setAttribute("sixthLine", sixthLine);
+			session.setAttribute("sevenLine", sevenLine);
+			
+	
 			
 			if (remember != null && remember.equals("chk")) {
 				// 쿠키 7 일간 보존
@@ -343,7 +367,9 @@ public class controller1 {
 		logger.debug("수정할 정보 :" + dto);
 		
 		
-	
+		String address = request.getParameter("zip-code") +")" + request.getParameter("address") + request.getParameter("address_detail");
+		dto.setUser_address(address);
+
 
 		//파일업로드처리
 		Map paramMap = new HashMap();
@@ -709,16 +735,72 @@ public class controller1 {
 		}
 		
 		
+		
+		
+		
+		
 		// 메인페이지 GET
 		// http://localhost:8088/login/mainpage
 
 		@RequestMapping(value = "/mainpage", method = RequestMethod.GET)
-		public String mainpageGET() {
+		public String mainpageGET(Model model,HttpSession session,Criteria cri) throws Exception {
 			logger.debug(" /main/login 호출 -> mainGET() 실행");
-
+			
+			session.setAttribute("viewcntCheck", true);
+			
+			
+			PageVO pageVO = new PageVO();
+			pageVO.setCri(cri);
+			pageVO.setTotalCount(bService.totalBoardCount());
+			
+			logger.debug("확인 :" + pageVO);
+			
+			model.addAttribute("pageVO", pageVO);
+			
+			List<BoardDTO> resultDTO = bService.BoardListPage(cri);
+			model.addAttribute("boardList", resultDTO);
+			
 			logger.debug("연결된 뷰페이지(/views/login/main.jsp) 이동 ");
+			
 			return "/system/mainpage";
 		}
+		
+		
+		
+		
+		
+		
+		// http://localhost:8088/system/listAll2
+		// http://localhost:8088/system/login
+	
+		
+		
+		// 게시판 LISTALL get
+		@RequestMapping(value="/listAll2",method = RequestMethod.GET)
+		public String listAllGET2(Model model,HttpSession session,Criteria cri) throws Exception {
+			logger.debug("boardListAll GET 호출!");
+			
+			
+			session.setAttribute("viewcntCheck", true);
+			
+			
+			PageVO pageVO = new PageVO();
+			pageVO.setCri(cri);
+			pageVO.setTotalCount(bService.totalBoardCount());
+			
+			logger.debug("확인 :" + pageVO);
+			
+			model.addAttribute("pageVO", pageVO);
+			
+			List<BoardDTO> resultDTO = bService.BoardListPage(cri);
+			model.addAttribute("boardList", resultDTO);
+			
+			
+			return "/system/listAll2";
+		}
+		
+		
+		
 		
 		
 		
@@ -739,6 +821,7 @@ public class controller1 {
 		
 		
 		
+		
 		// 코드검색출력 GET
 		
 		@RequestMapping(value = "/searchcodelist", method = RequestMethod.GET)
@@ -753,6 +836,8 @@ public class controller1 {
 
 		    return "/system/commoncodelist";
 		}
+		
+		
 		
 		
 	    
@@ -783,6 +868,17 @@ public class controller1 {
 		
 		
 		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		// http://localhost:8088/system/login
+
 		//게시판 글 쓰기
 		
 		// 글쓰기 - POST

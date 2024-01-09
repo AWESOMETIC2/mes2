@@ -16,6 +16,8 @@
 
 <link rel="stylesheet" href="/resources/css/production/request.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -26,7 +28,7 @@
 			<form class="search" action="/instructions/request">
 
 				
-				<input type="text" name="code" placeholder="작업지시코드" />
+				<input type="text" name="code" placeholder="수주번호, 생산요청 코드" />
 				<div>
 					<span class="search-font">검색시작일</span>
 					<input id="dtIp" type="date" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}" />
@@ -40,10 +42,12 @@
 
 			<!-- 표 -->
 			<div class="list">
+			
+			
 				<div class="list-btn">
-					<button type="button" class="btn btn-secondary" id="addbtn" onclick="openInput();">추가</button>
-					<button type="button" class="btn btn-secondary" id="deletebtn">삭제</button>
+					<button type="button" class="btn btn-secondary" id="deletebtn">긴급탈출버튼</button>
 				</div>
+				
 
 				<div class="list-box">
 						<table class="table table-hover">
@@ -76,23 +80,53 @@
 										<td onclick="getMaterials('${item.mdpCode}')">${item.mdpCode}</td>
 										<td onclick="getMaterials('${item.sopCode}','${item.salesQuantity }')">${item.sopCode}</td>
 										<td>
-											<form action="/instructions/refuse"  method="post">
-												<input type="hidden" name="sopCode" value="${item.sopCode}">
-												<button type="button" class="btn btn-secondary" id="refuse" onclick="location.href='/instructions/refuse';">자재요청</button>
-											</form>	
+										<!-- 현재 공백 -->
 										</td>
 										<td>
-											<input type="hidden" name="sopCode" value="${item.sopCode}">
-											<button type="submit" class="btn btn-secondary" id="accept" onclick="window.open('/instructions/accept/${item.sopCode}','result','width=800px, height=640px')">수락</button>
+											<c:if test="${item.materialStatus.equals('Y') }">
+												<input type="hidden" name="sopCode" value="${item.sopCode}">
+												<button type="submit" class="btn btn-secondary" id="accept" onclick="window.open('/instructions/accept/${item.sopCode}','result','width=800px, height=640px')">수락</button>
+											</c:if>
+											<c:if test="${item.materialStatus.equals('N')}">
+												자재필요
+											</c:if>
+											<c:if test="${item.materialStatus.equals('R')}">
+												자재준비중
+											</c:if>
 										</td>
 					
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
+						
 				</div>
 			</div>
+			
+			
 		</section>
+		<br><br><br><br>
+		<!-- 페이징 -->
+			<div class="box-footer clearfix">
+				<div style="margin: 0 auto; width: fit-content;">
+				<ul class="pagination pagination-sm no-margin pull-right">
+				
+					<c:if test="${pageVO.prev }">
+						<li><a href="/instructions/request?page=${pageVO.startPage - 1 }&searchType=${searchType }&searchStartDate=${startDate }&searchEndDate=${endDate}">«</a></li>
+					</c:if>
+					
+					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
+						<li><a href="/instructions/request?page=${i }&searchType=${searchType}&searchStartDate=${startDate }&code=${code}&searchEndDate=${endDate}"> ${i }&nbsp;  </a></li>
+					</c:forEach>
+					
+					<c:if test="${pageVO.next }">
+						<li><a href="/instructions/request?page=${pageVO.endPage + 1 }&searchType=${searchType}&code=${code}&searchStartDate=${startDate}&searchEndDate=${endDate}">»</a></li>
+					</c:if>
+				</ul>
+				</div>
+			</div>
+			<!-- 페이징 끝 -->
+		
 		<section class="section1">
 			<div id="bottomContent">
 		

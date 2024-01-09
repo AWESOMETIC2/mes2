@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mes2.production.domain.ProductionLineDTO;
+import com.mes2.production.etc.Criteria;
+import com.mes2.production.etc.PageVO;
+import com.mes2.production.etc.ProductionLineSearchParam;
 import com.mes2.production.service.ProductionLineService;
 
 @Controller
@@ -27,7 +30,11 @@ public class ProductionLineController {
 	
 	@GetMapping("/productionLine/search")
 	public String productionLineSearchGET(@RequestParam(value="searchStartDate", required = false) Date searchStartDate,
-			@RequestParam(value="searchEndDate", required=false)Date searchEndDate, Model model) {
+			@RequestParam(value="searchEndDate", required=false)Date searchEndDate,
+			@RequestParam(value="searchCode", required=false) String searchCode,
+			@RequestParam(value="searchStatus", required=false) String searchStatus,
+			Criteria cri,
+			Model model) {
 			
 		
 		if(searchStartDate==null) {
@@ -37,10 +44,32 @@ public class ProductionLineController {
 		searchEndDate = Date.valueOf(LocalDate.now().plusWeeks(1));
 		}
 		
-		List<ProductionLineDTO> findProductionLineList = productionLineService.findByDate(searchStartDate, searchEndDate);
+		
+		ProductionLineSearchParam param = new ProductionLineSearchParam();
+		param.setStartDate(searchStartDate);
+		param.setEndDate(searchEndDate);
+		param.setIsCode(searchCode);
+		param.setStatus(searchStatus);
+		
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(productionLineService.findBySearchParamForTotalCount(param));
+		log.debug("@@@@@@@@@@@@@ 여기까지는 호출@@@@@@@@@@@@@@@@@@@@@@@");
+		model.addAttribute("pageVO", pageVO);
+		
+		param.setPage(cri.getPage());
+		param.setPageSize(cri.getPageSize());
+		
+		
+		
+		
+		List<ProductionLineDTO> findProductionLineList = productionLineService.findBySearchParam(param);
 		model.addAttribute("productionLineList",findProductionLineList);
 		model.addAttribute("searchStartDate", searchStartDate);
 		model.addAttribute("searchEndDate", searchEndDate);
+		model.addAttribute("searchCode", searchCode);
+		model.addAttribute("searchStatus", searchStatus);
 		return "/productionLine/productionLineList";
 	}
 	
