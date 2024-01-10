@@ -8,14 +8,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Document</title>
+<title>발주 목록</title>
 <sec:csrfMetaTags/>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous" />
-
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/platform/orderList.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
@@ -28,24 +32,22 @@
 	<div class="container">
 		<section class="section1">
 			<form class="search">
-				<select id="sales_status" name="sales_status">
-					<option value="">-- 진행상태 --</option>
-					<option value="requested">신청중</option>
-					<option value="accept">생산중</option>
-					<option value="deliver">배송중</option>
-					<option value="complete">완료</option>
-					<option value="reject">발주 불가</option>
-				</select>
-				
-				<div>
-					<span class="search-font">발주일자: </span>
-					<input id="dtIp" type="date" name="startDate" />
-					<span> ~ </span>
-					<input id="dtIp" type="date" name="endDate" />
-				</div>
-				
-<!-- 				<button type="button" class="btn btn-secondary" onclick="searchList();">검색</button> -->
-				<input type="submit" class="btn btn-secondary" value="검색" />
+					<select name="sales_status" id="sales_status" class="form-select" aria-label="Default select example">
+						<option value="">-- 진행상태 --</option>
+						<option value="requested">신청중</option>
+						<option value="accept">생산중</option>
+						<option value="deliver">배송중</option>
+						<option value="complete">완료</option>
+						<option value="reject">발주 불가</option>
+					</select>
+					
+					<div class="input-group">
+						<span class="input-group-text">발주일자</span>
+						<input type="date" aria-label="First name" class="form-control" name="startDate" value="${searchDTO.startDate }"/>
+						<input type="date" aria-label="Last name" class="form-control" name="endDate" value="${searchDTO.endDate }"/>
+					</div>
+					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
+					<a href="/platform/orderList"><i class="fa-solid fa-rotate-right" id="reset"></i></a>
 			</form>
 
 			<!-- 표 -->
@@ -79,10 +81,10 @@
 													<i class="fa-solid fa-circle fa-2xs" style="color: #ff9924;"></i> 신청중
 												</c:when>
 												<c:when test="${soiDTO.sales_status eq 'accept' }">
-													<i class="fa-solid fa-circle fa-2xs" style="color: #577D71;"></i> 생산중
+													<i class="fa-solid fa-circle fa-2xs" style="color: #439f1d;"></i> 생산중
 												</c:when>
 												<c:when test="${soiDTO.sales_status eq 'deliver' }">
-													<i class="fa-solid fa-circle fa-2xs" style="color: #416ca4;"></i> 배송중
+													<i class="fa-solid fa-circle fa-2xs" style="color: #4486ff;"></i> 배송중
 												</c:when>
 												<c:when test="${soiDTO.sales_status eq 'complete' }">
 													<i class="fa-solid fa-circle fa-2xs" style="color: #6b6b6b;"></i> 완료
@@ -100,30 +102,48 @@
 				</div>
 			</div>
 			
+		</section>
 			<!-- 페이징 -->
-			<div class="box-footer clearfix">
-				<div style="margin: 0 auto; width: fit-content;">
-				<ul class="pagination pagination-sm no-margin pull-right">
+			<div class="page-nav">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
 				
 					<c:if test="${pageVO.prev }">
-						<li><a href="/platform/orderList?page=${pageVO.startPage - 1 }&sales_status=${sDTO.sales_status }&startDate=${sDTO.startDate }&endDate=${sDTO.endDate}">«</a></li>
+						<li class="page-item page-action">
+							<a href="/platform/orderList?page=${pageVO.startPage - 1 }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
 					</c:if>
 					
 					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-						<li><a href="/platform/orderList?page=${i }&sales_status=${sDTO.sales_status }&startDate=${sDTO.startDate }&endDate=${sDTO.endDate}">${i }</a></li>
+						<c:if test="${searchDTO.cri.page ne i }">
+							<li class="page-item page-action"><a class="page-link" href="/platform/orderList?page=${i }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">${i }</a></li>
+						</c:if>
+						<c:if test="${searchDTO.cri.page eq i }">
+							<li class="active page-item page-action"><a class="page-link" href="/platform/orderList?page=${i }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">${i }</a></li>
+						</c:if>
 					</c:forEach>
 					
 					<c:if test="${pageVO.next }">
-						<li><a href="/platform/orderList?page=${pageVO.endPage + 1 }&sales_status=${sDTO.sales_status }&startDate=${sDTO.startDate }&endDate=${sDTO.endDate}">»</a></li>
+						<li class="page-item">
+							<a href="/platform/orderList?page=${pageVO.endPage + 1 }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">
+							    <span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
 					</c:if>
-				</ul>
-				</div>
+					</ul>
+				</nav>
 			</div>
 			<!-- 페이징 끝 -->
-		</section>
 
 		<div id="bottomContent"></div>
 	</div>
+	<script type="text/javascript">
+		$(function(){
+			$("#sales_status").val("${searchDTO.sales_status}").attr("selected","selected");
+		});
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

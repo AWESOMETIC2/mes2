@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.mes2.materials.domain.OutDTO;
 import com.mes2.production.domain.InstructionsDTO;
 import com.mes2.production.domain.ProductDTO;
 import com.mes2.production.domain.ProductionLineDTO;
@@ -93,20 +94,8 @@ public class InstructionsServiceImpl implements InstructionsService {
 
 	@Override
 	public List<InstructionsDTO> findBySearchParam(InstructionsSearchParam param) {
-		List<InstructionsDTO> instructions = new ArrayList();
-		
-		if(param.getSearchType().equals("isCode")) {
-			
-			instructions = instructionsDAO.selectByParamCode(param);
-		}else if(param.getSearchType().equals("soiCode")) {
-			instructions = instructionsDAO.selectByParamSoiCode(param);
-		}else if(param.getSearchType().equals("mdpCode")){
-			instructions= instructionsDAO.selectByParamMdpCode(param);
-			
-		}
-		
-		
-		return instructions;
+
+		return instructionsDAO.selectByParamCode(param);
 	}
 	
 	
@@ -127,7 +116,8 @@ public class InstructionsServiceImpl implements InstructionsService {
 		isDTO.setCode(createIsCode(dueDate, line));
 		isDTO.setDueDate(dueDate);
 		isDTO.setLine(line);
-		isDTO.setTargetQuantity(isDTO.getTargetQuantity()+(isDTO.getTargetQuantity()/10));
+		isDTO.setTargetQuantity(isDTO.getSalesQuantity()+(isDTO.getSalesQuantity()/10));			
+
 		log.debug("InstructionsService : saveInstructions : 새로 생성된 코드" +isDTO.getCode());
 		
 		
@@ -329,6 +319,9 @@ public class InstructionsServiceImpl implements InstructionsService {
 
 		log.debug("instructionsService : product 저장 완료");
 		
+		// 입고 등록하기  
+		productDAO.insertInWarehouse(product);
+		
 	}
 	
 	
@@ -387,7 +380,22 @@ public class InstructionsServiceImpl implements InstructionsService {
 		}
 		
 	}
-	
+
+	//출고요청 상태 조회
+	@Override
+	public OutDTO findBySopCodeForOutDTO(String sopCode, String productCode) {
+		return instructionsDAO.selectByBaseCodeForOutDTO(sopCode, productCode);
+	}
+
+	@Override
+	public int getTotalCountWithSearchParam(InstructionsSearchParam searchParam) {
+		return instructionsDAO.getTotalCountWithSearchParam(searchParam);
+	}
+
+	@Override
+	public List<OutDTO> findBySopCodeForOutDTOList(String sopCode) {
+		return instructionsDAO.selectByBaseCodeForOutDTOList(sopCode);
+	}
 	
 	
 	

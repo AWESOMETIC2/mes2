@@ -1,6 +1,9 @@
 package com.mes2.sales.persistence;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.mes2.sales.domain.AcceptSaveDTO;
+import com.mes2.sales.domain.Criteria;
 import com.mes2.sales.domain.PlanRegisterDTO;
 import com.mes2.sales.domain.SalesDTO;
 import com.mes2.sales.domain.SearchDTO;
@@ -25,10 +29,9 @@ public class SalesDAOImpl implements SalesDAO {
 	private static final String NAMESPACE ="com.mes2.mapper.SalesMapper";
 	
 	@Override
-	public List<SalesDTO> getSalesList(String sales_status) {
-		
-		logger.debug(" DAO : getPlanSalesList() ");
-		return sqlSession.selectList(NAMESPACE+".getSalesList",sales_status);
+	public List<SalesDTO> getSalesList(Criteria cri) {
+
+		return sqlSession.selectList(NAMESPACE+".getSalesList",cri);
 	}
 	
 	@Override
@@ -51,11 +54,7 @@ public class SalesDAOImpl implements SalesDAO {
 		return sqlSession.selectOne(NAMESPACE+".getStockQuantity", sd);
 	}
 	
-	@Override
-	public List<SalesDTO> planSearch(SearchDTO sed) {
-		logger.debug(" DAO : planSearch(SearchDTO sed) ");
-		return sqlSession.selectList(NAMESPACE+".planSearch", sed);
-	}
+
 	
 	@Override
 	public void registerPlan(PlanRegisterDTO pdto) {
@@ -83,11 +82,7 @@ public class SalesDAOImpl implements SalesDAO {
 		
 	}
 	
-//	@Override
-//	public List<SalesDTO> getSalesAcceptList() {
-//		logger.debug(" DAO : getSalesAcceptList()");
-//		return sqlSession.selectList(NAMESPACE+".getSalesAcceptList");
-//	}
+
 	
 	@Override
 	public List<SalesDTO> getAcceptContent(String order_code) {
@@ -134,4 +129,72 @@ public class SalesDAOImpl implements SalesDAO {
 		sqlSession.update(NAMESPACE+".updateStockQuan",sd);
 		
 	}
+	
+	@Override
+	public void insertShippingPlan(SalesDTO sd) {
+		logger.debug(" DAO :insertShippingPlan(PlanRegisterDTO pdto)");
+		sqlSession.update(NAMESPACE+".insertShippingPlan",sd);
+	}
+	
+	@Override
+	public Date checkOrdeDate(String order_code) {
+		logger.debug(" DAO :checkOrdeDate(String order_code)");
+		return sqlSession.selectOne(NAMESPACE+".checkOrdeDate",order_code);
+	}
+	
+
+	
+	@Override
+	public int getPlanWaitCnt() {
+		
+		return sqlSession.selectOne(NAMESPACE+".getPlanWaitCnt");
+	}
+	
+	@Override
+	public int getPlanNewCnt(Criteria cri) {
+		
+		return sqlSession.selectOne(NAMESPACE+".getPlanNewCnt",cri);
+	}
+	
+	
+	@Override
+	public List<SalesDTO> makeOrderStates(String order_code) {
+		
+		return sqlSession.selectList(NAMESPACE+".makeOrderStates", order_code);
+	}
+	
+
+	
+	@Override
+	public AcceptSaveDTO getOrderInfo(String order_code) {
+		
+		return sqlSession.selectOne(NAMESPACE+".getOrderInfo", order_code);
+	}
+	
+	@Override
+	public void updateInstruction(String order_code) {
+		sqlSession.update(NAMESPACE+".updateInstruction", order_code);
+		
+	}
+	
+
+	
+	@Override
+	public List<SalesDTO> listCount(Criteria cri) {
+		
+		return sqlSession.selectList(NAMESPACE+".listCount", cri);
+	}
+	
+	@Override
+	public SalesDTO getRegUser(String order_code) {
+		
+		return sqlSession.selectOne(NAMESPACE+".getRegUser", order_code);
+	}
+	
+	@Override
+	public AcceptSaveDTO getOrderPlanInfo(String order_code) {
+		
+		return sqlSession.selectOne(NAMESPACE+".getOrderPlanInfo", order_code);
+	}
+	
 }

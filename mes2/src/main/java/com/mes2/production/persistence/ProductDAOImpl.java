@@ -61,6 +61,23 @@ public class ProductDAOImpl implements ProductDAO{
 	public int insertProduct(ProductDTO productDTO) {
 		return sqlSession.insert(NAMESPACE+".insertProduct", productDTO);
 	}
+
+	@Override
+	public int updateProduct(ProductDTO productDTO) {
+		return sqlSession.update(NAMESPACE+".updateProduct", productDTO);
+	}
+
+	@Override
+	public int insertInWarehouse(ProductDTO productDTO) {
+		return sqlSession.insert(NAMESPACE+".insertInWarehouse",productDTO);
+	}
+
+	@Override
+	public int selectBySearchForTotalCount(ProductSearchParam productSearchParam) {
+		return sqlSession.selectOne(NAMESPACE+".selectBySearchForTotal",productSearchParam);
+	}									
+	
+	
 	
 	
 	

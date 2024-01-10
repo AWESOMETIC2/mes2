@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.mes2.production.domain.ProductionLineDTO;
+import com.mes2.production.etc.ProductionLineSearchParam;
 
 @Repository
 public class ProductionLineDAOImpl implements ProductionLineDAO {
@@ -30,12 +31,17 @@ public class ProductionLineDAOImpl implements ProductionLineDAO {
 	}
 
 	@Override
-	public List<ProductionLineDTO> selectByDate(Date startDate, Date endDate) {
+	public List<ProductionLineDTO> selectByDate(ProductionLineSearchParam param) {
 		
-		Map<String, Date> paramMap = new HashMap<String, Date>(); 
-		paramMap.put("startDate", startDate);
-		paramMap.put("endDate", endDate);
-		return sqlSession.selectList(NAMESPACE+".selectByDateForList", paramMap);
+		return sqlSession.selectList(NAMESPACE+".selectByDateForList", param);
+	}
+	
+	
+
+	@Override
+	public Integer selectByDateForTotalCount(ProductionLineSearchParam param) {
+
+		return sqlSession.selectOne(NAMESPACE+".selectByDateForTotalCount", param);
 	}
 
 	@Override

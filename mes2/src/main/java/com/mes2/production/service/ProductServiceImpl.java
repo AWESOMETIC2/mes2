@@ -46,5 +46,19 @@ public class ProductServiceImpl implements ProductService{
 		return null;
 	}
 
+	//입고 요청하기
+	@Override
+	public int saveInWarehouse(ProductDTO productDTO) {
+		return productDAO.insertInWarehouse(productDTO);
+	}
+
+	//페이징용 총 수량 구하기
+	@Override
+	public int selectBySearchForTotalCount(ProductSearchParam productSearchParam) {
+		return productDAO.selectBySearchForTotalCount(productSearchParam);
+	}
+	
+	
+
 	
 }

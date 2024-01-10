@@ -15,4 +15,5 @@ public class MdpDTO {
 	private double price; // 단가(판매가)
 	private boolean production_status; // 생산유무
 	private Date regdate; // 등록일자
+	private String ofileName; // 파일명
 }

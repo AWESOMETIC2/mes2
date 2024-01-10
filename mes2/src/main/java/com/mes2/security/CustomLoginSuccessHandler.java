@@ -47,13 +47,11 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 			
 			// 사용자 아이디(회사코드)로 정보 받기
 			String company_code = ((UserDetails) auth.getPrincipal()).getUsername();
-			logger.debug("@@@@@ company_code: " + company_code);
 			
 			MdbDTO mdbDTO = new MdbDTO();
 			mdbDTO.setCompany_code(company_code);
 			try {
 				mdbDTO = pService.customerLogin(mdbDTO);
-				logger.debug("@@@@@mdbDTO: " + mdbDTO);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

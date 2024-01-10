@@ -16,6 +16,8 @@
 		<result property="status" column="status"/>
 	</resultMap>
 	
+	
+	
 	<insert id="insertProductionLine">
 		insert into production_line (line, is_code, start_date, end_date, status) 
 		values (#{line}, #{isCode}, #{startDate}, #{endDate}, #{status})
@@ -28,10 +30,42 @@
 	</select>
 	 -->
 	
-	<select id="selectByDateForList" resultMap="productionLineDTOMap" parameterType="java.util.Map">
+	<select id="selectByDateForTotalCount" resultType="int">
+		SELECT count(*) 
+		FROM production_line
+		WHERE start_date BETWEEN #{startDate} AND #{endDate}
+		<if test="status!=null and status.equals('WAITING')">
+			and status = 'WAITING'
+		</if>
+		<if test="status!=null and status.equals('PROGRESSING')">
+			and status = 'PROGRESSING'
+		</if>
+		<if test="status!=null and status.equals('COMPLETE')">
+			and status = 'COMPLETE'
+		</if>
+		<if test="isCode!=null and !isCode.equals('')">
+			and is_code like concat('%', #{isCode}, '%')
+		</if>
+	</select>
+	
+	<select id="selectByDateForList" resultMap="productionLineDTOMap">
 		SELECT * 
 		FROM production_line
-		WHERE start_date BETWEEN #{startDate} AND #{endDate} or end_date BETWEEN #{startDate} AND #{endDate}
+		WHERE start_date BETWEEN #{startDate} AND #{endDate} 
+		<if test="status!=null and status.equals('WAITING')">
+			and status = 'WAITING'
+		</if>
+		<if test="status!=null and status.equals('PROGRESSING')">
+			and status = 'PROGRESSING'
+		</if>
+		<if test="status!=null and status.equals('COMPLETE')">
+			and status = 'COMPLETE'
+		</if>
+		<if test="isCode!=null and !isCode.equals('')">
+			and is_code like concat('%', #{isCode}, '%')
+		</if>
+		ORDER BY start_date desc
+		LIMIT #{startPage}, #{pageSize}
 	</select>
 	
 	<update id="updateState">

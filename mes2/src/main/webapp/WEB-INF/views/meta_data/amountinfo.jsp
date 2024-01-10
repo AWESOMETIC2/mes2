@@ -43,13 +43,13 @@
 	<div class="son_container">
 		<!-- 검색창,추가 버튼,취소 버튼 -->	
 		<div class="son_serch" style="width: 70%; margin: 0 auto;">
-			<img src="../../../../resources/img/metadata/reset.png" width="30px" height="30px" onclick="redirectToFirstPage()" style="cursor: pointer;">
+			
 			<form action="/amount/firstpage" method="POST">
 				<span></span>			
 				<input type="text" name="search" placeholder="완제품 코드를 입력하세요" />
 				<input type="submit" value="검색"/>
 			</form>
-			
+			<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>
 			<div class="son_list-btn">			
 				<button type="button" class="btn btn-secondary" id="addbtn" onclick="replaceButton()">추가</button>							
 				<button type="button" class="btn btn-secondary" id="updatebtn" onclick="replaceButton2()">수정</button>						

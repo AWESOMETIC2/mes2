@@ -24,14 +24,14 @@
 	<div class="container">
 		<section class="section1">
 			<form class="search" action="/productionLine/search">
-				<select id="boundary" name="searchType">
+				<select id="boundary" name="searchStatus">
 					<option value="">-- 검색선택 --</option>
-					<option value="isCode">작업지시코드</option>
-					<option value="soiCode">수주번호</option>
-					<option value="mdpCode">제품번호</option>
+					<option value="WAITING">작업대기</option>
+					<option value="PROGRESSING">작업중</option>
+					<option value="COMPLETE">작업완료</option>
 				</select>
 				
-				<input type="text" name="code" placeholder="작업지시코드" />
+				<input type="text" name="searchCode" value="${searchCode }" placeholder="작업지시코드" />
 				<div>
 					<span class="search-font">검색시작일</span>
 					<input id="dtIp" type="date" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"/>
@@ -94,6 +94,28 @@
 					</form>
 				</div>
 			</div>
+			
+			      <!-- 페이징 -->
+			<div class="box-footer clearfix">
+				<div style="margin: 0 auto; width: fit-content;">
+				<ul class="pagination pagination-sm no-margin pull-right">
+				
+					<c:if test="${pageVO.prev }">
+						<li><a href="/productionLine/search?page=${pageVO.startPage - 1 }&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">«</a></li>
+					</c:if>
+					
+					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
+						<li><a href="/productionLine/search?page=${i }&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">${i }</a></li>
+					</c:forEach>
+					
+					<c:if test="${pageVO.next }">
+						<li><a href="/productionLine/search?page=${pageVO.endPage + 1 }&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">»</a></li>
+					</c:if>
+				</ul>
+				</div>
+			</div>
+			<!-- 페이징 끝 -->
+			
 		</section>
 
 		<div id="bottomContent"></div>
@@ -106,6 +128,10 @@
 	<script src="/resources/js/platform/orderList.js"></script>
 	
 	<script>
+	
+    var searchStatus = '${searchStatus}'; 
+    // JavaScript를 통해 동적으로 선택된 값을 설정
+    document.getElementById('boundary').value = searchStatus;
 	
     function openIsSave(){
         window.open("/instructions/save","save","width=800px, height=640px")

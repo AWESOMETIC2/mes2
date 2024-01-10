@@ -1,11 +1,14 @@
- function goContent(order_code){
+
+function goContent(order_code){
        
 	  $.ajax({
-		  url:"planContent", // 
+		  url:"planContent",  
 		  type:"post",
-		  dataType:"json", // Jackson Databind사용해서 json으로 받기
-		  data: {"order_code": order_code }, // 받은 매개변수 전달
-		  success:content,
+		  dataType:"json", 
+		  data: {"order_code": order_code }, 
+		  success: function(data) {
+			  content(data,order_code);
+		  },
 		  error: function(){alert("error");}
 	  });
 	  
@@ -17,68 +20,114 @@
 		  $("#view2").html("");
 	  }
  
- function mo(product_code,order_code,sales_quantity){
+ function info(order_code){
+	 
 	 
 	  $.ajax({
-		  url:"stockCheck", // 
+		  url:"getOrderInfo", 
 		  type:"post",
-		  dataType:"json", // Jackson Databind사용해서 json으로 받기
-		  data: {"product_code": product_code , "order_code" : order_code}, // 받은 매개변수 전달
+		  dataType:"json", 
+		  data: {"order_code" : order_code}, 
 		  success: function (data) {
-		      moStock(data, sales_quantity); // Pass sales_quantity to moStock
+			  
+		      moInfo(data,order_code); 
 		    },
 		  error: function(){
-			  $("#exampleModalLabel").html('재고조회');
-			  var listHtml = "<div>창고에 보유 재고 없음</div>";
-			  //listHtml = "<div>재고 오류(창고에 상품 있는지 확인필요)</div>";
-			  listHtml += "<div>부족수량 : <input type='text' value='"+sales_quantity+"' readonly/></div>"; 
-			  listHtml += "<button type='button' class='btn btn-danger'>재고부족</button>";
-			  $("#sales-modal").html(listHtml);
+			  $("#mo-close").trigger('click');
+			  Swal.fire({
+				    title: "관계자에게 문의하세요",
+				    icon: "warning"
+				}).then((result) => {
+				    if (result.isConfirmed) {
+				        
+				        $("#mo-close").trigger('click');
+				    }
+				});
 				
 		  }
 	  });
  }
  
- function moStock(data, sales_quantity){
-	 $("#exampleModalLabel").html('재고조회');
-	 var listHtml = "<div>제품명 : <input type='text' value='"+data.product_name+"' readonly/></div>";
-		 listHtml += "<div>제품코드 : <input type='text' value='"+data.product_code+"' readonly/></div>";
-		 listHtml += "<div>보유수량 : <input type='text' value='"+data.stock_quantity+"' readonly/></div>";
-		 if((sales_quantity - data.stock_quantity)<0){
-			 listHtml += "<div>부족수량 : <input type='text' value='0' readonly/></div>"; 
-		 }else{
-			 listHtml += "<div>부족수량 : <input type='text' value='"+(sales_quantity - data.stock_quantity )+"' readonly/></div>";	
-			 listHtml += "<button type='button' class='btn btn-danger'>재고부족</button>"; // 수정된 라인
-
-			 
-		 }
+ function moInfo(data, order_code){
+	 
+	 var title = "<div>주문번호 : "+order_code+"</div>";
+	 $("#exampleModalLabel").html(title);
+	 var listHtml = "<p>&lt;회사정보></p>"
+		 
+	     listHtml += "<div>회사명 : <input type='text' value='"+data.company_name+"' readonly/></div>";
+		 listHtml += "<div>회사코드 : <input type='text' value='"+data.company_code+"' readonly/></div>";
+		 listHtml += "<div>회사주소 : <input type='text' value='"+data.company_address+"' readonly/></div>";
+		 listHtml += "<div>회사전화번호 : <input type='text' value='"+data.company_call+"' readonly/></div>";
+		 listHtml += "<hr>"
+		 listHtml += "<p>&lt;담당자정보></p>"
+		 listHtml += "<div>담당자id : <input type='text' value='"+data.user_id+"' readonly/></div>";
+		 listHtml += "<div>담당자이름 : <input type='text' value='"+data.user_name+"' readonly/></div>";
+		 listHtml += "<div>담당자부서 : <input type='text' value='"+data.user_department+"' readonly/></div>";
+		 listHtml += "<div>담당자직책: <input type='text' value='"+data.user_position+"' readonly/></div>";
+		 listHtml += "<div>담당자부서 : <input type='text' value='"+data.user_auth+"' readonly/></div>";	 
+		 
 	      
-		 $("#sales-modal").html(listHtml);
+		 $("#shippngPlan-modal").html(listHtml);
  }
 
-  function content(data){ //에이젝스에서 받은 값으로 출력하기 
+  function content(data,order_code){
 
-	  var listHtml ="<div class='list-box'>";
-	  listHtml +="<button type='button' class='btn btn-secondary' id='closeBtn' onclick='cancle()'>닫기</button>";
-	  listHtml += "<table class='table table-hover'>";
-	  listHtml += "<thead>";
-	  listHtml += "<tr class='table-success' >";
-	  listHtml += "<th scope='col'>제품코드</th>";
-	  listHtml += "<th scope='col'>제품명</th>";
-	  listHtml += "<th scope='col'>수량</th>";
-	  listHtml += "<th scope='col'>재고조회</th>";
-	  listHtml += "</tr>";
-	  listHtml += "</thead>";
-	  
-	  listHtml += "<tbody>";
+	  var listHtml = "<div class='content-box'>"
+		  listHtml += "<div class='content-container'>"
+	      listHtml += "<div class='content-title'>"		  
+		  listHtml += "<div>"
+		  listHtml += "<p class='list-font' data-bs-toggle='modal' data-bs-target='#shippngPlanModal' onclick='info(\""+order_code+"\")'>주문번호: "+order_code+"</p>";	  
+		  listHtml += "</div>"
+		  listHtml += " <button type='button' class='btn-close' aria-label='Close' onclick='cancle()'></button>"
+		  listHtml += "</div>";
+	      listHtml += "<div class='list-box'>";
+ 	  
+		  listHtml += "<table class='table table-hover'>";
+		  listHtml += "<thead>";
+		  listHtml += "<tr class='table-success' >";
+		  listHtml += "<th scope='col'>수주번호</th>";
+		  listHtml += "<th scope='col'>제품명</th>";
+		  listHtml += "<th scope='col'>출하계획량</th>";
+		  listHtml += "<th scope='col'>제품진행</th>";
+		  listHtml += "<th scope='col'>처리</th>";
+		  listHtml += "<th scope='col'>출하준비</th>";
+		  listHtml += "</tr>";
+		  listHtml += "</thead>";
+		  
+		  listHtml += "<tbody>";
 	  
 	  $.each(data,function(index,obj){
-		  listHtml += "<tr>";
-		 // listHtml += "<td scope='row'><input type='checkbox' class='ck' name='idx' value='"+obj.product_code+"' id='"+obj.product_code+"'/></td>";
-		  listHtml += "<td>"+obj.product_code+"</td>";				  
+		  listHtml += "<tr>";		
+		  listHtml += "<td>"+obj.sales_code+"</td>";				  
 		  listHtml += "<td>"+obj.product_name+"</td>";
 		  listHtml += "<td>"+obj.sales_quantity+"</td>";
-		  listHtml += "<td><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick=\"mo('" + obj.product_code + "','"+obj.order_code+"','"+obj.sales_quantity+"')\">재고조회</button></td>";
+		  listHtml += "<td>"
+		  if(obj.product_status == "waiting"){
+		  listHtml += "<div class='gray-circle'/></div>  대기";
+		  } else if(obj.product_status == "progressing"){
+		  listHtml += "<div class='yellow-circle'/></div>  진행";  
+		  }else if(obj.product_status == "complete"){
+		  listHtml += "<div class='green-circle'/></div>  완료";  
+		  }
+		  listHtml += "</td>"
+		  listHtml += "<td>"
+		  if(obj.processing_reg=="stock"){
+			  listHtml += "재고출하"; 
+		  }else if(obj.processing_reg=="production"){
+		  listHtml += "생산처리";  
+		  }else if(obj.processing_reg==" multi"){
+		  listHtml += "복합처리";  
+		  }else {
+			 listHtml += "미정";
+		  }
+		  listHtml += "</td>"
+		  listHtml += "<td>"
+		  if(obj.product_status == "waiting" || obj.product_status == "progressing"){
+			  listHtml += "<div class='gray-circle'/></div>  대기";    
+		  }else if(obj.product_status == "complete"){
+		  listHtml += "<div class='green-circle'/></div>  완료";  
+		  }
+		  listHtml += "</td>"
 		  listHtml += "</tr>";
 	  });
     
@@ -86,6 +135,6 @@
 	  listHtml += "</tbody>";
 	  listHtml += "</table>";
 	 
-	//위 표가 들어갈 자리의 아이디값 가져와서 입력하기 
+	
 	  $("#view2").html(listHtml);
   }
