@@ -31,6 +31,9 @@
 	<link href="${pageContext.request.contextPath}/resources/fullcalander/main.css" rel='stylesheet' />
     <script src="${pageContext.request.contextPath}/resources/fullcalander/main.js"></script>
      
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
  <style type="text/css">
  
  body{

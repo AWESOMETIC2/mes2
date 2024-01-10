@@ -101,7 +101,6 @@ public class InstructionsController {
 		searchEndDate = Date.valueOf(LocalDate.now().plusWeeks(1));
 		}
 		
-		
 		InstructionsSearchParam param = new InstructionsSearchParam();
 		
 		if(searchState==null ||searchState.equals("")) {

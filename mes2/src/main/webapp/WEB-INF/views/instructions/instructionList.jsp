@@ -27,30 +27,33 @@
 		<section class="section1">
 			<form class="search" action="/instructions/search" onsubmit="return validateSearchForm()">
 				
-				<select id="state" name="searchState">
+				<select id="state" name="searchState" class="form-select" aria-label="Default select example" style="width:150px;">
 					<option value="">-- 검색선택 --</option>
 					<option value="WAITING">작업대기</option>
 					<option value="PROGRESSING">진행중</option>
 					<option value="COMPLETE">완료</option>
 				</select>
+				<div style="width:200px;">
+					<select id="boundary" name="searchType" class="form-select" aria-label="Default select example">
+						<option value="">-- 검색선택 --</option>
+						<option value="isCode">작업지시코드</option>
+						<option value="soiCode">수주번호</option>
+						<option value="mdpCode">제품번호</option>
+					</select>
+				</div>
 				
-				<select id="boundary" name="searchType" >
-					<option value="">-- 검색선택 --</option>
-					<option value="isCode">작업지시코드</option>
-					<option value="soiCode">수주번호</option>
-					<option value="mdpCode">제품번호</option>
-				</select>
 				
-				<input type="text" name="code" placeholder="작업지시코드" />
+				<input type="text" name="searchCode" placeholder="작업지시코드"  class="form-control aria-label="Recipient's username" aria-describedby="button-addon2" style="width:200px;"/>
 				<div>
 					<span class="search-font">검색시작일</span>
-					<input id="dtIp" type="date" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"/>
-					<span class="search-font">검색종료일</span>
-					<input id="dtIp" type="date" name="searchEndDate" min="2020-01-01" max="2030-12-31" width="100px" value="${searchEndDate}"/>
+					<input id="dtIp" type="date" aria-label="First name" class="form-control" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"/>
 				</div>
-
+				<div>				
+					<span class="search-font">검색종료일</span>
+					<input id="dtIp" type="date" aria-label="Last name" class="form-control" name="searchEndDate" min="2020-01-01" max="2030-12-31" width="100px" value="${searchEndDate}"/>
+				</div>
 				
-				<input type="submit" value="검색" />
+				<input type="submit" value="검색" class="btn btn-secondary"/>
 			</form>
 
 			<!-- 표 -->
@@ -88,6 +91,7 @@
 									<th scope="col">종료시간</th>
 									<th scope="col">양품</th>
 									<th scope="col">불량품</th>
+									<th scope="col"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -127,15 +131,15 @@
 				<ul class="pagination pagination-sm no-margin pull-right">
 				
 					<c:if test="${pageVO.prev }">
-						<li><a href="/instructions/search?page=${pageVO.startPage - 1 }&searchType=${searchType }&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">«</a></li>
+						<li><a href="/instructions/search?page=${pageVO.startPage - 1 }&searchType=${searchType }&searchCode=${searchCode}&searchState=${searchState}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">«</a></li>
 					</c:if>
 					
 					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-						<li><a href="/instructions/search?page=${i }&searchType=${searchType}&searchStartDate=${searchStartDate }&searchState=${searchState}&searchEndDate=${searchEndDate}">${i }</a></li>
+						<li><a href="/instructions/search?page=${i }&searchType=${searchType}&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchState=${searchState}&searchEndDate=${searchEndDate}">${i }</a></li>
 					</c:forEach>
 					
 					<c:if test="${pageVO.next }">
-						<li><a href="/instructions/search?page=${pageVO.endPage + 1 }&searchType=${searchType}&searchState=${searchState}&searchStartDate=${searchStartDate}&searchEndDate=${searchEndDate}">»</a></li>
+						<li><a href="/instructions/search?page=${pageVO.endPage + 1 }&searchType=${searchType}&searchState=${searchState}&searchCode=${searchCode}&searchStartDate=${searchStartDate}&searchEndDate=${searchEndDate}">»</a></li>
 					</c:if>
 				</ul>
 				</div>

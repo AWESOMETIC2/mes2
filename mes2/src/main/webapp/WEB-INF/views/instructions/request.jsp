@@ -28,16 +28,9 @@
 			<form class="search" action="/instructions/request">
 
 				
-				<input type="text" name="code" placeholder="수주번호, 생산요청 코드" />
-				<div>
-					<span class="search-font">검색시작일</span>
-					<input id="dtIp" type="date" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}" />
-					<span class="search-font">검색종료일</span>
-					<input id="dtIp" type="date" name="searchEndDate" min="2020-01-01" max="2030-12-31" value="${searchEndDate}" width="100px"  />
-				</div>
+				<input type="text" name="code" placeholder="수주번호 "   class="form-control aria-label="Recipient's username" aria-describedby="button-addon2" style="width:200px;"/>
 
-				
-				<input type="submit" value="검색" />
+				<input type="submit" value="검색" class="btn btn-secondary"/>
 			</form>
 
 			<!-- 표 -->
