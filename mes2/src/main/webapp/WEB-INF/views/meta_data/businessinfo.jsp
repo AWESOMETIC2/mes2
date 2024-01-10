@@ -34,7 +34,11 @@
 </script>
 
 <!-- 추가 js 입니다. -->
-<script src="/resources/js/metadata/business.js"></script>
+<script src="/resources/js/metadata/business.js?after"></script>
+
+<!--  주소 cdn -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 
 
@@ -98,10 +102,18 @@
 					<td><input type="text" name="pw" size="5"></td>
 					<td><input type="text" name="name" size="5"></td>
 					<td><input type="text" name="manager" size="5"></td>				
-					<td><input type="text" name="address" size="5"></td>													
-					<td><input type="text" name="call" size="5"></td>				
-					<td><input type="text" name="fax" size="5"></td>
-					<td><input type="text" name="email" size="5"></td>
+					
+					
+					<td>				
+					<input type="text" id="join_address" name="address" size="30">
+					<input type="button" id="join_button"  onclick="sample1_execDaumPostcode()" value="검색">													
+					</td>
+					
+					
+																		
+					<td><input type="text" name="call" size="5" style="width: 120px; "></td>				
+					<td><input type="text" name="fax" size="5" style=" width: 114px; "></td>
+					<td><input type="text" name="email" size="5" style=" width: 200px; "></td>
 					<td><i class="fa-solid fa-circle fa-2xs" style="color: #4486ff;"></i>계약 중</td>														
 					<td><button type="button" class="btn btn-secondary" id="submitbtn" onclick="submitData()" style="display: none;">저장</button></td>														
 				</tr>	
