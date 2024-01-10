@@ -40,11 +40,12 @@
 
 <body>
 <%@ include file="../system/sidehead.jsp" %>
+			
+	
 	<!-- 내용 칸 -->
 	<div class="son_container">
 		<!-- 검색창,추가 버튼,취소 버튼 -->	
-		<div class="son_serch">
-			
+		<div class="son_serch">			
 			<form action="/product/firstpage" method="POST">
 				<span>등록기간</span>
 				<input type="date" name="startDate" min="2023-12-01" max="2024-12-31" />
