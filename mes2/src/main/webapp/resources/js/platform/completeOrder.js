@@ -3,7 +3,7 @@ var token = $("meta[name='_csrf']").attr("content");
 
 const canvas = document.querySelector("#canvas");
 canvas.width = "500";
-canvas.height = "300";
+canvas.height = "250";
 const ctx = canvas.getContext("2d");
 
 canvas.style.margin = "20px";
@@ -71,10 +71,10 @@ function completeOrder(order_code) {
 			Swal.fire({
 				text: "해당 발주 건을 완료처리 하였습니다.",
 				confirmButtonColor: "#577D71",
-				icon: "error"
+				icon: "success"
 			}).then(function(){
 				window.close();
-				location.href = "/platform/orderList";
+				opener.location.href = "/platform/orderList";
 			});
 		},
 		error : function() {

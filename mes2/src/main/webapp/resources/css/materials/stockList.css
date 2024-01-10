@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
-.body {
-	background-color: #fafafa;
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 17px;
 }
 
 th {
@@ -14,8 +14,8 @@ td{
 	text-align: center;
 }
 
-.container2 {
-	padding: 10px;
+.table-success {
+	text-align: center;
 }
 
 .search {
@@ -23,19 +23,23 @@ td{
 	justify-content: center;
 	align-items: center;
 	gap: 30px;
-	padding: 5px; /* 원래 2px */
-	margin: 10px auto;
+	padding: 20px; /* 원래 2px */
+	margin: 40px auto 40px;
 	border: solid 2px #a2c6a8; /* 원래 없었음 */
 	border-radius: 10px;
 }
 
 .section1 {
 	padding: 1px;
+	width: 1500px;
+/* 	height: 500px; */
 	margin: 0 auto;
+	margin-top: 30px;
 }
 
 .list-box {
-	height: 450px;
+	/*       width: 800px; */
+/* 	height: 345px; */
 	margin: 0 auto;
 	overflow-y: auto; /* auto로 설정하여 필요할 때만 수직 스크롤바를 표시합니다 */
 	overflow-x: hidden; /* hidden으로 설정하여 수평 스크롤바를 숨깁니다 */
@@ -63,57 +67,25 @@ td{
 	flex-direction: column;
 }
 
-.content {
-	margin-left: 10px;
-	margin-top: 10px;
+.selectStock:hover {
+	cursor: pointer;
 }
 
-.pList {
-	margin-top: 10px;
+#searchType {
+	width: 200px;
+	margin-left: 200px;
 }
 
-.listTitle {
-	margin-left: 15px;
-	text-align: center;
+#search {
+	width: 600px;
 }
 
-.pCode {
-	width: 100px;
-	display: inline-block;
-	text-align: center;
+#button-addon2 {
+	width: 150px;
 }
 
-.pImage {
-	width: 100px;
-	display: inline-block;
-	text-align: center;
-}
-
-.pName {
-	width: 300px;
-	display: inline-block;
-}
-
-.pPrice {
-	width: 100px;
-	display: inline-block;
-	text-align: center;
-}
-
-.pQuantity {
-	width: 80px;
-}
-
-
-
-.button {
-	border: none;
-	background-color: #a2c6a8;
-	width: 80px;
-	height: 30px;
-	border-radius: 10px;
-}
-
-.regist {
-	margin-top: 10px;
+#reset {
+	margin-right: 200px;
+	font-size: 20px;
+	color: black;
 }

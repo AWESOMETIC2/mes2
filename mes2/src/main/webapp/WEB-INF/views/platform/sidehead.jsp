@@ -24,13 +24,16 @@
 	crossorigin="anonymous">
 
 <!-- Font Awesome 라이브러리 추가 -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 </head>
 <body>
 	<div class="sidebar close">
@@ -46,22 +49,14 @@
 				</div>
 			</li>
 			<li>
-				<div class="iocn-link">
-					<a href="#"> <i class="fa-solid fa-check"></i> <span
-						class="link_name">공지사항</span>
-					</a>
-				</div>
-			</li>
-			<li>
 				<div class="profile-details">
-					<div class="profile-content">
-						<img src="" alt="프로필 사진 자리">
-					</div>
+<!-- 					<div class="profile-content"> -->
+<!-- 						<img src="" alt="프로필 사진 자리"> -->
+<!-- 					</div> -->
 					<div class="name-job">
-						<div class="profile_name">Prem Shahi</div>
-						<div class="job">Web Desginer</div>
+						<div class="profile_name">AWESOMETIC</div>
+<!-- 						<div class="job">Web Desginer</div> -->
 					</div>
-					<i class="fa-brands fa-google-play"></i>
 				</div>
 			</li>
 		</ul>
@@ -85,42 +80,89 @@
 	</section>
 
 	<!-- 정보 수정 모달 -->
-	<div id="updateModal" class="modal">
-		<form>
-			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-			<input type="hidden" name="nowPw" id="nowPw" value="${mdto.pw }">
-			<div>
-				<div class="list">
-					<span>회사명: <input type="text" name="name" value="${mdto.name }" readonly></span>
-				</div>
-				<div class="list">
-					<span>현재 비밀번호: <input type="password" name="pw" id="pw"></span>
-				</div>
-				<div class="list">
-					<span>수정 비밀번호: <input type="password" name="newPw" id="newPw"></span><br>
-					<span id="newPassword" class="explainNewPw">* 영어 대소문자, 숫자를 포함하여 8~12자리</span>
-				</div>
-				<div class="list">
-					<span>비밀번호 확인: <input type="password" name="checkPw" id="checkPw"></span><br>
-					<span id="checkPassword" class="explainCheckPw">* 수정 비밀번호 재입력</span>
-				</div>
-				<div class="list">
-					<span>담당자: <input type="text" name=manager value="${mdto.manager }" readonly></span>
-				</div>
-				<div class="list">
-					<span>전화번호: <input type="text" name=manager value="${mdto.call }" readonly></span>
-				</div>
-				<div class="list">
-					<span>주소: <input type="text" name="address" value="${mdto.address }" readonly></span>
-				</div>
-			</div>
+<!-- 	<div id="updateModal" class="modal"> -->
+<!-- 		<form> -->
+<%-- 			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"> --%>
+<%-- 			<input type="hidden" name="nowPw" id="nowPw" value="${mdto.pw }"> --%>
+<!-- 			<div> -->
+<!-- 				<div class="list"> -->
+<%-- 					<span>회사명: <input type="text" name="name" value="${mdto.name }" readonly></span> --%>
+<!-- 				</div> -->
+<!-- 				<div class="list"> -->
+<!-- 					<span>현재 비밀번호: <input type="password" name="pw" id="pw"></span> -->
+<!-- 				</div> -->
+<!-- 				<div class="list"> -->
+<!-- 					<span>수정 비밀번호: <input type="password" name="newPw" id="newPw"></span><br> -->
+<!-- 					<span id="newPassword" class="explainNewPw">* 영어 대소문자, 숫자를 포함하여 8~12자리</span> -->
+<!-- 				</div> -->
+<!-- 				<div class="list"> -->
+<!-- 					<span>비밀번호 확인: <input type="password" name="checkPw" id="checkPw"></span><br> -->
+<!-- 					<span id="checkPassword" class="explainCheckPw">* 수정 비밀번호 재입력</span> -->
+<!-- 				</div> -->
+<!-- 				<div class="list"> -->
+<%-- 					<span>담당자: <input type="text" name=manager value="${mdto.manager }" readonly></span> --%>
+<!-- 				</div> -->
+<!-- 				<div class="list"> -->
+<%-- 					<span>전화번호: <input type="text" name=manager value="${mdto.call }" readonly></span> --%>
+<!-- 				</div> -->
+<!-- 				<div class="list"> -->
+<%-- 					<span>주소: <input type="text" name="address" value="${mdto.address }" readonly></span> --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
 			
-			<div class="list-btn">
-				<button type="button" class="btn btn-secondary" onclick="modifyPw();">수정하기</button>
-				<a href="#" rel="modal:close"><button type="button" class="btn btn-secondary" >닫기</button></a>
-			</div>
-		</form>
+<!-- 			<div class="list-btn"> -->
+<!-- 				<button type="button" class="btn btn-secondary" onclick="modifyPw();">수정하기</button> -->
+<!-- 				<a href="#" rel="modal:close"><button type="button" class="btn btn-secondary" >닫기</button></a> -->
+<!-- 			</div> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+
+	<div id="updateModal" class="modal">
+	    <form>
+	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+	        <input type="hidden" name="nowPw" id="nowPw" value="${mdto.pw}">
+	        <div class="modal-header">
+	            <h5 class="modal-title">회원 정보 수정</h5>
+	        </div>
+	        <div class="modal-body">
+	            <div class="form-group">
+	                <label for="companyName">회사명:</label>
+	                <input type="text" class="form-control" name="name" value="${mdto.name}" readonly>
+	            </div>
+	            <div class="form-group">
+	                <label for="currentPassword">현재 비밀번호:</label>
+	                <input type="password" class="form-control" name="pw" id="pw">
+	            </div>
+	            <div class="form-group">
+	                <label for="newPassword">수정 비밀번호:</label>
+	                <input type="password" class="form-control" name="newPw" id="newPw">
+	                <span id="newPassword" class="explainNewPw">* 영어 대소문자, 숫자를 포함하여 8~12자리</span>
+	            </div>
+	            <div class="form-group">
+	                <label for="confirmPassword">비밀번호 확인:</label>
+	                <input type="password" class="form-control" name="checkPw" id="checkPw">
+	                <span id="checkPassword" class="explainCheckPw">* 수정 비밀번호 재입력</span>
+	            </div>
+	            <div class="form-group">
+	                <label for="manager">담당자:</label>
+	                <input type="text" class="form-control" name="manager" value="${mdto.manager}" readonly>
+	            </div>
+	            <div class="form-group">
+	                <label for="phoneNumber">전화번호:</label>
+	                <input type="text" class="form-control" name="manager" value="${mdto.call}" readonly>
+	            </div>
+	            <div class="form-group">
+	                <label for="address">주소:</label>
+	                <input type="text" class="form-control" name="address" value="${mdto.address}" readonly>
+	            </div>
+	        </div>
+	        <div class="modal-footer">
+	            <button type="button" class="btn btn-primary" id="modifyBtn" onclick="modifyPw();">수정하기</button>
+	            <a href="#" rel="modal:close"><button type="button" class="btn btn-secondary" >닫기</button></a>
+	        </div>
+	    </form>
 	</div>
+
 		
 	<!-- 사이드바 script -->
 	<script src="${pageContext.request.contextPath}/resources/js/platform/sideheadscript.js"></script>

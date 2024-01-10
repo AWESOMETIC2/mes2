@@ -63,7 +63,7 @@ function insertOrder2() {
 					icon: "success"
 				})
 				.then(function(){
-					location.reload();
+					location.href = "/platform/orderList";
 				});
 			},
 			error : function() {

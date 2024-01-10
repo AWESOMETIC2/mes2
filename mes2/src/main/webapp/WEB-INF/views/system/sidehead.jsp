@@ -261,17 +261,18 @@
       <c:if test="${status eq 'Y' || id.equals('admin')}">
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a href="/sales/salesPlan">
 			<i class="fa-solid fa-building"></i>
             <span class="link_name">영업관리</span>
           </a>
           <i class="fa-solid fa-chevron-down"></i> <!--드롭다운 아이콘 클래스명 지정하는 곳-->
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Category</a></li>
-          <li><a href="#">HTML & CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-          <li><a href="#">PHP & MySQL</a></li>
+          <li><a class="link_name" href="#">영업관리</a></li>
+          <li><a href="/sales/salesPlan">수주관리</a></li>
+          <li><a href="/sales/salesAccept">수주목록</a></li>
+          <li><a href="/shipping/shipPlan">출하계획</a></li>
+          <li><a href="/shipping/shipping">출하지시</a></li>
         </ul>
       </li>
       </c:if>
@@ -322,10 +323,11 @@
           <i class="fa-solid fa-chevron-down"></i> <!--드롭다운 아이콘 클래스명 지정하는 곳-->
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Category</a></li>
-          <li><a href="#">HTML & CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-          <li><a href="#">PHP & MySQL</a></li>
+          <li><a class="link_name" href="#">생산관리</a></li>
+          <li><a href="/instructions/request">생산요청목록</a></li>
+          <li><a href="/instructions/search">작업지시관리</a></li>
+          <li><a href="/productionLine/search">생산라인관리</a></li>
+          <li><a href="/product/search">생산품관리</a></li>
         </ul>
       </li>
       </c:if>
@@ -377,10 +379,11 @@
           <i class="fa-solid fa-chevron-down"></i> <!--드롭다운 아이콘 클래스명 지정하는 곳-->
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Category</a></li>
-          <li><a href="#">HTML & CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-          <li><a href="#">PHP & MySQL</a></li>
+          <li><a class="link_name" href="#">자재관리</a></li>
+          <li><a href="/materials/stockList">재고관리</a></li>
+          <li><a href="/materials/inlist">입고관리</a></li>
+          <li><a href="/materials/outList">출고관리</a></li>
+          <li><a href="/materials/purchaselist">발주관리</a></li>
         </ul>
       </li>
       </c:if>

@@ -1,6 +1,9 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 17px;
+}
 
 th {
 	text-align: center;
@@ -66,4 +69,23 @@ td{
 
 .selectOrder:hover {
 	cursor: pointer;
+}
+
+#status {
+	width: 200px;
+	margin-left: 200px;
+}
+
+#searchSub {
+	width: 600px;
+}
+
+#button-addon2 {
+	width: 150px;
+}
+
+#reset {
+	margin-right: 200px;
+	font-size: 20px;
+	color: black;
 }
