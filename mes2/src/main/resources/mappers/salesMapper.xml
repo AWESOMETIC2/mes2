@@ -51,6 +51,23 @@
     </choose>
   </sql>
   
+  
+     <sql id="orderSearchDate">
+    <choose>
+        <when test="startDay != null and endDay != null">
+            and I.order_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59')  
+        </when>
+        <when test="startDay != null and endDay == null">
+           AND I.order_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{startDay}, '%Y-%m-%d 23:59:59')  
+        </when>
+        <when test="startDay == null and endDay != null">
+            and I.order_date BETWEEN DATE(NOW()) AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59')  
+        </when>  
+    </choose>
+  </sql>
+  
+  
+  
   <sql id="salesJoin">
     from  sales_order_info I 
 	left join meta_data_business B 
@@ -70,29 +87,37 @@
 	<if test="type == 'order_code'">
 	    and I.order_code like concat('%',#{search},'%')
 	    <include refid="searchDate"/>
-	</if>	
+	</if>
+		
   	<if test="type == 'company_name'">
   	and B.name like concat('%',#{search},'%') 
   	<include refid="searchDate"/> 
-  	</if>  	
+  	</if>  
+  		
   	<if test="type == 'order_date'">
-  	and I.order_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59')  
+  	<include refid="orderSearchDate"/> 
   	</if> 	
+  	
   	<if test="type == 'request_date'">
-  	and I.request_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59') 
+  	<include refid="searchDate"/> 
   	</if>
+  	
   	<if test="newOrder == 'true'">
     and DATE(I.request_date) = DATE(NOW())
 	</if>
+	
 	<if test="instructions != null and instructions != ''">
 	    and I.instructions = #{instructions}
 	</if>
+	
 	<if test="userId != null and userId != ''">
 		and I.user_id =#{userId}
 	</if>
+	
   	<if test="newO == 'true'">
     and DATE(I.request_date) = DATE(NOW())
 	</if>
+	
 	<if test="instruct != null and instruct != ''">
 	    and I.instructions = #{instruct}
 	</if>

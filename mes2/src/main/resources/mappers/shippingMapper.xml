@@ -74,6 +74,34 @@
     </choose>
   </sql>
   
+   <sql id="orderSearchDate">
+    <choose>
+        <when test="startDay != null and endDay != null">
+            and I.order_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59')  
+        </when>
+        <when test="startDay != null and endDay == null">
+           AND I.order_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{startDay}, '%Y-%m-%d 23:59:59')  
+        </when>
+        <when test="startDay == null and endDay != null">
+            and I.order_date BETWEEN DATE(NOW()) AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59')  
+        </when>  
+    </choose>
+  </sql>
+  
+     <sql id="shipSearchDate">
+    <choose>
+        <when test="startDay != null and endDay != null">
+            and S.ship_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59')  
+        </when>
+        <when test="startDay != null and endDay == null">
+           AND S.ship_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{startDay}, '%Y-%m-%d 23:59:59')  
+        </when>
+        <when test="startDay == null and endDay != null">
+            and S.ship_date BETWEEN DATE(NOW()) AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59')  
+        </when>  
+    </choose>
+  </sql>
+  
 
 
 	
@@ -87,21 +115,23 @@
   	<if test="type == 'company_name'">
   	and B.name like concat('%',#{search},'%') 
   	<include refid="searchDate"/> 
-  	</if>  	
+  	</if> 
+  	 	
   	<if test="type == 'order_date'">
-  	and I.order_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59')   
-  	</if> 	
+  	<include refid="orderSearchDate"/> 
+  	</if> 
+  		
   	<if test="type == 'scheduled_date'">
-  	and S.scheduled_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59')  
-  	</if>	 	
+  	<include refid="searchDate"/>
+  	</if>	 
+  		
   	<if test="type == 'ship_code'">
   	and S.ship_code like concat('%',#{search},'%') 
   	 <include refid="searchDate"/> 
   	</if>
   	
   	<if test="type == 'ship_date'">
-  	 and S.ship_date BETWEEN DATE_FORMAT(#{startDay}, '%Y-%m-%d 00:00:00') AND DATE_FORMAT(#{endDay}, '%Y-%m-%d 23:59:59')  
-  	 <include refid="searchDate"/>
+  	<include refid="shipSearchDate"/>
   	</if>	
  
   	<if test="shipStatus != null and shipStatus != ''">
