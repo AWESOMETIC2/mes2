@@ -281,8 +281,8 @@
 								    	<option>1</option>
 								    	<option>0</option>
 								    </select>
-								  </div>  
-
+ 								  </div>  
+  
 								   </div>
 							   </div>
 							</div>
