@@ -1,14 +1,15 @@
 @charset "UTF-8";
 
- .search {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      padding: 2px;
-      margin-top: 40px;
-    }
-
+.search {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
+   padding: 20px; /* 원래 2px */
+   margin-top: 40px;
+   border: solid 2px #a2c6a8; /* 원래 없었음 */
+   border-radius: 30px;
+}
     .section1 {
       padding: 1px;
       background-color: #e6e6e6;

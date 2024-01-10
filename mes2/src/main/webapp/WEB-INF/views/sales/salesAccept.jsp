@@ -26,25 +26,12 @@
 
 
     
-<script type="text/javascript">
-    //페이지번호클릭시이동하기 
-/*      $(document).ready(function() {
-        var pageFrm = $("#pageForm");
 
-        $(".page-item a").on("click", function(e) {
-            
-            e.preventDefault(); //a태그기능막기
-            var page = $(this).attr("href"); //페이지번호
-            pageFrm.find("#page").val(page);
-            pageFrm.submit();
-        });
-    });  */
-</script>
 
   </head>
   
   <body>
-  <%@ include file="../sidehead/sidehead.jsp" %>
+  <%@ include file="../system/sidehead.jsp" %>
   <script src="/resources/js/sales/salesAccept/btn.js"></script>
   <script src="/resources/js/sales/salesAccept/details.js"></script>
 
@@ -56,7 +43,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="salesModalLabel"></h1>
-       <!--  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+       
       </div>
       <div class="modal-body mo" id="sales-modal">
        
@@ -88,7 +75,9 @@
     <!-- 검색창 -->
     <div class="container">
     <section class="section1">
+    
       <form action="salesAccept" method="post" id="sfrm" class="search" onsubmit="return checkSearchSub()">
+            
             <input type="hidden"  name="instructions" value="${pm.cri.instructions }"/>
 		    <input type="hidden"  name="newOrder" value="${pm.cri.newOrder }"/>
 		    <input type="hidden"  name="userId" value="${pm.cri.userId }"/>
@@ -118,6 +107,7 @@
 	        aria-label="Recipient's username" aria-describedby="button-addon2">
 	        <button class="btn btn-secondary" type="submit" onclick="return checkSearchSub()" id="button-addon2">검색</button>
         </div>
+        
       </form>
       
 
@@ -146,12 +136,12 @@
             <table class="table table-hover">
               <thead>
                 <tr class="table-success">
-                  <th></th>
-                  <th scope="col">주문번호</th>
-                  <th scope="col">수주처</th>
-                  <th scope="col">납품요청일</th>
-                  <th scope="col">수주신청일</th>
-                  <th scope="col">처리지시</th>
+                  
+                  <th colspan="2" style="text-align: center;">주문번호</th>
+                  <th>수주처</th>
+                  <th>납품요청일</th>
+                  <th>수주신청일</th>
+                  <th>처리지시</th>
                  
                 </tr>
               </thead>
@@ -168,7 +158,7 @@
                   	<td><div class="green-circle"/></div>  완료</td>
                   </c:if>
                    <c:if test="${dto.instructions eq 'N'}">
-                  	<td><div class="gray-circle"/></div>  대기 </td>
+                  	<td><div class="gray-circle"/></div> 대기 </td>
                   </c:if>
                  
 					

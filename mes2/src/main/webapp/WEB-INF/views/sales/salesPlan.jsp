@@ -20,7 +20,7 @@
     />
     
     <link rel="stylesheet" href="/resources/css/sales/salesPlan.css">
-   
+  
 
 
 
@@ -28,7 +28,7 @@
   </head>
   
   <body>
-  <%@ include file="../sidehead/sidehead.jsp" %>
+ <%@ include file="../system/sidehead.jsp" %>
   <script src="/resources/js/sales/salesPlan/btn.js"></script>
   <script src="/resources/js/sales/salesPlan/details.js"></script>
  
@@ -126,12 +126,12 @@
             <table class="table table-hover sp-table">
               <thead>
                 <tr class="table-success">
-                  <th></th>
-                  <th scope="col">주문번호</th>
-                  <th scope="col">수주처</th>
-                  <th scope="col">납품요청일</th>
-                  <th scope="col">수주신청일</th>
-                  <th scope="col"></th>
+                  
+                  <th colspan="2" style="text-align: center;">주문번호</th>
+                  <th>수주처</th>
+                  <th>납품요청일</th>
+                  <th>수주신청일</th>
+                  
                 </tr>
               </thead>
               <tbody>

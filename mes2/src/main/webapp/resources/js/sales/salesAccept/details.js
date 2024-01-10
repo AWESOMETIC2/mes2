@@ -217,7 +217,7 @@ function goContent(order_code){
  
  function info(order_code){
 	 
-	 alert(order_code);
+	 
 	  $.ajax({
 		  url:"getOrderInfo", 
 		  type:"post",

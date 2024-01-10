@@ -22,7 +22,7 @@
     
    
 
-    </style>
+ 
     
     <script type="text/javascript">
     //페이지번호클릭시이동하기 
@@ -42,7 +42,7 @@
   </head>
   
   <body>
-   <%@ include file="../sidehead/sidehead.jsp" %>
+   <%@ include file="../system/sidehead.jsp" %>
   <script src="/resources/js/shipping/shipPlan/btn.js"></script>
   <script src="/resources/js/shipping/shipPlan/details.js"></script>
   
@@ -140,13 +140,13 @@
             <table class="table table-hover">
               <thead>
                 <tr class="table-success">
-                  <th scope="col"></th>
-                  <th scope="col">주문번호</th>
-                  <th scope="col">수주처</th>
-                  <th scope="col">납품요청일</th>
-                  <th scope="col">출하예정일</th>
-                  <th scope="col">출하상태</th>  
-                  <th scope="col">출하지시</th>             
+                  
+                  <th colspan="2" style="text-align: center;">주문번호</th>
+                  <th>수주처</th>
+                  <th>납품요청일</th>
+                  <th>출하예정일</th>
+                  <th>출하상태</th>  
+                  <th>출하지시</th>             
                 </tr>
               </thead>
               <tbody>

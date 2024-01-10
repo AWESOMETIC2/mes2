@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mes2.sales.domain.AcceptSaveDTO;
 import com.mes2.sales.domain.Criteria;
-import com.mes2.sales.domain.PlanRegisterDTO;
-import com.mes2.sales.domain.SearchDTO;
 import com.mes2.sales.domain.ShippingDTO;
 import com.mes2.sales.domain.pageMaking;
 import com.mes2.sales.service.ShippingService;
@@ -38,10 +36,7 @@ public class ShippingController {
 
 	@RequestMapping(value = "/shipPlan")
 	public String salesPlan(HttpSession session, Model model, Criteria cri, @RequestParam(name = "user", required = false) String user) {	
-		//--------------------------------------//
-		String id ="sawon8";
-		session.setAttribute("id",id );
-		//--------------------------------------//
+		
 		String user_id = cri.getUserId();
 		if (user != null && user.equals("true")) {
 	        user_id = (String) session.getAttribute("id");
@@ -117,10 +112,7 @@ public class ShippingController {
 	// http://localhost:8088/shipping/shipping
 	@RequestMapping(value = "/shipping")
 	public String shipping(HttpSession session, Model model, Criteria cri, @RequestParam(name = "user", required = false) String user)  {	
-		//--------------------------------------//
-		String id ="sawon8";
-		session.setAttribute("id",id );
-		//--------------------------------------//
+		
 		String user_id = cri.getUserId();
 		if (user != null && user.equals("true")) {
 		user_id = (String) session.getAttribute("id");
@@ -137,7 +129,7 @@ public class ShippingController {
 		model.addAttribute("list", list);
 		
 		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+cri);
+		
 		return "/shipping/shipping";
 	}
 	

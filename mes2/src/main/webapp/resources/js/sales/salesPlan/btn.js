@@ -50,7 +50,7 @@ function register(){
 	 $("#salesModalLabel").html('비밀번호 확인');
 	 var listHtml = "<div>아이디 : <input type='text' id='user_id' value='"+data+"' disabled/> </div>";
 	 listHtml += "<div>비밀번호: <input type='password' id='user_pw'/></div>"
-	 listHtml += "<button type='button' class='btn btn-primary' onclick='return regPw(\""+data+"\")'>비밀번호 확인</button>";
+	 listHtml += "<button type='button' class='btn dark-green-btn' onclick='return regPw(\""+data+"\")'>비밀번호 확인</button>";
 	 $("#sales-modal").html(listHtml);
  }
  
@@ -84,8 +84,8 @@ function register(){
 			  title: "수주등록하시겠습니까?",
 			  icon: "question",
 			  showCancelButton: true,
-			  confirmButtonColor: "#3085d6",
-			  cancelButtonColor: "#d33",
+			  confirmButtonColor: "#6e9888",
+			  cancelButtonColor: "#666666",
 			  confirmButtonText: "등록",
 			  cancelButtonText: "취소"
 			}).then((result) => {
@@ -147,7 +147,7 @@ function register(){
 		$("#salesModalLabel").html('비밀번호 확인');
 	    var listHtml = "<div>아이디 : <input type='text' id='user_id' value='" + data + "' disabled/> </div>";
 	    listHtml += "<div>비밀번호: <input type='password' id='user_pw'/></div>"
-	    listHtml += "<button type='button' class='btn btn-primary' onclick='return rejPw()'>비밀번호 확인</button>";
+	    listHtml += "<button type='button' class='btn dark-green-btn' onclick='return rejPw()'>비밀번호 확인</button>";
 	    $("#sales-modal").html(listHtml);
 	}
 
@@ -176,8 +176,8 @@ function register(){
 	    		  title: "해당 수주를 거절하시겠습니까?",	    		
 	    		  icon: "question",
 	    		  showCancelButton: true,
-	    		  confirmButtonColor: "#3085d6",
-	    		  cancelButtonColor: "#d33",
+	    		  confirmButtonColor: "#6e9888",
+	    		  cancelButtonColor: "#666666",
 	    		  confirmButtonText: "확인",
 	    		  cancelButtonText: "취소"
 	    		}).then((result) => {
@@ -208,7 +208,7 @@ function checkSearchSub(e){
 
 	if ($("#searchType").val() === "") {
 	    Swal.fire({
-	        title: "검색어를 선택하세요.",
+	        title: "검색타입을 선택하세요.",
 	        icon: "warning"
 	    }).then((result) => {
 	        if (result.isConfirmed) {
@@ -222,7 +222,7 @@ function checkSearchSub(e){
 	
 	if($("#searchType").val() == "order_code" && $("#putSearch").val() == ""){
 		Swal.fire({
-			  title: "검색타입을 선택하세요.",			  
+			  title: "검색어를 입력하세요.",			  
 			  icon: "warning"
 			}).then((result) => {
 		        if (result.isConfirmed) {
@@ -234,7 +234,7 @@ function checkSearchSub(e){
 	
 	if($("#searchType").val() == "company_name" && $("#putSearch").val() == ""){
 		Swal.fire({
-			  title: "검색타입을 선택하세요.",			  
+			  title: "검색어를 입력하세요.",				  
 			  icon: "warning"
 			}).then((result) => {
 		        if (result.isConfirmed) {
