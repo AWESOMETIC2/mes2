@@ -1,14 +1,20 @@
 /* Google Fonts Import Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 17px;
+}
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
+
 body{
   overflow: auto;
 }
+
 .sidebar{
   position: fixed;
   top: 0;
@@ -167,7 +173,7 @@ body{
   position: fixed;
   bottom: 0;
   width: 260px;
-  display: flex;
+/*   display: flex; */
   align-items: center;
   justify-content: space-between;
   background: #6E9888;
@@ -202,6 +208,7 @@ body{
   font-size: 18px;
   font-weight: 500;
   white-space: nowrap;
+    text-align: center;
 }
 .sidebar.close .profile-details i,
 .sidebar.close .profile-details .profile_name,
@@ -279,9 +286,9 @@ body{
 }
 
 /* 모달 */
-.modal a.close-modal {
-	display: none;
-}
+/* #updateModal { */
+/* 	height: 500px; */
+/* } */
 
 .list {
 	padding: 10px;
@@ -295,4 +302,9 @@ body{
 .explainCheckPw {
 	margin-left: 100px;
 	font-size: 12px;
+}
+
+#modifyBtn {
+	background-color: #577D71;
+	border: none;
 }

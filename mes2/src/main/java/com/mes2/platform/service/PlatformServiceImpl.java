@@ -185,6 +185,7 @@ public class PlatformServiceImpl implements PlatformService {
 	
 	// 수령 완료(서명으로)
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void completeOrder(SoiDTO sdto) throws Exception {
 		logger.debug("S: completeOrder() 호출");
 		pdao.completeShipping(sdto); // 출하 테이블 업데이트(progress_status는 complete로, confirm_status는 파일명으로)

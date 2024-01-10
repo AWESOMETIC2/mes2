@@ -95,7 +95,7 @@
 					<td><select id="ins_unit" name="ins_unit"></select></td>
 					<td><input type="text" name="cost" size="5"></td>
 					<td><input type="text" name="price" size="5"></td>				
-					<td><i class="fa-solid fa-circle fa-2xs" style="color: #04B404;"></i>생산 중</td>				
+					<td><i class="fa-solid fa-circle fa-2xs" style="color: #439f1d;"></i>생산 중</td>				
 					<td>[현재날짜]</td>				
 					<td>													
 						<img id="img" width="250px"/> 						
@@ -119,7 +119,7 @@
 					<td class="a">
 					<c:choose>
                        <c:when test="${plist.production_status eq '1' }">
-                          <i class="fa-solid fa-circle fa-2xs" style="color: #04B404;"></i> 생산 중
+                          <i class="fa-solid fa-circle fa-2xs" style="color: #439f1d;"></i> 생산 중
                        </c:when>
                        <c:when test="${plist.production_status eq '0' }">
                           <i class="fa-solid fa-circle fa-2xs" style="color: #848484;"></i> 생산 중단

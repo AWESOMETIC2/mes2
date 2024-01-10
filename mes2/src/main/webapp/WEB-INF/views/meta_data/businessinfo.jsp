@@ -100,7 +100,7 @@
 					<td><input type="text" name="call" size="5"></td>				
 					<td><input type="text" name="fax" size="5"></td>
 					<td><input type="text" name="email" size="5"></td>
-					<td><i class="fa-solid fa-circle fa-2xs" style="color: #004cff;"></i>계약 중</td>														
+					<td><i class="fa-solid fa-circle fa-2xs" style="color: #4486ff;"></i>계약 중</td>														
 					<td><button type="button" class="btn btn-secondary" id="submitbtn" onclick="submitData()" style="display: none;">저장</button></td>														
 				</tr>	
 													
@@ -122,7 +122,7 @@
 					<td class="a">
                     <c:choose>
                        <c:when test="${blist.contract_status eq '1' }">
-                          <i class="fa-solid fa-circle fa-2xs" style="color: #004cff;"></i> 계약 중
+                          <i class="fa-solid fa-circle fa-2xs" style="color: #4486ff;"></i> 계약 중
                        </c:when>
                        <c:when test="${blist.contract_status eq '0' }">
                           <i class="fa-solid fa-circle fa-2xs" style="color: #6b6b6b;"></i> 계약만료

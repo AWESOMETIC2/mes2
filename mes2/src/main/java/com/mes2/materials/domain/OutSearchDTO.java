@@ -9,5 +9,8 @@ public class OutSearchDTO {
 	private String startDate;
 	private String endDate;
 	private String product_code;
+	private String searchType;
+	private String search;
+	
 	private Criteria cri;
 }
