@@ -13,9 +13,7 @@
 </head>
 <body>
     <form action="/materials/save" method="post">
-     <!--    <label for="orderCode">발주코드</label>
-        <input type="text" id="orderCode" name="orderCode"> -->
-
+  
         <label for="category">자재유형</label>
         <select id="category" name="category">
 			<option >자재유형</option>	

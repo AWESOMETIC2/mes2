@@ -51,11 +51,11 @@
 		(#{orders_code},#{product_code},#{quantity})
 	</insert>
 
-	<insert id="PurchaseupdateQuantity"
+	<!-- <insert id="PurchaseupdateQuantity"
 		parameterType="java.util.Map">
         INSERT into stock (product_code, quantity, category, pd_lot) 
         values (#{product_code},#{quantity},#{category},#{pd_lot})
-	</insert>
+	</insert> -->
 
 	<insert id="insertMaterialReceipt" parameterType="java.util.Map">
 		INSERT into
@@ -214,8 +214,14 @@
 
 	<insert id="insertStock" parameterType="java.util.Map">
 		INSERT INTO stock
-		(quantity, product_code, category) values (#{quantity},
-		#{product_code} ,#{category})
+		(quantity, category, product_code, warehouse_code, pd_lot) 
+		values 
+		(#{quantity},
+		(SELECT category FROM meta_data_product where product_code =#{product_code})
+		, #{product_code}, (
+		SELECT warehouse_code
+		FROM meta_data_warehouse
+		WHERE category = (SELECT category FROM meta_data_product where product_code =#{product_code})) ,#{pd_lot})
 	</insert>
 
 	<update id="updateStockOnIncoming" parameterType="java.util.Map">
@@ -234,6 +240,10 @@
 		UPDATE in_warehouse
 		SET status=#{status} WHERE in_index=#{in_index}
 	</update>
+	
+	<select id="getInventoryIndex" parameterType="java.util.Map"> 
+		SELECT * from in_warehouse where in_index =#{in_index}
+	</select>
 
 	<update id="updateIncomingRequest" parameterType="java.util.Map">
 		UPDATE
@@ -293,5 +303,7 @@
 		where status = 'complete'
 	</select>
 	
-	
+	<select id="warehouseCodeCategory" resultType="com.mes2.materials.domain.WarehouseDTO" parameterType="String"> 
+		select * from meta_data_warehouse where category =#{category}
+	</select>
 </mapper>

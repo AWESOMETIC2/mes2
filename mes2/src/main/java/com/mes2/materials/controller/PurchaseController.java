@@ -74,7 +74,10 @@ public class PurchaseController {
 
 		String pd_lot = iService.createRmLOT(pdto.getProduct_code());
 
-		pService.updateQuantity(pdto.getProduct_code(), pdto.getQuantity(), pdto.getCategory(), pd_lot);
+		/*
+		 * pService.updateQuantity(pdto.getProduct_code(), pdto.getQuantity(),
+		 * pdto.getCategory(), pd_lot);
+		 */
 		pService.MaterialReceipt(pdto.getProduct_code(), pdto.getQuantity(), pd_lot);
 		
 		pdto.setOrders_code(orders_code);

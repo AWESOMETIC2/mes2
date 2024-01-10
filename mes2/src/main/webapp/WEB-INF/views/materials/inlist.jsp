@@ -21,7 +21,7 @@
 
 </head>
 <body>
-	<%@ include file="../system/sidehead.jsp" %>
+	<%@ include file="../system/sidehead.jsp"%>
 
 	<div class="container">
 		<section class="section1">
@@ -31,7 +31,6 @@
 					<option value="name">품목명</option>
 					<option value="category">자재유형</option>
 				</select>
-
 				<div class="input-group searchSub" style="width: 50%;">
 					<input type="text" name="keyword" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
@@ -39,15 +38,12 @@
 					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
 				</div>
 			</form>
-	
-
 
 			<div class="list-box">
 				<a href="/materials/in"></a>
 				<table class="table table-hover">
 					<thead>
 						<tr class="table-success" style="font-weight: bold">
-							<td></td>
 							<td>품목코드</td>
 							<td>로트번호</td>
 							<td>품목명</td>
@@ -61,7 +57,6 @@
 					<tbody>
 						<c:forEach var="in" items="${inlist}">
 							<tr>
-								<td></td>
 								<td><c:out value="${in.product_code}" /></td>
 								<td><c:out value="${in.pd_lot}" /></td>
 								<td><c:out value="${in.name}" /></td>
@@ -80,6 +75,7 @@
 										<c:when test="${in.status.equals('requested')}">
 											<form action="/materials/updateInStatus" method="post">
 												<input type="hidden" value="${in.pd_lot}" name="in_pd_lot">
+												<input type="hidden" value="${in.category}" name="category">
 												<button type="submit" class="btn statusButton requested">요청</button>
 											</form>
 										</c:when>
@@ -133,8 +129,15 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous">
+		
 	</script>
 
+<script type="text/javascript">
+function openPopup() {
+    
+    window.open("/materials/wareHouseCode", "wareHouseCode", "width=500,height=720");
+}
+</script>
 
 
 

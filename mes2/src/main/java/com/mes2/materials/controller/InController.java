@@ -18,6 +18,7 @@ import com.mes2.materials.domain.InDTO;
 import com.mes2.materials.domain.PageVO;
 import com.mes2.materials.domain.SearchDTO;
 import com.mes2.materials.service.InService;
+import com.mes2.materials.service.PurchaseService;
 
 @Controller
 @RequestMapping(value = "/materials/*")
@@ -27,7 +28,9 @@ public class InController {
 
 	@Inject
 	private InService iService;
-
+	@Inject
+	private PurchaseService pService;
+	
 	// http://localhost:8080/materials/inlist
 	@GetMapping(value = "/in")
 	public void insertInGET() throws Exception {
@@ -36,19 +39,26 @@ public class InController {
 	@RequestMapping(value = "/updateInStatus", method = RequestMethod.POST)
 	public String insertInPOST(@RequestParam("in_pd_lot") String pd_lot, Model model) throws Exception {
 
-			InDTO idto = iService.listIncomingProductCodes(pd_lot);
-			if (!idto.getStatus().equals("complete")) {
+		InDTO idto = iService.listIncomingProductCodes(pd_lot);
+		if (!idto.getStatus().equals("complete")) {
 
+			  
+			 iService.insertStock(idto.getQuantity(), idto.getProduct_code(), idto.getPd_lot());
+			 
 
-			iService.insertStock(idto.getQuantity(), idto.getProduct_code(), idto.getCategory(), idto.getPd_lot());
-
-			idto.setPd_lot(iService.createRmLOT(idto.getProduct_code()));
+			
+		
+			/*
+			 * pService.updateQuantity(idto.getProduct_code(), idto.getQuantity(),
+			 * idto.getCategory(), pd_lot);
+			 */
+			 idto.setPd_lot(iService.createRmLOT(idto.getProduct_code()));
+			 
 
 			String in_code = ("IN-" + pd_lot);
 			idto.setIn_code(in_code);
 			iService.updateIncomingRequest(in_code, pd_lot);
 			model.addAttribute("in_code", in_code);
-
 
 		}
 
@@ -72,7 +82,6 @@ public class InController {
 
 	}
 
-
 	// http://localhost:8080/materials/inDetailList
 	@GetMapping(value = "/inDetailList")
 	public void inDetailListGET(Model model, SearchDTO sdto, Criteria cri,
@@ -83,12 +92,16 @@ public class InController {
 		pageVO.setCri(cri);
 		pageVO.setTotalCount(iService.inDetailCount(cri, searchType, keyword));
 		List<InDTO> inDetailList = iService.InDetailCompletedWarehouse(searchType, keyword, cri, sdto);
+		
+		for(InDTO in : inDetailList) {
+			in.setWarehouse_code(iService.warehouseCodeCategory(in.getCategory()).getWarehouse_code());
+		}
 
 		model.addAttribute("pageVO", pageVO);
 
-		
 		model.addAttribute("inDetailList", inDetailList);
 
 	}
+
 
 }
