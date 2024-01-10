@@ -101,7 +101,7 @@ public class  Product_Controller{
 		return "redirect:/product/firstpage";			
 	}
 	
-	
+	//품목 카테고리 가져오기
 	@ResponseBody	
 	@RequestMapping(value = "/product2/category", method = RequestMethod.GET)
 	public ResponseEntity<List<common_DTO>> productcate() throws Exception{
@@ -111,7 +111,7 @@ public class  Product_Controller{
 		return new ResponseEntity<List<common_DTO>>(abc,HttpStatus.OK);		
 	}
 	
-	
+	// 품목 단위 가져오기
 	@ResponseBody	
 	@RequestMapping(value = "/product2/unit", method = RequestMethod.GET)
 	public ResponseEntity<List<common_DTO>> productunit() throws Exception{

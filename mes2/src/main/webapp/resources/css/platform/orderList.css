@@ -1,6 +1,9 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 17px;
+}
 
 th {
 	text-align: center;
@@ -51,6 +54,10 @@ td{
 	margin-bottom: 10px;
 }
 
+#button-addon2 {
+	width: 150px;
+}
+
 .search-font {
 	margin-right: 5px;
 	margin-left: 10px;
@@ -66,4 +73,25 @@ td{
 
 .selectOrder:hover {
 	cursor: pointer;
+}
+
+#sales_status {
+	width: 200px;
+	margin-left: 200px;
+}
+
+#product_code {
+	width: 300px;
+}
+
+#reset {
+	margin-right: 200px;
+	font-size: 20px;
+	color: black;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #95c4a2;
+    color: #ffffff;
+    border-color: #81b189;
 }

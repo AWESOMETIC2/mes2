@@ -16,6 +16,8 @@
 
 <link rel="stylesheet" href="/resources/css/production/instructionList.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -42,9 +44,9 @@
 				<input type="text" name="code" placeholder="작업지시코드" />
 				<div>
 					<span class="search-font">검색시작일</span>
-					<input id="dtIp" type="date" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${startDate}"/>
+					<input id="dtIp" type="date" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"/>
 					<span class="search-font">검색종료일</span>
-					<input id="dtIp" type="date" name="searchEndDate" min="2020-01-01" max="2030-12-31" width="100px" value="${endDate}"/>
+					<input id="dtIp" type="date" name="searchEndDate" min="2020-01-01" max="2030-12-31" width="100px" value="${searchEndDate}"/>
 				</div>
 
 				
@@ -53,9 +55,9 @@
 
 			<!-- 표 -->
 			<div class="list">
+			
 				<div class="list-btn">
-					<button type="button" class="btn btn-secondary" id="addbtn" onclick="openIsSave();">추가</button>
-					<button type="button" class="btn btn-secondary" id="deletebtn">삭제</button>
+					<button type="button" class="btn btn-secondary" id="deletebtn">긴급탈출버튼</button>
 				</div>
 
 				<div class="list-box">
@@ -102,13 +104,13 @@
 										<td>${item.fault}</td>
 										<td>
 										<c:if test="${item.state.equals('WAITING')}">
-											<button type="button" onclick="updateProgressing('${item.code}');">생산시작</button>
+											<i class="fa-solid fa-circle fa-2xs" style="color: #577D71;"></i><button type="button" onclick="updateProgressing('${item.code}');" style="border:none; background-color:none;">생산시작</button>
 										</c:if>
 										<c:if test="${item.state.equals('COMPLETE')}">
-											생산완료
+											<i class="fa-solid fa-circle fa-2xs" style="color: #416ca4;"></i>생산완료
 										</c:if>
 										<c:if test="${item.state.equals('PROGRESSING')}">
-											<button type="button" onclick="window.open('/instructions/resultInfo/${item.code}','result','width=800px, height=640px')">작업 종료</button>
+											<i class="fa-solid fa-circle fa-2xs" style="color: #577D71;"></i><button type="button" onclick="window.open('/instructions/resultInfo/${item.code}','result','width=800px, height=640px')" style="border:none">작업 종료</button>
 										</c:if>
 										</td>
 									</tr>
@@ -118,6 +120,29 @@
 					</form>
 				</div>
 			</div>
+			
+			<!-- 페이징 -->
+			<div class="box-footer clearfix">
+				<div style="margin: 0 auto; width: fit-content;">
+				<ul class="pagination pagination-sm no-margin pull-right">
+				
+					<c:if test="${pageVO.prev }">
+						<li><a href="/instructions/search?page=${pageVO.startPage - 1 }&searchType=${searchType }&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">«</a></li>
+					</c:if>
+					
+					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
+						<li><a href="/instructions/search?page=${i }&searchType=${searchType}&searchStartDate=${searchStartDate }&searchState=${searchState}&searchEndDate=${searchEndDate}">${i }</a></li>
+					</c:forEach>
+					
+					<c:if test="${pageVO.next }">
+						<li><a href="/instructions/search?page=${pageVO.endPage + 1 }&searchType=${searchType}&searchState=${searchState}&searchStartDate=${searchStartDate}&searchEndDate=${searchEndDate}">»</a></li>
+					</c:if>
+				</ul>
+				</div>
+			</div>
+			<!-- 페이징 끝 -->
+			
+			
 		</section>
 
 		<div id="bottomContent"></div>

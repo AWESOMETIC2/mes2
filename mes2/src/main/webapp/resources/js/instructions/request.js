@@ -7,11 +7,11 @@ function getMaterials(sopCode, salesQuantity){
     	
     	
     	$.ajax({
-    		type:"POST",
+    		type:"GET",
     		url:"/restInstruction/getMaterials",
     		dataType:"json",
     		contentType: "application/json; charset=UTF-8",
-    		data : JSON.stringify({'salesQuantity' : salesQuantity, 'sopCode' : sopCode}),
+    		data :{'salesQuantity' : salesQuantity, 'sopCode' : sopCode},
     		success:function(data){
     			removeTable();
     			showMaterials(data);
@@ -22,6 +22,16 @@ function getMaterials(sopCode, salesQuantity){
     
 function removeTable() {
      // 이전 테이블 삭제
+    var sopCodeH3 = document.getElementById("sopCode");
+    if (sopCodeH3) {
+    	sopCodeH3.remove();
+    }
+	
+    var productCodeH4 = document.getElementById("productCode");
+    if (productCodeH4) {
+    	productCodeH4.remove();
+    }
+    
     var materialsTable = document.getElementById("materialsTable");
     if (materialsTable) {
     	materialsTable.remove();
@@ -37,6 +47,16 @@ function showMaterials(data){
 	var bottomContent = document.getElementById('bottomContent');
 	var detailSopCode = data.sopCode;
 	var salesQuantity = data.salesQuantity;
+	
+	var h3 = document.createElement("h3");
+	h3.id = "sopCode";
+	h3.textContent="[수주번호 : " +data.sopCode+"]";
+	bottomContent.appendChild(h3);
+	
+	var h4 = document.createElement("h4");
+	h4.id = "productCode";
+	h4.textContent="제품번호 : " +data.productCode;
+	bottomContent.appendChild(h4);
 	
 	var table = document.createElement("table");
 	table.id = "materialsTable";
@@ -59,6 +79,7 @@ function showMaterials(data){
 	headerRow.appendChild(header3);
 	headerRow.appendChild(header4);
 	headerRow.appendChild(header5);
+	thead.classList.add("table-success");
 	
 	var tbody = document.createElement("tbody");
 	var count =0;
@@ -82,15 +103,20 @@ function showMaterials(data){
 	
 	bottomContent.appendChild(table);
 	
-	var requestButton = document.createElement("button");
-	requestButton.id = "requestButton";
-	requestButton.textContent ="자재요청";
-	
-	bottomContent.appendChild(requestButton);
-	if(requestButton.onclick){
-		requestMaterials(detailSopCode,salesQuantity);
+	if(data.status==='empty'){
+		var requestButton = document.createElement("button");
+		requestButton.id = "requestButton";
+		requestButton.textContent ="자재요청";
+		requestButton.classList.add("btn");
+		requestButton.classList.add("btn-secondary");
+		bottomContent.appendChild(requestButton);
 	}
 	
+	if (requestButton) {
+	    requestButton.onclick = function() {
+	        requestMaterials(detailSopCode, salesQuantity);
+	    };
+	}
 	
 }
 
@@ -101,10 +127,23 @@ function requestMaterials(sopCode, salesQuantity){
 		url:"/restInstruction/requestMaterials",
 		dataType:"json",
 		contentType: "application/json; charset=UTF-8",
+		dataType :"text",
 		data : JSON.stringify({'salesQuantity' : salesQuantity, 'sopCode' : sopCode}),
 		success:function(data){
-			removeTable();
-			showMaterials(data);
+			Swal.fire({
+				title: '자재 요청이 완료되었습니다.',
+				text: '자재상황 요청상황은 화면에 표시됩니다.',
+				icon: 'success'
+			}).then((result) => {
+		        // SweetAlert이 닫힐 때 호출되는 콜백
+		        if (result.isConfirmed) {
+		            location.reload();
+		        }
+		    });
+		},
+		error:function(data){
+			console.log(data)
+			alert("마 실패했다");
 		}
 	});
 	

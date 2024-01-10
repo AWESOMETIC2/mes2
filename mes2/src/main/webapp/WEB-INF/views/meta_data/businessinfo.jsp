@@ -44,13 +44,13 @@
 	<div class="son_container">
 		<!-- 검색창,추가 버튼,취소 버튼 -->	
 		<div class="son_serch">
-			<img src="../../../../resources/img/metadata/reset.png" width="30px" height="30px" onclick="redirectToFirstPage()" style="cursor: pointer;">
+			
 			<form action="/business/firstpage" method="POST">
 				<span></span>			
 				<input type="text" name="search" placeholder="거래처명을 입력하세요" />
 				<input type="submit" value="검색"/>
 			</form>
-			
+			<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>
 			<div class="son_list-btn">			
 				<button type="button" class="btn btn-secondary" id="addbtn" onclick="replaceButton()">추가</button>							
 				<button type="button" class="btn btn-secondary" id="updatebtn" onclick="replaceButton2()">수정</button>						
@@ -100,7 +100,7 @@
 					<td><input type="text" name="call" size="5"></td>				
 					<td><input type="text" name="fax" size="5"></td>
 					<td><input type="text" name="email" size="5"></td>
-					<td><i class="fa-solid fa-circle fa-2xs" style="color: #416ca4;"></i>계약 중</td>														
+					<td><i class="fa-solid fa-circle fa-2xs" style="color: #4486ff;"></i>계약 중</td>														
 					<td><button type="button" class="btn btn-secondary" id="submitbtn" onclick="submitData()" style="display: none;">저장</button></td>														
 				</tr>	
 													
@@ -122,7 +122,7 @@
 					<td class="a">
                     <c:choose>
                        <c:when test="${blist.contract_status eq '1' }">
-                          <i class="fa-solid fa-circle fa-2xs" style="color: #416ca4;"></i> 계약 중
+                          <i class="fa-solid fa-circle fa-2xs" style="color: #4486ff;"></i> 계약 중
                        </c:when>
                        <c:when test="${blist.contract_status eq '0' }">
                           <i class="fa-solid fa-circle fa-2xs" style="color: #6b6b6b;"></i> 계약만료

@@ -14,14 +14,23 @@ public class InstructionsDTO {
 	private Timestamp startTime;
 	private Timestamp endTime;
 	private int empNum;
+	private String empId;
 	private String empName;
 	private String state; //상태 ( 요청 REQUESTED, 
 	private int quantity;
 	private int fault;
 	private int salesQuantity;
 	private int targetQuantity; //실제 생산 량 = salesQuantity * 1.1(수주 물량 + 10%)
+	private String materialStatus;
 	
 	
+	
+	public String getEmpId() {
+		return empId;
+	}
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
 	public String getCode() {
 		return code;
 	}
@@ -121,6 +130,13 @@ public class InstructionsDTO {
 	}
 	public void setTargetQuantity(int targetQuantity) {
 		this.targetQuantity = targetQuantity;
+	}
+	
+	public String getMaterialStatus() {
+		return materialStatus;
+	}
+	public void setMaterialStatus(String materialStatus) {
+		this.materialStatus = materialStatus;
 	}
 	@Override
 	public String toString() {

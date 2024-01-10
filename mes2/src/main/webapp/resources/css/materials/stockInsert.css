@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 17px;
+}
+
 .body {
 	background-color: #fafafa;
 }
@@ -116,4 +120,8 @@ td{
 
 .regist {
 	margin-top: 10px;
+}
+
+#noStock {
+	text-align: center;
 }

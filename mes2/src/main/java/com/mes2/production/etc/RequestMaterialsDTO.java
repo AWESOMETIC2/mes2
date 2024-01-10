@@ -15,6 +15,7 @@ public class RequestMaterialsDTO {
 	private double price;
 	private String sopCode;
 	private int salesQuantity;
+	private String status; //주문요청 상태
 	
 	private List<RequestMaterialDTO> materialList;
 	

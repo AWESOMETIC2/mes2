@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 17px;
+}
+
 .body {
 	background-color: #fafafa;
 }
@@ -116,4 +120,38 @@ td{
 
 .regist {
 	margin-top: 10px;
+}
+/* 검색 */
+#searchType {
+	width: 150px;
+	margin-left: 200px;
+}
+
+#search {
+	width: 200px;
+}
+
+#button-addon2 {
+	width: 200px;
+	margin-right: 200px;
+}
+
+.page-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #95c4a2;
+    color: #ffffff;
+    border-color: #81b189;
+}
+
+/* 사진 */
+img {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	text-align: center;
 }
