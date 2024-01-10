@@ -32,14 +32,13 @@
 		<section class="section1">
 			<form class="search" id="searchForm">
 				<select name="searchType" id="searchType" class="form-select" aria-label="Default select example">
-					<option value="default">구분</option>
+					<option value="">구분</option>
 					<option value="품목코드">품목코드</option>
 					<option value="품목명">품목명</option>
 				</select>
 				<div class="input-group searchSub">
-					<input type="text" name="search" id="search" class="form-control" placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
+					<input type="text" name="search" id="search" class="form-control" value="${search }"placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
 				</div>
-<%-- 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 				<button class="btn btn-secondary" type="button" id="button-addon2" onclick="searchProduct();">검색</button>
 			</form>
 
@@ -72,23 +71,36 @@
 								</tbody>
 							</table>
 							<!-- 페이징 -->
-							<div class="box-footer clearfix">
-								<div style="margin: 0 auto; width: fit-content;">
-								<ul class="pagination pagination-sm no-margin pull-right">
+							<div class="page-nav">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
 								
 									<c:if test="${pageVO.prev }">
-										<li><a href="/platform/searchList?page=${pageVO.startPage - 1 }">«</a></li>
+										<li class="page-item page-action">
+											<a href="/platform/searchList?page=${pageVO.startPage - 1 }" aria-label="Previous">
+												<span aria-hidden="true">&laquo;</span>
+											</a>
+										</li>
 									</c:if>
 									
 									<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-										<li><a href="/platform/searchList?page=${i }&searchType=${searchType }&search=${search }">${i }</a></li>
+										<c:if test="${cri.page ne i }">
+											<li class="page-item page-action"><a class="page-link" href="/platform/searchList?page=${i }&searchType=${searchType }&search=${search }">${i }</a></li>
+										</c:if>
+										<c:if test="${cri.page eq i }">
+											<li class="active page-item page-action"><a class="page-link" href="/platform/searchList?page=${i }&searchType=${searchType }&search=${search }">${i }</a></li>
+										</c:if>
 									</c:forEach>
 									
 									<c:if test="${pageVO.next }">
-										<li><a href="/platform/searchList?page=${pageVO.endPage + 1 }">»</a></li>
+										<li class="page-item">
+											<a href="/platform/searchList?page=${pageVO.endPage + 1 }">
+											    <span aria-hidden="true">&raquo;</span>
+											</a>
+										</li>
 									</c:if>
-								</ul>
-								</div>
+									</ul>
+								</nav>
 							</div>
 							<!-- 페이징 끝 -->
 							<button class="btn btn-secondary regist" onclick="registProduct();">등록</button>
@@ -99,7 +111,11 @@
 			</div>
 		</section>
 	</div>
-	
+	<script type="text/javascript">
+		$(function(){
+			$("#searchType").val("${searchType}").attr("selected","selected");
+		});
+	</script>
 	<script src="${pageContext.request.contextPath}/resources/js/platform/searchList.js"></script>
 </body>
 </html>
