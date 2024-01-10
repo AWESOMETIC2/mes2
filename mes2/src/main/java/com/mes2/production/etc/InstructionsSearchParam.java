@@ -12,11 +12,20 @@ public class InstructionsSearchParam {
 	private Timestamp startTime;
 	private Timestamp endTime;
 	private String searchType;
+	private String requestCode;
+	
+	private int page;
+	private int pageSize;
 	
 	// 날짜 검색 전용
 	private Date startDate;
 	private Date endDate;
 	
+	
+	public int getStartPage() {
+		// 페이지 정보를 쿼리사용되는 값(시작인덱스)으로 변경
+		return (this.page - 1) * pageSize;
+	}
 	
 	public String getCode() {
 		return code;
@@ -64,7 +73,28 @@ public class InstructionsSearchParam {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
 
+	public String getRequestCode() {
+		return requestCode;
+	}
+
+	public void setRequestCode(String requestCode) {
+		this.requestCode = requestCode;
+	}
+
+	
 	
 	
 	

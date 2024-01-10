@@ -2,6 +2,7 @@ package com.mes2.production.persistence;
 
 import java.util.List;
 
+import com.mes2.materials.domain.OutDTO;
 import com.mes2.production.domain.InstructionsDTO;
 import com.mes2.production.etc.InstructionsSearchParam;
 import com.mes2.production.etc.RequestMaterialsDTO;
@@ -39,5 +40,12 @@ public interface InstructionsDAO {
 	public int insertOutWarehouseForMaterials(String orderCode, String productCode, int outQuantity);
 
 	public int updateSopByIsCode(String isCode, String status);
+	
+	public OutDTO selectByBaseCodeForOutDTO(String baseCode, String productCode);
+	
+	public int getTotalCountWithSearchParam(InstructionsSearchParam searchParam);
+	
+	
+	public List<OutDTO> selectByBaseCodeForOutDTOList(String baseCode);
 	
 }

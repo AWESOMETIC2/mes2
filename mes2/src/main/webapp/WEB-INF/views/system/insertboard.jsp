@@ -12,6 +12,8 @@
 
  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Gn5384xqQ1b8f1PIt4IxlGZhRa7Cf8d/Jw2g9rMzRc5lFf5L2X3+r5g1eU/3eDpP4fAq2Mv8Gf9lCJhCnRZGAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- 부트스트랩 css cdn입니다. -->
 <link
@@ -33,6 +35,24 @@
 </head>
 <body>
 
+
+	<script>
+	    function updateTitle() {
+	         var postTypeSelect = document.getElementById("postType");
+	         var titleInput = document.getElementById("join-id");
+	
+	         var selectedOptionText = "[" + postTypeSelect.options[postTypeSelect.selectedIndex].text + "]";
+	
+	         // 글제목 입력란에 설정
+	         titleInput.value = selectedOptionText;
+	     }
+	</script>
+
+
+
+
+
+
 <form method="post" action="/system/insertBoard">
 		    	<div class="modal-body" style="max-width: 1100px;">
 		    		<br>
@@ -47,6 +67,15 @@
 						      <div class="input-box">
 							      <input type="text" placeholder="글제목입력" name="title" id="join-id">
 				   			 </div>
+				   		<label for="postType" class="form-label">게시글 종류</label>
+							<div class="input-box">
+							    <select name="postType" id="postType" onchange="updateTitle()">
+							        <option value="normal">일반</option>
+							        <option value="notice">공지</option>
+							        <option value="alert">알림</option>
+							        <!-- 다른 종류의 게시글이 필요하다면 추가 가능 -->
+							    </select>
+							</div>	 
 		    		   	 <label for="exampleInputEmail1" class="form-label">글쓴이</label>
 						   <div class="input-box">
 				              <input type="text" name="writer" placeholder="작성자입력" />
@@ -66,6 +95,7 @@
 	                    <button type="button" class="btn btn-info" id=insertBoardButton">등록하기</button>
 		    		</div>
 		    </form>	
+
 
 
 

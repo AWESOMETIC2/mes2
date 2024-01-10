@@ -55,12 +55,11 @@
     display: flex;
     justify-content: flex-start;
     align-items: center; 
-    margin-right: 1300px;
+    margin-right: 1460px;
 }
 
  .page-item {
        margin-right: 5px; /* 원하는 간격 크기로 조정 */
-       background-color : #28a745;
  }
 
 
@@ -145,7 +144,7 @@
 		   
 		  <c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
 		    <li class="page-item ${pageVO.cri.page == 1 ? 'active' : ''}">
-		    	<a class="page-link" href="/system/commoncodelist?page=${i }" style="background-color:#28a745;">
+		    	<a class="page-link" href="/system/commoncodelist?page=${i }" >
 		    			${i }
 		    	</a>
 			</li>
@@ -246,14 +245,20 @@
 		    		  <div class="card mb-3" style="max-width: 1100px;"> 
 		    		  	 <div class="row g-0">
 		    		   				<div class="col-md-4">
-            						    <img src="${pageContext.request.contextPath}/resources/img/joining.jpg" class="img-fluid rounded-start" alt="...">
+            						    <img src="${pageContext.request.contextPath}/resources/img/join/joining.jpg" class="img-fluid rounded-start" alt="...">
           							</div>
 				    		          <div class="col-md-8">
 				    		               <div class="card-body">
 				    		        <div class="mb-3">
 									    <label for="exampleInputPassword1" class="form-label">코드인덱스</label><br>
-									    <input type="text" placeholder="수정할코드인덱스입력" name="code_index">
-									</div><br>              
+									    <input type="text" placeholder="코드인덱스입력" name="code_index">
+									</div><br>
+									
+			
+										<div>
+						    				<h3>변경사항</h3>
+						    			</div><hr>  
+						    			            
 				    		      <label for="exampleInputEmail1" class="form-label">코드그룹</label><br>
 								      <div class="input-box">
 									      <input type="text" placeholder="코드그룹을 입력하세요" name="code_group" id="join-id">
@@ -276,8 +281,8 @@
 								    	<option>1</option>
 								    	<option>0</option>
 								    </select>
-								  </div>  
-
+ 								  </div>  
+  
 								   </div>
 							   </div>
 							</div>

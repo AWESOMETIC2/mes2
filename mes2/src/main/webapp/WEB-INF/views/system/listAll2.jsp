@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Gn5384xqQ1b8f1PIt4IxlGZhRa7Cf8d/Jw2g9rMzRc5lFf5L2X3+r5g1eU/3eDpP4fAq2Mv8Gf9lCJhCnRZGAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <title>BoardList</title>
 
@@ -74,7 +75,21 @@
 
 
 </head>
+
+
+
+
+
+
+
 	<body style ="background-color: #F5FBF0;">
+	
+	
+
+	 	
+	  
+	 
+	 	
 	 	
 	 	
 	 		<!-- 전체를 감싸는 div -->
@@ -84,7 +99,7 @@
 						<table class="table table-hover" >
 							<thead>
 								<tr class="table-success" >
-									<th scope="col">글번호</th>
+									<th scope="col">번호</th>
 									<th scope="col">작성자</th> <!-- 체크박스 -->
 									<th scope="col">제목</th>
 									<th scope="col">등록일</th>
@@ -95,9 +110,29 @@
                     <tbody>
                         <td>${boardList.bno}</td>   
 		                <td>${boardList.writer}</td>
-						<td>
-						<a href="/system/readboard?bno=${boardList.bno}">${boardList.title}</a>
-						</td>
+				<c:choose>
+				    <c:when test="${fn:contains(boardList.title, '[공지]')}">
+				        <td>
+				            <a id="boardTitleLink" href="/system/readboard?bno=${boardList.bno}" style="text-decoration-line: none; font-weight: bold; color: blue;">${boardList.title}</a>
+				        </td>
+				    </c:when>
+				    <c:when test="${fn:contains(boardList.title, '[알림]')}">
+				        <td>
+				            <a id="boardTitleLink" href="/system/readboard?bno=${boardList.bno}" style="text-decoration-line: none; font-weight: bold; color: red;">${boardList.title}</a>
+				        </td>
+				    </c:when>
+				    <c:when test="${fn:contains(boardList.title, '[일반]')}">
+				        <td>
+				            <a id="boardTitleLink" href="/system/readboard?bno=${boardList.bno}" style="text-decoration-line: none; font-weight: bold; color: black;">${boardList.title}</a>
+				        </td>
+				    </c:when>
+				    <c:otherwise>
+				        <td>
+				            <!-- 기본값 설정 -->
+				            <a id="boardTitleLink" href="/system/readboard?bno=${boardList.bno}" style="text-decoration-line: none; font-weight: bold; color: blue;">${boardList.title}</a>
+				        </td>
+				    </c:otherwise>
+				</c:choose>
 						<td>
 							 <fmt:formatDate value="${boardList.regdate}" dateStyle="short" pattern="yy-MM-dd"/> 
 						</td>

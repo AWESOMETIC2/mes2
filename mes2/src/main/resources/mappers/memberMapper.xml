@@ -25,7 +25,7 @@
   
   	<!--  사원정보수정  -->
     <update id="updateMember"> 
-    	update employees set user_department=#{user_department},user_position=#{user_position},user_auth=#{user_auth},user_img=#{user_img},menu_status=#{menu_status},user_updatedate=now() where user_pw=#{user_pw} and user_num=#{user_num}
+    	update employees set user_department=#{user_department},user_position=#{user_position},user_auth=#{user_auth},user_img=#{user_img},menu_status=#{menu_status},user_address=#{user_address},user_updatedate=now() where user_pw=#{user_pw} and user_num=#{user_num}
     </update>
   
   
@@ -107,7 +107,7 @@
   	
   	
   	<!--  합산제품수  -->
-  	<select id="totalPd" resultType="int"> 
+  	<select id="totalPd" resultType="Integer"> 
   		select sum(pd_quantity) AS total_quantity from product
   	 </select>
   	 

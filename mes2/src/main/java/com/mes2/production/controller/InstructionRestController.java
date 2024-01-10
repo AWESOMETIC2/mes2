@@ -2,7 +2,9 @@ package com.mes2.production.controller;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.mes2.materials.domain.OutDTO;
 import com.mes2.production.domain.InstructionsDTO;
 import com.mes2.production.domain.ProductionLineDTO;
 import com.mes2.production.etc.InstructionsSearchParam;
@@ -62,23 +66,62 @@ public class InstructionRestController {
 		
 	}
 	//http://localhost:8088/restInstruction/getMaterials
-	@PostMapping(value="/getMaterials" , produces ="application/json; charset=utf-8")
-	public RequestMaterialsDTO getMaterials(@RequestBody RequestMaterialInfo info) {
+	@GetMapping(value="/getMaterials" , produces ="application/json; charset=utf-8")
+	public RequestMaterialsDTO getMaterials(@RequestParam("sopCode") String sopCode , @RequestParam("salesQuantity") int salesQuantity) {
 		//String sopCode="ACP-bsp002-ORD-20231231-bsp002-1-100";
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+info.getSopCode());
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+info.getSalesQuantity());
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+sopCode);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+salesQuantity);
 		
-		RequestMaterialsDTO rqml = instructionsDAO.selectBySopCodeForMaterials(info.getSopCode());
+		
+		RequestMaterialsDTO rqml = instructionsDAO.selectBySopCodeForMaterials(sopCode);
+		
+		int precessStatus = 0;
+		
+		//전체 비교를 위한 Map 객체 소환
+		Map<Integer, String> requestStatusMap = new HashMap();
+		int count = 1;
+		log.debug("@@@@@@@@@@@@@@@@"+rqml.getMaterialList().toString());
 		for(RequestMaterialDTO dto : rqml.getMaterialList()) {
-			dto.setTotalAmount(dto.getAmount()*info.getSalesQuantity());
 			
+			log.debug("@@@@@@@@@@@@@ - DTO의 ProductCode값 "+ dto.getProductCode()+"@@@@@@@@@@@@@@");
+			
+			dto.setTotalAmount(dto.getAmount()*salesQuantity);
 			
 			//조회해서 상태코드를 보고 상태값 입력해줘야함
-			
-			
+			if(instructionsService.findBySopCodeForOutDTO(sopCode,dto.getMaterialCode())==null) {
+				log.debug("(_ _ ) instructionService [getMaterials] : 조회 결과 : NULL");
+			}else if(instructionsService.findBySopCodeForOutDTO(sopCode ,dto.getMaterialCode())!=null) {
+				OutDTO outDTO = instructionsService.findBySopCodeForOutDTO(sopCode,dto.getMaterialCode());
+				if(outDTO.getStatus().equals("waiting")) {
+					requestStatusMap.put(count, "waiting");
+				}else if(outDTO.getStatus().equals("complete")) {
+					requestStatusMap.put(count, "complete");
+				}
+				count ++;
+			}
 		}
-		rqml.setSopCode(info.getSopCode());
-		rqml.setSalesQuantity(info.getSalesQuantity());
+		
+		if(requestStatusMap.isEmpty()) {
+			rqml.setStatus("empty");
+			log.debug("@@@@@@@@@@@@@@ EMPTY @@@@@@@@@@@@@@@@@@@@@@@@@@");
+		}
+		else if(!requestStatusMap.containsValue("waiting") && requestStatusMap.containsValue("complete")){
+            log.debug(" +complete 상태");
+            rqml.setStatus("complete");
+            
+        }else if(requestStatusMap.containsValue("waiting") && !requestStatusMap.containsValue("complete")){
+        	log.debug(" waiting 상태");
+        	rqml.setStatus("waiting");
+            
+        }else if(requestStatusMap.containsValue("waiting") && requestStatusMap.containsValue("complete")){
+        	log.debug("일부만 완료된 준비중인 상태");
+        	rqml.setStatus("progressing");
+        	
+        }
+		
+		
+		rqml.setSopCode(sopCode);
+		rqml.setSalesQuantity(salesQuantity);
 		
 		return rqml;
 	}
@@ -90,8 +133,8 @@ public class InstructionRestController {
 		return null;
 	}
 	
-	@PostMapping("/updateProgressing")
-	public String updateProgressing(@RequestParam("isCode") String isCode) {
+	@GetMapping("/updateProgressing")
+	public String updateProgressing(@RequestParam("isCode") String isCode, @SessionAttribute("id")String userId) {
 		
 		log.debug("@@@@@@@@@@@@@@@/updateProgressing : 호출@@@@@@@@@@@@@@@@@@@@@");
 		log.debug("전달받은 isCode : "+isCode);
@@ -99,14 +142,15 @@ public class InstructionRestController {
 		InstructionsDTO findInstruction = instructionsDAO.selectByCode(isCode);
 		ProductionLineDTO findProductionLine = productionLineDAO.selectByIsCode(isCode);
 		
+		findInstruction.setEmpId(userId);
 		findInstruction.setState("PROGRESSING");
 		findProductionLine.setStatus("PROGRESSING");
-		
+
 		instructionsDAO.updateState(findInstruction);
 		productionLineDAO.updateState(findProductionLine);
 		//instructionsDAO.updateSopByIsCode(isCode, "PROGRESSING");
 		
-		return null;
+		return "ok";
 	}
 	
 	@PostMapping("/requestMaterials")
@@ -125,7 +169,7 @@ public class InstructionRestController {
 		}
 		
 		
-		return "OK";
+		return "ok";
 	}
 	
 }

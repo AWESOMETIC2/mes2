@@ -1,13 +1,13 @@
 package com.mes2.production.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -23,14 +23,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mes2.materials.domain.OutDTO;
 import com.mes2.production.domain.InstructionsDTO;
-import com.mes2.production.domain.ProductionLineDTO;
-import com.mes2.production.etc.InstructionResultParam;
+import com.mes2.production.etc.Criteria;
 import com.mes2.production.etc.InstructionsSearchParam;
+import com.mes2.production.etc.PageVO;
 import com.mes2.production.exception.ValidationValueErrorException;
 import com.mes2.production.service.InstructionsService;
+import com.mes2.production.service.ProductService;
 import com.mes2.production.service.ProductionLineService;
-import com.mes2.production.vo.InstructionsState;
 
 @Controller
 @RequestMapping("/instructions")
@@ -41,6 +42,9 @@ public class InstructionsController {
 	
 	@Inject
 	private ProductionLineService productionLineService;
+	
+	@Inject
+	private ProductService productService;
 	
 	private final Logger log = LoggerFactory.getLogger(ProductController.class);
 	
@@ -77,13 +81,12 @@ public class InstructionsController {
 	//http://localhost:8088/instructions/search
 	@GetMapping("/search")
 	public String searchGET(Model model,
-			@RequestParam(value="searchStartDate", required = false) Date searchStartDateV2,
-			@RequestParam(value="searchEndDate", required = false) Date searchEndDateV2,
-			@ModelAttribute(value = "searchStartDate") String searchStartDate,
-			@ModelAttribute(value="searchEndDate") String searchEndDate, 
+			@RequestParam(value="searchStartDate", required = false) Date searchStartDate,
+			@RequestParam(value="searchEndDate", required = false) Date searchEndDate,
 			@ModelAttribute(value = "searchCode") String searchCode,
 			@ModelAttribute(value="searchType") String searchType,
-			@RequestParam(value="searchState", required = false) String searchState ) {
+			@RequestParam(value="searchState", required = false) String searchState ,
+			Criteria cri) {
 		
 		log.debug("isController : 넘겨받은 startDate : " + searchStartDate);
 		log.debug("isController : 넘겨받은 endDate : " + searchEndDate);
@@ -91,76 +94,40 @@ public class InstructionsController {
 		log.debug("isController : 넘겨받은 code : " + searchCode);
 		log.debug("isController : 넘겨받은 searchState : " + searchState);
 		
+		if(searchStartDate==null) {
+		searchStartDate = Date.valueOf(LocalDate.now());
+		}
+		if(searchEndDate==null) {
+		searchEndDate = Date.valueOf(LocalDate.now().plusWeeks(1));
+		}
+		
 		
 		InstructionsSearchParam param = new InstructionsSearchParam();
-		if(!searchStartDate.equals("")) {
-			param.setStartDate(Date.valueOf(searchStartDate));
-		}
-		if(!searchEndDate.equals("")) {
-			param.setEndDate(Date.valueOf(searchEndDate));
-		}
-		
-		String defaultTime = " 00:00:00";
-		
-		//SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		
-		
-		
-		
-	
-		//@@@@@@@@@@@@@@@@@@날려버릴까 생각중인 것@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		if(searchStartDate==null || searchStartDate.equals("")) {
-			  param.setStartTime(null);
-		}else {
-			searchStartDate += defaultTime;
-			
-			log.debug("instruction Controller : 변환전 startDate의 값 : " +  searchStartDate);
-			
-			param.setStartTime(Timestamp.valueOf(searchStartDate));
-		}
-		
-		if(searchEndDate==null || searchEndDate.equals("")) {
-			 param.setEndTime(null);
-		}else {
-			searchEndDate += defaultTime;
-			
-			log.debug("instruction Controller : 변환전 endDate의 값 : " + searchEndDate);
-			
-			param.setEndTime(Timestamp.valueOf(searchEndDate));
-		}
-		
-		log.debug("instruction Controller : startDate의 값 : " + param.getStartTime());
-		log.debug("instruction Controller : endDate의 값 : " + param.getEndTime());
-		//@@@@@@@@@@@@@@@@@@날려버릴까 생각중인 것@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		
 		
 		if(searchState==null ||searchState.equals("")) {
-			log.debug("@@@@@@@@@@@@@@뭐가 호출되는지 한번 보자 (위)@@@@@@@@@@@@@@@@@@@@");
 			param.setState(null);
 		}else {
 			param.setState(searchState);
 		}
+		
 		param.setCode(searchCode);
 		param.setSearchType(searchType);
+		param.setStartDate(searchStartDate);
+		param.setEndDate(searchEndDate);
+		
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(instructionsService.getTotalCountWithSearchParam(param));
+		model.addAttribute("pageVO", pageVO);
+		
+		param.setPage(cri.getPage());
+		param.setPageSize(cri.getPageSize());
 		
 		List<InstructionsDTO> instructions =   instructionsService.findBySearchParam(param);
-		
-//		for(InstructionsDTO dto : instructions) {
-//			log.debug("" + dto.toString());
-//		}
-		
-		if(searchStartDate!=null && !searchStartDate.equals("")) {
-			model.addAttribute("startDate", searchStartDateV2);
-			model.addAttribute("endDate", searchEndDateV2);
-		}
-//		if(searchEndDate!=null && !searchEndDate.equals("")) {
-//			model.addAttribute("endDate", Date.valueOf(searchEndDate));
-//		}
-		
-		//log.debug("입력받은 state"+state.getClass());
-		
-		//model.addAttribute("startDate", searchStartDate);
-		//model.addAttribute("endDate", searchEndDate);
+
+		model.addAttribute("searchStartDate", searchStartDate);
+		model.addAttribute("searchEndDate", searchEndDate);
 		model.addAttribute("instructions", instructions);
 		model.addAttribute("searchType", searchType);
 		model.addAttribute("searchState", searchState);
@@ -224,13 +191,64 @@ public class InstructionsController {
 	
 	//http://localhost:8088/instructions/request
 	@GetMapping("/request")
-	public String requestGET(Model model) {
+	public String requestGET(Model model, Criteria cri, @RequestParam(value="code", required = false)String code) {
 
 		String state="REQUESTED";
 		
-		model.addAttribute("instructions" , instructionsService.findByState(state));
+		InstructionsSearchParam param = new InstructionsSearchParam();
+		param.setState(state);
+		param.setSearchType("isCode");
+		param.setRequestCode(code);
+		
+		PageVO pageVO = new PageVO();
+		pageVO.setCri(cri);
+		pageVO.setTotalCount(instructionsService.getTotalCountWithSearchParam(param));
+		model.addAttribute("pageVO", pageVO);
+		
+		param.setPage(cri.getPage());
+		param.setPageSize(cri.getPageSize());
+		
+		
+		//List<InstructionsDTO> instructions = instructionsService.findByState(state);
+		List<InstructionsDTO> instructions = instructionsService.findBySearchParam(param);
+		for(InstructionsDTO isDTO : instructions) {
+			//해당 수주번호를 가진 자재 요청건 모두 꺼내와서 
+			//리스트를 돌면서 넣어줘야함
+			Map<Integer, String> requestStatusMap = new HashMap();
+			int count =1;
 
-
+			if(!instructionsService.findBySopCodeForOutDTOList(isDTO.getSopCode()).isEmpty()) {
+				List<OutDTO> outDTOS = instructionsService.findBySopCodeForOutDTOList(isDTO.getSopCode());
+				for(OutDTO outDTO : outDTOS) {
+					if(outDTO.getStatus().equals("complete")) {
+						requestStatusMap.put(count, "Y");
+					}else if(!outDTO.getStatus().equals("complete")) {
+						requestStatusMap.put(count, "N");
+					}
+					count ++;
+				}
+			
+				if(requestStatusMap.isEmpty()) {
+					isDTO.setMaterialStatus("N");
+				}else if(requestStatusMap.containsValue("Y") &&!requestStatusMap.containsValue("N") ) {
+					isDTO.setMaterialStatus("Y");
+				}else if(requestStatusMap.containsValue("N") &&!requestStatusMap.containsValue("Y") ) {
+					isDTO.setMaterialStatus("R");
+				}else if(requestStatusMap.containsValue("N") &&requestStatusMap.containsValue("Y") ) {
+					isDTO.setMaterialStatus("R");
+				}				
+				log.debug("@@@@@@@@@@@@@@@"+isDTO.getMaterialStatus());
+			}else if(instructionsService.findBySopCodeForOutDTOList(isDTO.getSopCode()).isEmpty()) {
+				isDTO.setMaterialStatus("N");
+			}
+		}
+		
+		
+		
+		model.addAttribute("code", code);
+		model.addAttribute("instructions" , instructions);
+		
+		
 		return "/instructions/request";
 	}
 	
@@ -251,12 +269,14 @@ public class InstructionsController {
 			@RequestParam("line") int line ,HttpServletResponse response) {
 		
 		//수락 누를시 productionLine, instructions 전부 상태 변환 적용
-		instructionsService.acceptRequestedInstructions(sopCode, dueDate, line);;
+		instructionsService.acceptRequestedInstructions(sopCode, dueDate, line);
+		
+		
 		
 		try {
 			response.setContentType("text/html; charset=utf-8");
 			String msg = "<script>alert('작업요청이 수락되었습니다');</script>";
-			msg+="<script>location.href='/instructions/close';";
+			msg+="<script>location.href='/instructions/close';</script>";
 			PrintWriter writer = response.getWriter();
 			
 			writer.print(msg);
@@ -282,10 +302,10 @@ public class InstructionsController {
 	
 	@PostMapping("/result")
 	public String resultPOST(@RequestParam("isCode") String isCode, @RequestParam("quantity") int quantity,
-			@RequestParam("fault") int fault,
-			HttpServletResponse response) {
+			@RequestParam("fault") int fault, HttpServletResponse response) {
 		
 		instructionsService.completeInstructions(isCode,quantity, fault);
+		
 		
 		try {
 			response.setContentType("text/html; charset=utf-8"); 
@@ -303,6 +323,7 @@ public class InstructionsController {
 	
 	@PostMapping("/materials")
 	public String materialsPOST() {
+		
 		
 		
 		return null;

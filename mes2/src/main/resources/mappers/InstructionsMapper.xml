@@ -16,11 +16,13 @@
 		<result property="dueDate" column="due_date"/>
 		<result property="startTime" column="start_time"/>
 		<result property="endTime" column="end_time"/>
-		<result property="empNum" column="emp_id"/>
+		<result property="empId" column="emp_id"/>
 		<result property="state" column="state"/>
 		<result property="quantity" column="quantity"/>
 		<result property="fault" column="fault"/>
-		<result property="salesQuantity" column="sales_quantity"/>		
+		<result property="salesQuantity" column="sales_quantity"/>	
+		<result property="targetQuantity" column="target_quantity"/>	
+			
 	</resultMap>
 	
 	<resultMap type="com.mes2.production.etc.RequestMaterialsDTO" id="requestMaterialsDTOMap">
@@ -50,21 +52,25 @@
 	<!-- 혹시 대비를 위한  -->
 	<update id="updateAccept">
 		update instructions
-		set code=#{code}, line=#{line}, due_date = #{dueDate}, type=#{type},  state = 'WAITING', emp_id = #{empNum} , target_quantity = #{targetQuantity} 
+		set code=#{code}, line=#{line}, due_date = #{dueDate}, type=#{type},  state = 'WAITING', emp_id = #{empId} , target_quantity = #{targetQuantity} 
 		where sop_code = #{sopCode}
 	</update>
 	
 	<select id="selectByCode" resultMap="instructionsDTOMap" parameterType="String">
 		select *
 		from instructions iss 
-		join sales_order_product sop 
-		on iss.sop_code = sop.sales_code 
+<!-- 		join sales_order_product sop 
+		on iss.sop_code = sop.sales_code --> 
 		where code = #{value}
 	</select>
 	
 	<update id="updateState">
 		update instructions
 		set state=#{state}
+		<if test ="state.equals('PROGRESSING')">
+			, start_time = now() , emp_id =#{empId}
+		</if>
+		
 		where code = #{code}
 	</update>
 	
@@ -81,6 +87,32 @@
 		set end_time = now(), state = 'COMPLETE', quantity = #{quantity}, fault = #{fault}
 		where code = #{code}
 	</update>
+	
+	<!-- 서치 총 카운트 -->
+	<select id="selectBySearchParamCodeForTotalCount" resultType="int">
+		select count(*)
+		from instructions 
+		<where>
+			<if test="state !=null and !state.equals('')">
+				<![CDATA[
+            	and state = #{state}
+            	]]>   
+            </if>
+            <if test="code !=null and !code.equals('')">
+               <![CDATA[
+               	and code like concat('%',#{code},'%')
+               ]]>    
+            </if>
+            <if test="state == null or state.equals('')">
+            	and state != 'REQUESTED'
+            </if>
+            <if test="startDate != null and endDate != null ">
+                AND due_Date between #{startDate} AND #{endDate}
+            </if>	     
+         </where>
+	</select>
+	
+	
 	
 	<select id="selectBySearchParamCode" resultMap="instructionsDTOMap">
 		select * 
@@ -105,17 +137,29 @@
 
             <if test="startDate != null and endDate != null ">
                 AND due_Date between #{startDate} AND #{endDate}
-            </if>	
-<!--             
-            <if test="startTime != null  and endTime == null ">
-                <![CDATA[ AND start_time > #{startTime}]]>
-            </if>	
-
-			<if test="startTime == null  and endTime != null ">
-                <![CDATA[ AND end_time < #{endTime} ]]>
             </if>
-             -->
+            
+            <if test="searchType.equals('isCode') and code!=null and code.equals('')">
+            	<![CDATA[
+               	and code like concat('%',#{code},'%')
+               ]]> 
+            </if>
+
+			<if test="searchType.equals('sopCode') and code!=null and code.equals('')">
+            	<![CDATA[
+               	and sopCode like concat('%',#{code},'%')
+               ]]> 
+            </if>
+            
+            <if test="searchType.equals('mdpCode') and code!=null and code.equals('')">
+            	<![CDATA[
+               	and mdp_code like concat('%',#{code},'%')
+               ]]> 
+            </if>
+
          </where>
+         ORDER BY is_index desc
+		LIMIT #{startPage}, #{pageSize}
 	</select>
 
 	<select id="selectBySearchParamSoiCode"  resultType="com.mes2.production.domain.InstructionsDTO">
@@ -191,8 +235,8 @@
 	<select id="selectByStateAndDueTime" resultMap="instructionsDTOMap">
 		select *
 		from instructions iss 
-		join sales_order_product sop 
-		on iss.sop_code = sop.sales_code 
+<!-- 		join sales_order_product sop 
+		on iss.sop_code = sop.sales_code  -->
 		where state = #{state} and due_date between #{startDate} and #{endDate} 
 	</select>
 	
@@ -211,16 +255,16 @@
 	<select id="selectBySopCode" resultMap="instructionsDTOMap" parameterType="java.util.Map">
 		select *
 		from instructions iss 
-		join sales_order_product sop 
-		on iss.sop_code = sop.sales_code 
+<!-- 		join sales_order_product sop 
+		on iss.sop_code = sop.sales_code  -->
 		where sop_code = #{sopCode} and state = #{state}
 	</select>
 	
 	<select id="selectByState" resultMap="instructionsDTOMap">
 		select *
 		from instructions iss 
-		join sales_order_product sop 
-		on iss.sop_code = sop.sales_code 
+<!-- 		join sales_order_product sop 
+		on iss.sop_code = sop.sales_code  -->
 		where state = #{state} 
 	</select>
 	
@@ -239,9 +283,16 @@
 	</insert>
 
 	<!-- 자재 전달 상황 조회 -->
-	<select id="selectOutWarehouseForMaterials">
+	<select id="selectOutWarehouseForMaterials" resultType="com.mes2.materials.domain.OutDTO" parameterType="java.util.Map" >
 		select * 
 		from out_warehouse 
-		where based_code = #{basedCode} and status ='complete' and out_type = 'p'
+		where based_code = #{baseCode} and out_type = 'p' and product_code = #{productCode}
+	</select>
+	
+	<!-- 자재 전달 상황 조회 리턴값 리스트 -->
+	<select id="selectOutWarehouseForMaterialsList" resultType="com.mes2.materials.domain.OutDTO" parameterType="java.util.Map" >
+		select * 
+		from out_warehouse 
+		where based_code = #{baseCode} and out_type = 'p'
 	</select>
 </mapper>

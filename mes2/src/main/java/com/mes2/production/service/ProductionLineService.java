@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.mes2.production.domain.ProductionLineDTO;
+import com.mes2.production.etc.ProductionLineSearchParam;
 
 public interface ProductionLineService {
 
@@ -11,7 +12,8 @@ public interface ProductionLineService {
 	
 	public void save(ProductionLineDTO productionLineDTO);
 	
-	public List<ProductionLineDTO> findByDate(Date startDate , Date endDate);
+	public List<ProductionLineDTO> findBySearchParam(ProductionLineSearchParam param);
+	public Integer findBySearchParamForTotalCount(ProductionLineSearchParam param);
 	
 	public ProductionLineDTO findByIsCode(String isCode);
 	

@@ -1,7 +1,11 @@
 package com.mes2.sales.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.mes2.platform.service.PlatformServiceImpl;
 import com.mes2.sales.domain.AcceptSaveDTO;
+import com.mes2.sales.domain.Criteria;
 import com.mes2.sales.domain.PlanRegisterDTO;
 import com.mes2.sales.domain.SalesDTO;
 import com.mes2.sales.domain.SearchDTO;
@@ -19,15 +24,18 @@ import com.mes2.sales.persistence.SalesDAO;
 @Service
 public class SalesServiceImpl implements SalesService {
 
-	private static final Logger logger = LoggerFactory.getLogger(PlatformServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(SalesServiceImpl.class);
 	
 	@Inject
 	private SalesDAO sdao;
 	
 	@Override
-	public List<SalesDTO> salesList(String sales_status) {
+	public List<SalesDTO> salesList(Criteria cri) {
 		logger.debug(" S : salesList() ");
-		return sdao.getSalesList(sales_status);
+		List<SalesDTO> list = sdao.getSalesList(cri);
+		logger.debug(" list@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!!! "+list);
+		System.out.println(" @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!!! "+list);
+		return sdao.getSalesList(cri);
 	}
 	
 	@Override
@@ -49,11 +57,7 @@ public class SalesServiceImpl implements SalesService {
 		return sdao.getStockQuantity(sd);
 	}
 	
-	@Override
-	public List<SalesDTO> searchListPlan(SearchDTO sed) {
-		logger.debug(" S : searchListPlan(SearchDTO sed) ");
-		return sdao.planSearch(sed);
-	}
+
 	
 	@Override
 	public void registerPlan(PlanRegisterDTO pdto) {
@@ -92,11 +96,7 @@ public class SalesServiceImpl implements SalesService {
 		sdao.makeSalesCode(sd);
 	}
 	
-//	@Override
-//	public List<SalesDTO> salesAcceptList() {
-//		logger.debug(" S : salesAcceptList() ");
-//		return sdao.getSalesAcceptList();
-//	}
+
 	
 	@Override
 	public List<SalesDTO> acceptContent(String order_code) {
@@ -104,48 +104,6 @@ public class SalesServiceImpl implements SalesService {
 		return sdao.getAcceptContent(order_code);
 	}
 	
-	@Override
-	public void changeAcceptStatus(AcceptSaveDTO ad) {
-		logger.debug(" S : changeAcceptStatus(AcceptSaveDTO ad) ");
-		
-		// 수락수주 상태변경하는 메서드
-		sdao.updateAcceptStatus(ad);
-		//(AcceptSaveDTO ad)에서 수주코드, 주문코드, 상품코드, 상태 담겨있음
-		// 상태가 stock인 경우 출고테이블에서 출고수량 품목코드 출고유형 업로드
-		
-		List<String> productList = new ArrayList<>();
-		List<String> quantity = new ArrayList<>();
-		List<String> salesCode = new ArrayList<>();
-		AcceptSaveDTO dto = new AcceptSaveDTO();
-		for(int i=0; i< ad.getSales_code().size(); i++) {
-			
-			
-			String product_code = ad.getProduct_code().get(i); //품목코드
-			String sales_quantity = ad.getSales_quantity().get(i);
-			String processing_reg = ad.getProcessing_reg().get(i);
-			String sales_code = ad.getSales_code().get(i);
-			
-			if("stock".equals(processing_reg)) {
-				productList.add(product_code);
-				quantity.add(sales_quantity);
-			}else if("production".equals(processing_reg)) {
-				salesCode.add(sales_code);
-			}else if("multi".equals(processing_reg)) {
-				// 현재수량 가지고 와서 
-				// product_code넘기고 그걸 이용해서 현재수량 가지고 와서 
-				
-			}
-			
-			dto.setProduct_code(productList);
-			dto.setSales_quantity(quantity);
-			dto.setSales_code(salesCode);
-			
-		}
-		
-		
-		
-		
-	}
 	
 	@Override
 	public void changeProductStatus(SalesDTO sd) {
@@ -156,12 +114,13 @@ public class SalesServiceImpl implements SalesService {
 	@Override
 	public void stockReg(SalesDTO sd) {
 		logger.debug(" S :stockReg(SalesDTO sd)");
+		// 출고테이블에 등록
 		sdao.stockReg(sd);
 		
-		// 값 변경
+		// 상태값 변경
 		sdao.changeProductStatus(sd);
-		// 창고에서 빼기
-		sdao.updateStockQuan(sd);
+		
+		
 	}
 	
 	@Override
@@ -173,12 +132,141 @@ public class SalesServiceImpl implements SalesService {
 		
 		
 		
+		
+		
 	}
 	
 	@Override
 	public void updateStockQuan(SalesDTO sd) {
 		logger.debug(" S :updateStockQuan(SalesDTO sd) ");
 		sdao.updateStockQuan(sd);
+		// 창고에서 값 빼기 
 		
 	}
+	
+	@Override
+	public void insertShippingPlan(PlanRegisterDTO pdto) {
+		logger.debug(" insertShippingPlan(PlanRegisterDTO pdto) ");
+		List<String> orderList = pdto.getOrder_code();
+		
+		for(String order_code: orderList) {
+			SalesDTO sdt = new SalesDTO();
+			Date order_date = sdao.checkOrdeDate(order_code);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(order_date);
+			cal.add(Calendar.DATE, -4);
+			sdt.setScheduled_date(cal.getTime());
+			sdt.setOrder_code(order_code);			
+			sdao.insertShippingPlan(sdt);
+		}
+		
+	}
+	
+
+	
+	@Override
+	public SalesDTO salesPlanCnt() {
+		SalesDTO sdt = new SalesDTO();
+		Criteria cri = new Criteria();
+		cri.setSales_status("requested");
+		cri.setNewOrder("true");
+		sdt.setNewCnt(sdao.getPlanNewCnt(cri));
+		cri.setNewOrder("false");
+		sdt.setWaitingCnt(sdao.getPlanNewCnt(cri));
+		return sdt;
+	}
+	
+	
+
+	
+	@Override
+	public SalesDTO proCnt() {
+		SalesDTO dto = new SalesDTO();
+		Criteria cri = new Criteria();
+		cri.setSales_status("accept");
+        cri.setNewOrder("true");
+        dto.setNewCnt(sdao.getPlanNewCnt(cri));	
+		
+		cri.setNewOrder("false");
+					
+		cri.setInstructions("Y");
+		dto.setCompleteCnt(sdao.getPlanNewCnt(cri));	
+	
+		cri.setInstructions("N");
+		dto.setWaitingCnt(sdao.getPlanNewCnt(cri));
+	
+		
+		
+		return dto;
+	}
+	
+
+	
+	@Override
+	public AcceptSaveDTO orderInfo(String order_code) {
+		
+		return sdao.getOrderInfo(order_code);
+	}
+	
+	@Override
+	public String instructSales(List<SalesDTO> list) {
+		
+		
+		
+		SalesDTO sdt = list.get(0);
+
+        String order_code = sdt.getOrder_code();
+		sdao.updateInstruction(order_code);
+		
+		for(SalesDTO dto : list) {
+			
+			
+			if (dto != null) {
+		        if ("stock".equals(dto.getProcessing_reg())) {
+		            dto.setProduct_status("progressing");
+		            stockReg(dto);
+		        } else if ("production".equals(dto.getProcessing_reg())) {
+		            
+		            dto.setProduct_status("progressing");
+		            dto.setLack_quantity(dto.getSales_quantity());
+		            productInst(dto);
+		            stockReg(dto);
+		        } else if ("multi".equals(dto.getProcessing_reg())) {
+		            dto.setProduct_status("progressing");
+		            int stock_quantity = stockQuantity(dto).getStock_quantity();
+		            int lack_quantity = (dto.getSales_quantity() - stock_quantity);
+		            dto.setLack_quantity(lack_quantity);
+		            stockReg(dto);
+		            productInst(dto);
+		        } else if ("N".equals(dto.getProcessing_reg())) {
+		            // 아무 동작이 필요하지 않은 경우
+		        }
+		    }
+			
+			
+		}
+		
+		return order_code;
+	}
+	
+@Override
+	public int totalCount(Criteria cri) {
+	  
+	  
+	List<SalesDTO> list =sdao.listCount(cri);
+	 int totalCount =  list.size();
+	 return totalCount;
+	}
+
+@Override
+public SalesDTO getRegUser(String order_code) {
+	
+	return sdao.getRegUser(order_code);
+}
+
+@Override
+public AcceptSaveDTO orderPlanInfo(String order_code) {
+	
+	return sdao.getOrderPlanInfo(order_code);
+}
 }

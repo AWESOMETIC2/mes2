@@ -1,4 +1,5 @@
 
+// salesPlan의 자바스크립트 list
   var updateBtn = false;
  
  $(document).ready(function(){

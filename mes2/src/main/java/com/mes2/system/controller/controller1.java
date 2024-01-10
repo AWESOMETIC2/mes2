@@ -1,6 +1,7 @@
 package com.mes2.system.controller;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,7 +65,7 @@ public class controller1 {
 
 	 // http://localhost:8088/system/login
 	 // http://localhost:8088/system/sidehead
-		
+	
 	
 	
 	
@@ -83,7 +84,7 @@ public class controller1 {
 	
 		
 		int totalMembers = mService.totalMember();
-		int totalProduct = mService.totalPd();
+		Integer totalProduct = mService.totalPd();
 		Integer totalInP = mService.totalIn();
 		Integer totalOutP = mService.totalOut();
 		Integer totalOk = mService.totalOk();
@@ -95,10 +96,6 @@ public class controller1 {
 		Integer fifthLine = mService.fifthLine();
 		Integer sixthLine = mService.sixthLine();
 		Integer sevenLine = mService.sevenLine();
-		
-		
-		
-		
 		
 		
 		
@@ -146,8 +143,7 @@ public class controller1 {
 		}
 
 		else {
-
-			return "redirect:/system/login";
+			return "/system/login";
 		}
 
 	}
@@ -367,7 +363,9 @@ public class controller1 {
 		logger.debug("수정할 정보 :" + dto);
 		
 		
-	
+		String address = request.getParameter("zip-code") +")" + request.getParameter("address") + request.getParameter("address_detail");
+		dto.setUser_address(address);
+
 
 		//파일업로드처리
 		Map paramMap = new HashMap();
@@ -657,7 +655,7 @@ public class controller1 {
 				//업로드 된 실제 파일의 이름을 저장
 				fileList.add(oFileName);
 				// 실제 폴더 생성 -> D드라이브에 springupload 라는 폴더생성
-				File file  = new File("C:\\Users\\ITWILL\\Desktop\\ProjectTwo\\mes2\\src\\main\\webapp\\resources\\img\\" + oFileName);
+				File file  = new File("C:\\Users\\ITWILL\\git\\mes2\\mes2\\src\\main\\webapp\\resources\\img\\members\\" + oFileName);
 				//파일업로드
 				if(mFile.getSize() != 0) { //첨부했던 첨부파일이 있을 때 의 의미 (!= 0)
 					if(!file.exists()) { // 파일, 폴더가 실제로 존재하는지 체크
@@ -744,6 +742,34 @@ public class controller1 {
 		public String mainpageGET(Model model,HttpSession session,Criteria cri) throws Exception {
 			logger.debug(" /main/login 호출 -> mainGET() 실행");
 			
+			int totalMembers = mService.totalMember();
+			Integer totalProduct = mService.totalPd();
+			Integer totalInP = mService.totalIn();
+			Integer totalOutP = mService.totalOut();
+			Integer totalOk = mService.totalOk();
+			Integer totalNo = mService.totalNo();
+			Integer firstLine = mService.firstLine();
+			Integer secondLine = mService.secondLine();
+			Integer thirdLine = mService.thirdLine();
+			Integer forthLine = mService.forthLine();
+			Integer fifthLine = mService.fifthLine();
+			Integer sixthLine = mService.sixthLine();
+			Integer sevenLine = mService.sevenLine();
+			
+			session.setAttribute("total", totalMembers);
+			session.setAttribute("totalProduct", totalProduct);
+			session.setAttribute("totalIn", totalInP);
+			session.setAttribute("totalOut", totalOutP);
+			session.setAttribute("totalOk", totalOk);
+			session.setAttribute("totalNo", totalNo);
+			session.setAttribute("firstLine", firstLine);
+			session.setAttribute("secondLine", secondLine);
+			session.setAttribute("thirdLine", thirdLine);
+			session.setAttribute("forthLine", forthLine);
+			session.setAttribute("fifthLine", fifthLine);
+			session.setAttribute("sixthLine", sixthLine);
+			session.setAttribute("sevenLine", sevenLine);
+			
 			session.setAttribute("viewcntCheck", true);
 			
 			
@@ -767,8 +793,11 @@ public class controller1 {
 		
 		
 		
+		
 		// http://localhost:8088/system/listAll2
 		// http://localhost:8088/system/login
+		
+		
 		
 		// 게시판 LISTALL get
 		@RequestMapping(value="/listAll2",method = RequestMethod.GET)
@@ -776,7 +805,8 @@ public class controller1 {
 			logger.debug("boardListAll GET 호출!");
 			
 			
-			session.setAttribute("viewcntCheck", true);
+			
+
 			
 			
 			PageVO pageVO = new PageVO();
@@ -793,11 +823,6 @@ public class controller1 {
 			
 			return "/system/listAll2";
 		}
-		
-		
-		
-		
-		
 		
 		
 		
@@ -821,6 +846,7 @@ public class controller1 {
 		
 		
 		
+		
 		// 코드검색출력 GET
 		
 		@RequestMapping(value = "/searchcodelist", method = RequestMethod.GET)
@@ -835,6 +861,8 @@ public class controller1 {
 
 		    return "/system/commoncodelist";
 		}
+		
+		
 		
 		
 	    
@@ -874,7 +902,8 @@ public class controller1 {
 		
 		
 		
-		
+		// http://localhost:8088/system/login
+
 		//게시판 글 쓰기
 		
 		// 글쓰기 - POST

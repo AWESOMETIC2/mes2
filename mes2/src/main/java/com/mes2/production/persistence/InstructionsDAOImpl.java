@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.mes2.materials.domain.OutDTO;
 import com.mes2.production.domain.InstructionsDTO;
 import com.mes2.production.etc.InstructionsSearchParam;
 import com.mes2.production.etc.RequestMaterialsDTO;
@@ -143,6 +144,7 @@ public class InstructionsDAOImpl implements InstructionsDAO {
 	@Override
 	public int updateAccept(InstructionsDTO instructionsDTO) {
 		log.debug("instructionsDAO : updateAccept 호출");
+		log.debug("instructionsDAO : 목표 생산 개수 : "+ instructionsDTO.getTargetQuantity());
 		int result = sqlSession.update(NAMESAPCE+".updateAccept",instructionsDTO);
 		log.debug("@@@@@@@@@@@@Update 결과값 : "+ result);
 		
@@ -188,6 +190,39 @@ public class InstructionsDAOImpl implements InstructionsDAO {
 		paramMap.put("status", status);
 		return sqlSession.update(NAMESAPCE+".updateSaleOrderProduct", paramMap);
 	}
+
+
+
+	@Override
+	public OutDTO selectByBaseCodeForOutDTO(String baseCode, String productCode) {
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("baseCode", baseCode);
+		log.debug("@@@@@@@@@@@@@@baseCode : "+ baseCode);
+		paramMap.put("productCode", productCode);
+		
+		return sqlSession.selectOne(NAMESAPCE+".selectOutWarehouseForMaterials",paramMap);
+	}
+
+
+
+	//토탈 개수 파악
+	@Override
+	public int getTotalCountWithSearchParam(InstructionsSearchParam searchParam) {
+		return sqlSession.selectOne(NAMESAPCE+".selectBySearchParamCodeForTotalCount",searchParam);
+	}
+
+
+
+	@Override
+	public List<OutDTO> selectByBaseCodeForOutDTOList(String baseCode) {
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("baseCode", baseCode);
+		log.debug("@@@@@@@@@@@@@@baseCode : "+ baseCode);
+		//paramMap.put("status", status);
+		
+		return sqlSession.selectList(NAMESAPCE+".selectOutWarehouseForMaterialsList",paramMap);
+	}
+	
 	
 	
 	

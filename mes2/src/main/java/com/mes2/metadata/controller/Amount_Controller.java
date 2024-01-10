@@ -34,7 +34,7 @@ private static final Logger logger = LoggerFactory.getLogger(Amount_Controller.c
 	@Inject
 	private Amount_Service aService;
 	
-	// bom관리 페이지, 모든 거래처정보리스트 호출
+		// bom관리 페이지, 모든 거래처정보리스트 호출
 		@RequestMapping(value="/firstpage", method= {RequestMethod.POST, RequestMethod.GET})
 		public String productdataGET(Model model, Criteria cri, alllistDTO aDTO) throws Exception{
 			
@@ -92,12 +92,13 @@ private static final Logger logger = LoggerFactory.getLogger(Amount_Controller.c
 			return "redirect:/amount/firstpage";			
 		}
 		
+
 		@ResponseBody	
 		@RequestMapping(value = "/amount2/product_code", method = RequestMethod.GET)
 		public ResponseEntity<List<md_productDTO>> product_code() throws Exception{
 				
 			List<md_productDTO> abc = aService.selectbox();
-			logger.debug("여기까지옴4" + abc);
+			logger.debug("완제품코드들" + abc);
 			
 			return new ResponseEntity<List<md_productDTO>>(abc,HttpStatus.OK);		
 		}
@@ -107,7 +108,7 @@ private static final Logger logger = LoggerFactory.getLogger(Amount_Controller.c
 		public ResponseEntity<List<md_productDTO>> product_code2() throws Exception{
 				
 			List<md_productDTO> abc2 = aService.selectbox2();
-			logger.debug("여기까지옴5" + abc2);
+			logger.debug("원재료코드들" + abc2);
 			
 			return new ResponseEntity<List<md_productDTO>>(abc2,HttpStatus.OK);		
 		}
@@ -117,7 +118,7 @@ private static final Logger logger = LoggerFactory.getLogger(Amount_Controller.c
 		public ResponseEntity<List<common_DTO>> unit() throws Exception{
 				
 			List<common_DTO> abc3 = aService.selectbox3();
-			logger.debug("여기까지옴6" + abc3);
+			logger.debug("단위코드들" + abc3);
 			
 			return new ResponseEntity<List<common_DTO>>(abc3,HttpStatus.OK);		
 		}

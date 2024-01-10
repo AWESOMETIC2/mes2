@@ -173,7 +173,7 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public int totalPd() {
+	public Integer totalPd() {
 		
 		return mdao.totalPd();
 	}

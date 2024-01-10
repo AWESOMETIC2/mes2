@@ -57,7 +57,7 @@ public interface MemberService {
 	
 	
 	//제품합산
-	public int totalPd();
+	public Integer totalPd();
 	
 	
 	
