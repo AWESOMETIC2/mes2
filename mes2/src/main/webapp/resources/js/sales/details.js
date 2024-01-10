@@ -21,7 +21,6 @@
 	  listHtml += "<table class='table table-hover'>";
 	  listHtml += "<thead>";
 	  listHtml += "<tr class='table-success' >";
-	  //listHtml += "<th scope='col'></th>";
 	  listHtml += "<th scope='col'>제품코드</th>";
 	  listHtml += "<th scope='col'>제품명</th>";
 	  listHtml += "<th scope='col'>수량</th>";
@@ -34,7 +33,6 @@
 	  
 	  $.each(data,function(index,obj){
 		  listHtml += "<tr>";
-		 // listHtml += "<td scope='row'><input type='checkbox' class='ck' name='idx' value='"+obj.product_code+"' id='"+obj.product_code+"'/></td>";
 		  listHtml += "<td>"+obj.product_code+"</td>";				  
 		  listHtml += "<td>"+obj.product_name+"</td>";
 		  listHtml += "<td>"+obj.sales_quantity+"</td>";

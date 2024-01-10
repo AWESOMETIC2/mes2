@@ -82,15 +82,15 @@ function goContent(order_code){
 		  listHtml += "</div>";
 	      listHtml += "<div class='list-box'>";
  	  
-		  listHtml += "<table class='table table-hover'>";
+		  listHtml += "<table class='table table-hover content-tb'>";
 		  listHtml += "<thead>";
 		  listHtml += "<tr class='table-success' >";
-		  listHtml += "<th scope='col'>수주번호</th>";
-		  listHtml += "<th scope='col'>제품명</th>";
-		  listHtml += "<th scope='col'>출하계획량</th>";
-		  listHtml += "<th scope='col'>제품진행</th>";
-		  listHtml += "<th scope='col'>처리</th>";
-		  listHtml += "<th scope='col'>출하준비</th>";
+		  listHtml += "<th style='text-align: center;'>수주번호</th>";
+		  listHtml += "<th>제품명</th>";
+		  listHtml += "<th>출하계획량</th>";
+		  listHtml += "<th>제품진행</th>";
+		  listHtml += "<th>처리</th>";
+		  listHtml += "<th>출하준비</th>";
 		  listHtml += "</tr>";
 		  listHtml += "</thead>";
 		  
@@ -115,7 +115,7 @@ function goContent(order_code){
 			  listHtml += "재고출하"; 
 		  }else if(obj.processing_reg=="production"){
 		  listHtml += "생산처리";  
-		  }else if(obj.processing_reg==" multi"){
+		  }else if(obj.processing_reg=="multi"){
 		  listHtml += "복합처리";  
 		  }else {
 			 listHtml += "미정";

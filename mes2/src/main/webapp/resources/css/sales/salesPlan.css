@@ -67,9 +67,14 @@ p {
 	 /* background-color: #e6e6e6; */
 	 height: 300px;
       margin: 0 auto;
-      overflow-y: auto;  
-      overflow-x: hidden; 
+     /*  overflow-y: auto;  
+      overflow-x: hidden;  */
       
+	}
+	
+	.content-tb {
+	  overflow-y: auto;  
+      overflow-x: hidden; 
 	}
 	.content-title {
 	display:flex;
@@ -175,7 +180,18 @@ button.fg-btn:hover {
   width: 200px;
   }
   
+ .content-tbtn{
+ 	display: flex;
+ 	justify-content: flex-start;
+ 	gap: 20px;
  
+ }
+ 
+ .content-tbtn button {
+    width: 50px; /* 원하는 너비로 조절 */
+    height: 50px; /* 원하는 높이로 조절 */
+    
+}
   
    .pagination .page-item.active .page-link {
     background-color: #95c4a2; /* 활성화된 페이지 번호의 배경색상 변경 */

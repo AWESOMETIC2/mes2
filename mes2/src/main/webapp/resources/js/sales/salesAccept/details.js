@@ -273,13 +273,8 @@ function goContent(order_code){
 			  
 			  listHtml += " <button type='button' class='btn' style='background-color:#619e6b; color: white;' id='save-btn' onclick='return saveCheck(\""+order_code+"\")'>저장</button>";
 		  }
-	  listHtml += "<div class='list-box'>";
- 
-	
-	  
-	  listHtml += "<table class='table table-hover'>";
-	  
-	  
+	  listHtml += "<div class='list-box'>";  
+	  listHtml += "<table class='table table-hover'>";	  
 	  listHtml += "<table class='table table-hover'>";
 	  listHtml += "<thead>";
 	  listHtml += "<tr class='table-success' >";
@@ -288,13 +283,10 @@ function goContent(order_code){
 	  listHtml += "<th>수량</th>";
 	  listHtml += "<th>재고조회</th>";
 	  listHtml += "<th>처리상태</th>";
-	  listHtml += "<th>수주처리</th>";
-	 
+	  listHtml += "<th>수주처리</th>"; 
 	  listHtml += "</tr>";
-	  listHtml += "</thead>";
-	  
-	  listHtml += "<tbody>";
-	  
+	  listHtml += "</thead>";  
+	  listHtml += "<tbody>";  
 	  
 	  $.each(data,function(index,obj){
 		  

@@ -119,7 +119,7 @@
       <div class="list">
         <div class="list-btn">
        <c:if test="${not empty pm.cri.userId}">
-       <button type="button" class="btn btn-primary" onclick="showStatus()">처리</button> 	 
+       <button type="button" class="btn fg-btn" onclick="showStatus()">처리</button> 	 
       </c:if>
       	 <div class="btn-group">
 			  <button type="button" class="btn dark-green-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">현황</button>
