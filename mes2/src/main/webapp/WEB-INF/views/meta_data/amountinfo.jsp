@@ -44,10 +44,11 @@
 		<!-- 검색창,추가 버튼,취소 버튼 -->	
 		<div class="form-container">		
 			<form action="/amount/firstpage" method="POST" class="search">
-				<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>			
+						
 				<input type="text" name="search" placeholder="완제품 코드를 입력하세요" class="form-control"
 				 aria-label="Recipient's username" aria-describedby="button-addon2"/>
 				<input type="submit" value="검색" class="btn btn-secondary" id="button-addon2"/>
+				<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>	
 			</form>
 			
 		</div>	

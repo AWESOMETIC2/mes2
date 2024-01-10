@@ -20,11 +20,12 @@
    align-items: center;
    gap: 30px;
    padding: 30px; /* 원래 2px */
+   padding: 30px 550px 30px 550px;
    margin-top: 40px;
    border: solid 2px #a2c6a8; /* 원래 없었음 */
    border-radius: 10px;
    margin-bottom: 20px;  
-   width: 27%;
+   width: 100%;
 }
 
 .son_list-btn {

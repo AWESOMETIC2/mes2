@@ -50,7 +50,7 @@
 			<form action="/product/firstpage" method="POST" class="search">
 				
 				
-				<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>
+				
 				<div class="input-group">
 				<span class="input-group-text">기간</span>
 				<input type="date" name="startDate" min="2023-12-01" max="2024-12-31" aria-label="First name" class="form-control"/>
@@ -62,7 +62,9 @@
 				 aria-label="Recipient's username" aria-describedby="button-addon2"/>
 				<input type="submit" value="검색" class="btn btn-secondary" id="button-addon2"/>
 				
+				
 				</div>
+				<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>
 				
 			</form>	
 		</div>	
