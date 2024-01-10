@@ -24,7 +24,7 @@
 	crossorigin="anonymous" />
 
 <!-- 추가 css 입니다. -->
-<link rel="stylesheet" href="/resources/css/metadata/amount.css">
+<link rel="stylesheet" href="/resources/css/metadata/amount.css?after">
 
 <!--  부트스트랩 js cdn입니다. -->
 <script
@@ -42,21 +42,25 @@
 	<!-- 내용 칸 -->
 	<div class="son_container">
 		<!-- 검색창,추가 버튼,취소 버튼 -->	
-		<div class="son_serch" style="width: 70%; margin: 0 auto;">
-			
-			<form action="/amount/firstpage" method="POST">
-				<span></span>			
-				<input type="text" name="search" placeholder="완제품 코드를 입력하세요" />
-				<input type="submit" value="검색"/>
+		<div class="form-container">		
+			<form action="/amount/firstpage" method="POST" class="search">
+				<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>			
+				<input type="text" name="search" placeholder="완제품 코드를 입력하세요" class="form-control"
+				 aria-label="Recipient's username" aria-describedby="button-addon2"/>
+				<input type="submit" value="검색" class="btn btn-secondary" id="button-addon2"/>
 			</form>
-			<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>
+			
+		</div>	
+			
+			
+			
 			<div class="son_list-btn">			
 				<button type="button" class="btn btn-secondary" id="addbtn" onclick="replaceButton()">추가</button>							
 				<button type="button" class="btn btn-secondary" id="updatebtn" onclick="replaceButton2()">수정</button>						
 				<button type="button" class="btn btn-secondary" id="canclebtn" onclick="redirectToFirstPage()" style="display: none;">취소</button>
 			</div>			
-		</div>		
-			
+				
+			<br>
 			
 
 		<!-- 테이블 -->									
