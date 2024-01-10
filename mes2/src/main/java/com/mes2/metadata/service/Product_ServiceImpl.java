@@ -36,8 +36,15 @@ public class Product_ServiceImpl implements Product_Service {
 		int number = Integer.parseInt(code.substring(leng));
 		
 		number++;
-		 String result = String.format("%03d", number);
 		
+		String result;
+		
+		if(commoncode.equals("PS")) {
+			result = String.format("%05d", number);
+		}
+		else {
+			result = String.format("%03d", number);
+		}
 		
 		
 		//공통코드와 숫자 합치기
