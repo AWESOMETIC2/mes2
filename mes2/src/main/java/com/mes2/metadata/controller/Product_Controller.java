@@ -73,7 +73,7 @@ public class  Product_Controller{
 		dto.setOfileName(ofileName);
 		
 		mService.productinsert(dto);
-		
+		logger.debug("00붙이기ㅣ2222222222222"+ dto.getProduct_code());
 		
 		return "redirect:/product/firstpage";
 		

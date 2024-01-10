@@ -13,9 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import com.mes2.materials.domain.Criteria;
 import com.mes2.materials.domain.InDTO;
-import com.mes2.materials.domain.PurchaseDTO;
 import com.mes2.materials.domain.SearchDTO;
-import com.mes2.materials.domain.productDTO;
+import com.mes2.materials.domain.WarehouseDTO;
 
 @Repository
 public class InDAOImpl implements InDAO {
@@ -75,11 +74,10 @@ public class InDAOImpl implements InDAO {
 
 
 	@Override
-	public void insertStock(int quantity, String product_code, String category, String pd_lot) throws Exception {
+	public void insertStock(int quantity, String product_code, String pd_lot) throws Exception {
 		Map<String, Object> paramap = new HashMap<>();
 		paramap.put("quantity", quantity);
 		paramap.put("product_code", product_code);
-		paramap.put("category", category);
 		paramap.put("pd_lot", pd_lot);
 		sqlSession.insert(NAMESPACE + ".insertStock", paramap);
 	}
@@ -143,6 +141,18 @@ public class InDAOImpl implements InDAO {
 	@Override
 	public List<InDTO> getAllInData(InDTO idto) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getAllInData", idto);
+	}
+
+
+	@Override
+	public List<InDTO> getInventoryIndex(String in_index) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getInventoryIndex" , in_index);
+	}
+
+
+	@Override
+	public WarehouseDTO warehouseCodeCategory(String category) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".warehouseCodeCategory", category);
 	}
 	
 	
