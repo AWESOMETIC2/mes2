@@ -90,7 +90,7 @@ public class PlatformController {
 		
 		// 주문 목록 조회
 		List<SoiDTO> soiDTO = pService.getOrderList(sDTO);
-		model.addAttribute("sDTO", sDTO);
+		model.addAttribute("searchDTO", sDTO);
 		model.addAttribute("soiDTO", soiDTO);
 		
 		return "/platform/orderList";

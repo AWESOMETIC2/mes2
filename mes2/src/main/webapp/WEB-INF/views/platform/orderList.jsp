@@ -43,10 +43,9 @@
 					
 					<div class="input-group">
 						<span class="input-group-text">발주일자</span>
-						<input type="date" aria-label="First name" class="form-control" name="startDate" />
-						<input type="date" aria-label="Last name" class="form-control" name="endDate" />
+						<input type="date" aria-label="First name" class="form-control" name="startDate" value="${searchDTO.startDate }"/>
+						<input type="date" aria-label="Last name" class="form-control" name="endDate" value="${searchDTO.endDate }"/>
 					</div>
-	<!-- 				<button type="button" class="btn btn-secondary" onclick="searchList();">검색</button> -->
 					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
 					<a href="/platform/orderList"><i class="fa-solid fa-rotate-right" id="reset"></i></a>
 			</form>
@@ -105,28 +104,46 @@
 			
 		</section>
 			<!-- 페이징 -->
-			<div class="box-footer clearfix">
-				<div style="margin: 0 auto; width: fit-content;">
-				<ul class="pagination pagination-sm no-margin pull-right">
+			<div class="page-nav">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
 				
 					<c:if test="${pageVO.prev }">
-						<li><a href="/platform/orderList?page=${pageVO.startPage - 1 }&sales_status=${sDTO.sales_status }&startDate=${sDTO.startDate }&endDate=${sDTO.endDate}">«</a></li>
+						<li class="page-item page-action">
+							<a href="/platform/orderList?page=${pageVO.startPage - 1 }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
 					</c:if>
 					
 					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-						<li><a href="/platform/orderList?page=${i }&sales_status=${sDTO.sales_status }&startDate=${sDTO.startDate }&endDate=${sDTO.endDate}">${i }</a></li>
+						<c:if test="${searchDTO.cri.page ne i }">
+							<li class="page-item page-action"><a class="page-link" href="/platform/orderList?page=${i }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">${i }</a></li>
+						</c:if>
+						<c:if test="${searchDTO.cri.page eq i }">
+							<li class="active page-item page-action"><a class="page-link" href="/platform/orderList?page=${i }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">${i }</a></li>
+						</c:if>
 					</c:forEach>
 					
 					<c:if test="${pageVO.next }">
-						<li><a href="/platform/orderList?page=${pageVO.endPage + 1 }&sales_status=${sDTO.sales_status }&startDate=${sDTO.startDate }&endDate=${sDTO.endDate}">»</a></li>
+						<li class="page-item">
+							<a href="/platform/orderList?page=${pageVO.endPage + 1 }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">
+							    <span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
 					</c:if>
-				</ul>
-				</div>
+					</ul>
+				</nav>
 			</div>
 			<!-- 페이징 끝 -->
 
 		<div id="bottomContent"></div>
 	</div>
+	<script type="text/javascript">
+		$(function(){
+			$("#sales_status").val("${searchDTO.sales_status}").attr("selected","selected");
+		});
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

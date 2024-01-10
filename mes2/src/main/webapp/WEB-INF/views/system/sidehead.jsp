@@ -324,10 +324,10 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">생산관리</a></li>
-          <li><a href="#">생산요청관리</a></li>
-          <li><a href="#">작업지시관리</a></li>
-          <li><a href="#">라인관리</a></li>
-          <li><a href="#">생산제품</a></li>
+          <li><a href="/instructions/request">생산요청목록</a></li>
+          <li><a href="/instructions/search">작업지시관리</a></li>
+          <li><a href="/productionLine/search">생산라인관리</a></li>
+          <li><a href="/product/search">생산품관리</a></li>
         </ul>
       </li>
       </c:if>
