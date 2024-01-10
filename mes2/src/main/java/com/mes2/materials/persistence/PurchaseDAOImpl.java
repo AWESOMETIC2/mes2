@@ -73,13 +73,14 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 
 
 	@Override
-	public void updateQuantity(String product_code, int quantity, String category) throws Exception {
+	public void updateQuantity(String product_code, int quantity, String category, String pd_lot) throws Exception {
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("product_code", product_code);
 		paramMap.put("quantity", quantity);
 		paramMap.put("category", category);
+		paramMap.put("pd_lot", pd_lot);
 
-		sqlSession.update(NAMESPACE + ".PurchaseupdateQuantity", paramMap);
+		sqlSession.insert(NAMESPACE + ".PurchaseupdateQuantity", paramMap);
 	}
 
 	@Override public int getPurchaseCount(Criteria cri, String searchType, String keyword) throws Exception {
@@ -103,7 +104,7 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 	}
 	
 	@Override
-	public void MaterialReceipt(String product_code, int quantity  , String pd_lot) throws Exception {
+	public void MaterialReceipt(String product_code, int quantity, String pd_lot) throws Exception {
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("product_code", product_code);
 		paramMap.put("quantity", quantity);

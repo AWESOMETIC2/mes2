@@ -16,11 +16,11 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/searchList.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/materials/purchaselist.css">
-
+<script src="https://kit.fontawesome.com/11da345fca.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-	<%@ include file="../sidehead/sidehead.jsp"%>
+	<%@ include file="../system/sidehead.jsp" %>
 
 	<div class="container">
 		<section class="section1">
@@ -40,21 +40,21 @@
 				</div>
 			</form>
 
-			<div class="col-md-13" style="text-align: right;">
+			<div class="col-md-13" style="text-align: right; /* margin: 20px */">
 				<button type="button" class="btn submitOrderButton"
-					onclick="openInputOrder();">발주신청</button>
-				<a href="/materials/materials" class="btn submitOrderButton">Excel Download</a>
+					onclick="openInputOrder();"> <i class="fa-solid fa-pen"></i> </button>
+				<a href="/materials/materials" class="btn submitOrderButton"> <i class="fa-solid fa-file-arrow-down"></i></a>
 			</div>
 
 
 
 			<div class="list-box">
 				<a href="/materials/purchase"></a>
-				<table class="table table-hover">
+				<table class="table table-hover" style="font-weight: bold">
 
 
 					<thead>
-						<tr>
+						<tr class="table-success">
 							<td>발주코드</td>
 							<td>품목명</td>
 							<td>자재유형</td>
