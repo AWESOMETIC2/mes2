@@ -37,12 +37,12 @@
 					
 					<div class="input-group">
 						<span class="input-group-text">요청일자 </span>
-						<input type="date" aria-label="First name" class="form-control" name="startDate" />
-						<input type="date" aria-label="Last name" class="form-control" name="endDate" />
+						<input type="date" aria-label="First name" class="form-control" name="startDate" value="${osDTO.startDate }"/>
+						<input type="date" aria-label="Last name" class="form-control" name="endDate" value="${osDTO.endDate }"/>
 					</div>
 					
 					<div class="input-group searchSub" id="searchSub">
-						<input type="text" name="product_code"  id="product_code" class="form-control" placeholder="품목코드를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2"/>
+						<input type="text" name="product_code"  id="product_code" class="form-control" value="${osDTO.product_code }" placeholder="품목코드를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2"/>
 					</div>
 					
 					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
@@ -92,29 +92,46 @@
 				</div>
 			</div>
 		</section>
-			<!-- 페이징 -->
-			<div class="box-footer clearfix">
-				<div style="margin: 0 auto; width: fit-content;">
-				<ul class="pagination pagination-sm no-margin pull-right">
+		<!-- 페이징 -->
+			<div class="page-nav">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
 				
 					<c:if test="${pageVO.prev }">
-						<li><a href="/materials/outList?page=${pageVO.startPage - 1 }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">«</a></li>
+						<li class="page-item page-action">
+							<a href="/materials/outList?page=${pageVO.startPage - 1 }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
 					</c:if>
 					
 					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-						<li><a href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">${i }</a></li>
+						<c:if test="${osDTO.cri.page ne i }">
+							<li class="page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">${i }</a></li>
+						</c:if>
+						<c:if test="${osDTO.cri.page eq i }">
+							<li class="active page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">${i }</a></li>
+						</c:if>
 					</c:forEach>
 					
 					<c:if test="${pageVO.next }">
-						<li><a href="/materials/outList?page=${pageVO.endPage + 1 }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">»</a></li>
+						<li class="page-item">
+							<a href="/materials/outList?page=${pageVO.endPage + 1 }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">
+							    <span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
 					</c:if>
-				</ul>
-				</div>
+					</ul>
+				</nav>
 			</div>
-			<!-- 페이징 끝 -->
-
+		<!-- 페이징 끝 -->
 		<div id="bottomContent"></div>
 	</div>
+	<script type="text/javascript">
+		$(function(){
+			$("#status").val("${osDTO.status}").attr("selected","selected");
+		});
+	</script>
 	<script type="text/javascript">
 		var result = '${result}';
 		var quantitySum = '${quantitySum}';
