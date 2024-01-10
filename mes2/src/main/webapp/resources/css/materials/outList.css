@@ -89,3 +89,9 @@ td{
 	font-size: 20px;
 	color: black;
 }
+
+.pagination .page-item.active .page-link {
+    background-color: #95c4a2;
+    color: #ffffff;
+    border-color: #81b189;
+}

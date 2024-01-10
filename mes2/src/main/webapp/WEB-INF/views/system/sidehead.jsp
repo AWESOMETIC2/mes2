@@ -30,14 +30,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link href="${pageContext.request.contextPath}/resources/fullcalander/main.css" rel='stylesheet' />
     <script src="${pageContext.request.contextPath}/resources/fullcalander/main.js"></script>
-     
+    <!-- 글씨체 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<!-- 글씨체 -->
  <style type="text/css">
- 
- body{
-    background-color: #F5FBF0;
-  }
- 
- 
+ * {
+	   font-family: 'Noto Sans KR', sans-serif;
+	   font-size: 17px;
+	}
  
  @font-face {
     font-family: 'MaplestoryOTFBold';
@@ -429,7 +431,7 @@
      <c:if test="${!empty id}"> 
       <li>
         <a href="/system/listAll">
-          <i class="fa-brands fa-google-play"></i>
+          <i class="fa-solid fa-check"></i>
           <span class="link_name">공지사항</span>
         </a>
         <ul class="sub-menu blank">

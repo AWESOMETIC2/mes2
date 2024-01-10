@@ -145,6 +145,7 @@ public class PlatformController {
 			model.addAttribute("mdpDTO", mdpDTO);
 			model.addAttribute("searchType", searchType);
 			model.addAttribute("search", search);
+			model.addAttribute("cri", cri);
 		}
 		
 	}

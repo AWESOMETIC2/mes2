@@ -66,8 +66,8 @@
 						</c:if>
 						<c:if test="${empty stockList }">
 							<div>현재 재고가 없습니다.</div>
-							<button class="btn btn-secondary regist" onclick="window.close();">닫기</button>
 						</c:if>
+						<button class="btn btn-secondary regist" onclick="window.close();">닫기</button>
 					</form>
 				</div>
 			</div>
