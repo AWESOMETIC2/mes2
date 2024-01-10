@@ -136,6 +136,18 @@ td{
 	margin-right: 200px;
 }
 
+.page-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #95c4a2;
+    color: #ffffff;
+    border-color: #81b189;
+}
+
 /* 사진 */
 img {
 	width: 100px;

@@ -431,7 +431,7 @@
      <c:if test="${!empty id}"> 
       <li>
         <a href="/system/listAll">
-          <i class="fa-brands fa-google-play"></i>
+          <i class="fa-solid fa-check"></i>
           <span class="link_name">공지사항</span>
         </a>
         <ul class="sub-menu blank">
