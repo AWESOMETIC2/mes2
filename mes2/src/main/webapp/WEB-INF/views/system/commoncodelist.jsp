@@ -251,8 +251,14 @@
 				    		               <div class="card-body">
 				    		        <div class="mb-3">
 									    <label for="exampleInputPassword1" class="form-label">코드인덱스</label><br>
-									    <input type="text" placeholder="수정할코드인덱스입력" name="code_index">
-									</div><br>              
+									    <input type="text" placeholder="코드인덱스입력" name="code_index">
+									</div><br>
+									
+			
+										<div>
+						    				<h3>변경사항</h3>
+						    			</div><hr>  
+						    			            
 				    		      <label for="exampleInputEmail1" class="form-label">코드그룹</label><br>
 								      <div class="input-box">
 									      <input type="text" placeholder="코드그룹을 입력하세요" name="code_group" id="join-id">
@@ -275,8 +281,8 @@
 								    	<option>1</option>
 								    	<option>0</option>
 								    </select>
-								  </div>  
-
+ 								  </div>  
+  
 								   </div>
 							   </div>
 							</div>
