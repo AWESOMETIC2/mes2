@@ -254,6 +254,7 @@
 									    <input type="text" placeholder="코드인덱스입력" name="code_index">
 									</div><br>
 									
+			
 										<div>
 						    				<h3>변경사항</h3>
 						    			</div><hr>  
