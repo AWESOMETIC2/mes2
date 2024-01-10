@@ -24,7 +24,7 @@
 	crossorigin="anonymous" />
 
 <!-- 추가 css 입니다. -->
-<link rel="stylesheet" href="/resources/css/metadata/product.css">
+<link rel="stylesheet" href="/resources/css/metadata/product.css?after">
 
 <!--  부트스트랩 js cdn입니다. -->
 <script
@@ -36,6 +36,7 @@
 <!-- 추가 js 입니다. -->
 <script src="/resources/js/metadata/product.js"></script>
 
+
 </head>
 
 <body>
@@ -43,27 +44,36 @@
 			
 	
 	<!-- 내용 칸 -->
-	<div class="son_container">
+	<div class="son_container">	
 		<!-- 검색창,추가 버튼,취소 버튼 -->	
-		<div class="son_serch">			
-			<form action="/product/firstpage" method="POST">
-				<span>등록기간</span>
-				<input type="date" name="startDate" min="2023-12-01" max="2024-12-31" />
-				<input type="date" name="endDate" min="2020-01-01" max="2030-12-31" width="100px"/>					
-				<input type="text" name="search" placeholder="검색어를 입력하세요" />
-				<input type="submit" value="검색"/>
-			</form>
-			<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>
+		<div class="form-container">					
+			<form action="/product/firstpage" method="POST" class="search">
+				
+				
+				<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>
+				<div class="input-group">
+				<span class="input-group-text">기간</span>
+				<input type="date" name="startDate" min="2023-12-01" max="2024-12-31" aria-label="First name" class="form-control"/>
+				<input type="date" name="endDate" min="2020-01-01" max="2030-12-31"  aria-label="First name" class="form-control"/>				
+				</div>
+				
+				<div class="input-group searchSub">					
+				<input type="text" name="search" placeholder="검색어를 입력하세요" class="form-control"
+				 aria-label="Recipient's username" aria-describedby="button-addon2"/>
+				<input type="submit" value="검색" class="btn btn-secondary" id="button-addon2"/>
+				
+				</div>
+				
+			</form>	
+		</div>	
 			
-			
-			<div class="son_list-btn">			
+		<div class="son_list-btn">			
 				<button type="button" class="btn btn-secondary" id="addbtn" onclick="replaceButton()">추가</button>							
 				<button type="button" class="btn btn-secondary" id="updatebtn" onclick="replaceButton2()">수정</button>						
 				<button type="button" class="btn btn-secondary" id="canclebtn" onclick="redirectToFirstPage()" style="display: none;">취소</button>
-			</div>			
-		</div>		
-			
-			
+		</div>			
+		
+		<br>	
 
 		<!-- 테이블 -->									
 		<table class="table table-hover">
