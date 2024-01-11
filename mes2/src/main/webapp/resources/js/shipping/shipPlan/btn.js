@@ -255,7 +255,7 @@ function showStatus() {
 		 	var requestDate = new Date(data.request_date);
 		 	
 		 	var minDate = new Date(requestDate);
-		    minDate.setDate(requestDate.getDate() + 1);
+		    minDate.setDate(requestDate.getDate());
 		   
 		    
 		// 마지막일 설정 (납품요청일 4일전)    
