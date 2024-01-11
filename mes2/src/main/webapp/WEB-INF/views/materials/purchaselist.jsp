@@ -18,6 +18,11 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/purchaselist.css">
 <script src="https://kit.fontawesome.com/11da345fca.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 </head>
 <body>
 	<%@ include file="../system/sidehead.jsp" %>
@@ -40,7 +45,7 @@
 				</div>
 			</form>
 
-			<div class="col-md-13" style="text-align: right; /* margin: 20px */">
+			<div class="col-md-13" style="text-align: right;">
 				<button type="button" class="btn submitOrderButton"
 					onclick="openInputOrder();"> <i class="fa-solid fa-pen"></i> </button>
 				<a href="/materials/materials" class="btn submitOrderButton"> <i class="fa-solid fa-file-arrow-down"></i></a>
@@ -50,11 +55,11 @@
 
 			<div class="list-box">
 				<a href="/materials/purchase"></a>
-				<table class="table table-hover" style="font-weight: bold">
+				<table class="table table-hover">
 
 
 					<thead>
-						<tr class="table-success">
+						<tr class="table-success" style="font-weight: bold">
 							<td>발주코드</td>
 							<td>품목명</td>
 							<td>자재유형</td>
@@ -93,7 +98,7 @@
 				</table>
 			</div>
 
-			<nav aria-label="Page navigation example">
+			<nav aria-label="Page navigation example" style="padding: 5px; margin : 0 auto;">
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageVO.prev }">
 						<li class="page-item"><a class="page-link"

@@ -106,8 +106,8 @@
 					<td><input type="text" name="name" size="5"></td>																				
 					<td><select id="ins_cate" name="ins_cate"></select></td>										    								      												
 					<td><select id="ins_unit" name="ins_unit"></select></td>
-					<td><input type="text" name="cost" size="5"></td>
-					<td><input type="text" name="price" size="5"></td>				
+					<td><input type="text" name="cost" size="5">원</td>
+					<td><input type="text" name="price" size="5">원</td>				
 					<td><i class="fa-solid fa-circle fa-2xs" style="color: #439f1d;"></i>생산 중</td>				
 					<td>[현재날짜]</td>				
 					<td>													
@@ -127,8 +127,8 @@
 					<td class="a">${plist.name }</td>
 					<td class="a">${plist.category }</td>
 					<td class="a">${plist.unit }</td>
-					<td class="a">${plist.cost }</td>
-					<td class="a">${plist.price }</td>
+					<td class="a">${plist.cost }원</td>
+					<td class="a">${plist.price }원</td>
 					<td class="a">
 					<c:choose>
                        <c:when test="${plist.production_status eq '1' }">

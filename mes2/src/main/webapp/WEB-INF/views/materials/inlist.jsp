@@ -18,7 +18,11 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/inlist.css">
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 </head>
 <body>
 	<%@ include file="../system/sidehead.jsp"%>
@@ -93,7 +97,7 @@
 			</div>
 
 
-			<nav aria-label="Page navigation example">
+			<nav aria-label="Page navigation example" style="padding: 5px; margin : 0 auto;">
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageVO.prev }">
 						<li class="page-item"><a class="page-link"
@@ -131,13 +135,6 @@
 		crossorigin="anonymous">
 		
 	</script>
-
-<script type="text/javascript">
-function openPopup() {
-    
-    window.open("/materials/wareHouseCode", "wareHouseCode", "width=500,height=720");
-}
-</script>
 
 
 
