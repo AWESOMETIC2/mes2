@@ -465,7 +465,7 @@ function moClear(){
 		 	var requestDate = new Date(data.request_date);
 		 	
 		 	var minDate = new Date(requestDate);
-		    minDate.setDate(requestDate.getDate() + 1);
+		    minDate.setDate(requestDate.getDate());
 		 
 		    
 		// 마지막일 설정 (납품요청일 4일전)    
@@ -586,7 +586,7 @@ function checkSearchSub(e){
 	}
 	else if($("#searchType").val() === ""){
 		 Swal.fire({
-		        title: "검색타입을 선택하세요.",
+		        title: "검색어를 입력하세요.",
 		        icon: "warning"
 		    }).then((result) => {
 		        if (result.isConfirmed) {
