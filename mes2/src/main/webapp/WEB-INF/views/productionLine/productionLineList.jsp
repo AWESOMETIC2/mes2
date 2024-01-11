@@ -24,23 +24,23 @@
 	<div class="container">
 		<section class="section1">
 			<form class="search" action="/productionLine/search">
-				<select id="boundary" name="searchStatus">
+				<select id="boundary" name="searchStatus" class="form-select"  style="width:300px;">
 					<option value="">-- 검색선택 --</option>
 					<option value="WAITING">작업대기</option>
 					<option value="PROGRESSING">작업중</option>
 					<option value="COMPLETE">작업완료</option>
 				</select>
 				
-				<input type="text" name="searchCode" value="${searchCode }" placeholder="작업지시코드" />
+				<input type="text" name="searchCode" value="${searchCode }" placeholder="작업지시코드"  class="form-control "   style="width:300px;"/>
 				<div>
-					<span class="search-font">검색시작일</span>
-					<input id="dtIp" type="date" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"/>
-					<span class="search-font">검색종료일</span>
-					<input id="dtIp" type="date" name="searchEndDate" min="2020-01-01" max="2030-12-31" value="${searchEndDate}" width="100px" />
+					<input id="dtIp" type="date" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"  class="form-control" />
+				</div>
+				<div>
+					<input id="dtIp" type="date" name="searchEndDate" min="2020-01-01" max="2030-12-31" value="${searchEndDate}" width="100px"   class="form-control" />
 				</div>
 
-				
-				<input type="submit" value="검색" />
+
+	        	<button type="submit" value="검색" class="btn btn-secondary" id="delete-btn"  style="width:100px;">검색</button>				
 			</form>
 
 			<!-- 표 -->
@@ -56,19 +56,15 @@
 						
 							
 							<colgroup>
-								<col style="width: 3%" /> 
                     			<col style="width: 15%" /> 
                     			<col style="width: 10%" />
                     			<col style="width: 10%" />
                     			<col style="width: 10%" />
                     			<col style="width: 10%" />
-                    			<col style="width: 15%" />
                     			<col style="width: 10%" />
-								<col style="width: 7%" />
                 			</colgroup>
 							<thead>
 								<tr class="table-success">
-									<th></th>
 									<th scope="col">No</th>
 									<th scope="col">생산라인</th>
 									<th scope="col">작업번호</th>
@@ -80,7 +76,6 @@
 							<tbody>
 								<c:forEach var="item" items="${productionLineList}">
 									<tr>
-										<td scope="row"><input type="checkbox" class="ck" /></td>
 										<td>${item.index}</td>
 										<td>${item.line}</td>
 										<td>${item.isCode}</td>

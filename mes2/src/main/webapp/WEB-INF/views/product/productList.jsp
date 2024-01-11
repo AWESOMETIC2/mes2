@@ -24,21 +24,11 @@
 	<div class="container">
 		<section class="section1">
       <form action="/product/search" class="search" method="GET">
-        <select id="boundary">
-          <option value="">-- 검색선택 --</option>
-          <option value="ship">수주번호</option>
-          <option value="order">주문번호</option>
-          <option value="order">거래항목</option>
-          <option value="order">수주처</option>
-          <option value="order">수주일</option>
-          <option value="order">납기요청일</option>
-        </select>
 
         <div>
-          <span class="search-font">검색시작일</span>
-          <input id="startDate" type="date" min="2023-12-01" max="2024-12-31" name="startDate" value="${startDate}"/>
-
-          <span class="search-font">검색종료일</span>
+          <input id="startDate" type="date" min="2023-12-01" max="2024-12-31" name="startDate" value="${startDate}" class="form-control" />
+		</div>
+		<div>
           <input
             id="endDate"
             type="date"
@@ -47,18 +37,19 @@
             width="100px"
             name="endDate"
             value="${endDate}"
+            class="form-control" 
           />
         </div>
 
-        <input type="text"  placeholder="검색어를 입력하세요" name="name"/>
-        <input type="submit" value="검색" />
+        <input type="text"  placeholder="검색어를 입력하세요" name="name"  class="form-control" style="width:400px;"/>
+        <button type="submit" value="검색" class="btn btn-secondary" id="delete-btn"  style="width:100px;">검색</button>
       </form>
 
       <!-- 표 -->
       <div class="list">
       
         <div class="list-btn">
-          <button type="button" class="btn btn-secondary" id="delete-btn" style="visibility:hidden;">긴급탈출버튼</button>
+          <button type="button" class="btn btn-secondary" id="delete-btn" style="visibility:hidden;  ">긴급탈출버튼</button>
         </div>
 
         <div class="list-box">
