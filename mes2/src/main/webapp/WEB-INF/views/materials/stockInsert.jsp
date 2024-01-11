@@ -28,7 +28,7 @@
 
 <body>
 	<div class="container2">
-		<h3 id="h3">${stockList[0].product_code }재고현황</h3>
+		<h3 id="h3">${stockList[0].product_code } 재고현황</h3>
 		<section class="section1">
 			<!-- 표 -->
 			<div class="list">
