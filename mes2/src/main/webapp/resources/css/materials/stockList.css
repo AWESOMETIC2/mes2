@@ -101,3 +101,10 @@ td{
     color: #ffffff;
     border-color: #81b189;
 }
+
+.selectStock img {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	text-align: center;
+}
