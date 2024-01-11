@@ -1,6 +1,7 @@
 package com.mes2.system.controller;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,7 +65,7 @@ public class controller1 {
 
 	 // http://localhost:8088/system/login
 	 // http://localhost:8088/system/sidehead
-		
+	
 	
 	
 	
@@ -95,10 +96,6 @@ public class controller1 {
 		Integer fifthLine = mService.fifthLine();
 		Integer sixthLine = mService.sixthLine();
 		Integer sevenLine = mService.sevenLine();
-		
-		
-		
-		
 		
 		
 		
@@ -146,8 +143,7 @@ public class controller1 {
 		}
 
 		else {
-
-			return "redirect:/system/login";
+			return "/system/login";
 		}
 
 	}
@@ -746,6 +742,34 @@ public class controller1 {
 		public String mainpageGET(Model model,HttpSession session,Criteria cri) throws Exception {
 			logger.debug(" /main/login 호출 -> mainGET() 실행");
 			
+			int totalMembers = mService.totalMember();
+			Integer totalProduct = mService.totalPd();
+			Integer totalInP = mService.totalIn();
+			Integer totalOutP = mService.totalOut();
+			Integer totalOk = mService.totalOk();
+			Integer totalNo = mService.totalNo();
+			Integer firstLine = mService.firstLine();
+			Integer secondLine = mService.secondLine();
+			Integer thirdLine = mService.thirdLine();
+			Integer forthLine = mService.forthLine();
+			Integer fifthLine = mService.fifthLine();
+			Integer sixthLine = mService.sixthLine();
+			Integer sevenLine = mService.sevenLine();
+			
+			session.setAttribute("total", totalMembers);
+			session.setAttribute("totalProduct", totalProduct);
+			session.setAttribute("totalIn", totalInP);
+			session.setAttribute("totalOut", totalOutP);
+			session.setAttribute("totalOk", totalOk);
+			session.setAttribute("totalNo", totalNo);
+			session.setAttribute("firstLine", firstLine);
+			session.setAttribute("secondLine", secondLine);
+			session.setAttribute("thirdLine", thirdLine);
+			session.setAttribute("forthLine", forthLine);
+			session.setAttribute("fifthLine", fifthLine);
+			session.setAttribute("sixthLine", sixthLine);
+			session.setAttribute("sevenLine", sevenLine);
+			
 			session.setAttribute("viewcntCheck", true);
 			
 			
@@ -772,7 +796,7 @@ public class controller1 {
 		
 		// http://localhost:8088/system/listAll2
 		// http://localhost:8088/system/login
-	
+		
 		
 		
 		// 게시판 LISTALL get
@@ -781,7 +805,8 @@ public class controller1 {
 			logger.debug("boardListAll GET 호출!");
 			
 			
-			session.setAttribute("viewcntCheck", true);
+			
+
 			
 			
 			PageVO pageVO = new PageVO();

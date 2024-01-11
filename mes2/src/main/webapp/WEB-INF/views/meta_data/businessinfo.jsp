@@ -24,7 +24,7 @@
 	crossorigin="anonymous" />
 
 <!-- 추가 css 입니다. -->
-<link rel="stylesheet" href="/resources/css/metadata/business.css">
+<link rel="stylesheet" href="/resources/css/metadata/business.css?after">
 
 <!--  부트스트랩 js cdn입니다. -->
 <script
@@ -34,7 +34,11 @@
 </script>
 
 <!-- 추가 js 입니다. -->
-<script src="/resources/js/metadata/business.js"></script>
+<script src="/resources/js/metadata/business.js?after"></script>
+
+<!--  주소 cdn -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 
 
@@ -43,22 +47,24 @@
 	<!-- 내용 칸 -->
 	<div class="son_container">
 		<!-- 검색창,추가 버튼,취소 버튼 -->	
-		<div class="son_serch">
+		<div class="form-container">
 			
-			<form action="/business/firstpage" method="POST">
-				<span></span>			
-				<input type="text" name="search" placeholder="거래처명을 입력하세요" />
-				<input type="submit" value="검색"/>
-			</form>
-			<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>
-			<div class="son_list-btn">			
+			<form action="/business/firstpage" method="POST" class="search">
+							
+				<input type="text" name="search" placeholder="거래처명을 입력하세요" class="form-control"
+				 aria-label="Recipient's username" aria-describedby="button-addon2"/>
+				<input type="submit" value="검색" class="btn btn-secondary" id="button-addon2"/>
+				<a><i class="fa-solid fa-rotate-right" onclick="redirectToFirstPage()" style="cursor: pointer; font-size: 20px;"></i></a>
+			</form>		
+		</div>		
+			
+		<div class="son_list-btn">			
 				<button type="button" class="btn btn-secondary" id="addbtn" onclick="replaceButton()">추가</button>							
 				<button type="button" class="btn btn-secondary" id="updatebtn" onclick="replaceButton2()">수정</button>						
 				<button type="button" class="btn btn-secondary" id="canclebtn" onclick="redirectToFirstPage()" style="display: none;">취소</button>
-			</div>			
-		</div>		
-			
-			
+		</div>
+		<br>
+					
 
 		<!-- 테이블 -->									
 		<table class="table table-hover">
@@ -96,10 +102,18 @@
 					<td><input type="text" name="pw" size="5"></td>
 					<td><input type="text" name="name" size="5"></td>
 					<td><input type="text" name="manager" size="5"></td>				
-					<td><input type="text" name="address" size="5"></td>													
-					<td><input type="text" name="call" size="5"></td>				
-					<td><input type="text" name="fax" size="5"></td>
-					<td><input type="text" name="email" size="5"></td>
+					
+					
+					<td>				
+					<input type="text" id="join_address" name="address" size="30">
+					<input type="button" id="join_button"  onclick="sample1_execDaumPostcode()" value="검색">													
+					</td>
+					
+					
+																		
+					<td><input type="text" name="call" size="5" style="width: 120px; "></td>				
+					<td><input type="text" name="fax" size="5" style=" width: 114px; "></td>
+					<td><input type="text" name="email" size="5" style=" width: 200px; "></td>
 					<td><i class="fa-solid fa-circle fa-2xs" style="color: #4486ff;"></i>계약 중</td>														
 					<td><button type="button" class="btn btn-secondary" id="submitbtn" onclick="submitData()" style="display: none;">저장</button></td>														
 				</tr>	

@@ -10,17 +10,20 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/inputOrder.css">
    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 </head>
 <body>
     <form action="/materials/save" method="post">
-     <!--    <label for="orderCode">발주코드</label>
-        <input type="text" id="orderCode" name="orderCode"> -->
-
+  
         <label for="category">자재유형</label>
         <select id="category" name="category">
 			<option >자재유형</option>	
 			<option value="원재료">원자재</option>	
-			<option value="부재료">부재료</option>	
+			<option value="부자재">부재료</option>	
 		</select>
 		
 		<label for="product_code">품목코드</label>
@@ -39,7 +42,7 @@
         <label for="orderQuantity">발주수량</label>
         <input type="text" id="orderQuantity" name="quantity" required>
         
-        <button type="submit">발주신청</button>
+        <button type="submit" style="margin: 0 auto;  display: flex; justify-content: center;">발주신청</button>
     </form>
 
 <script type="text/javascript">

@@ -37,10 +37,10 @@ public class Business_ServiceImpl implements Business_Service {
 		int number = Integer.parseInt(code.substring(leng));
 		number++;
 		
-		String.valueOf(number);
+		String result = String.format("%03d", number);
 		
 		//공통코드와 숫자 합치기
-		String code2 = commoncode + number;
+		String code2 = commoncode + result;
 		logger.debug("이제 끝!" + code2);
 		
 		dto.setCompany_code(code2);
