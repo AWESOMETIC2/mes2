@@ -54,11 +54,11 @@ div p {
 }
 
 .weather-container.offset-sm-3 {
-   margin-left : -100px;
-   margin-right: 130px;
-   margin-top: 20px;
+   margin-left : -30px;
+/*    margin-right: 130px; */
+   margin-top: 25px;
    height: 350px;
-   width: 1030px;
+   width: 910px;
 }
 
 
@@ -287,23 +287,23 @@ div p {
        
           var data = google.visualization.arrayToDataTable([
              ['Line', '공정률',{ role: 'style' }],
-              ['1번라인, 1L', firstLineValue,'#3366cc'],
-              ['2번라인, 2L', secondLineValue, '#dc3912'],
-              ['3번라인, 3L', thirdLineValue, '#ff9900'],
-              ['4번라인, 4L', forthLineValue, '#109618'],
-              ['5번라인, 5L', fifthLineValue, '#990099'],
-              ['6번라인, 6L', sixthLineValue, '#0099c6'],
-              ['7번라인, 7L', sevenLineValue, '#dd4477']
+              ['1', firstLineValue,'#3366cc'],
+              ['2', secondLineValue, '#dc3912'],
+              ['3', thirdLineValue, '#ff9900'],
+              ['4', forthLineValue, '#109618'],
+              ['5', fifthLineValue, '#990099'],
+              ['6', sixthLineValue, '#0099c6'],
+              ['7', sevenLineValue, '#dd4477']
           ]);
 
           var options = {
             title: '라인별공정률',
             chartArea: {width: '55%'},
             backgroundColor: '#F5FBF0',
-            hAxis: {
-              title: '라인별공정률',
-              minValue: 0
-            }
+//             hAxis: {
+//               title: '라인별공정률',
+//               minValue: 0
+//             }
            
           };
 
