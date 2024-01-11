@@ -58,7 +58,7 @@ div p {
    margin-right: 130px;
    margin-top: 20px;
    height: 350px;
-   width: 1060px;
+   width: 1030px;
 }
 
 
@@ -130,9 +130,9 @@ div p {
          </div>
         </div>
         
-       <div class="col-md-4" style="margin-top: 20px; margin-left: 50px;">
+       <div class="col-md-5" style="margin-top: 20px; margin-left: 50px;">
          <!-- 두 번째 card -->
-            <div class="offset-sm-4 card border-warning" style="width: 20rem; box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);">
+            <div class="offset-sm-5 card border-warning" style="width: 20rem; box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);">
                 <div class="card-body" id="card-body-first">
                     <h5 class="card-title"><img src="${pageContext.request.contextPath}/resources/img/icons/factory.png" style="width:35px; height:35px;"></h5>
                     <h3>Productions</h3><br>
@@ -155,9 +155,9 @@ div p {
         </div>
    
   
-        <div class="col-md-4" style="margin-top: 20px; margin-left: 50px;">
+        <div class="col-md-5" style="margin-top: 20px; margin-left: 50px;">
            <!-- 네 번째 card -->
-            <div class="offset-sm-4 card border-danger " style="width: 20rem; box-shadow: 0 0 10px rgba(235, 62, 10, 1); ">
+            <div class="offset-sm-5 card border-danger " style="width: 20rem; box-shadow: 0 0 10px rgba(235, 62, 10, 1); ">
                 <div class="card-body" id="card-body-first">
                     <h5 class="card-title" ><img src="${pageContext.request.contextPath}/resources/img/icons/out-of-stock.png" style="width:35px; height:35px;"></h5>
                      <h3 >Out of Stocks</h3><br>
@@ -207,17 +207,17 @@ div p {
    <div class="row-second" style="display: flex; width: 100%; justify-content: space-between; margin-right: 13%; margin-top: 10px;">
    
        <div style="width: 10%;"> <!-- 나열할 두 번째 요소 -->
-           <div id="piechart" style="width: 580px; height: 600px; margin-left: 40px; margin-top: 10px;"></div>
+           <div id="piechart" style="width: 580px; height: 600px; margin-left: 10px; margin-top: 10px;"></div>
        </div>
       
        <div style="width: 10%;"> <!-- 나열할 두 번째 요소 -->
-           <div id="chart_div" style="width: 600px; height: 500px; margin-left: -25px; margin-top: 10px;"></div>
+           <div id="chart_div" style="width: 580px; height: 500px; margin-left: -10px; margin-top: 10px;"></div>
        </div>
       
       
       
    
-       <div style="width: 50%;  margin-right: 105px;"> <!-- 나열할 첫 번째 요소 -->
+       <div style="width: 51%;  margin-right: 50px;"> <!-- 나열할 첫 번째 요소 -->
            <%@ include file="listAll2.jsp"%>
        </div>
    

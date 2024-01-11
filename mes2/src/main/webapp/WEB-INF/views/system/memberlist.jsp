@@ -61,7 +61,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center; 
-    margin-right: 1460px;
+    margin-right: 1300px;
 }
 
 
@@ -199,7 +199,7 @@
 		</div>
 		
 				
-<nav aria-label="Page navigation example">
+<nav aria-label="Page navigation example" style="display: flex; justify-content: center;" >
   <ul class="pagination">
    <c:if test="${pageVO.prev }">
     <li class="page-item">
@@ -209,14 +209,14 @@
     </li>
    </c:if>
    
-  <c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-     <c:set var="isActive" value="${pageVO.cri.page == i ? 'active' : ''}" />
-    <li class="page-item ${isActive}">
-        <a class="page-link" href="/system/memberlist?page=${i}">
-            ${i}
-        </a>
-    </li>
-  </c:forEach>
+  		<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
+		    <c:set var="isActive" value="${pageVO.cri.page == i}" />
+		    <li class="page-item ${isActive ? 'active' : ''}">
+		        <a class="page-link" href="/system/memberlist?page=${i}" style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
+		            ${i}
+		        </a>
+		    </li>
+		</c:forEach>
  
   
     
@@ -255,14 +255,12 @@
 
 
 <!-- 사원삭제 모달 -->
-		<div class="modal fade" id="deleteForm">
+		<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  id="deleteForm">
 		 <div class="modal-dialog modal-sm">
 		  <div class="modal-content">
 		   <div class="modal-header">
 		   	<h4 class="modal-title">사원삭제</h4>
-		   	 <button type="button" class="close" data-dismiss="modal">
-		   	 	&times;
-		   	 </button>
+		   	 <button type="button"class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		   </div>
 		    <form method="post" action="/system/admindelete">
 		    	<div class="modal-body">
@@ -290,14 +288,12 @@
 
 
 <!-- 사원등록 모달 -->
-		<div class="modal fade" id="joinForm">
+		<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  id="joinForm">
 		 <div class="modal-dialog" style="max-width: 1100px;">
 		  <div class="modal-content" style="max-width: 1100px;">
 		   <div class="modal-header">
 		   	<h4 class="modal-title">사원등록</h4>
-		   	 <button type="button" class="close" data-dismiss="modal">
-		   	 	&times;
-		   	 </button>
+		   	 <button type="button"" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		   </div>
 			<jsp:include page="employeeJoin.jsp" />
 		  </div>
@@ -308,14 +304,12 @@
 
 
 <!-- 사원수정 모달 -->
-		<div class="modal fade" id="updateForm">
+		<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  id="updateForm">
 		 <div class="modal-dialog"style="max-width: 1100px;">
 		  <div class="modal-content"style="max-width: 1100px;">
 		   <div class="modal-header">
 		   	<h4 class="modal-title">사원수정</h4>
-		   	 <button type="button" class="close" data-dismiss="modal">
-		   	 	&times;
-		   	 </button>
+		   	 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		   </div>
 		   	    <jsp:include page="employeeUpdate.jsp" />
 		  </div>
@@ -355,6 +349,11 @@
             $("#deleteForm form")[0].reset();
         });
         
+        $("#deleteForm .btn btn-secondary").click(function(){
+            $("#deleteForm").modal("hide");
+        });
+        
+        
         
         $("#deleteForm .close").click(function(){
             $("#deleteForm").modal("hide");
@@ -384,6 +383,11 @@
             $("#joinForm form")[0].reset();
         });
         
+        $("#joinForm .btn btn-secondary").click(function(){
+            $("#joinForm").modal("hide");
+        });
+        
+        
 
         $("#joinForm .close").click(function(){
             $("#joinForm").modal("hide");
@@ -412,7 +416,12 @@
             $("#updateForm form")[0].reset();
         });
         
-
+		
+        $("#updateForm .btn btn-secondary").click(function(){
+            $("#updateForm").modal("hide");
+        });
+        
+        
         $("#updateForm .close").click(function(){
             $("#updateForm").modal("hide");
         });
