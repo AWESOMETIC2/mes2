@@ -116,6 +116,9 @@ function complete(order_code,ship_date){
 	 			  }
 	 		  });
 			 
+		  }else{
+			moClear();	 		 
+		    $("#mo-close").trigger('click');
 		  }
 		});
 }
@@ -403,9 +406,12 @@ function deliverCheck(data,order_code){
 	 				  }	 
 	 				 });
 	 		 
-	 	 }else if (result.isDismissed) {
-	 		moClear();
+	 	 }else {
+		    moClear();	 		 
 	 		$("#mo-close").trigger('click');
+	 
+	 
+	 		 
 	        }
 	 });
  }
