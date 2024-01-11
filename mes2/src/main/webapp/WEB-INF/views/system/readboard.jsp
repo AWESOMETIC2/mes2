@@ -152,14 +152,12 @@
 
 	
 <!-- 코드수정 모달 -->
-		<div class="modal fade" id="updateBoardForm">
+		<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  id="updateBoardForm">
 		 <div class="modal-dialog" style="max-width: 1100px;">
 		  <div class="modal-content" style="max-width: 1100px;">
 		   <div class="modal-header">
 		   	<h4 class="modal-title">공지글수정</h4>
-		   	 <button type="button" class="close" data-dismiss="modal">
-		   	 	&times;
-		   	 </button>
+		   	 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		   </div>
 		    <form method="post" action="/system/modify">
 		    	<div class="modal-body" style="max-width: 1100px;">
@@ -201,14 +199,12 @@
 	
 
 <!-- 코드삭제 모달 -->
-	   <div class="modal fade" id="deleteBoardForm">
+	   <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  id="deleteBoardForm">
 		 <div class="modal-dialog modal-sm">
 		  <div class="modal-content">
 		   <div class="modal-header">
 		   	<h4 class="modal-title">공지글삭제</h4>
-		   	 <button type="button" class="close" data-dismiss="modal">
-		   	 	&times;
-		   	 </button>
+		   	 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		   </div>
 		    <form method="post" action="/system/remove">
 		    	  <div class="modal-body">
@@ -254,6 +250,10 @@ $(document).ready(function(){
         $("#updateBoardForm form")[0].reset();
     });
     
+    $("#updateBoardForm .btn btn-secondary").click(function(){
+        $("#updateBoardForm").modal("hide");
+    });
+    
 
     $("#updateBoardForm .close").click(function(){
         $("#updateBoardForm").modal("hide");
@@ -287,6 +287,9 @@ $(document).ready(function(){
         $("#deleteBoardForm form")[0].reset();
     });
     
+    $("#deleteBoardForm .btn btn-secondary").click(function(){
+        $("#deleteBoardForm").modal("hide");
+    });
 
     $("#deleteBoardForm .close").click(function(){
         $("#deleteBoardForm").modal("hide");
