@@ -46,8 +46,8 @@
 			<!-- 표 -->
 			<div class="list">
 				<div class="list-btn">
-					<button type="button" class="btn btn-secondary" id="addbtn">추가</button>
-					<button type="button" class="btn btn-secondary" id="deletebtn">삭제</button>
+					<button type="button" class="btn btn-secondary" id="addbtn" style="visibility:hidden;">추가</button>
+					<button type="button" class="btn btn-secondary" id="deletebtn" style="visibility:hidden;">삭제</button>
 				</div>
 
 				<div class="list-box">

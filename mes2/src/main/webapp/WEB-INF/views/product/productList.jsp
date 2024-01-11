@@ -58,7 +58,7 @@
       <div class="list">
       
         <div class="list-btn">
-          <button type="button" class="btn btn-secondary" id="delete-btn">긴급탈출버튼</button>
+          <button type="button" class="btn btn-secondary" id="delete-btn" style="visibility:hidden;">긴급탈출버튼</button>
         </div>
 
         <div class="list-box">
