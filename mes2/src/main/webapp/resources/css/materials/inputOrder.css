@@ -2,6 +2,11 @@
 
 @charset "UTF-8";
 
+* {
+   font-family: 'Noto Sans KR', sans-serif;
+   font-size: 17px;
+}
+
 body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -50,3 +55,4 @@ body {
         button:hover {
             background-color: #6E9888;
         }
+      
