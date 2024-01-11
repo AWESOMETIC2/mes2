@@ -19,6 +19,11 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/inDetailList.css">
 <script src="https://kit.fontawesome.com/11da345fca.js"
 	crossorigin="anonymous"></script>
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 </head>
 <body>
 	<%@ include file="../system/sidehead.jsp"%>
@@ -26,7 +31,6 @@
 	<div class="container">
 		<section class="section1">
 			<form action="/materials/inDetailList" method="get" class="search">
-				<!-- <select name="searchType"> -->
 				<select name="searchType" id="searchType" class="form-select"
 					aria-label="Default select example">
 					<option value="pd_lot">품목코드</option>
@@ -65,7 +69,6 @@
 							<tr>
 								<td><c:out value="${in.warehouse_code}" /></td>
 								<td><c:out value="${in.in_code}" /></td>
-								<%-- 				<td><c:out value="${in.pd_lot}" /></td> --%>
 								<td><c:out value="${in.name}" /></td>
 								<td><c:out value="${in.quantity}" /></td>
 								<td><c:out value="${in.unit}" /></td>
@@ -83,9 +86,9 @@
 					</tbody>
 				</table>
 			</div>
-
-			<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-center">
+	
+			<nav aria-label="Page navigation example" style="padding: 5px; margin : 0 auto;">
+				<ul class="pagination justify-content-center" >
 					<c:if test="${pageVO.prev }">
 						<li class="page-item"><a class="page-link"
 							href="/materials/inDetailList?page=${pageVO.startPage - 1}"

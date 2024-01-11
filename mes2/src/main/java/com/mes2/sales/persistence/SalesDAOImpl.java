@@ -1,9 +1,9 @@
 package com.mes2.sales.persistence;
 
 import java.util.Date;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import javax.inject.Inject;
 
@@ -16,7 +16,7 @@ import com.mes2.sales.domain.AcceptSaveDTO;
 import com.mes2.sales.domain.Criteria;
 import com.mes2.sales.domain.PlanRegisterDTO;
 import com.mes2.sales.domain.SalesDTO;
-import com.mes2.sales.domain.SearchDTO;
+
 
 @Repository
 public class SalesDAOImpl implements SalesDAO {
