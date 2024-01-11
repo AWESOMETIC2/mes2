@@ -34,4 +34,22 @@
 	 -->
 	<context:component-scan base-package="com.mes2.*" />
 	
+	<beans:bean id="loginInterceptor" class="com.mes2.config.LoginInterceptor"/>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/instructions/*"/> <!-- 작업지시 -->
+			<mapping path="/product/*"/>	<!-- 생산품 -->
+			<mapping path="/productionLine/*" />	<!-- 생산라인 -->
+			<mapping path="/platform/*"/>	<!-- 고객사 플랫폼 -->
+			<mapping path="/amount/*"/>	<!--  -->
+			<mapping path="/business/*"/>
+			<mapping path="/materials/*"/>
+			<mapping path="/sales/*"/>
+			<mapping path="/shipping/*"/>
+			<exclude-mapping path="/system/login"/>
+			<beans:ref bean="loginInterceptor" />
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>

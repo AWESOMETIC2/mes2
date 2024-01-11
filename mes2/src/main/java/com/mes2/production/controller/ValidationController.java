@@ -27,7 +27,7 @@ public class ValidationController {
 	@GetMapping("/search")
 	public String searchValidation() {
 		
-		return null;
+		return "/validation/home";
 		
 	}
 	
