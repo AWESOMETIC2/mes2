@@ -190,14 +190,14 @@ public class InstructionsController {
 	
 	//http://localhost:8088/instructions/request
 	@GetMapping("/request")
-	public String requestGET(Model model, Criteria cri, @RequestParam(value="code", required = false)String code) {
+	public String requestGET(Model model, Criteria cri, @RequestParam(value="searchCode", required = false)String code) {
 
-		String state="REQUESTED";
-		
+		String state="requested";
+
 		InstructionsSearchParam param = new InstructionsSearchParam();
 		param.setState(state);
-		param.setSearchType("isCode");
-		param.setRequestCode(code);
+		param.setSearchType("sopCode");
+		param.setCode(code);
 		
 		PageVO pageVO = new PageVO();
 		pageVO.setCri(cri);
@@ -244,7 +244,7 @@ public class InstructionsController {
 		
 		
 		
-		model.addAttribute("code", code);
+		model.addAttribute("searchCode", code);
 		model.addAttribute("instructions" , instructions);
 		
 		

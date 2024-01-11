@@ -37,7 +37,7 @@
 					<select id="boundary" name="searchType" class="form-select" aria-label="Default select example">
 						<option value="">-- 검색선택 --</option>
 						<option value="isCode">작업지시코드</option>
-						<option value="soiCode">수주번호</option>
+						<option value="sopCode">수주번호</option>
 						<option value="mdpCode">제품번호</option>
 					</select>
 				</div>
@@ -114,7 +114,7 @@
 											<i class="fa-solid fa-circle fa-2xs" style="color: #416ca4;"></i>생산완료
 										</c:if>
 										<c:if test="${item.state.equals('PROGRESSING')}">
-											<i class="fa-solid fa-circle fa-2xs" style="color: #577D71;"></i><button type="button" onclick="window.open('/instructions/resultInfo/${item.code}','result','width=800px, height=640px')" style="border:none">작업 종료</button>
+											<i class="fa-solid fa-circle fa-2xs" style="color: #577D71;"></i><button type="button" onclick="window.open('/instructions/resultInfo/${item.code}','result','width=800px, height=640px')" style="border:none">생산중</button>
 										</c:if>
 										</td>
 									</tr>

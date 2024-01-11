@@ -28,7 +28,7 @@
 			<form class="search" action="/instructions/request">
 
 				
-				<input type="text" name="code" placeholder="수주번호 "   class="form-control aria-label="Recipient's username" aria-describedby="button-addon2" style="width:200px;"/>
+				<input type="text" name="searchCode" placeholder="요청번호 "   class="form-control aria-label="Recipient's username" aria-describedby="button-addon2" style="width:200px; value="${searchCode}"/>
 
 				<input type="submit" value="검색" class="btn btn-secondary"/>
 			</form>
@@ -68,9 +68,9 @@
 								<c:forEach var="item" items="${instructions}">
 									<tr>
 										<td scope="row"><input type="checkbox" class="ck" /></td>
-										<td><a href="">${item.code}</a></td>
-										<td>${item.line}</td>
-										<td onclick="getMaterials('${item.mdpCode}')">${item.mdpCode}</td>
+										<td onclick="getMaterials('${item.sopCode}','${item.salesQuantity }')"><a href="">${item.code}</a></td>
+										<td onclick="getMaterials('${item.sopCode}','${item.salesQuantity }')">${item.line}</td>
+										<td onclick="getMaterials('${item.sopCode}','${item.salesQuantity }')">${item.mdpCode}</td>
 										<td onclick="getMaterials('${item.sopCode}','${item.salesQuantity }')">${item.sopCode}</td>
 										<td>
 										<!-- 현재 공백 -->
