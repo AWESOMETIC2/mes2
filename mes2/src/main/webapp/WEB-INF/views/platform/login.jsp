@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <title>고객사 로그인</title>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>

@@ -12,7 +12,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oF6nT25eJKvrO6oq6S97Fv8Hf1yCYY6XaC6XbN0eX7g=" crossorigin="anonymous"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<title>JoinForm</title>
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<title>사원등록</title>
 <style type = "text/css">
 
 html{
