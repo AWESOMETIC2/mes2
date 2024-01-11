@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,6 +61,11 @@ public class controller1 {
 	
 	@Inject
 	private BoardService bService;
+	
+	
+	@Inject
+	private ServletContext servletContext;
+	
 	
 	
 
@@ -656,8 +662,10 @@ public class controller1 {
 				logger.debug("oFileName : " + oFileName);
 				//업로드 된 실제 파일의 이름을 저장
 				fileList.add(oFileName);
+				String realPath = servletContext.getRealPath("/resources/img/members");
+				File uploadPath  = new File(realPath);
 				// 실제 폴더 생성 -> D드라이브에 springupload 라는 폴더생성
-				File file  = new File("C:\\Users\\ITWILL\\git\\mes2\\mes2\\src\\main\\webapp\\resources\\img\\members\\" + oFileName);
+				File file  = new File(uploadPath + "/" + oFileName);
 				//파일업로드
 				if(mFile.getSize() != 0) { //첨부했던 첨부파일이 있을 때 의 의미 (!= 0)
 					if(!file.exists()) { // 파일, 폴더가 실제로 존재하는지 체크
