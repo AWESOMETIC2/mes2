@@ -23,7 +23,6 @@
 <!-- 글씨체 -->
 </head>
 <body>
-	<%@ include file="/system/sidehead.jsp" %>
 	<div class="container">
 		<section class="section1">
 			<div>

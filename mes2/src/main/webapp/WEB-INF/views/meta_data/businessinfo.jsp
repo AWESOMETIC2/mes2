@@ -155,7 +155,17 @@
 					</td>
 					<td class="b" style="display: none;"><input type="text" name="name" size="5" value="${blist.name }"></td>
 					<td class="b" style="display: none;"><input type="text" name="manager" size="5" value="${blist.manager }"></td>
-					<td class="b" style="display: none;"><input type="text" name="address" size="5" value="${blist.address }"></td>
+					
+					
+					
+					<td class="b" style="display: none;">
+					<input type="text" name="address" size="30" value="${blist.address }">
+					<input type="button" id="join_button"  onclick="sample1_execDaumPostcode()" value="검색">	
+					
+					</td>
+					
+					
+					
 					<td class="b" style="display: none;"><input type="text" name="call" size="5" value="${blist.call }"></td>
 					<td class="b" style="display: none;"><input type="text" name="fax" size="5" value="${blist.fax }"></td>
 					<td class="b" style="display: none;"><input type="text" name="email" size="5" value="${blist.email }"></td>
