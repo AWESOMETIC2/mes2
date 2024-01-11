@@ -87,13 +87,7 @@ function goContent(order_code){
 
  function save(){
 	
- //var order = $("#order_code").val();
-//	 var scode = $(".sales_code").eq(index).val();
-//	 var productCode = $(".product_code").eq(index).val();
-//	 var salesQuantity = $(".sales_quantity").eq(index).val();
-//	 var processingReg = $(".product-processing").eq(index).val();
-	 
-	 //$("#mo-close").trigger('click');
+
 	 var list = [];
 	 
 	 for (var i = 0; i < intNum; i++) {

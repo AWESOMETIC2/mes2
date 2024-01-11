@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.mes2.sales.domain.AcceptSaveDTO;
 import com.mes2.sales.domain.Criteria;
-import com.mes2.sales.domain.SearchDTO;
+
 import com.mes2.sales.domain.ShippingDTO;
 
 public interface ShippingService {
@@ -29,5 +29,5 @@ public interface ShippingService {
 	public int totalCount(Criteria cri);
 	public int shippingTotalCount(Criteria cri);
 	public void outComplete(String order_code);
-	public String getWarehouseInfo(String sales_code);
+	
 }

@@ -98,7 +98,7 @@
           <option value="order_code" ${pm.cri.type=='order_code' ? 'selected' : ''}>주문번호</option>
           <option value="company_name" ${pm.cri.type=='company_name' ? 'selected' : ''}>수주처</option>
           <option value="order_date" ${pm.cri.type=='order_date' ? 'selected' : ''}>납품요청일</option>
-          <option value="order_date" ${pm.cri.type=='scheduled_date' ? 'selected' : ''}>출하예정일</option>
+          <option value="scheduled_date" ${pm.cri.type=='scheduled_date' ? 'selected' : ''}>출하예정일</option>
         </select>
         
    

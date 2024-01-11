@@ -35,7 +35,7 @@ function goContent(order_code){
 		  error: function(){
 			  $("#mo-close").trigger('click');
 			  Swal.fire({
-				    title: "관계자에게 문의하세요",
+				    title: "관계자에게 문의하십시오.",
 				    icon: "warning"
 				}).then((result) => {
 				    if (result.isConfirmed) {

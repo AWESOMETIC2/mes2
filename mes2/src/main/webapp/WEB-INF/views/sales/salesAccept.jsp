@@ -93,7 +93,7 @@
           <option value="">검색선택 </option>
           <option value="order_code" ${pm.cri.type=='order_code' ? 'selected' : ''}>주문번호</option>
           <option value="company_name" ${pm.cri.type=='company_name' ? 'selected' : ''}>수주처</option>
-          <option value="order_date" ${pm.cri.type=='order_date' ? 'selected' : ''}>납기요청일</option>
+          <option value="order_date" ${pm.cri.type=='order_date' ? 'selected' : ''}>납품요청일</option>
           <option value="request_date" ${pm.cri.type=='request_date' ? 'selected' : ''}>수주신청일</option>
         </select>
         

@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.mes2.sales.domain.AcceptSaveDTO;
 import com.mes2.sales.domain.Criteria;
-import com.mes2.sales.domain.SearchDTO;
+
 import com.mes2.sales.domain.ShippingDTO;
 
 
@@ -34,7 +34,6 @@ public interface ShippingDAO {
 	public void updateSaleStatus(ShippingDTO sdto);
 	public List<ShippingDTO> totalCount(Criteria cri);
 	public List<ShippingDTO> shippingTotalCount(Criteria cri);
-	public String getProductCode(String sales_code);
-	public String getWarehouseInfo(String product_code);
+	
 	
 }

@@ -98,7 +98,7 @@
           <option value="ship_date" ${pm.cri.type=='ship_date' ? 'selected' : ''}>출하일자</option>
           <option value="company_name" ${pm.cri.type=='company_name' ? 'selected' : ''}>수주처</option>
           <option value="order_date" ${pm.cri.type=='order_date' ? 'selected' : ''}>납품요청일</option>
-          <option value="user_id" ${pm.cri.type=='user_id' ? 'selected' : ''}>등록인</option>
+          
         </select>
         
    
