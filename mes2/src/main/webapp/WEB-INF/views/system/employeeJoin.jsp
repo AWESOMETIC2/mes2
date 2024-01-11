@@ -134,7 +134,7 @@
 							    <input type="text"  id="join_detailAddress" placeholder="상세주소" name="address_detail">
 							  </div>
 							   <div class="mb-3">
-							    <label for="user_auth" class="form-label">사원권환</label>
+							    <label for="user_auth" class="form-label">사원권한</label>
 							    <select  name="user_auth" id="user_auth">
 										<option value="시스템관리" ${memberDTO.user_auth eq '시스템관리' ? 'selected' : ''}>시스템관리</option>
 										<option value="기준정보관리" ${memberDTO.user_auth eq '기준정보관리' ? 'selected' : ''}>기준정보관리</option>

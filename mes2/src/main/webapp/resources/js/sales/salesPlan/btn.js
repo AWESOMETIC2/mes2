@@ -104,7 +104,8 @@ function register(){
  
  function registration(user_id){
 	 Swal.fire({
-		  title: "등록되었습니다!",		
+		  title: "등록되었습니다!",
+		  confirmButtonColor: "#6e9888",
 		  icon: "success"
 		}).then((result) => {
 			 $("#u_id").val(user_id).prop("disabled", false);

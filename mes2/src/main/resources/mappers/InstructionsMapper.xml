@@ -98,14 +98,42 @@
             	and state = #{state}
             	]]>   
             </if>
-            <if test="code !=null and !code.equals('')">
+		
+			<if test="searchType.equals('isCode') and code!=null and !code.equals('')">
+            	<![CDATA[
+               	and code like concat('%',#{code},'%')
+               ]]> 
+            </if>
+
+			<if test="searchType.equals('sopCode') and code!=null and !code.equals('')">
+            	<![CDATA[
+               	and sop_code like concat('%',#{code},'%')
+               ]]> 
+            </if>
+            
+            <if test="searchType.equals('mdpCode') and code!=null and !code.equals('')">
+            	<![CDATA[
+               	and mdp_code like concat('%',#{code},'%')
+               ]]> 
+            </if>
+		
+            <if test="searchType==null and code !=null and !code.equals('')">
                <![CDATA[
                	and code like concat('%',#{code},'%')
                ]]>    
             </if>
+            
+            <if test="searchType.equals('') and code !=null and !code.equals('')">
+               <![CDATA[
+               	and code like concat('%',#{code},'%')
+               ]]>    
+            </if>
+                
             <if test="state == null or state.equals('')">
             	and state != 'REQUESTED'
             </if>
+            
+
             <if test="startDate != null and endDate != null ">
                 AND due_Date between #{startDate} AND #{endDate}
             </if>	     
@@ -124,11 +152,36 @@
             	]]>   
             </if>
 		
-            <if test="code !=null and !code.equals('')">
+			<if test="searchType.equals('isCode') and code!=null and !code.equals('')">
+            	<![CDATA[
+               	and code like concat('%',#{code},'%')
+               ]]> 
+            </if>
+
+			<if test="searchType.equals('sopCode') and code!=null and !code.equals('')">
+            	<![CDATA[
+               	and sop_code like concat('%',#{code},'%')
+               ]]> 
+            </if>
+            
+            <if test="searchType.equals('mdpCode') and code!=null and !code.equals('')">
+            	<![CDATA[
+               	and mdp_code like concat('%',#{code},'%')
+               ]]> 
+            </if>
+		
+            <if test="searchType==null and code !=null and !code.equals('')">
                <![CDATA[
                	and code like concat('%',#{code},'%')
                ]]>    
             </if>
+            
+            <if test="searchType.equals('') and code !=null and !code.equals('')">
+               <![CDATA[
+               	and code like concat('%',#{code},'%')
+               ]]>    
+            </if>
+            
                 
             <if test="state == null or state.equals('')">
             	and state != 'REQUESTED'
@@ -139,23 +192,6 @@
                 AND due_Date between #{startDate} AND #{endDate}
             </if>
             
-            <if test="searchType.equals('isCode') and code!=null and code.equals('')">
-            	<![CDATA[
-               	and code like concat('%',#{code},'%')
-               ]]> 
-            </if>
-
-			<if test="searchType.equals('sopCode') and code!=null and code.equals('')">
-            	<![CDATA[
-               	and sopCode like concat('%',#{code},'%')
-               ]]> 
-            </if>
-            
-            <if test="searchType.equals('mdpCode') and code!=null and code.equals('')">
-            	<![CDATA[
-               	and mdp_code like concat('%',#{code},'%')
-               ]]> 
-            </if>
 
          </where>
          ORDER BY is_index desc

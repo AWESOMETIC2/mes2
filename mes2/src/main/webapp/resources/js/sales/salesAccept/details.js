@@ -87,15 +87,9 @@ function goContent(order_code){
 
  function save(){
 	
- //var order = $("#order_code").val();
-//	 var scode = $(".sales_code").eq(index).val();
-//	 var productCode = $(".product_code").eq(index).val();
-//	 var salesQuantity = $(".sales_quantity").eq(index).val();
-//	 var processingReg = $(".product-processing").eq(index).val();
-	 
-	 //$("#mo-close").trigger('click');
+
 	 var list = [];
-	 alert(intNum);
+	 
 	 for (var i = 0; i < intNum; i++) {
 		 var order = $(".order_code").val();
 		 var scode = $(".sales_code").eq(i).val();
@@ -109,7 +103,7 @@ function goContent(order_code){
 
 
 	 }
-	alert(list);
+	
 	 $.ajax({
 		  url: "acceptSave",
 		  method: "POST",
@@ -146,8 +140,8 @@ function goContent(order_code){
 		  title: "등록하시겠습니까?",
 		  icon: "question",
 		  showCancelButton: true,
-		  confirmButtonColor: "#3085d6",
-		  cancelButtonColor: "#d33",
+		  confirmButtonColor: "#6e9888",
+		  cancelButtonColor: "#666666",
 		  confirmButtonText: "등록",
 		  cancelButtonText: "취소"
 		}).then((result) => {
@@ -180,7 +174,7 @@ function goContent(order_code){
 	 $("#salesModalLabel").html('비밀번호 확인');
 	 var listHtml = "<div>아이디 : <input type='text' id='user_id' value='"+data.user_id+"' disabled/> </div>";
 	 listHtml += "<div>비밀번호: <input type='password' id='user_pw'/></div>"
-	 listHtml += "<button type='button' class='btn btn-primary' onclick='return regPw(\""+data.user_id+"\")'>비밀번호 확인</button>";
+	 listHtml += "<button type='button' class='btn dark-green-btn' onclick='return regPw(\""+data.user_id+"\")'>비밀번호 확인</button>";
 	 $("#sales-modal").html(listHtml);
  }
  
@@ -226,6 +220,7 @@ function goContent(order_code){
 		  success: function (data) {
 			  
 		      moInfo(data,order_code); 
+		      $("#salesModal").modal("show");
 		    },
 		    error: function(){
 				  Swal.fire({
@@ -272,28 +267,20 @@ function goContent(order_code){
 			  
 			  listHtml += " <button type='button' class='btn' style='background-color:#619e6b; color: white;' id='save-btn' onclick='return saveCheck(\""+order_code+"\")'>저장</button>";
 		  }
-	  listHtml += "<div class='list-box'>";
- 
-	
-	  
-	  listHtml += "<table class='table table-hover'>";
-	  
-	  
+	  listHtml += "<div class='list-box'>";  
+	  listHtml += "<table class='table table-hover'>";	  
 	  listHtml += "<table class='table table-hover'>";
 	  listHtml += "<thead>";
 	  listHtml += "<tr class='table-success' >";
-	  listHtml += "<th scope='col'>수주번호</th>";
-	  listHtml += "<th scope='col'>제품명</th>";
-	  listHtml += "<th scope='col'>수량</th>";
-	  listHtml += "<th scope='col'>재고조회</th>";
-	  listHtml += "<th scope='col'>처리상태</th>";
-	  listHtml += "<th scope='col'>수주처리</th>";
-	 
+	  listHtml += "<th style='text-align: center;'>수주번호</th>";
+	  listHtml += "<th>제품명</th>";
+	  listHtml += "<th>수량</th>";
+	  listHtml += "<th>재고조회</th>";
+	  listHtml += "<th>처리상태</th>";
+	  listHtml += "<th>수주처리</th>"; 
 	  listHtml += "</tr>";
-	  listHtml += "</thead>";
-	  
-	  listHtml += "<tbody>";
-	  
+	  listHtml += "</thead>";  
+	  listHtml += "<tbody>";  
 	  
 	  $.each(data,function(index,obj){
 		  

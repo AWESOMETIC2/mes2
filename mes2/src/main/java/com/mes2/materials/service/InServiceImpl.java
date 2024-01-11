@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.mes2.materials.domain.Criteria;
 import com.mes2.materials.domain.InDTO;
 import com.mes2.materials.domain.SearchDTO;
+import com.mes2.materials.domain.WarehouseDTO;
 import com.mes2.materials.persistence.InDAO;
 
 @Service
@@ -47,8 +48,8 @@ public class InServiceImpl implements InService {
 	}
 
 	@Override
-	public void insertStock(int quantity, String product_code, String category, String pd_lot) throws Exception {
-		idao.insertStock(quantity, product_code, category, pd_lot);
+	public void insertStock(int quantity, String product_code, String pd_lot) throws Exception {
+		idao.insertStock(quantity, product_code, pd_lot);
 
 	}
 
@@ -118,6 +119,16 @@ public class InServiceImpl implements InService {
 	@Override
 	public List<InDTO> getAllInData(InDTO idto) throws Exception {
 		return idao.getAllInData(idto);
+	}
+
+	@Override
+	public List<InDTO> getInventoryIndex(String in_index) throws Exception {
+		return idao.getInventoryIndex(in_index);
+	}
+
+	@Override
+	public WarehouseDTO warehouseCodeCategory(String category) throws Exception {
+		return idao.warehouseCodeCategory(category);
 	}
 	
 	

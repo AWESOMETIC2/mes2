@@ -158,9 +158,4 @@ public class ShippingController {
 	}
 	
 
-	@RequestMapping(value = "/productInfo", method = RequestMethod.POST , produces = "text/plain;charset=UTF-8")
-	public @ResponseBody String productInfo(String sales_code) {	
-
-		return pService.getWarehouseInfo(sales_code);
-	}
 }

@@ -57,9 +57,6 @@ input[type="number"] {
 </head>
 <body>
 
-	<br><br>
-	<span id="theme">작업결과 입력</span>
-	<br>
 	
 	<form action="/instructions/result" method="post">
 		
@@ -81,7 +78,7 @@ input[type="number"] {
 		<label id="faultLabel">불량품 수량 입력 <input type="number" name ="fault" id="fault"></label>
 		<input type="hidden" name="isCode" value="${instruction.code}">
 				
-		<input type="submit" value="종료" id="submit">
+		<input type="submit" value="완료" id="submit">
 
 	</form>
 

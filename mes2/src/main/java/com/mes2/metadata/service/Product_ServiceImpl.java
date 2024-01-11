@@ -34,12 +34,21 @@ public class Product_ServiceImpl implements Product_Service {
 		
 		//숫자만 빼서 +1 해주기
 		int number = Integer.parseInt(code.substring(leng));
+		
 		number++;
 		
-		String.valueOf(number);
+		String result;
+		
+		if(commoncode.equals("PS")) {
+			result = String.format("%05d", number);
+		}
+		else {
+			result = String.format("%03d", number);
+		}
+		
 		
 		//공통코드와 숫자 합치기
-		String code2 = commoncode + number;
+		String code2 = commoncode + result;
 		logger.debug("이제 끝!" + code2);
 		
 		dto.setProduct_code(code2);

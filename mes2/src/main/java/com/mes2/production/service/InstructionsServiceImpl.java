@@ -315,7 +315,7 @@ public class InstructionsServiceImpl implements InstructionsService {
 		product.setPd_is_code(findInstructions.getCode());
 		productDAO.insertProduct(product);
 		
-		instructionsDAO.updateSopByIsCode(isCode, "complete");
+		//instructionsDAO.updateSopByIsCode(isCode, "complete");
 
 		log.debug("instructionsService : product 저장 완료");
 		
