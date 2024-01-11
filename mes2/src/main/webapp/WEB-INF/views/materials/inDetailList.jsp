@@ -98,7 +98,6 @@
 											value="${in.product_code}" />
 										<button type="button" class="btn complete statusButton">완료</button>
 									</c:if></td>
-
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -111,7 +110,8 @@
 					<c:if test="${pageVO.prev }">
 						<li class="page-item"><a class="page-link"
 							href="/materials/inDetailList?page=${pageVO.startPage - 1}"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							aria-label="Previous"> 
+							<span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:if>
 
