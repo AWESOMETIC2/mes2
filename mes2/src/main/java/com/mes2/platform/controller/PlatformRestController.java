@@ -72,7 +72,7 @@ public class PlatformRestController {
 
             // 파일 저장
             String fileName = file.getOriginalFilename();
-            File uploadFile = new File(uploadPath + "\\" + fileName); // 업로드할 파일
+            File uploadFile = new File(uploadPath + "/" + fileName); // 업로드할 파일
             file.transferTo(uploadFile);
             
             
