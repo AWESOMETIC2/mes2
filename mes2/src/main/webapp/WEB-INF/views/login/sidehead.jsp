@@ -5,6 +5,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
+    <link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <title> Drop Down Sidebar Menu | CodingLab </title>
     <link rel="stylesheet" href="../../../resources/css/sidehead/sideheadstyle.css">
     <!-- Boxiocns CDN Link -->
