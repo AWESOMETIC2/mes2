@@ -37,6 +37,7 @@ public class PurchaseController {
 	private InService iService;
 	
 	// http://localhost:8080/materials/purchaselist
+	
 	@GetMapping(value = "/purchase")
 	public void insertPurchaseGET() throws Exception {
 	}
