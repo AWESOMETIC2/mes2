@@ -160,7 +160,7 @@
  <div class="sidebar close">
     <div class="logo-details">
       <i class="fa-solid fa-bars"></i>
-     <a href="/system/mainpage">
+     <a href="/system/mainpage" style="text-decoration-line: none;">
       <span class="logo_name">AWESOMETIC</span>
      </a> 
     </div>
