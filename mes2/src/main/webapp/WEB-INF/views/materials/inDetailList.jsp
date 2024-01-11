@@ -98,7 +98,6 @@
 											value="${in.product_code}" />
 										<button type="button" class="btn complete statusButton">완료</button>
 									</c:if></td>
-
 							</tr>
 						</c:forEach>
 					</tbody>
