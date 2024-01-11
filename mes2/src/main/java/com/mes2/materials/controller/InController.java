@@ -23,7 +23,8 @@ import com.mes2.materials.service.PurchaseService;
 @Controller
 @RequestMapping(value = "/materials/*")
 public class InController {
-
+	
+	// http://localhost:8080/system/login
 	private static final Logger logger = LoggerFactory.getLogger(InController.class);
 
 	@Inject

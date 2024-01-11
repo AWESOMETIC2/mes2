@@ -32,7 +32,7 @@
 <body>
 	<header class="header">
 		<nav class="nav">
-			<a href="#" class="logo" style="text-decoration: none;">AWSOMETIC</a>
+			<a href="#" class="logo" style="text-decoration: none;"><img src="${pageContext.request.contextPath}/resources/img/icons/AWESOMETIC.png" id="login-icon"></a>
 			<button class="btn" id="show-form">Login</button>
 		</nav>
 	</header>
@@ -42,9 +42,7 @@
 			<i class="fas fa-xmark close-form"></i>
 			<div class="form login-form">
 				<form method="post">
-					<img
-						src="${pageContext.request.contextPath}/resources/img/icons/awesometic2.jpg"
-						id="login-icon">
+					<img src="${pageContext.request.contextPath}/resources/img/icons/AWESOMETIC.png" id="login-icon">
 					<div class="input-box">
 						<input type="text" id="id" name="company_code" placeholder="아이디를 입력하세요" /> <i class="fas fa-envelope email"></i>
 					</div>

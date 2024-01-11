@@ -99,7 +99,7 @@
 					<option>유통업체</option>
 					</select>
 					</td>										    								      												
-					<td><input type="text" name="pw" size="5"></td>
+					<td><input type="text" name="pw" size="5" value="1234" readonly></td>
 					<td><input type="text" name="name" size="5"></td>
 					<td><input type="text" name="manager" size="5"></td>				
 					

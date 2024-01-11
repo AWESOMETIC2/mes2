@@ -207,17 +207,17 @@ div p {
    <div class="row-second" style="display: flex; width: 100%; justify-content: space-between; margin-right: 13%; margin-top: 10px;">
    
        <div style="width: 10%;"> <!-- 나열할 두 번째 요소 -->
-           <div id="piechart" style="width: 580px; height: 600px; margin-left: 40px; margin-top: 10px;"></div>
+           <div id="piechart" style="width: 580px; height: 600px; margin-left: 10px; margin-top: 10px;"></div>
        </div>
       
        <div style="width: 10%;"> <!-- 나열할 두 번째 요소 -->
-           <div id="chart_div" style="width: 600px; height: 500px; margin-left: -25px; margin-top: 10px;"></div>
+           <div id="chart_div" style="width: 580px; height: 500px; margin-left: -10px; margin-top: 10px;"></div>
        </div>
       
       
       
    
-       <div style="width: 50%;  margin-right: 105px;"> <!-- 나열할 첫 번째 요소 -->
+       <div style="width: 51%;  margin-right: 50px;"> <!-- 나열할 첫 번째 요소 -->
            <%@ include file="listAll2.jsp"%>
        </div>
    

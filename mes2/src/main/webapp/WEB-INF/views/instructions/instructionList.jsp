@@ -60,7 +60,7 @@
 			<div class="list">
 			
 				<div class="list-btn">
-					<button type="button" class="btn btn-secondary" id="deletebtn">긴급탈출버튼</button>
+					<button type="button" class="btn btn-secondary" id="deletebtn" style="visibility:hidden;">긴급탈출버튼</button>
 				</div>
 
 				<div class="list-box">
@@ -175,7 +175,7 @@
         var searchType = document.getElementById("boundary").value;
         
         if (searchType === "") {
-            alert("좋은말로 할 때 검색 타입을 선택하세요.");
+            alert("검색 타입을 선택하세요.");
             return false; 
         }
         

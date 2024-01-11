@@ -35,7 +35,7 @@ public class SalesController {
 	// http://localhost:8080/sales/salesPlan
 	// http://localhost:8088/sales/salesPlan
 	@RequestMapping(value = "/salesPlan")
-	public String salesPlan(HttpSession session, Model model, Criteria cri) {	
+	public String salesPlan(Model model, Criteria cri) {	
 		
 		cri.setSales_status("requested");
 		List<SalesDTO> list = sService.salesList(cri);	

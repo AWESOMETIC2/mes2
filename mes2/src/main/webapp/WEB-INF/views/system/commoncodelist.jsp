@@ -55,7 +55,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center; 
-    margin-right: 1460px;
+    margin-right: 1280px;
 }
 
  .page-item {
@@ -134,7 +134,7 @@
 			</table>
 		</div>
 		
-		<nav aria-label="Page navigation example">
+		<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
 		  <ul class="pagination">
 		   <c:if test="${pageVO.prev }">
 		    <li class="page-item">
@@ -144,14 +144,14 @@
 		    </li>
 		   </c:if>
 		   
-		  <c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-		    <c:set var="isActive" value="${pageVO.cri.page == i ? 'active' : ''}" />
-			    <li class="page-item ${isActive}">
-			        <a class="page-link" href="/system/commoncodelist?page=${i}">
-			            ${i}
-			        </a>
-			    </li>
-		  </c:forEach>
+		<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
+		    <c:set var="isActive" value="${pageVO.cri.page == i}" />
+		    <li class="page-item ${isActive ? 'active' : ''}">
+		        <a class="page-link" href="/system/commoncodelist?page=${i}" style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
+		            ${i}
+		        </a>
+		    </li>
+		</c:forEach>
 		 
 		  
 		    
@@ -173,14 +173,12 @@
 	
 	
 <!-- 코드등록 모달 -->
-		<div class="modal fade" id="CodeJoinForm">
+		<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  id="CodeJoinForm">
 		 <div class="modal-dialog" style="max-width: 1100px;">
 		  <div class="modal-content" style="max-width: 1100px;">
 		   <div class="modal-header">
 		   	<h4 class="modal-title">코드등록</h4>
-		   	 <button type="button" class="close" data-dismiss="modal">
-		   	 	&times;
-		   	 </button>
+		   	 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		   </div>
 		    <form method="post" action="/system/commoncodejoin">
 		    	<div class="modal-body" style="max-width: 1100px;">
@@ -211,8 +209,8 @@
 								  <div class="mb-3">
 								    <label for="exampleInputPassword1" class="form-label">코드사용여부</label><br>
 								    <select name="code_usestatus">
-								    	<option>1</option>
-								    	<option>0</option>
+								    	<option>YES</option>
+								    	<option>NO</option>
 								    </select>
 								  </div>  
 
@@ -233,14 +231,12 @@
 <!-- 코드등록 모달 -->	
 	
 <!-- 코드수정 모달 -->
-		<div class="modal fade" id="CodeUpdateForm">
+		<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  id="CodeUpdateForm">
 		 <div class="modal-dialog" style="max-width: 1100px;">
 		  <div class="modal-content" style="max-width: 1100px;">
 		   <div class="modal-header">
 		   	<h4 class="modal-title">코드수정</h4>
-		   	 <button type="button" class="close" data-dismiss="modal">
-		   	 	&times;
-		   	 </button>
+		   	  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		   </div>
 		    <form method="post" action="/system/commoncodeupdate">
 		    	<div class="modal-body" style="max-width: 1100px;">
@@ -281,8 +277,8 @@
 								  <div class="mb-3">
 								    <label for="exampleInputPassword1" class="form-label">코드사용여부</label><br>
 								    <select name="code_usestatus">
-								    	<option>1</option>
-								    	<option>0</option>
+								    	<option>YES</option>
+								    	<option>NO</option>
 								    </select>
  								  </div>  
   
@@ -304,14 +300,12 @@
 	
 
 <!-- 코드삭제 모달 -->
-	   <div class="modal fade" id="CodeDeleteForm">
+	   <div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="CodeDeleteForm">
 		 <div class="modal-dialog modal-sm">
 		  <div class="modal-content">
 		   <div class="modal-header">
 		   	<h4 class="modal-title">공통코드삭제</h4>
-		   	 <button type="button" class="close" data-dismiss="modal">
-		   	 	&times;
-		   	 </button>
+		   	 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		   </div>
 		    <form method="post" action="/system/commoncodedelete">
 		    	  <div class="modal-body">
@@ -390,6 +384,12 @@ $(document).ready(function(){
     });
     
 
+    $("#CodeJoinForm .btn btn-secondary").click(function(){
+        $("#CodeJoinForm").modal("hide");
+    });
+    
+    
+
     $("#CodeJoinForm .close").click(function(){
         $("#CodeJoinForm").modal("hide");
     });
@@ -422,7 +422,12 @@ $(document).ready(function(){
         $("#CodeUpdateForm form")[0].reset();
     });
     
-
+    $("#CodeUpdateForm .btn btn-secondary").click(function(){
+        $("#CodeUpdateForm").modal("hide");
+    });
+    
+    
+    
     $("#CodeUpdateForm .close").click(function(){
         $("#CodeUpdateForm").modal("hide");
     });
@@ -455,7 +460,12 @@ $(document).ready(function(){
         $("#CodeDeleteForm form")[0].reset();
     });
     
-
+	
+    $("#CodeDeleteForm .btn btn-secondary").click(function(){
+        $("#CodeDeleteForm").modal("hide");
+    });
+    
+    
     $("#CodeDeleteForm .close").click(function(){
         $("#CodeDeleteForm").modal("hide");
     });

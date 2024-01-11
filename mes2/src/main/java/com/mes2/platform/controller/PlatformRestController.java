@@ -63,16 +63,16 @@ public class PlatformRestController {
 		// 전달된 파일 O
 		try {
 			// 저장 폴더 생성
-			String appPath = servletContext.getRealPath("/");
-			logger.debug("appPath: " + appPath);
-			File uploadPath = new File(appPath+"\\resources\\img\\platform\\signature");
+			String realPath = servletContext.getRealPath("/resources/img/platform/signature");
+			logger.debug("realPath: " + realPath);
+			File uploadPath = new File(realPath);
 			if (!uploadPath.exists()) { // 파일이 올라갈 폴더가 존재하는지 체크
                 uploadPath.mkdirs(); // 없으면 폴더 생성
             }
 
             // 파일 저장
             String fileName = file.getOriginalFilename();
-            File uploadFile = new File(uploadPath + "\\" + fileName); // 업로드할 파일
+            File uploadFile = new File(uploadPath + "/" + fileName); // 업로드할 파일
             file.transferTo(uploadFile);
             
             
