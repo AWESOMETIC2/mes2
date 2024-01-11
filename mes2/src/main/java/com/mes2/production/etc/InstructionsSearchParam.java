@@ -94,6 +94,13 @@ public class InstructionsSearchParam {
 		this.requestCode = requestCode;
 	}
 
+	@Override
+	public String toString() {
+		return "InstructionsSearchParam [code=" + code + ", state=" + state + ", startTime=" + startTime + ", endTime="
+				+ endTime + ", searchType=" + searchType + ", requestCode=" + requestCode + ", page=" + page
+				+ ", pageSize=" + pageSize + ", startDate=" + startDate + ", endDate=" + endDate + "]";
+	}
+
 	
 	
 	
