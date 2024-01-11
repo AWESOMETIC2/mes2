@@ -31,7 +31,7 @@
 		<h3 id="h3">서명 확인</h3>
 		<section class="section1">
 			<div id="sign">
-				<img alt="서명" src="../../../../resources/img/platform/signature/${soiDTO.sign_file_name }" width="500" height="250">
+				<img alt="서명" src="<%=request.getContextPath() %>/resources/img/platform/signature/${soiDTO.sign_file_name }" width="500" height="250">
 			</div>
 			<div>
 				<button type="button" class="btn btn-secondary" onclick="window.close();">닫기</button>

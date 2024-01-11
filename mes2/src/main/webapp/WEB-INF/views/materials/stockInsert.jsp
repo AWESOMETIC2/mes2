@@ -28,7 +28,7 @@
 
 <body>
 	<div class="container2">
-		<h3 id="h3">${stockList[0].product_code }재고현황</h3>
+		<h3 id="h3">${stockList[0].product_code } 재고현황</h3>
 		<section class="section1">
 			<!-- 표 -->
 			<div class="list">
@@ -56,7 +56,7 @@
 														-
 													</c:if>
 													<c:if test="${!empty stockDTO.pd_lot}">
-														${mdpDTO.product_code}
+														${stockDTO.product_code}
 													</c:if>
 												</td>
 												<td><input type="hidden" name="regdate${stockDTO.stock_index}" value="${stockDTO.regdate }">${stockDTO.regdate }</td>

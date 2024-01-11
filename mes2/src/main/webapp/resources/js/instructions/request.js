@@ -3,8 +3,7 @@
  */
 
 function getMaterials(sopCode, salesQuantity){
-    	alert("(js)함수가 실행되었군요? 넘어온 값 : " + sopCode);
-    	
+
     	
     	$.ajax({
     		type:"GET",

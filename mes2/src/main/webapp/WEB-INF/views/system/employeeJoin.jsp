@@ -31,6 +31,38 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </head>
+
+<script>
+    function checkId() {
+        const userId = document.getElementById("join-id").value;
+
+        $.ajax({
+            url: "/system/checkID",
+            type: "GET",
+            data: {
+                user_id: userId
+            },
+            success: function (data) {
+                // 결과 처리
+                if (data === "duplicate") {
+                    alert("이미존재하는 ID 입니다!");
+                } else if (data === "not-duplicate") {
+                    alert("사용가능한 ID 입니다!");
+                } else {
+                    // 서버에서 다른 형태의 응답이 오는 경우에 대한 처리
+                    alert("서버 응답 형식이 올바르지 않습니다.");
+                }
+            },
+            error: function () {
+                // 서버 통신 에러 발생 시 처리
+                alert("서버 통신 중 에러가 발생했습니다.");
+            }
+        });
+    }
+</script>
+
+
+
 <body>
 
 <form method="post" action="/system/join">
@@ -102,7 +134,7 @@
 							    <input type="text"  id="join_detailAddress" placeholder="상세주소" name="address_detail">
 							  </div>
 							   <div class="mb-3">
-							    <label for="user_auth" class="form-label">사원권환</label>
+							    <label for="user_auth" class="form-label">사원권한</label>
 							    <select  name="user_auth" id="user_auth">
 										<option value="시스템관리" ${memberDTO.user_auth eq '시스템관리' ? 'selected' : ''}>시스템관리</option>
 										<option value="기준정보관리" ${memberDTO.user_auth eq '기준정보관리' ? 'selected' : ''}>기준정보관리</option>
