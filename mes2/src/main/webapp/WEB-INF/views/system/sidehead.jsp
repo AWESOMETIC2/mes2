@@ -473,7 +473,7 @@
   
   <section class="home-section">
     <div class="home-content">
-      <span class="text-header"><img src="${pageContext.request.contextPath}/resources/img/icons/logo2.jpg" style="width : 40px; height:32px;">&nbsp;AWESOMETIC</span>
+      <span class="text-header"><a href="/system/mainpage"><img src="${pageContext.request.contextPath}/resources/img/icons/AWESOMETIC.png" style="width : 200px; height:50px;"></a></span>
       	  <div class="user-greeting">
 	      	  <div class="user-img-container">
 	      	  	<img src="${pageContext.request.contextPath}/resources/img/members/${img}" class="user-img">
