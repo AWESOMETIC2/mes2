@@ -3,7 +3,10 @@ package com.mes2.metadata.controller;
 import java.io.File;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -33,7 +36,8 @@ public class  Product_Controller{
 	@Inject
 	private Product_Service mService;
 	
-	
+	@Inject
+	private ServletContext  servletContext;
 	
 	
 	// 품목관리 페이지, 모든 품목정보리스트 호출
@@ -127,6 +131,7 @@ public class  Product_Controller{
 	private String fileProcess(MultipartHttpServletRequest multiRequest) throws Exception{
 					
 		String ofileName = null;			
+		String realPath = servletContext.getRealPath("/resources/img/metadata/");
 		
 		Iterator<String> fileNames = multiRequest.getFileNames();
 			while(fileNames.hasNext()) {
@@ -138,9 +143,10 @@ public class  Product_Controller{
 				MultipartFile mFile = multiRequest.getFile(fileName);
 				ofileName = mFile.getOriginalFilename();
 				logger.debug(" oFileName : "+ofileName);
-						
+				
+				
 				// 실제 폴더 생성
-				File file = new File("C:\\Users\\ITWILL\\git\\mes2\\mes2\\src\\main\\webapp\\resources\\img\\metadata\\"+ofileName);
+				File file = new File(realPath + ofileName);
 				// 파일업로드
 				if(mFile.getSize() != 0) { //첨부파일이 있을때
 					if(!file.exists()) { // 파일,디렉터리(폴더)가 존재하는지 체크
