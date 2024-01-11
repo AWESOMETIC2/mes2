@@ -65,7 +65,7 @@ public class controller1 {
 
 	 // http://localhost:8088/system/login
 	 // http://localhost:8088/system/sidehead
-	
+	 
 	
 	
 	
@@ -81,7 +81,7 @@ public class controller1 {
 			@RequestParam(value = "remember", required = false) String remember,Criteria cri,Model model) throws Exception {
 		logger.debug("loginpost() 호출!");
 		logger.debug("전달정보 :" + dto);
-	
+		
 		
 		int totalMembers = mService.totalMember();
 		Integer totalProduct = mService.totalPd();
@@ -138,12 +138,14 @@ public class controller1 {
 				cookie.setMaxAge(604800);
 				response.addCookie(cookie);
 			}
-
-			return "redirect:/system/mainpage";
-		}
+			  model.addAttribute("loginSuccess", true);
+			  return "redirect:/system/mainpage";
+			  
+		 }
 
 		else {
-			return "/system/login";
+			  model.addAttribute("loginFailed", true);
+			  return "redirect:/system/login";
 		}
 
 	}

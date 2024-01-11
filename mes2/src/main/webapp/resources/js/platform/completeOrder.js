@@ -69,7 +69,7 @@ function completeOrder(order_code) {
 		async : false,
 		success : function(data) {
 			Swal.fire({
-				text: "해당 발주 건을 완료처리 하였습니다.",
+				text: "해당 발주 건을 수령처리 하였습니다.",
 				confirmButtonColor: "#577D71",
 				icon: "success"
 			}).then(function(){
@@ -79,7 +79,7 @@ function completeOrder(order_code) {
 		},
 		error : function() {
 			Swal.fire({
-				text: "해당 발주 건 완료처리에 실패하였습니다.",
+				text: "해당 발주 건 수령처리에 실패하였습니다.",
 				confirmButtonColor: "#577D71",
 				icon: "error"
 			});

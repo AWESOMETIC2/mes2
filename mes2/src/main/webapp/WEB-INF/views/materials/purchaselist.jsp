@@ -44,13 +44,18 @@
 					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
 				</div>
 			</form>
-
-			<div class="col-md-13" style="text-align: right;">
-				<button type="button" class="btn submitOrderButton"
-					onclick="openInputOrder();"> <i class="fa-solid fa-pen"></i> </button>
-				<a href="/materials/materials" class="btn submitOrderButton"> <i class="fa-solid fa-file-arrow-down"></i></a>
+	<div style="display: flex; justify-content: flex-end;">
+			<div class="col-md-13" style="margin-right: 10px;">
+				<button type="button" onclick="openInputOrder();"  style="border: none; background: none;"> 
+				<i class="fa-solid fa-pen" style="font-size:30px; color: #A2C6A8;"></i>
+				</button>
 			</div>
-
+			
+			<div class="col-md-13" style="margin-right: 10px;">
+				<a href="/materials/materials"> 
+				<i class="fa-solid fa-file-arrow-down" style="font-size:30px; color: #A2C6A8;"></i></a>
+			</div>
+   	</div>
 
 
 			<div class="list-box">
