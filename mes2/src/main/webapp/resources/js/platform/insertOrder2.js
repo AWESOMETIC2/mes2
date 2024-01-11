@@ -15,6 +15,7 @@ function insertOrder2() {
 		});
 		return false;
 	}
+	
 	// 품목 1개 이상 선택 제어
 	if(allProduct_code.length === 0) {
 		Swal.fire({
@@ -32,7 +33,6 @@ function insertOrder2() {
 		var row = productTable.rows[i];
 		var sopDTO = {
 			product_code: row.querySelector('[name="product_code"]').value,
-//			name: row.querySelector('[name="name"]').value,
 			price: row.querySelector('[name="price"]').value,
 			sales_quantity: row.querySelector('[name="sales_quantity"]').value
 		};
