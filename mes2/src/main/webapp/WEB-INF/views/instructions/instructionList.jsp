@@ -45,11 +45,9 @@
 				
 				<input type="text" name="searchCode" placeholder="작업지시코드"  class="form-control aria-label="Recipient's username" aria-describedby="button-addon2" style="width:200px;"/>
 				<div>
-					<span class="search-font">검색시작일</span>
 					<input id="dtIp" type="date" aria-label="First name" class="form-control" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"/>
 				</div>
 				<div>				
-					<span class="search-font">검색종료일</span>
 					<input id="dtIp" type="date" aria-label="Last name" class="form-control" name="searchEndDate" min="2020-01-01" max="2030-12-31" width="100px" value="${searchEndDate}"/>
 				</div>
 				

@@ -16,7 +16,6 @@
 	margin-top: 40px;
 	border: solid 2px #a2c6a8; /* 원래 없었음 */
 	border-radius: 10px;
-	margin-bottom: 10px;
 }
 
 .section1 {
@@ -29,14 +28,18 @@
 }
 
 .list-box {
-	width: 85%;
-	height: 700px;
+		height: 300px;
 	margin: 0 auto;
-	overflow-y: hidden; /* auto로 설정하여 필요할 때만 수직 스크롤바를 표시합니다 */
+	overflow-y: auto; /* auto로 설정하여 필요할 때만 수직 스크롤바를 표시합니다 */
+	overflow-x: hidden;
 }
 
 #searchType {
-	width: 10%;
+	width: 150px;
+	margin-left: 200px;
+}
+#search {
+	width: 200px;
 }
 
 .searchSub {
