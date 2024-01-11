@@ -18,10 +18,14 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/inlist.css">
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 </head>
 <body>
-	<%@ include file="../sidehead/sidehead.jsp"%>
+	<%@ include file="../system/sidehead.jsp"%>
 
 	<div class="container">
 		<section class="section1">
@@ -31,7 +35,6 @@
 					<option value="name">품목명</option>
 					<option value="category">자재유형</option>
 				</select>
-
 				<div class="input-group searchSub" style="width: 50%;">
 					<input type="text" name="keyword" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
@@ -40,14 +43,11 @@
 				</div>
 			</form>
 
-
-
 			<div class="list-box">
 				<a href="/materials/in"></a>
 				<table class="table table-hover">
 					<thead>
-						<tr>
-							<td></td>
+						<tr class="table-success" style="font-weight: bold">
 							<td>품목코드</td>
 							<td>로트번호</td>
 							<td>품목명</td>
@@ -55,13 +55,12 @@
 							<td>단위</td>
 							<td>자재유형</td>
 							<td>입고등록일</td>
-							<td>진행상황</td>
+							<td colspan="2">진행상황</td>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="in" items="${inlist}">
 							<tr>
-								<td></td>
 								<td><c:out value="${in.product_code}" /></td>
 								<td><c:out value="${in.pd_lot}" /></td>
 								<td><c:out value="${in.name}" /></td>
@@ -74,12 +73,13 @@
 										<c:when test="${in.status.equals('waiting')}">
 											<form action="/materials/updateInStatus" method="post">
 												<input type="hidden" value="${in.pd_lot}" name="in_pd_lot">
-												<button type="submit" class="btn statusButton waiting">대기</button>
+												<button type="submit" class="btn statusButton waiting btn">대기</button>
 											</form>
 										</c:when>
 										<c:when test="${in.status.equals('requested')}">
 											<form action="/materials/updateInStatus" method="post">
 												<input type="hidden" value="${in.pd_lot}" name="in_pd_lot">
+												<input type="hidden" value="${in.category}" name="category">
 												<button type="submit" class="btn statusButton requested">요청</button>
 											</form>
 										</c:when>
@@ -97,7 +97,7 @@
 			</div>
 
 
-			<nav aria-label="Page navigation example">
+			<nav aria-label="Page navigation example" style="padding: 5px; margin : 0 auto;">
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageVO.prev }">
 						<li class="page-item"><a class="page-link"
@@ -133,8 +133,8 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous">
+		
 	</script>
-
 
 
 

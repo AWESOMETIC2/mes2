@@ -1,11 +1,11 @@
 package com.mes2.sales.service;
 
-import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import javax.inject.Inject;
 
@@ -13,12 +13,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.mes2.platform.service.PlatformServiceImpl;
+
 import com.mes2.sales.domain.AcceptSaveDTO;
 import com.mes2.sales.domain.Criteria;
 import com.mes2.sales.domain.PlanRegisterDTO;
 import com.mes2.sales.domain.SalesDTO;
-import com.mes2.sales.domain.SearchDTO;
+
 import com.mes2.sales.persistence.SalesDAO;
 
 @Service
@@ -32,9 +32,7 @@ public class SalesServiceImpl implements SalesService {
 	@Override
 	public List<SalesDTO> salesList(Criteria cri) {
 		logger.debug(" S : salesList() ");
-		List<SalesDTO> list = sdao.getSalesList(cri);
-		logger.debug(" list@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!!! "+list);
-		System.out.println(" @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!!! "+list);
+		List<SalesDTO> list = sdao.getSalesList(cri);		
 		return sdao.getSalesList(cri);
 	}
 	

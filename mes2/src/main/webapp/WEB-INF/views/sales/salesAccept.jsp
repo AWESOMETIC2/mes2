@@ -22,7 +22,11 @@
     
     <link rel="stylesheet" href="/resources/css/sales/salesPlan.css">
   
-   
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 
 
     
@@ -89,7 +93,7 @@
           <option value="">검색선택 </option>
           <option value="order_code" ${pm.cri.type=='order_code' ? 'selected' : ''}>주문번호</option>
           <option value="company_name" ${pm.cri.type=='company_name' ? 'selected' : ''}>수주처</option>
-          <option value="order_date" ${pm.cri.type=='order_date' ? 'selected' : ''}>납기요청일</option>
+          <option value="order_date" ${pm.cri.type=='order_date' ? 'selected' : ''}>납품요청일</option>
           <option value="request_date" ${pm.cri.type=='request_date' ? 'selected' : ''}>수주신청일</option>
         </select>
         
@@ -115,7 +119,7 @@
       <div class="list">
         <div class="list-btn">
        <c:if test="${not empty pm.cri.userId}">
-       <button type="button" class="btn btn-primary" onclick="showStatus()">처리</button> 	 
+       <button type="button" class="btn fg-btn" onclick="showStatus()">처리</button> 	 
       </c:if>
       	 <div class="btn-group">
 			  <button type="button" class="btn dark-green-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">현황</button>

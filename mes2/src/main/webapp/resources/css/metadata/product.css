@@ -8,18 +8,38 @@
       padding: 10px 80px 100px 150px; /* 원하는 여백 설정 (조절 가능) */
 }
 
-.son_serch {
-	
-	display: flex;
-	gap: 10px;
-	justify-content: center;
-  	align-items: center;
-  	padding: 15px;
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.search {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
+   padding: 30px; /* 원래 2px */
+   margin-top: 40px;
+   border: solid 2px #a2c6a8; /* 원래 없었음 */
+   border-radius: 10px;
+   margin-bottom: 20px;  
+   width: 100%;
+}
+
+.input-group {
+	width: 30% !important;
+}
+
+
 .son_list-btn {
-      margin-left: auto; /* 나머지 공간을 모두 차지하여 오른쪽으로 이동 */
+      display: flex;
+    justify-content: flex-end;
     }
+    
+.son_list-btn button {
+    margin-left: 5px;
+}
 
 #table_head {
 	text-align: center;

@@ -40,8 +40,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public void updateQuantity(String product_code, int quantity, String category) throws Exception {
-		pdao.updateQuantity(product_code, quantity, category);
+	public void updateQuantity(String product_code, int quantity, String category, String pd_lot) throws Exception {
+		pdao.updateQuantity(product_code, quantity, category, pd_lot);
 	}
 
 	 @Override public int totalPurchaseCount(Criteria cri, String searchType, String keyword) throws Exception {

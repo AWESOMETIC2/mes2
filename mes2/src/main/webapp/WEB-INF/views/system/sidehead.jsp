@@ -30,17 +30,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link href="${pageContext.request.contextPath}/resources/fullcalander/main.css" rel='stylesheet' />
     <script src="${pageContext.request.contextPath}/resources/fullcalander/main.js"></script>
+<<<<<<< HEAD
      
      <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+=======
+    <!-- 글씨체 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<!-- 글씨체 -->
+>>>>>>> branch 'develop' of https://github.com/zugusdl/mes2.git
  <style type="text/css">
- 
- body{
-    background-color: #F5FBF0;
-  }
- 
- 
+ * {
+	   font-family: 'Noto Sans KR', sans-serif;
+	   font-size: 17px;
+	}
  
  @font-face {
     font-family: 'MaplestoryOTFBold';
@@ -264,17 +270,18 @@
       <c:if test="${status eq 'Y' || id.equals('admin')}">
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a href="/sales/salesPlan">
 			<i class="fa-solid fa-building"></i>
             <span class="link_name">영업관리</span>
           </a>
           <i class="fa-solid fa-chevron-down"></i> <!--드롭다운 아이콘 클래스명 지정하는 곳-->
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Category</a></li>
-          <li><a href="#">HTML & CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-          <li><a href="#">PHP & MySQL</a></li>
+          <li><a class="link_name" href="#">영업관리</a></li>
+          <li><a href="/sales/salesPlan">수주관리</a></li>
+          <li><a href="/sales/salesAccept">수주목록</a></li>
+          <li><a href="/shipping/shipPlan">출하계획</a></li>
+          <li><a href="/shipping/shipping">출하지시</a></li>
         </ul>
       </li>
       </c:if>
@@ -325,10 +332,11 @@
           <i class="fa-solid fa-chevron-down"></i> <!--드롭다운 아이콘 클래스명 지정하는 곳-->
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Category</a></li>
-          <li><a href="#">HTML & CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-          <li><a href="#">PHP & MySQL</a></li>
+          <li><a class="link_name" href="#">생산관리</a></li>
+          <li><a href="/instructions/request">생산요청목록</a></li>
+          <li><a href="/instructions/search">작업지시관리</a></li>
+          <li><a href="/productionLine/search">생산라인관리</a></li>
+          <li><a href="/product/search">생산품관리</a></li>
         </ul>
       </li>
       </c:if>
@@ -380,10 +388,11 @@
           <i class="fa-solid fa-chevron-down"></i> <!--드롭다운 아이콘 클래스명 지정하는 곳-->
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Category</a></li>
-          <li><a href="#">HTML & CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-          <li><a href="#">PHP & MySQL</a></li>
+          <li><a class="link_name" href="#">자재관리</a></li>
+          <li><a href="/materials/stockList">재고관리</a></li>
+          <li><a href="/materials/inlist">입고관리</a></li>
+          <li><a href="/materials/outList">출고관리</a></li>
+          <li><a href="/materials/purchaselist">발주관리</a></li>
         </ul>
       </li>
       </c:if>
@@ -429,7 +438,7 @@
      <c:if test="${!empty id}"> 
       <li>
         <a href="/system/listAll">
-          <i class="fa-brands fa-google-play"></i>
+          <i class="fa-solid fa-check"></i>
           <span class="link_name">공지사항</span>
         </a>
         <ul class="sub-menu blank">

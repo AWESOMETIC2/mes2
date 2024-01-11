@@ -90,7 +90,7 @@ public class PlatformController {
 		
 		// 주문 목록 조회
 		List<SoiDTO> soiDTO = pService.getOrderList(sDTO);
-		model.addAttribute("sDTO", sDTO);
+		model.addAttribute("searchDTO", sDTO);
 		model.addAttribute("soiDTO", soiDTO);
 		
 		return "/platform/orderList";
@@ -145,25 +145,10 @@ public class PlatformController {
 			model.addAttribute("mdpDTO", mdpDTO);
 			model.addAttribute("searchType", searchType);
 			model.addAttribute("search", search);
+			model.addAttribute("cri", cri);
 		}
 		
 	}
-	
-//	// 품목 추가 페이지에서 검색
-//	@PostMapping(value="/searchList")
-//	public void searchListPOST(@RequestParam("searchType") String searchType, @RequestParam("search") String search, Criteria cri, Model model) throws Exception {
-//		logger.debug("searchListPOST() 호출");
-//
-//		// 페이징 처리
-//		cri.setPageSize(5);
-//		PageVO pageVO = new PageVO();
-//		pageVO.setCri(cri);
-//		pageVO.setTotalCount(pService.getCountInqueryProduct(searchType, search)); // 품목 개수
-//		model.addAttribute("pageVO", pageVO);
-//		
-//		List<MdpDTO> mdpDTO = pService.inqueryProduct(searchType, search, cri);
-//		model.addAttribute("mdpDTO", mdpDTO);
-//	}
 	
 	// 주문 상세 페이지
 	@GetMapping(value="/orderDetail")
@@ -220,39 +205,5 @@ public class PlatformController {
 		logger.debug("getSignatureGET() 호출");
 		model.addAttribute("soiDTO", pService.getOrderDetail(order_code));
 	}
-	
-//	// 완료 처리 페이지
-//	@PostMapping(value="/completeOrder")
-//	public void completeOrderPOST(@RequestParam("order_code") String order_code, MultipartFile uploadFile) throws Exception {
-//		logger.debug("completeOrderPOST()호출");
-//		logger.debug("@@@@@uploadFile: " + uploadFile);
-//		String uploadFolder = "C:\\Users\\ITWILL\\Desktop\\upload";
-//		String uploadFileName = order_code;
-//		File signature = new File(uploadFolder+uploadFileName+".png");
-//	}
-	
-//	//test
-//	@PostMapping(value="/testCompleteOrder")
-//	public void testCompleteOrderPOST(@RequestParam("order_code") String order_code, @RequestParam("file") MultipartFile file) throws Exception {
-//		logger.debug("testCompleteOrderPOST()호출");
-//		logger.debug("@@@@@uploadFile: " + file);
-//		logger.debug("@@@@@uploadFile: " + file.getOriginalFilename());
-////		String uploadFolder = "C:\\Users\\ITWILL\\Desktop\\upload";
-////		
-////		logger.debug("@@@@@");
-////		logger.debug(formdata.getOriginalFilename());
-////		
-////		
-////		String path =uploadFolder + order_code + ".png";
-////		try {
-////			formdata.transferTo(new File(path));
-////		} catch (IllegalStateException e) {
-////			// TODO Auto-generated catch block
-////			e.printStackTrace();
-////		} catch (IOException e) {
-////			// TODO Auto-generated catch block
-////			e.printStackTrace();
-////		}
-//	}
 	
 }

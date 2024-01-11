@@ -1,7 +1,6 @@
-/* Created by Tivotal */
-
+// 팝업창 중간으로
 function openProductList() {
-	var productList = window.open("/platform/searchList", "_blank","height=600, width=1000");
+	var productList = window.open("/platform/searchList", "_blank", "width=1000, height=600");
 }
 
 function cal(ths) {

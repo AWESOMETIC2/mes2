@@ -20,7 +20,11 @@
     <script src="https://kit.fontawesome.com/38bf29a217.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/resources/css/sales/salesPlan.css">
     
-   
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 
  
     
@@ -94,7 +98,7 @@
           <option value="order_code" ${pm.cri.type=='order_code' ? 'selected' : ''}>주문번호</option>
           <option value="company_name" ${pm.cri.type=='company_name' ? 'selected' : ''}>수주처</option>
           <option value="order_date" ${pm.cri.type=='order_date' ? 'selected' : ''}>납품요청일</option>
-          <option value="order_date" ${pm.cri.type=='scheduled_date' ? 'selected' : ''}>출하예정일</option>
+          <option value="scheduled_date" ${pm.cri.type=='scheduled_date' ? 'selected' : ''}>출하예정일</option>
         </select>
         
    

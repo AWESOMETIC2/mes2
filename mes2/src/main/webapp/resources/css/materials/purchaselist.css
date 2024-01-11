@@ -1,7 +1,10 @@
 @charset "UTF-8";
 
 @charset "UTF-8";
-
+* {
+   font-family: 'Noto Sans KR', sans-serif;
+   font-size: 17px;
+}
 .search {
    display: flex;
    justify-content: center;
@@ -10,7 +13,8 @@
    padding: 20px; 
    margin-top: 40px;
    border: solid 2px #a2c6a8; 
-   border-radius: 10px;
+   border-radius: 10px;  
+   margin-bottom : 20px;
 }
 
 .section1 {
@@ -24,11 +28,10 @@
 
 
 .list-box {
-    width: 85%; 
-    height: 600px;  
-   margin: 0 auto;
-   /* overflow-x: hidden; 
-     overflow-y: hidden; */
+   width: 85%; 
+   height: 700px;  
+   margin: 0 auto; 
+   overflow-y: hidden;
 }
 
 #searchType {

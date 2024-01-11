@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>출고 목록</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -16,33 +16,37 @@
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 </head>
 
 <body>
-	<%@ include file="../sidehead/sidehead.jsp" %>
+	<%@ include file="../system/sidehead.jsp" %>
 	<!-- 검색창 -->
 	<div class="container">
 		<section class="section1">
 			<form class="search">
-				<select id="status" name="status">
-					<option value="">-- 진행상태 --</option>
-					<option value="waiting">대기</option>
-					<option value="complete">완료</option>
-				</select>
-				
-				<div>
-					<span class="search-font">요청일자: </span>
-					<input id="dtIp" type="date" name="startDate" />
-					<span> ~ </span>
-					<input id="dtIp" type="date" name="endDate" />
-				</div>
-				
-				<div>
-					<span class="search-font">품목코드: </span>
-					<input type="text" name="product_code" />
-				</div>
-				
-				<input type="submit" class="btn btn-secondary" value="검색" />
+					<select name="status" id="status" class="form-select" aria-label="Default select example">
+						<option value="">-- 진행상태 --</option>
+						<option value="waiting">대기</option>
+						<option value="complete">완료</option>
+					</select>
+					
+					<div class="input-group">
+						<span class="input-group-text">요청일자 </span>
+						<input type="date" aria-label="First name" class="form-control" name="startDate" value="${osDTO.startDate }"/>
+						<input type="date" aria-label="Last name" class="form-control" name="endDate" value="${osDTO.endDate }"/>
+					</div>
+					
+					<div class="input-group searchSub" id="searchSub">
+						<input type="text" name="product_code"  id="product_code" class="form-control" value="${osDTO.product_code }" placeholder="품목코드를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2"/>
+					</div>
+					
+					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
+					<a href="/materials/outList"><i class="fa-solid fa-rotate-right" id="reset"></i></a>
 			</form>
 			<!-- 표 -->
 			<div class="list">
@@ -87,31 +91,47 @@
 					</form>
 				</div>
 			</div>
-			
-			<!-- 페이징 -->
-			<div class="box-footer clearfix">
-				<div style="margin: 0 auto; width: fit-content;">
-				<ul class="pagination pagination-sm no-margin pull-right">
+		</section>
+		<!-- 페이징 -->
+			<div class="page-nav">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
 				
 					<c:if test="${pageVO.prev }">
-						<li><a href="/materials/outList?page=${pageVO.startPage - 1 }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">«</a></li>
+						<li class="page-item page-action">
+							<a href="/materials/outList?page=${pageVO.startPage - 1 }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
 					</c:if>
 					
 					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-						<li><a href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">${i }</a></li>
+						<c:if test="${osDTO.cri.page ne i }">
+							<li class="page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">${i }</a></li>
+						</c:if>
+						<c:if test="${osDTO.cri.page eq i }">
+							<li class="active page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">${i }</a></li>
+						</c:if>
 					</c:forEach>
 					
 					<c:if test="${pageVO.next }">
-						<li><a href="/materials/outList?page=${pageVO.endPage + 1 }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">»</a></li>
+						<li class="page-item">
+							<a href="/materials/outList?page=${pageVO.endPage + 1 }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">
+							    <span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
 					</c:if>
-				</ul>
-				</div>
+					</ul>
+				</nav>
 			</div>
-			<!-- 페이징 끝 -->
-		</section>
-
+		<!-- 페이징 끝 -->
 		<div id="bottomContent"></div>
 	</div>
+	<script type="text/javascript">
+		$(function(){
+			$("#status").val("${osDTO.status}").attr("selected","selected");
+		});
+	</script>
 	<script type="text/javascript">
 		var result = '${result}';
 		var quantitySum = '${quantitySum}';
@@ -128,7 +148,7 @@
 		
 		if(quantitySum != "") {
 			Swal.fire({
-				text: product_code + " 재고가 " + quantitySum + "개 입니다. 생산 지시 하시겠습니까?",
+				text: '${product_code} 재고가 ${quantitySum}개 입니다. 생산 지시 하시겠습니까?',
 				icon: "question",
 				showCancelButton: true,
 				confirmButtonColor: "#577D71", // confirm 버튼 색상
@@ -137,20 +157,17 @@
 				cancelButtonText: '취소', // cancel 버튼 텍스트 지정
 			}).then((result) => {
 				if (result.isConfirmed) {
-					var prompt = prompt("생산 지시 수량을 입력하세요.");
-					insertInstructions(prompt, product_code);
 					(async () => {
 					    const { value: quantity } = await Swal.fire({
-					        text: '생산 지시 수량을 입력하세요.',
+					        title: '생산 지시 수량을 입력하세요.',
 					        input: 'number',
-					        inputPlaceholder: '500개 단위로 숫자만 입력하세요'
+					        inputPlaceholder: '1000개 단위로 숫자만 입력하세요'
 					    })
-
 					    if (quantity) {
-					    	insertInstructions(${quantity}, product_code);
+					    	insertInstructions(quantity, product_code);
 					    }
 					})()
-				} else {
+				} else { 
 					return false;
 				}
 			});

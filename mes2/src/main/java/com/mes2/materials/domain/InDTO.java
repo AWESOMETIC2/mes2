@@ -12,9 +12,8 @@ import com.mes2.materials.domain.productDTO;
 public class InDTO { 
 
 	private int in_index; // 입고 인덱스
+	private String warehouse_code; // 창고코드 
 	private String in_code; // 입고코드 ** code_group + code_group_name
-	private String code_group; // IN ** common_code
-	private String code_group_name; // 입고 **  common_code
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date in_regdate; //입고등록일 
@@ -34,6 +33,7 @@ public class InDTO {
 	private String user_id; // 담당자 ** employees 
 
 	private PageVO pageVo;
+	
 	
 	
 }

@@ -17,14 +17,20 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/searchList.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/materials/inDetailList.css">
+<script src="https://kit.fontawesome.com/11da345fca.js"
+	crossorigin="anonymous"></script>
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 </head>
 <body>
-	<%@ include file="../sidehead/sidehead.jsp"%>
+	<%@ include file="../system/sidehead.jsp"%>
 
 	<div class="container">
 		<section class="section1">
 			<form action="/materials/inDetailList" method="get" class="search">
-				<!-- <select name="searchType"> -->
 				<select name="searchType" id="searchType" class="form-select"
 					aria-label="Default select example">
 					<option value="pd_lot">품목코드</option>
@@ -36,18 +42,20 @@
 					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
 				</div>
 			</form>
+
 			<div class="col-md-13" style="text-align: right;">
 				<a href="/materials/inventory" class="btn submitDetailButton"
-					style="text-align: right;">Excel Download</a>
+					style="text-align: right;"> <i
+					class="fa-solid fa-file-arrow-down"></i>
+				</a>
 			</div>
 
 			<div class="list-box">
 				<table class="table table-hover">
 					<thead>
-						<tr>
-							<td></td>
+						<tr class="table-success" style="font-weight: bold">
+							<td>창고코드</td>
 							<td>입고코드</td>
-							<td>로트번호</td>
 							<td>품목명</td>
 							<td>수량</td>
 							<td>단위</td>
@@ -59,10 +67,8 @@
 					<tbody>
 						<c:forEach var="in" items="${inDetailList}">
 							<tr>
-								<td><input type="hidden" class="product_code"
-									value="${in.product_code}" /></td>
+								<td><c:out value="${in.warehouse_code}" /></td>
 								<td><c:out value="${in.in_code}" /></td>
-								<td><c:out value="${in.pd_lot}" /></td>
 								<td><c:out value="${in.name}" /></td>
 								<td><c:out value="${in.quantity}" /></td>
 								<td><c:out value="${in.unit}" /></td>
@@ -70,6 +76,8 @@
 								<td><fmt:formatDate value="${in.in_regdate}"
 										pattern="yyyy-MM-dd" /></td>
 								<td><c:if test="${in.status.equals('complete')}">
+										<input type="hidden" class="product_code"
+											value="${in.product_code}" />
 										<button type="button" class="btn complete statusButton">완료</button>
 									</c:if></td>
 
@@ -78,9 +86,9 @@
 					</tbody>
 				</table>
 			</div>
-
-			<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-center">
+	
+			<nav aria-label="Page navigation example" style="padding: 5px; margin : 0 auto;">
+				<ul class="pagination justify-content-center" >
 					<c:if test="${pageVO.prev }">
 						<li class="page-item"><a class="page-link"
 							href="/materials/inDetailList?page=${pageVO.startPage - 1}"
