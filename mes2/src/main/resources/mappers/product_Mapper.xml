@@ -31,7 +31,7 @@
   	UPDATE meta_data_product
     SET
         name = #{name},
-        category = #{category},
+       
         unit = #{unit},
         cost = #{cost},
         price = #{price},
