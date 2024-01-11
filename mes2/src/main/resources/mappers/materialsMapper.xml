@@ -97,7 +97,7 @@
 			</if>
 		</where>
 
-		ORDER BY orders_index
+		ORDER BY orders_index DESC
 		<if test="startPage != null and pageSize != null ">
 			LIMIT #{startPage}, #{pageSize}
 		</if>
@@ -119,7 +119,7 @@
 				AND category LIKE concat('%' , #{keyword}, '%')
 			</if>
 		</where>
-
+		ORDER BY orders_index DESC
 	</select>
 
 	<update id="updateOrderStatus" parameterType="java.util.Map">
@@ -164,7 +164,7 @@
 			</if>
 			AND iw.status = 'waiting' or iw.status = 'requested'
 		</where>
-		ORDER BY in_index
+		ORDER BY in_index DESC
 		<if test="startPage != null and pageSize != null ">
 			LIMIT #{startPage}, #{pageSize}
 		</if>
@@ -185,6 +185,7 @@
 			</if>
 			AND iw.status = 'waiting' or iw.status = 'requested'
 		</where>
+			ORDER BY in_index DESC
 		<if test="startPage != null and pageSize != null ">
 			LIMIT #{startPage}, #{pageSize}
 		</if>

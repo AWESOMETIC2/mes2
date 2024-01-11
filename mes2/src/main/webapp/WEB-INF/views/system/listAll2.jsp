@@ -75,50 +75,34 @@
 
 
 </head>
-
-
-
-
-
-
-
 	<body style ="background-color: #F5FBF0;">
-	
-	
-
 	 	
-	  
-	 
-	 	
-	 	
-	 	
-	 		<!-- 전체를 감싸는 div -->
+	<!-- 전체를 감싸는 div -->
 	<div class="list">
-	 	
 	 	<div class="son_list-box">	
 						<table class="table table-hover" >
 							<thead>
 								<tr class="table-success" >
-									<th scope="col">번호</th>
-									<th scope="col">작성자</th> <!-- 체크박스 -->
+<!-- 									<th scope="col">번호</th> -->
+<!-- 									<th scope="col">작성자</th> 체크박스 -->
 									<th scope="col">제목</th>
 									<th scope="col">등록일</th>
-									<th scope="col">조회수</th>									
+<!-- 									<th scope="col">조회수</th>									 -->
 								</tr>
 						</thead>
 				<c:forEach var="boardList" items="${boardList}">			
                     <tbody>
-                        <td>${boardList.bno}</td>   
-		                <td>${boardList.writer}</td>
+<%--                         <td>${boardList.bno}</td>    --%>
+<%-- 		                <td>${boardList.writer}</td> --%>
 				<c:choose>
 				    <c:when test="${fn:contains(boardList.title, '[공지]')}">
 				        <td>
-				            <a id="boardTitleLink" href="/system/readboard?bno=${boardList.bno}" style="text-decoration-line: none; font-weight: bold; color: blue;">${boardList.title}</a>
+				            <a id="boardTitleLink" href="/system/readboard?bno=${boardList.bno}" style="text-decoration-line: none; font-weight: bold; color: black;">${boardList.title}</a>
 				        </td>
 				    </c:when>
 				    <c:when test="${fn:contains(boardList.title, '[알림]')}">
 				        <td>
-				            <a id="boardTitleLink" href="/system/readboard?bno=${boardList.bno}" style="text-decoration-line: none; font-weight: bold; color: red;">${boardList.title}</a>
+				            <a id="boardTitleLink" href="/system/readboard?bno=${boardList.bno}" style="text-decoration-line: none; font-weight: bold; color: #eb3d3d;">${boardList.title}</a>
 				        </td>
 				    </c:when>
 				    <c:when test="${fn:contains(boardList.title, '[일반]')}">
@@ -136,9 +120,9 @@
 						<td>
 							 <fmt:formatDate value="${boardList.regdate}" dateStyle="short" pattern="yy-MM-dd"/> 
 						</td>
-						<td>
-							${boardList.read_count}
-						</td>
+<!-- 						<td> -->
+<%-- 							${boardList.read_count} --%>
+<!-- 						</td> -->
 	 	            </tbody>
 	 	         </c:forEach>   
 			</table>
