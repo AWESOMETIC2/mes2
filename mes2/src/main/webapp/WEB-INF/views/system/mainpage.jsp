@@ -55,7 +55,7 @@ div p {
 
 .weather-container.offset-sm-3 {
    margin-left : -30px;
-   margin-right: 130px;
+/*    margin-right: 130px; */
    margin-top: 25px;
    height: 350px;
    width: 910px;
@@ -130,9 +130,9 @@ div p {
          </div>
         </div>
         
-       <div class="col-md-4" style="margin-top: 20px; margin-left: 50px;">
+       <div class="col-md-5" style="margin-top: 20px; margin-left: 50px;">
          <!-- 두 번째 card -->
-            <div class="offset-sm-4 card border-warning" style="width: 20rem; box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);">
+            <div class="offset-sm-5 card border-warning" style="width: 20rem; box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);">
                 <div class="card-body" id="card-body-first">
                     <h5 class="card-title"><img src="${pageContext.request.contextPath}/resources/img/icons/factory.png" style="width:35px; height:35px;"></h5>
                     <h3>Productions</h3><br>
@@ -155,9 +155,9 @@ div p {
         </div>
    
   
-        <div class="col-md-4" style="margin-top: 20px; margin-left: 50px;">
+        <div class="col-md-5" style="margin-top: 20px; margin-left: 50px;">
            <!-- 네 번째 card -->
-            <div class="offset-sm-4 card border-danger " style="width: 20rem; box-shadow: 0 0 10px rgba(235, 62, 10, 1); ">
+            <div class="offset-sm-5 card border-danger " style="width: 20rem; box-shadow: 0 0 10px rgba(235, 62, 10, 1); ">
                 <div class="card-body" id="card-body-first">
                     <h5 class="card-title" ><img src="${pageContext.request.contextPath}/resources/img/icons/out-of-stock.png" style="width:35px; height:35px;"></h5>
                      <h3 >Out of Stocks</h3><br>
