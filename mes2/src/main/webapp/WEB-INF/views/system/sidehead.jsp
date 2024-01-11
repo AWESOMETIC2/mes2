@@ -179,6 +179,7 @@
         </div>
        <ul class="sub-menu">
          <c:if test="${!empty id && id.equals('admin') && status eq 'Y'}">
+         	<li><a class="link_name" href="#">시스템 관리</a></li>
            <li><a class="dropdown-item" href="/system/memberlist">사원정보목록</a></li>
 <!--            <li><a class="dropdown-item" href="/system/join">사원등록</a></li> -->
            <li><a class="dropdown-item" href="/system/commoncodelist">공통코드목록</a></li>
@@ -303,7 +304,7 @@
 	            <a href="#">
 	          </c:otherwise>
 	        </c:choose>
-	        <i class="fa-solid fa-database"></i>
+	        <i class="fa-solid fa-building"></i>
 	        <span class="link_name">영업관리</span>
 	      </a>
 	      <i class="fa-solid fa-chevron-down"></i>
@@ -359,7 +360,7 @@
 	            <a href="#">
 	          </c:otherwise>
 	        </c:choose>
-	        <i class="fa-solid fa-database"></i>
+	        <i class="fa-solid fa-industry"></i>
 	        <span class="link_name">생산관리</span>
 	      </a>
 	      <i class="fa-solid fa-chevron-down"></i>
@@ -416,7 +417,7 @@
 	            <a href="#">
 	          </c:otherwise>
 	        </c:choose>
-	        <i class="fa-solid fa-database"></i>
+	        <i class="fa-solid fa-warehouse"></i>
 	        <span class="link_name">자재관리</span>
 	      </a>
 	      <i class="fa-solid fa-chevron-down"></i>
