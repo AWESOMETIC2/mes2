@@ -157,13 +157,11 @@
 				cancelButtonText: '취소', // cancel 버튼 텍스트 지정
 			}).then((result) => {
 				if (result.isConfirmed) {
-// 					var prompt = prompt("생산 지시 수량을 입력하세요.");
-// 					insertInstructions(prompt, product_code);
 					(async () => {
 					    const { value: quantity } = await Swal.fire({
 					        title: '생산 지시 수량을 입력하세요.',
 					        input: 'number',
-					        inputPlaceholder: '500개 단위로 숫자만 입력하세요'
+					        inputPlaceholder: '1000개 단위로 숫자만 입력하세요'
 					    })
 					    if (quantity) {
 					    	insertInstructions(quantity, product_code);

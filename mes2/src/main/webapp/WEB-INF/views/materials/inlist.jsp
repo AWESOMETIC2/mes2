@@ -21,7 +21,7 @@
 
 </head>
 <body>
-	<%@ include file="../sidehead/sidehead.jsp"%>
+	<%@ include file="../system/sidehead.jsp"%>
 
 	<div class="container">
 		<section class="section1">
@@ -31,7 +31,6 @@
 					<option value="name">품목명</option>
 					<option value="category">자재유형</option>
 				</select>
-
 				<div class="input-group searchSub" style="width: 50%;">
 					<input type="text" name="keyword" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
@@ -40,14 +39,11 @@
 				</div>
 			</form>
 
-
-
 			<div class="list-box">
 				<a href="/materials/in"></a>
 				<table class="table table-hover">
 					<thead>
-						<tr>
-							<td></td>
+						<tr class="table-success" style="font-weight: bold">
 							<td>품목코드</td>
 							<td>로트번호</td>
 							<td>품목명</td>
@@ -55,13 +51,12 @@
 							<td>단위</td>
 							<td>자재유형</td>
 							<td>입고등록일</td>
-							<td>진행상황</td>
+							<td colspan="2">진행상황</td>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="in" items="${inlist}">
 							<tr>
-								<td></td>
 								<td><c:out value="${in.product_code}" /></td>
 								<td><c:out value="${in.pd_lot}" /></td>
 								<td><c:out value="${in.name}" /></td>
@@ -74,12 +69,13 @@
 										<c:when test="${in.status.equals('waiting')}">
 											<form action="/materials/updateInStatus" method="post">
 												<input type="hidden" value="${in.pd_lot}" name="in_pd_lot">
-												<button type="submit" class="btn statusButton waiting">대기</button>
+												<button type="submit" class="btn statusButton waiting btn">대기</button>
 											</form>
 										</c:when>
 										<c:when test="${in.status.equals('requested')}">
 											<form action="/materials/updateInStatus" method="post">
 												<input type="hidden" value="${in.pd_lot}" name="in_pd_lot">
+												<input type="hidden" value="${in.category}" name="category">
 												<button type="submit" class="btn statusButton requested">요청</button>
 											</form>
 										</c:when>
@@ -133,8 +129,15 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous">
+		
 	</script>
 
+<script type="text/javascript">
+function openPopup() {
+    
+    window.open("/materials/wareHouseCode", "wareHouseCode", "width=500,height=720");
+}
+</script>
 
 
 

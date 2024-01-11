@@ -15,7 +15,7 @@ public interface PurchaseDAO {
 
 	public int updateOrderStatus(String status, int orders_index) throws Exception;
 
-	public void updateQuantity(String product_code, int quantity, String category) throws Exception;
+	public void updateQuantity(String product_code, int quantity, String category, String pd_lot) throws Exception;
 
 	public void MaterialReceipt(String product_code, int quantity , String pd_lot) throws Exception;
 

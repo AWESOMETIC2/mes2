@@ -107,10 +107,8 @@ public class OutController {
 		int quantitySum = oService.insertOut(out_index, stockList);
 
 		if(product_code.contains("PS")) {
-			if(quantitySum <= 2000) {
-				rttr.addFlashAttribute("quantitySum", quantitySum);
-				rttr.addFlashAttribute("product_code", product_code);
-			}
+			rttr.addFlashAttribute("quantitySum", quantitySum);
+			rttr.addFlashAttribute("product_code", product_code);
 		}
 		
 		rttr.addFlashAttribute("result", "SUCCESS");
