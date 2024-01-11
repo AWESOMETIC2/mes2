@@ -48,13 +48,13 @@
 		<div style="display: flex; justify-content: flex-end;">
 			<div class="col-md-13" style="margin-right: 10px;">
 				<a href="/materials/inlist">
-				<i class="fa-solid fa-reply" style="font-size:30px; color: #A2C6A8;"></i>
+				<i class="fa-solid fa-reply" style="font-size:25px; margin: 10px; color: #A2C6A8;"></i>
 				</a>
 			</div>
 			
 			<div class="col-md-13" style="margin-right: 10px;">
 				<a href="/materials/inventory">
-					<i class="fa-solid fa-file-arrow-down" style="font-size:30px; color: #A2C6A8;"></i>
+					<i class="fa-solid fa-file-arrow-down" style="font-size:25px; margin: 10px; color: #A2C6A8;"></i>
 				</a>
 			</div>
 		</div>
