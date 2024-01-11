@@ -111,7 +111,8 @@
 					<c:if test="${pageVO.prev }">
 						<li class="page-item"><a class="page-link"
 							href="/materials/inDetailList?page=${pageVO.startPage - 1}"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							aria-label="Previous"> 
+							<span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:if>
 
