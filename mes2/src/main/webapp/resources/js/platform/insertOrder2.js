@@ -5,6 +5,25 @@ var token = $("meta[name='_csrf']").attr("content");
 function insertOrder2() {
 	var order_date = document.querySelector('[name="order_date"]').value;
 	var allProduct_code = document.querySelectorAll('[name="product_code"]');
+	var sq = $("input[name=sales_quantity]").length;
+	var sqArr = new Array(sq);
+	
+	for(var i = 0; i<sq; i++) {
+		sqArr[i] = $("input[name=sales_quantity]").eq(i).val();
+	}
+	
+	// 수량 0 제어
+	for(var i=0; i<sq; i++) {
+		if(i == "" || i == 0) {
+			Swal.fire({
+				text: "수량을 입력하세요",
+				confirmButtonColor: "#577D71",
+				icon: "warning"
+			});
+			return false;
+		}
+	}
+	
 
 	// 날짜 선택 제어
 	if(order_date == undefined || order_date === null || order_date === '') {
