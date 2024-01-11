@@ -45,11 +45,9 @@
 				
 				<input type="text" name="searchCode" placeholder="작업지시코드"  class="form-control aria-label="Recipient's username" aria-describedby="button-addon2" style="width:200px;"/>
 				<div>
-					<span class="search-font">검색시작일</span>
 					<input id="dtIp" type="date" aria-label="First name" class="form-control" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"/>
 				</div>
 				<div>				
-					<span class="search-font">검색종료일</span>
 					<input id="dtIp" type="date" aria-label="Last name" class="form-control" name="searchEndDate" min="2020-01-01" max="2030-12-31" width="100px" value="${searchEndDate}"/>
 				</div>
 				
@@ -60,7 +58,7 @@
 			<div class="list">
 			
 				<div class="list-btn">
-					<button type="button" class="btn btn-secondary" id="deletebtn">긴급탈출버튼</button>
+					<button type="button" class="btn btn-secondary" id="deletebtn" style="visibility:hidden;">긴급탈출버튼</button>
 				</div>
 
 				<div class="list-box">
@@ -175,7 +173,7 @@
         var searchType = document.getElementById("boundary").value;
         
         if (searchType === "") {
-            alert("좋은말로 할 때 검색 타입을 선택하세요.");
+            alert("검색 타입을 선택하세요.");
             return false; 
         }
         

@@ -34,7 +34,7 @@
 </script>
 
 <!-- 추가 js 입니다. -->
-<script src="/resources/js/metadata/product.js"></script>
+<script src="/resources/js/metadata/product.js?after"></script>
 
 
 </head>

@@ -38,7 +38,7 @@
 					aria-label="Default select example">
 					<option value="pd_lot">품목코드</option>
 				</select>
-				<div class="input-group searchSub" style="width: 50%;">
+				<div class="input-group searchSub">
 					<input type="text" name="search" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
 						aria-describedby="button-addon2">

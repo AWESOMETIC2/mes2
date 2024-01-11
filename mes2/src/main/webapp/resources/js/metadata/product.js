@@ -201,7 +201,7 @@ function submitData2(submitbtn2) {
     var hiddenProductionStatus = row.find('.b select[name="upd_status"]').val();
 
     // 수정 행에서 카테고리, 단위 확인 alert 창
-    if (hiddenCategory === "카테고리" || hiddenUnit == "단위" || hiddenProductionStatus == "생산유무") {
+    if (hiddenUnit == "단위" || hiddenProductionStatus == "생산유무") {
                   
         Swal.fire({
             text: "드롭박스 옵션을 다시 확인해주세요.",

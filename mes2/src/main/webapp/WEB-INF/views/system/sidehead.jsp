@@ -172,7 +172,7 @@
     
     <c:choose>
      <c:when test="${auth.equals('시스템관리') && id.equals('admin')}">
-       <c:if test="${status eq 'Y'&& id.equals('admin') }">
+       <c:if test="${sessionScope.status eq 'Y'&& id.equals('admin') }">
       <li>
         <div class="iocn-link">
           <a href="#">
@@ -182,7 +182,7 @@
           <i class="fa-solid fa-chevron-down"></i> <!--드롭다운 아이콘 클래스명 지정하는 곳-->
         </div>
        <ul class="sub-menu">
-         <c:if test="${!empty id && id.equals('admin') && status eq 'Y'}">
+         <c:if test="${!empty id && id.equals('admin') && sessionScope.status eq 'Y'}">
          	<li><a class="link_name" href="#">시스템 관리</a></li>
            <li><a class="dropdown-item" href="/system/memberlist">사원정보목록</a></li>
 <!--            <li><a class="dropdown-item" href="/system/join">사원등록</a></li> -->
@@ -210,7 +210,7 @@
       
    <c:choose>
   	<c:when test="${auth.equals('기준정보관리') || id.equals('admin') }">
-    	<c:if test="${status eq 'Y' || id.equals('admin') }">
+    	<c:if test="${sessionScope.status eq 'Y' || id.equals('admin') }">
       <li>
         <div class="iocn-link">
           <a href="#">
@@ -227,7 +227,7 @@
         </ul>
       </li>
      </c:if>
-     	<c:if test="${status eq 'N' }">
+     	<c:if test="${sessionScope.status eq 'N' }">
               <script>
               	$(document).ready(function(){
               		Swal.fire({
@@ -262,10 +262,10 @@
 </c:choose> 
    
    
-   
+ 
   <c:choose>
      <c:when test="${auth.equals('영업관리') || id.equals('admin')}">
-      <c:if test="${status eq 'Y' || id.equals('admin')}">
+      <c:if test="${sessionScope.status eq 'Y' || id.equals('admin')}">
       <li>
         <div class="iocn-link">
           <a href="/sales/salesPlan">
@@ -283,7 +283,7 @@
         </ul>
       </li>
       </c:if>
-       	<c:if test="${status eq 'N' }">
+       	<c:if test="${sessionScope.status eq 'N' }">
               <script>
               	$(document).ready(function(){
               		Swal.fire({
@@ -320,7 +320,7 @@
       
    <c:choose>
      <c:when test="${auth.equals('생산관리') || id.equals('admin')}">
-      <c:if test="${status eq 'Y' || id.equals('admin')}">
+      <c:if test="${sessionScope.status eq 'Y' || id.equals('admin')}">
       <li>
         <div class="iocn-link">
           <a href="#">
@@ -338,7 +338,7 @@
         </ul>
       </li>
       </c:if>
-      	<c:if test="${status eq 'N' }">
+      	<c:if test="${sessionScope.status eq 'N' }">
              <script>
               	$(document).ready(function(){
               		Swal.fire({
@@ -376,7 +376,7 @@
   
    <c:choose>
      <c:when test="${auth.equals('자재관리') || id.equals('admin')}">
-      <c:if test="${status eq 'Y' || id.equals('admin')}">
+      <c:if test="${sessionScope.status eq 'Y' || id.equals('admin')}">
       <li>
         <div class="iocn-link">
           <a href="#">
@@ -394,7 +394,7 @@
         </ul>
       </li>
       </c:if>
-      	<c:if test="${status eq 'N' }">
+      	<c:if test="${sessionScope.status eq 'N' }">
              <script>
               	$(document).ready(function(){
               		Swal.fire({
@@ -473,7 +473,7 @@
   
   <section class="home-section">
     <div class="home-content">
-      <span class="text-header"><img src="${pageContext.request.contextPath}/resources/img/icons/logo2.jpg" style="width : 40px; height:32px;">&nbsp;AWESOMETIC</span>
+      <span class="text-header"><a href="/system/mainpage"><img src="${pageContext.request.contextPath}/resources/img/icons/AWESOMETIC.png" style="width : 200px; height:50px;"></a></span>
       	  <div class="user-greeting">
 	      	  <div class="user-img-container">
 	      	  	<img src="${pageContext.request.contextPath}/resources/img/members/${img}" class="user-img">

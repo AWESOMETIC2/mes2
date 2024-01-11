@@ -38,43 +38,25 @@
 			
 			
 				<div class="list-btn">
-					<button type="button" class="btn btn-secondary" id="deletebtn">긴급탈출버튼</button>
+					<button type="button" class="btn btn-secondary" id="deletebtn" style="visibility:hidden;">긴급탈출버튼</button>
 				</div>
 				
 
 				<div class="list-box">
-						<table class="table table-hover">
-							<colgroup>
-								<col style="width: 3%" /> 
-                    			<col style="width: 10%" /> 
-                    			<col style="width: 7%" />
-                    			<col style="width: 10%" />
-                    			<col style="width: 20%" />
-                    			<col style="width: 7%" />
-                    			<col style="width: 7%" />
-                			</colgroup>
+						<table class="table table-hover"  style="text-align: center;">
+
 							<thead>
 								<tr class="table-success">
-									<th></th>
-									<th scope="col">작업지시번호</th>
-									<th scope="col">라인</th>
 									<th scope="col">제품번호</th>
 									<th scope="col">수주번호</th>
-									<th></th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="item" items="${instructions}">
 									<tr>
-										<td scope="row"><input type="checkbox" class="ck" /></td>
-										<td onclick="getMaterials('${item.sopCode}','${item.salesQuantity }')"><a href="">${item.code}</a></td>
-										<td onclick="getMaterials('${item.sopCode}','${item.salesQuantity }')">${item.line}</td>
-										<td onclick="getMaterials('${item.sopCode}','${item.salesQuantity }')">${item.mdpCode}</td>
 										<td onclick="getMaterials('${item.sopCode}','${item.salesQuantity }')">${item.sopCode}</td>
-										<td>
-										<!-- 현재 공백 -->
-										</td>
+										<td onclick="getMaterials('${item.sopCode}','${item.salesQuantity }')">${item.mdpCode}</td>
 										<td>
 											<c:if test="${item.materialStatus.equals('Y') }">
 												<input type="hidden" name="sopCode" value="${item.sopCode}">
