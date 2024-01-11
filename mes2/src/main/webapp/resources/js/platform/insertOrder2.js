@@ -8,13 +8,13 @@ function insertOrder2() {
 	var sq = $("input[name=sales_quantity]").length;
 	var sqArr = new Array(sq);
 	
-	for(var i = 0; i<sq; i++) {
+	for(var i=0; i<sq; i++) {
 		sqArr[i] = $("input[name=sales_quantity]").eq(i).val();
 	}
 	
 	// 수량 0 제어
 	for(var i=0; i<sq; i++) {
-		if(i == "" || i == 0) {
+		if(sqArr[i] == "" || sqArr[i] == 0) {
 			Swal.fire({
 				text: "수량을 입력하세요",
 				confirmButtonColor: "#577D71",
@@ -60,7 +60,7 @@ function insertOrder2() {
 	}
 	
 //	var jsonSopList = JSON.stringify(sopList);
-	console.log(order_date, sopList);
+//	console.log(order_date, sopList);
 	
 	if(sopList != null) {
 		$.ajax({
