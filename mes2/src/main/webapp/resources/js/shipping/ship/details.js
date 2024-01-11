@@ -91,42 +91,41 @@ function goContent(order_code){
 	  });
  }
  
- function moproduct(data){
+
+ 
+ function moProduct(data){
 	 
-		 
+	 
+	 
 	 Swal.fire({
-		  title: "창고위치",
-		  input: "text",
-		  inputValue: data,  
-		  inputAttributes: {
-		    readonly: true
-		  }
-		});
+	   title: "1창고 A구역",
+	   icon: "info"
+	 });
 
 
 
  }
  
- 
+
   function content(data,order_code){ 
 
 	  var listHtml = "<div class='content-box'>"
 		  listHtml += "<div class='content-container'>"
 	      listHtml += "<div class='content-title'>"		 		 
-		  listHtml += "<div>"
+		  listHtml += "<div class='content-tbtn'>"
 		  listHtml += "<p class='list-font' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick='info(\""+order_code+"\")'>주문번호: "+order_code+"</p>";	  		 
+		  listHtml += "<button type='button' class='btn mint-btn btn-sm'  onclick='moProduct()'>위치</button>";	  		 
 		  listHtml += "</div>"
 		  listHtml += " <button type='button' class='btn-close' aria-label='Close' onclick='cancle()'></button>"
 		  listHtml += "</div>";
 		  listHtml += "<div class='list-box'>";
 		  listHtml += "<table class='table table-hover'>";
 		  listHtml += "<thead>";
-		  listHtml += "<tr class='table-success' >";
-		  listHtml += "<th scope='col'>수주번호</th>";
-		  listHtml += "<th scope='col'>제품명</th>";
-		  listHtml += "<th scope='col'>출하량</th>";
-		  listHtml += "<th scope='col'>처리등록</th>";
-		  listHtml += "<th scope='col'></th>";
+		  listHtml += "<tr class='table-success'>";
+		  listHtml += "<th style='text-align: center;'>수주번호</th>";
+		  listHtml += "<th>제품명</th>";
+		  listHtml += "<th>출하량</th>";
+		  listHtml += "<th>처리등록</th>";
 		  listHtml += "</tr>";
 		  listHtml += "</thead>";
 	  
@@ -145,8 +144,7 @@ function goContent(order_code){
 		  }else if(obj.processing_reg==" mult"){
 		  listHtml += "복합처리";  
 		  }
-		  listHtml += "</td>"
-		  listHtml += "<td><button type='button' class='btn mint-btn'  onclick='productInfo(\""+obj.order_code+"\", \""+obj.sales_code+"\")'>상세</button></td>";
+		  listHtml += "</td>"	  
 		  listHtml += "</tr>";
 	  });
     

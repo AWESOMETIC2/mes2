@@ -160,7 +160,7 @@
  <div class="sidebar close">
     <div class="logo-details">
       <i class="fa-solid fa-bars"></i>
-     <a href="/system/mainpage">
+     <a href="/system/mainpage" style="text-decoration-line: none;">
       <span class="logo_name">AWESOMETIC</span>
      </a> 
     </div>
@@ -217,9 +217,9 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">기준정보관리</a></li>
-          <li><a href="http://localhost:8088/product/firstpage">품목정보</a></li>
-          <li><a href="http://localhost:8088/amount/firstpage">BOM정보</a></li>
-          <li><a href="http://localhost:8088/business/firstpage">거래처정보</a></li>
+          <li><a href="/product/firstpage">품목정보</a></li>
+          <li><a href="/amount/firstpage">BOM정보</a></li>
+          <li><a href="/business/firstpage">거래처정보</a></li>
         </ul>
       </li>
      </c:if>

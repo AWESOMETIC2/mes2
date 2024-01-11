@@ -210,11 +210,12 @@
    </c:if>
    
   <c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-    <li class="page-item ${pageVO.cri.page == 1 ? 'active' : ''}">
-    	<a class="page-link" href="/system/memberlist?page=${i }">
-    			${i }
-    	</a>
-	</li>
+     <c:set var="isActive" value="${pageVO.cri.page == i ? 'active' : ''}" />
+    <li class="page-item ${isActive}">
+        <a class="page-link" href="/system/memberlist?page=${i}">
+            ${i}
+        </a>
+    </li>
   </c:forEach>
  
   

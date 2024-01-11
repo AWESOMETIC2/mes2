@@ -1,9 +1,6 @@
 package com.mes2.sales.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,11 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.mes2.platform.service.PlatformServiceImpl;
+
 import com.mes2.sales.domain.AcceptSaveDTO;
 import com.mes2.sales.domain.Criteria;
-import com.mes2.sales.domain.PlanRegisterDTO;
-import com.mes2.sales.domain.SearchDTO;
+
+
 import com.mes2.sales.domain.ShippingDTO;
 import com.mes2.sales.persistence.ShippingDAO;
 
@@ -243,14 +240,5 @@ public class ShippingServiceImpl implements ShippingService {
        
 	}
 	
-	@Override
-	public String getWarehouseInfo(String sales_code) {
-		String product_code =  sdao.getProductCode(sales_code);
-		String location = sdao.getWarehouseInfo(product_code);
-		if (location == null || location.equals("")) {
-		    location = "미정";
-		}
 
-		return location;
-	}
 }

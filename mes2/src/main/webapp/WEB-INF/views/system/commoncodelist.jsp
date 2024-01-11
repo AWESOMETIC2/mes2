@@ -61,6 +61,8 @@
  .page-item {
        margin-right: 5px; /* 원하는 간격 크기로 조정 */
  }
+ 
+ 
 
 
 </style>
@@ -143,11 +145,12 @@
 		   </c:if>
 		   
 		  <c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-		    <li class="page-item ${pageVO.cri.page == 1 ? 'active' : ''}">
-		    	<a class="page-link" href="/system/commoncodelist?page=${i }" >
-		    			${i }
-		    	</a>
-			</li>
+		    <c:set var="isActive" value="${pageVO.cri.page == i ? 'active' : ''}" />
+			    <li class="page-item ${isActive}">
+			        <a class="page-link" href="/system/commoncodelist?page=${i}">
+			            ${i}
+			        </a>
+			    </li>
 		  </c:forEach>
 		 
 		  

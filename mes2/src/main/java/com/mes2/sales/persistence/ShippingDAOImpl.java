@@ -12,8 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mes2.sales.domain.AcceptSaveDTO;
 import com.mes2.sales.domain.Criteria;
-import com.mes2.sales.domain.PlanRegisterDTO;
-import com.mes2.sales.domain.SearchDTO;
+
 import com.mes2.sales.domain.ShippingDTO;
 
 @Repository
@@ -163,17 +162,7 @@ public class ShippingDAOImpl implements ShippingDAO {
 		return sqlSession.selectList(NAMESPACE+".shippingTotalCount",cri);
 	}
 	
-	@Override
-	public String getProductCode(String sales_code) {
-		
-		return sqlSession.selectOne(NAMESPACE+".getProductCode",sales_code);
-	}
-	
-	@Override
-	public String getWarehouseInfo(String product_code) {
-		
-		return sqlSession.selectOne(NAMESPACE+".getWarehouseInfo",product_code);
-	}
+
 	
 	
 }

@@ -19,28 +19,29 @@
 <!-- css 불러오기 (경로설정 중요!!) -->
 </head>
 
+
+
+
+
 <script>
-	$(document).ready(function(){
-		$('#btn-post').click(function(event){
-			// 버튼 클릭 시 폼의 기본 동작을 막음
-			event.preventDefault();
+    $(document).ready(function () {
+        // URL에서 loginFailed 파라미터를 가져오기
+        var urlParams = new URLSearchParams(window.location.search);
+        var loginFailed = urlParams.get('loginFailed');
 
-			Swal.fire({
-				icon : 'success',
-				title : '로그인성공',
-				text : '환영합니다'
-			}).then((result) => {
-				// SweetAlert 다이얼로그가 닫힌 후 실행되는 콜백 함수
-				if (result.isConfirmed) {
-					// SweetAlert 다이얼로그가 확인되었을 때, 페이지 이동
-					// 근데 자꾸 /login/main 으로 설정해놨는데 loginget() 이 호출됨? => 해결!
-					$('form').submit();
-				}
-			});	
-		});
-	});
+        // 문자열 "true"와 비교
+        if (loginFailed === 'true') {
+            // SweetAlert로 로그인 실패 메시지 표시
+            Swal.fire({
+                icon: 'error',
+                title: '로그인 실패',
+                text: '아이디 또는 비밀번호가 일치하지 않습니다!'
+            });
+        }
+
+
+    });
 </script>
-
 
 
 <body>
@@ -82,6 +83,7 @@
             
           </form>
         </div>
+      </div> 
     </section>
 	
 	

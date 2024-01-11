@@ -31,7 +31,7 @@ public class SalesController {
 
 	@Inject
 	private SalesService sService;
-
+	// http://localhost:8088/system/login
 	// http://localhost:8080/sales/salesPlan
 	// http://localhost:8088/sales/salesPlan
 	@RequestMapping(value = "/salesPlan")
