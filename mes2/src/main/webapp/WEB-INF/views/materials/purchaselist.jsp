@@ -18,6 +18,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/materials/purchaselist.css">
 <script src="https://kit.fontawesome.com/11da345fca.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- 글씨체 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,6 +35,7 @@
 
 				<select name="searchType" id="searchType" class="form-select"
 					aria-label="Default select example">
+					<option>검색선택</option>
 					<option value="name">품목명</option>
 					<option value="category">자재유형</option>
 				</select>

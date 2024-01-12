@@ -37,9 +37,10 @@
 			<form action="/materials/inDetailList" method="get" class="search">
 				<select name="searchType" id="searchType" class="form-select"
 					aria-label="Default select example">
+					<option>검색선택</option>
 					<option value="pd_lot">품목코드</option>
 				</select>
-				<div class="input-group searchSub">
+				<div class="input-group searchSub" style="width: 50%; text-align: center;">
 					<input type="text" name="search" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
 						aria-describedby="button-addon2">
