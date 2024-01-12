@@ -1,3 +1,4 @@
+//추가 시 주소 api
 function sample1_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -7,6 +8,7 @@ function sample1_execDaumPostcode() {
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 var addr = ''; // 주소 변수
                 var extraAddr = ''; // 참고항목 변수  
+                var row = $(join_button).closest('tr');
                 //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                     addr = data.roadAddress;
@@ -40,16 +42,15 @@ function sample1_execDaumPostcode() {
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 //document.getElementById('join_postcode').value = data.zonecode;
                 document.getElementById("join_address").value = fullAddr;
+                row.find('.b input[name="address"]').val(fullAddr);
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("join_address").focus();
-                
+                //document.getElementById("join_address").focus();
+                console.log("Full Address:", fullAddr);
                 
                 
             }
         }).open();
-    }
-
-
+}
 
 //상단 오른쪽 추가 버튼 js
 function replaceButton() {
@@ -325,11 +326,13 @@ function handleTypeSelect() {
         // 선택된 값이 "유통업체"인 경우 pwInput을 비활성화하고 내용을 지움
         pwInput.disabled = true;
         pwInput.value = "";
+        pwInput.style.display = "none";
         
     } else {
-        // 다른 경우 pwInput을 활성화하고 저장 버튼을 보이게 함
+        // 다른 경우 pwInput을 활성화dd
         pwInput.disabled = false;
-        
+        pwInput.value = "1234";
+        pwInput.style.display = "block";
     }
 }
 

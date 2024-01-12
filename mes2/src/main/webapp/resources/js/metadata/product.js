@@ -194,14 +194,14 @@ function submitData2(submitbtn2) {
 	
     var hiddenProductCode = row.find('.b:eq(0)').text();
     var hiddenName = row.find('.b input[name="name"]').val();
-    var hiddenCategory = row.find('.b select[name="upd_cate"] option:selected').text();
+    //var hiddenCategory = row.find('.b input[name="category"]').val();
     var hiddenUnit = row.find('.b select[name="upd_unit"] option:selected').text();    
     var hiddenCost = row.find('.b input[name="cost"]').val();
     var hiddenPrice = row.find('.b input[name="price"]').val();
     var hiddenProductionStatus = row.find('.b select[name="upd_status"]').val();
 
     // 수정 행에서 카테고리, 단위 확인 alert 창
-    if (hiddenCategory === "카테고리" || hiddenUnit == "단위" || hiddenProductionStatus == "생산유무") {
+    if (hiddenUnit == "단위" || hiddenProductionStatus == "생산유무") {
                   
         Swal.fire({
             text: "드롭박스 옵션을 다시 확인해주세요.",
@@ -217,7 +217,7 @@ function submitData2(submitbtn2) {
     var formData = new FormData();
 	formData.append('product_code', hiddenProductCode);
 	formData.append('name', hiddenName);
-	formData.append('category', hiddenCategory);
+	//formData.append('category', hiddenCategory);
 	formData.append('unit', hiddenUnit);
 	formData.append('cost', hiddenCost);
 	formData.append('price', hiddenPrice);
@@ -333,7 +333,7 @@ function processAjaxData(data) {
         options += '<option>' + item.code_name + '</option>';
     });
 
-    $('#ins_cate, #upd_cate').html(options);
+    $('#ins_cate').html(options);
 }
 
 $.ajax({

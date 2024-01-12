@@ -22,11 +22,14 @@
 <!-- 글씨체 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 <!-- 글씨체 -->
 </head>
 <body>
 	<%@ include file="../system/sidehead.jsp"%>
+
 
 	<div class="container">
 		<section class="section1">
@@ -35,20 +38,35 @@
 					aria-label="Default select example">
 					<option value="pd_lot">품목코드</option>
 				</select>
-				<div class="input-group searchSub" style="width: 50%;">
+				<div class="input-group searchSub">
 					<input type="text" name="search" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
 						aria-describedby="button-addon2">
 					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
 				</div>
 			</form>
-
-			<div class="col-md-13" style="text-align: right;">
-				<a href="/materials/inventory" class="btn submitDetailButton"
-					style="text-align: right;"> <i
-					class="fa-solid fa-file-arrow-down"></i>
+		<div style="display: flex; justify-content: flex-end;">
+			<div class="col-md-13" style="margin-right: 10px;">
+				<a href="/materials/inlist">
+				<i class="fa-solid fa-reply" style="font-size:25px; margin: 10px; color: #A2C6A8;"></i>
 				</a>
 			</div>
+			
+			<div class="col-md-13" style="margin-right: 10px;">
+				<a href="/materials/inventory">
+					<i class="fa-solid fa-file-arrow-down" style="font-size:25px; margin: 10px; color: #A2C6A8;"></i>
+				</a>
+			</div>
+		</div>
+			
+		
+
+
+
+
+
+
+
 
 			<div class="list-box">
 				<table class="table table-hover">
@@ -80,19 +98,20 @@
 											value="${in.product_code}" />
 										<button type="button" class="btn complete statusButton">완료</button>
 									</c:if></td>
-
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-	
-			<nav aria-label="Page navigation example" style="padding: 5px; margin : 0 auto;">
-				<ul class="pagination justify-content-center" >
+
+			<nav aria-label="Page navigation example"
+				style="padding: 5px; margin: 0 auto;">
+				<ul class="pagination justify-content-center">
 					<c:if test="${pageVO.prev }">
 						<li class="page-item"><a class="page-link"
 							href="/materials/inDetailList?page=${pageVO.startPage - 1}"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							aria-label="Previous"> 
+							<span aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:if>
 

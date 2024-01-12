@@ -34,7 +34,7 @@
 </script>
 
 <!-- 추가 js 입니다. -->
-<script src="/resources/js/metadata/product.js"></script>
+<script src="/resources/js/metadata/product.js?after"></script>
 
 
 </head>
@@ -150,7 +150,7 @@
 					<!-- 품목수정 시 나타나는 행 -->									
 					<td class="b" style="display: none;">${plist.product_code }</td>
 					<td class="b" style="display: none;"><input type="text" name="name" size="5" value="${plist.name }"></td>	
-					<td class="b" style="display: none;"><select id="upd_cate" name="upd_cate"></select></td>
+					<td class="b" style="display: none;">${plist.category }</td>
 					<td class="b" style="display: none;"><select id="upd_unit" name="upd_unit"></select></td>
 					<td class="b" style="display: none;"><input type="text" name="cost" size="5" value="${plist.cost }"></td>
 					<td class="b" style="display: none;"><input type="text" name="price" size="5" value="${plist.price }"></td>

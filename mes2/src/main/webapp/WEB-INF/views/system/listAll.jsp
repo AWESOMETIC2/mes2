@@ -14,6 +14,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Gn5384xqQ1b8f1PIt4IxlGZhRa7Cf8d/Jw2g9rMzRc5lFf5L2X3+r5g1eU/3eDpP4fAq2Mv8Gf9lCJhCnRZGAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <title>BoardList</title>
 
@@ -59,13 +61,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center; 
- 	margin-right: 1500px;
+ 	margin-right: 1300px;
  }
 
  .page-item {
        margin-right: 5px; /* 원하는 간격 크기로 조정 */
  }
-
 
 
 
@@ -170,7 +171,7 @@
 		</div>
 		
 		
-		<nav aria-label="Page navigation example">
+		<nav aria-label="Page navigation example" style="display: flex; justify-content: center;">
 		  <ul class="pagination">
 		   <c:if test="${pageVO.prev }">
 		    <li class="page-item">
@@ -180,13 +181,14 @@
 		    </li>
 		   </c:if>
 		   
-		  <c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-		    <li class="page-item ${pageVO.cri.page == 1 ? 'active' : ''}">
-		    	<a class="page-link" href="/system/listAll?page=${i }" >
-		    			${i }
-		    	</a>
-			</li>
-		  </c:forEach>
+		 <c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
+		    <c:set var="isActive" value="${pageVO.cri.page == i}" />
+		    <li class="page-item ${isActive ? 'active' : ''}">
+		        <a class="page-link" href="/system/listAll?page=${i}" style="${isActive ? 'background-color: #95c4a2; color: #ffffff; border-color: #81b189;' : 'background-color: #ffffff; color: #000000; border-color: #dddddd;'}">
+		            ${i}
+		        </a>
+		    </li>
+		</c:forEach>
 		 
 		  
 		    
@@ -207,14 +209,12 @@
 	
 	
 <!-- 글등록 모달 -->
-		<div class="modal fade" id="insertBoardForm">
+		<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="insertBoardForm">
 		 <div class="modal-dialog" style="max-width: 1100px;">
 		  <div class="modal-content" style="max-width: 1100px;">
 		   <div class="modal-header">
 		   	<h4 class="modal-title">공지사항작성</h4>
-		   	 <button type="button" class="close" data-dismiss="modal">
-		   	 	&times;
-		   	 </button>
+		   	    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		   </div>
 			<jsp:include page="insertboard.jsp" />
 		  </div>
@@ -225,35 +225,6 @@
 <!-- 글등록 모달 -->	
 	
 
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 <!--글등록 모달자바스크립트 -->
 	
@@ -278,9 +249,14 @@
         });
         
 
-        $("#insertBoardForm .close").click(function(){
+        $("#insertBoardForm .btn btn-secondary").click(function(){
             $("#insertBoardForm").modal("hide");
         });
+        
+        $("#insertBoardForm .close").click(function () {
+            $("#insertBoardForm").modal("hide");
+        });
+        
            
     });
 </script>	

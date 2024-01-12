@@ -25,9 +25,12 @@
    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
    crossorigin="anonymous"></script>
 <script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-   crossorigin="anonymous"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10"></link>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <!-- Font Awesome CDN 사용 예시 -->
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
@@ -51,11 +54,11 @@ div p {
 }
 
 .weather-container.offset-sm-3 {
-   margin-left : -100px;
-   margin-right: 130px;
-   margin-top: 20px;
+   margin-left : -30px;
+/*    margin-right: 130px; */
+   margin-top: 25px;
    height: 350px;
-   width: 1060px;
+   width: 910px;
 }
 
 
@@ -100,9 +103,13 @@ div p {
 
 
 </head>
+
+	
 <body>
 
-   <%@ include file="sidehead.jsp"%>
+
+	<%@ include file="sidehead.jsp"%>
+
 
 
 
@@ -123,9 +130,9 @@ div p {
          </div>
         </div>
         
-       <div class="col-md-4" style="margin-top: 20px; margin-left: 50px;">
+       <div class="col-md-5" style="margin-top: 20px; margin-left: 50px;">
          <!-- 두 번째 card -->
-            <div class="offset-sm-4 card border-warning" style="width: 20rem; box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);">
+            <div class="offset-sm-5 card border-warning" style="width: 20rem; box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);">
                 <div class="card-body" id="card-body-first">
                     <h5 class="card-title"><img src="${pageContext.request.contextPath}/resources/img/icons/factory.png" style="width:35px; height:35px;"></h5>
                     <h3>Productions</h3><br>
@@ -148,9 +155,9 @@ div p {
         </div>
    
   
-        <div class="col-md-4" style="margin-top: 20px; margin-left: 50px;">
+        <div class="col-md-5" style="margin-top: 20px; margin-left: 50px;">
            <!-- 네 번째 card -->
-            <div class="offset-sm-4 card border-danger " style="width: 20rem; box-shadow: 0 0 10px rgba(235, 62, 10, 1); ">
+            <div class="offset-sm-5 card border-danger " style="width: 20rem; box-shadow: 0 0 10px rgba(235, 62, 10, 1); ">
                 <div class="card-body" id="card-body-first">
                     <h5 class="card-title" ><img src="${pageContext.request.contextPath}/resources/img/icons/out-of-stock.png" style="width:35px; height:35px;"></h5>
                      <h3 >Out of Stocks</h3><br>
@@ -200,17 +207,17 @@ div p {
    <div class="row-second" style="display: flex; width: 100%; justify-content: space-between; margin-right: 13%; margin-top: 10px;">
    
        <div style="width: 10%;"> <!-- 나열할 두 번째 요소 -->
-           <div id="piechart" style="width: 580px; height: 600px; margin-left: 40px; margin-top: 10px;"></div>
+           <div id="piechart" style="width: 580px; height: 600px; margin-left: 10px; margin-top: 10px;"></div>
        </div>
       
        <div style="width: 10%;"> <!-- 나열할 두 번째 요소 -->
-           <div id="chart_div" style="width: 600px; height: 500px; margin-left: -25px; margin-top: 10px;"></div>
+           <div id="chart_div" style="width: 580px; height: 500px; margin-left: -10px; margin-top: 10px;"></div>
        </div>
       
       
       
    
-       <div style="width: 50%;  margin-right: 105px;"> <!-- 나열할 첫 번째 요소 -->
+       <div style="width: 51%;  margin-right: 50px;"> <!-- 나열할 첫 번째 요소 -->
            <%@ include file="listAll2.jsp"%>
        </div>
    
@@ -280,23 +287,23 @@ div p {
        
           var data = google.visualization.arrayToDataTable([
              ['Line', '공정률',{ role: 'style' }],
-              ['1번라인, 1L', firstLineValue,'#3366cc'],
-              ['2번라인, 2L', secondLineValue, '#dc3912'],
-              ['3번라인, 3L', thirdLineValue, '#ff9900'],
-              ['4번라인, 4L', forthLineValue, '#109618'],
-              ['5번라인, 5L', fifthLineValue, '#990099'],
-              ['6번라인, 6L', sixthLineValue, '#0099c6'],
-              ['7번라인, 7L', sevenLineValue, '#dd4477']
+              ['1', firstLineValue,'#3366cc'],
+              ['2', secondLineValue, '#dc3912'],
+              ['3', thirdLineValue, '#ff9900'],
+              ['4', forthLineValue, '#109618'],
+              ['5', fifthLineValue, '#990099'],
+              ['6', sixthLineValue, '#0099c6'],
+              ['7', sevenLineValue, '#dd4477']
           ]);
 
           var options = {
             title: '라인별공정률',
             chartArea: {width: '55%'},
             backgroundColor: '#F5FBF0',
-            hAxis: {
-              title: '라인별공정률',
-              minValue: 0
-            }
+//             hAxis: {
+//               title: '라인별공정률',
+//               minValue: 0
+//             }
            
           };
 

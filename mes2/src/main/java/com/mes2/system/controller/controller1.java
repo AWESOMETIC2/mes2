@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,10 +63,15 @@ public class controller1 {
 	private BoardService bService;
 	
 	
+	@Inject
+	private ServletContext servletContext;
+	
+	
+	
 
 	 // http://localhost:8088/system/login
 	 // http://localhost:8088/system/sidehead
-	
+	 
 	
 	
 	
@@ -81,7 +87,7 @@ public class controller1 {
 			@RequestParam(value = "remember", required = false) String remember,Criteria cri,Model model) throws Exception {
 		logger.debug("loginpost() 호출!");
 		logger.debug("전달정보 :" + dto);
-	
+		
 		
 		int totalMembers = mService.totalMember();
 		Integer totalProduct = mService.totalPd();
@@ -138,12 +144,14 @@ public class controller1 {
 				cookie.setMaxAge(604800);
 				response.addCookie(cookie);
 			}
-
-			return "redirect:/system/mainpage";
-		}
+			  model.addAttribute("loginSuccess", true);
+			  return "redirect:/system/mainpage";
+			  
+		 }
 
 		else {
-			return "/system/login";
+			  model.addAttribute("loginFailed", true);
+			  return "redirect:/system/login";
 		}
 
 	}
@@ -654,8 +662,10 @@ public class controller1 {
 				logger.debug("oFileName : " + oFileName);
 				//업로드 된 실제 파일의 이름을 저장
 				fileList.add(oFileName);
+				String realPath = servletContext.getRealPath("/resources/img/members");
+				File uploadPath  = new File(realPath);
 				// 실제 폴더 생성 -> D드라이브에 springupload 라는 폴더생성
-				File file  = new File("C:\\Users\\ITWILL\\git\\mes2\\mes2\\src\\main\\webapp\\resources\\img\\members\\" + oFileName);
+				File file  = new File(uploadPath + "/" + oFileName);
 				//파일업로드
 				if(mFile.getSize() != 0) { //첨부했던 첨부파일이 있을 때 의 의미 (!= 0)
 					if(!file.exists()) { // 파일, 폴더가 실제로 존재하는지 체크

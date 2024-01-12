@@ -17,6 +17,6 @@ public class StockDTO {
 	private int useQuantity; // 출고 수량
 	
 	private String name; // 품목명
-	private String oFileName; // 형상정보
+	private String ofileName; // 형상정보
 	private String unit; // 품목 단위
 }

@@ -30,18 +30,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link href="${pageContext.request.contextPath}/resources/fullcalander/main.css" rel='stylesheet' />
     <script src="${pageContext.request.contextPath}/resources/fullcalander/main.js"></script>
-<<<<<<< HEAD
      
      <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
-=======
     <!-- 글씨체 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<!-- 글씨체 -->
->>>>>>> branch 'develop' of https://github.com/zugusdl/mes2.git
  <style type="text/css">
  * {
 	   font-family: 'Noto Sans KR', sans-serif;
@@ -167,7 +164,7 @@
  <div class="sidebar close">
     <div class="logo-details">
       <i class="fa-solid fa-bars"></i>
-     <a href="/system/mainpage">
+     <a href="/system/mainpage" style="text-decoration-line: none;">
       <span class="logo_name">AWESOMETIC</span>
      </a> 
     </div>
@@ -175,7 +172,7 @@
     
     <c:choose>
      <c:when test="${auth.equals('시스템관리') && id.equals('admin')}">
-       <c:if test="${status eq 'Y'&& id.equals('admin') }">
+       <c:if test="${sessionScope.status eq 'Y'&& id.equals('admin') }">
       <li>
         <div class="iocn-link">
           <a href="#">
@@ -185,7 +182,8 @@
           <i class="fa-solid fa-chevron-down"></i> <!--드롭다운 아이콘 클래스명 지정하는 곳-->
         </div>
        <ul class="sub-menu">
-         <c:if test="${!empty id && id.equals('admin') && status eq 'Y'}">
+         <c:if test="${!empty id && id.equals('admin') && sessionScope.status eq 'Y'}">
+         	<li><a class="link_name" href="#">시스템 관리</a></li>
            <li><a class="dropdown-item" href="/system/memberlist">사원정보목록</a></li>
 <!--            <li><a class="dropdown-item" href="/system/join">사원등록</a></li> -->
            <li><a class="dropdown-item" href="/system/commoncodelist">공통코드목록</a></li>
@@ -212,7 +210,7 @@
       
    <c:choose>
   	<c:when test="${auth.equals('기준정보관리') || id.equals('admin') }">
-    	<c:if test="${status eq 'Y' || id.equals('admin') }">
+    	<c:if test="${sessionScope.status eq 'Y' || id.equals('admin') }">
       <li>
         <div class="iocn-link">
           <a href="#">
@@ -223,13 +221,13 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">기준정보관리</a></li>
-          <li><a href="http://localhost:8088/product/firstpage">품목정보</a></li>
-          <li><a href="http://localhost:8088/amount/firstpage">BOM정보</a></li>
-          <li><a href="http://localhost:8088/business/firstpage">거래처정보</a></li>
+          <li><a href="/product/firstpage">품목정보</a></li>
+          <li><a href="/amount/firstpage">BOM정보</a></li>
+          <li><a href="/business/firstpage">거래처정보</a></li>
         </ul>
       </li>
      </c:if>
-     	<c:if test="${status eq 'N' }">
+     	<c:if test="${sessionScope.status eq 'N' }">
               <script>
               	$(document).ready(function(){
               		Swal.fire({
@@ -264,10 +262,10 @@
 </c:choose> 
    
    
-   
+ 
   <c:choose>
      <c:when test="${auth.equals('영업관리') || id.equals('admin')}">
-      <c:if test="${status eq 'Y' || id.equals('admin')}">
+      <c:if test="${sessionScope.status eq 'Y' || id.equals('admin')}">
       <li>
         <div class="iocn-link">
           <a href="/sales/salesPlan">
@@ -285,7 +283,7 @@
         </ul>
       </li>
       </c:if>
-       	<c:if test="${status eq 'N' }">
+       	<c:if test="${sessionScope.status eq 'N' }">
               <script>
               	$(document).ready(function(){
               		Swal.fire({
@@ -310,7 +308,7 @@
 	            <a href="#">
 	          </c:otherwise>
 	        </c:choose>
-	        <i class="fa-solid fa-database"></i>
+	        <i class="fa-solid fa-building"></i>
 	        <span class="link_name">영업관리</span>
 	      </a>
 	      <i class="fa-solid fa-chevron-down"></i>
@@ -322,7 +320,7 @@
       
    <c:choose>
      <c:when test="${auth.equals('생산관리') || id.equals('admin')}">
-      <c:if test="${status eq 'Y' || id.equals('admin')}">
+      <c:if test="${sessionScope.status eq 'Y' || id.equals('admin')}">
       <li>
         <div class="iocn-link">
           <a href="#">
@@ -340,7 +338,7 @@
         </ul>
       </li>
       </c:if>
-      	<c:if test="${status eq 'N' }">
+      	<c:if test="${sessionScope.status eq 'N' }">
              <script>
               	$(document).ready(function(){
               		Swal.fire({
@@ -366,7 +364,7 @@
 	            <a href="#">
 	          </c:otherwise>
 	        </c:choose>
-	        <i class="fa-solid fa-database"></i>
+	        <i class="fa-solid fa-industry"></i>
 	        <span class="link_name">생산관리</span>
 	      </a>
 	      <i class="fa-solid fa-chevron-down"></i>
@@ -378,7 +376,7 @@
   
    <c:choose>
      <c:when test="${auth.equals('자재관리') || id.equals('admin')}">
-      <c:if test="${status eq 'Y' || id.equals('admin')}">
+      <c:if test="${sessionScope.status eq 'Y' || id.equals('admin')}">
       <li>
         <div class="iocn-link">
           <a href="#">
@@ -396,7 +394,7 @@
         </ul>
       </li>
       </c:if>
-      	<c:if test="${status eq 'N' }">
+      	<c:if test="${sessionScope.status eq 'N' }">
              <script>
               	$(document).ready(function(){
               		Swal.fire({
@@ -423,7 +421,7 @@
 	            <a href="#">
 	          </c:otherwise>
 	        </c:choose>
-	        <i class="fa-solid fa-database"></i>
+	        <i class="fa-solid fa-warehouse"></i>
 	        <span class="link_name">자재관리</span>
 	      </a>
 	      <i class="fa-solid fa-chevron-down"></i>
@@ -475,7 +473,7 @@
   
   <section class="home-section">
     <div class="home-content">
-      <span class="text-header"><img src="${pageContext.request.contextPath}/resources/img/icons/logo2.jpg" style="width : 40px; height:32px;">&nbsp;AWESOMETIC</span>
+      <span class="text-header"><a href="/system/mainpage"><img src="${pageContext.request.contextPath}/resources/img/icons/AWESOMETIC.png" style="width : 200px; height:50px;"></a></span>
       	  <div class="user-greeting">
 	      	  <div class="user-img-container">
 	      	  	<img src="${pageContext.request.contextPath}/resources/img/members/${img}" class="user-img">
