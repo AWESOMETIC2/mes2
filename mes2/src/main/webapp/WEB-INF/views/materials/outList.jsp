@@ -137,6 +137,7 @@
 		var result = '${result}';
 		var quantitySum = '${quantitySum}';
 		var product_code = '${product_code}';
+		var insSum = '${insSum}';
 		console.log(quantitySum, product_code);
 		
 		if(result == 'SUCCESS') {
@@ -149,7 +150,7 @@
 		
 		if(quantitySum != "") {
 			Swal.fire({
-				text: '${product_code} 재고가 ${quantitySum}개 입니다. 생산 지시 하시겠습니까?',
+				text: '${product_code} 재고가 ${quantitySum}개, 생산 지시 수량이 ${insSum}개 입니다. 생산 지시 하시겠습니까?',
 				icon: "question",
 				showCancelButton: true,
 				confirmButtonColor: "#577D71", // confirm 버튼 색상
@@ -200,6 +201,8 @@
 						text: "생산 지시에 실패하였습니다.",
 						confirmButtonColor: "#577D71",
 						icon: "error"
+					}).then(function(){
+						location.reload();
 					});
 				}
 			});
