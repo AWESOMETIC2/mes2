@@ -48,7 +48,7 @@
            						 <div class="card-body">					
 		    		     <label for="exampleInputEmail1" class="form-label">사번</label>
 						      <div class="input-box">
-							      <input type="text"  placeholder="사번을입력하세요" name="user_num">
+							      <input type="text"  placeholder="사번을입력하세요" name="user_num" >
 				   			 </div>
 		    		   	 <label for="exampleInputEmail1" class="form-label">비밀번호</label>
 						   <div class="input-box">
