@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mes2.metadata.domain.Criteria;
@@ -115,11 +117,12 @@ private static final Logger logger = LoggerFactory.getLogger(Amount_Controller.c
 		
 		@ResponseBody	
 		@RequestMapping(value = "/amount2/unit", method = RequestMethod.GET)
-		public ResponseEntity<List<common_DTO>> unit() throws Exception{
-				
-			List<common_DTO> abc3 = aService.selectbox3();
-			logger.debug("단위코드들" + abc3);
+		public ResponseEntity<String> unit(md_amountDTO dto) throws Exception{
+						
 			
-			return new ResponseEntity<List<common_DTO>>(abc3,HttpStatus.OK);		
+			String abc3 = aService.selectbox3(dto.getProduct_code());
+			logger.debug("단위코드들" +abc3);
+			
+			return new ResponseEntity<String>(abc3,HttpStatus.OK);		
 		}
 }
