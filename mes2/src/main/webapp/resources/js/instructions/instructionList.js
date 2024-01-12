@@ -13,13 +13,25 @@ function updateProgressing(isCode){
 		data:{"isCode" :isCode},
 		//asyn:false,
 		success : function(data){
-			alert("성공했사옵니다. 변경했지요");
-			location.reload(true);
+			Swal.fire({
+				text: "생산을 시작합니다.",
+				confirmButtonColor: "#577D71",
+				icon: "success"
+			}).then(function(){
+					location.reload();
+				}
+			);
 		},
 		error : function(){
-			alert("그냥 실패해버렸구만");
+			Swal.fire({
+				text: "생산을 시작에 실패했습니다.",
+				confirmButtonColor: "#577D71",
+				icon: "error"
+			}).then(function() {
+					location.reload();
+				}
+			);
 		}
-		
 	});
 };
 

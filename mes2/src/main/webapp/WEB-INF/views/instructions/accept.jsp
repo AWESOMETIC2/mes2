@@ -92,7 +92,7 @@ select {
 			
 			</span><br>
 
-			<input type="submit" value="종료" id="submit">
+			<input type="submit" value="작업지시 등록" id="submit">
 		</form>
 	</div>
 	

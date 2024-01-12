@@ -35,6 +35,7 @@
 
 	<div class="container">
 		<section class="section1">
+			<h2>입고 완료목록</h2>
 			<form action="/materials/inDetailList" method="get" class="search">
 				<select name="searchType" id="searchType" class="form-select"
 					aria-label="Default select example">
@@ -61,10 +62,11 @@
 					  icon: "warning"
 					}).then((result) => {
 						$("#keyword").focus();
-					});
-			}
+		});
 				
 				return false;
+			}
+				
 		}
 	</script>
 			

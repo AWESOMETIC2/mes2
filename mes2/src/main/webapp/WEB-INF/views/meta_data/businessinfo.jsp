@@ -42,6 +42,7 @@
 <%@ include file="../system/sidehead.jsp" %>
 	<!-- 내용 칸 -->
 	<div class="son_container">
+	<h2>거래처 기준 정보</h2>
 		<!-- 검색창,추가 버튼,취소 버튼 -->	
 		<div class="form-container">
 			

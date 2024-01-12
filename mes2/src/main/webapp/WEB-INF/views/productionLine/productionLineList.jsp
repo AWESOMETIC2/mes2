@@ -83,7 +83,18 @@
 										<td>${item.isCode}</td>
 										<td>${item.startDate}</td>
 										<td>${item.endDate}</td>
-										<td>${item.status}</td>
+										<td>
+										<c:if test="${item.status.equals('WAITING')}">
+											<i class="fa-solid fa-circle fa-2xs" style="color: #416ca4;"></i>생산시작
+										</c:if>
+										<c:if test="${item.status.equals('COMPLETE')}">
+											<i class="fa-solid fa-circle fa-2xs" style="color: #6b6b6b;"></i>생산완료
+										</c:if>
+										<c:if test="${item.status.equals('PROGRESSING')}">
+											<i class="fa-solid fa-circle fa-2xs" style="color: #ff9924;"></i>생산중
+										</c:if>
+										
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -134,11 +145,6 @@
 
 		<div id="bottomContent"></div>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous">
-	</script>
 	<script src="/resources/js/platform/orderList.js"></script>
 	
 	<script>

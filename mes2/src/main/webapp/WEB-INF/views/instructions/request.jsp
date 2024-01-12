@@ -65,10 +65,10 @@
 												<button type="submit" class="btn btn-secondary" id="accept" onclick="window.open('/instructions/accept/${item.sopCode}','result','width=800px, height=640px')">수락</button>
 											</c:if>
 											<c:if test="${item.materialStatus.equals('N')}">
-												자재필요
+												<i class="fa-solid fa-circle fa-2xs" style="color: #a44141;"></i>자재필요
 											</c:if>
 											<c:if test="${item.materialStatus.equals('R')}">
-												자재준비중
+												<i class="fa-solid fa-circle fa-2xs" style="color: #ff9924;"></i>자재준비중
 											</c:if>
 										</td>
 					
@@ -80,54 +80,47 @@
 				</div>
 			</div>
 			
-			
 		</section>
-		<br><br><br><br>
-
-								  
-     <!-- 페이징  -->
-		  <div class="page-nav">
-		  <nav aria-label="Page navigation example">
-		    <ul class="pagination">
-		    
-		    <!-- 이전페이지 -->
-		    <c:if test="${pageVO.prev }">
-		        <li class="page-item page-action">
-		            <a class="page-link" href="/instructions/request?page=${pageVO.startPage - 1 }&searchType=${searchType }&searchStartDate=${startDate }&searchEndDate=${endDate}" aria-label="Previous">
-		                <span aria-hidden="true">&laquo;</span>
-		            </a>
-		        </li>
-		    </c:if>
-		    
-		    
-		<!-- 페이지 번호 -->
 		
+		 <!-- 페이징  -->
+        <div class="page-nav">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+          
+          <!-- 이전페이지 -->
+          <c:if test="${pageVO.prev }">
+              <li class="page-item page-action">
+                  <a class="page-link" href="/instructions/request?page=${pageVO.startPage - 1 }&searchType=${searchType }" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                  </a>
+              </li>
+          </c:if>
+          
+          
+      <!-- 페이지 번호 -->
+      
         <c:forEach var="pageNum" begin="${pageVO.startPage}" end="${pageVO.endPage}">
             <c:if test="${pageVO.cri.page != pageNum}">
-                <li class="page-item page-action"><a class="page-link" href="/instructions/request?page=${pageNum}&searchType=${searchType}&searchStartDate=${startDate }&code=${code}&searchEndDate=${endDate}">${pageNum}</a></li>
+                <li class="page-item page-action"><a class="page-link" href="/instructions/request?page=${pageNum}&searchType=${searchType}">${pageNum}</a></li>
             </c:if>
             <c:if test="${pageVO.cri.page == pageNum}">
-                <li class="active page-item page-action"><a class="page-link" href="/instructions/search?page=${pageNum }&searchType=${searchType}&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchState=${searchState}&searchEndDate=${searchEndDate}">${pageNum}</a></li>
+                <li class="active page-item page-action"><a class="page-link" href="/instructions/request?page=${pageNum }&searchType=${searchType}">${pageNum}</a></li>
             </c:if>
         </c:forEach>
 
-		<!-- 다음페이지 -->
-		<c:if test="${pageVO.next }">
-		        <li class="page-item">
-		            <a class="page-link" href="/instructions/request?page=${pageVO.endPage + 1 }&searchType=${searchType}&code=${code}&searchStartDate=${startDate}&searchEndDate=${endDate}" aria-label="Next">
-		                <span aria-hidden="true">&raquo;</span>
-		            </a>
-		        </li>
-		        </c:if>
-		    </ul>
-		</nav>
-		</div>
-			
-			
-			
-			
-			<!-- 페이징 끝 -->
-		
+      <!-- 다음페이지 -->
+      <c:if test="${pageVO.next }">
+              <li class="page-item">
+                  <a class="page-link" href="/instructions/request?page=${pageVO.endPage + 1 }&searchType=${searchType}" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                  </a>
+              </li>
+              </c:if>
+          </ul>
+      </nav>
+      </div>
+         <!-- 페이징 끝 -->
+         
 		<section class="section1">
 			<div id="bottomContent">
 		
@@ -136,11 +129,6 @@
 		</section>
 
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous">
-	</script>
 	<script src="/resources/js/instructions/request.js"></script>
 	
 	<script>

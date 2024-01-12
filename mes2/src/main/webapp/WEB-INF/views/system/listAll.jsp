@@ -82,22 +82,14 @@
 
 
 
-	<body style ="background-color: #F5FBF0;">
-	
-
-	
-	
-	
-	
-	
-	
-	
+	<body>
 	
 	 	<%@ include file="sidehead.jsp" %>	
 	 	
 	 	
 	 	<!-- 전체를 감싸는 div -->
-	 		<div class="list">
+	 	<h2 style ="margin-left: 100px;">공지사항</h2> 	
+	 		<div class="list" style="margin-top: 10px;">
 	 		
 	 		<!-- 등록하기 버튼(상단의) -->
 			  <div class="d-flex justify-content-end">
