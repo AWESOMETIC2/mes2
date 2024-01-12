@@ -123,7 +123,7 @@
 							<li class="page-item page-action"><a class="page-link" href="/platform/orderList?page=${i }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">${i }</a></li>
 						</c:if>
 						<c:if test="${searchDTO.cri.page eq i }">
-							<li class="active page-item page-action"><a class="page-link" href="/platform/orderList?page=${i }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">${i }</a></li>
+							<li class="active page-item page-action"><a class="page-link" href="/platform/orderList?page=${i }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}" style="color: black;">${i }</a></li>
 						</c:if>
 					</c:forEach>
 					
