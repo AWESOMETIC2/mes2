@@ -80,7 +80,7 @@
               <tbody>
               <c:forEach var="product" items="${productList}">
               	<tr>
-                  <td scope="row"><input type="checkbox" class="ck" name="lot" value="${product.pd_lot}"/></td>
+                  <td scope="row"></td>
                   <td>${product.pd_lot}</a></td>
                   <td>${product.pd_mdp_code}</td>
                   <td>${product.pd_soi_id}</td>
