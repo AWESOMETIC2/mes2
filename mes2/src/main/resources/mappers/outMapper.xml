@@ -134,7 +134,7 @@
 	<!-- 생산 지시 수량 가져오기 -->
 	<select id="getInsSum" resultType="int">
 		SELECT sum(sales_quantity) FROM instructions 
-		WHERE mdp_code = #{product_code}
+		WHERE mdp_code = #{product_code} AND state = requested
 	</select>
 	
 	<!-- 생산 지시 등록 -->
