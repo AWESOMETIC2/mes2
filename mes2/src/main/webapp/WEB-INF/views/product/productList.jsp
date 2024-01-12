@@ -43,7 +43,7 @@
           />
         </div>
 
-        <input type="text"  placeholder="검색어를 입력하세요" name="searchCode"  class="form-control" style="width:400px;"/>
+        <input type="text"  placeholder="제품코드를 입력하세요." name="searchCode"  class="form-control" style="width:400px;" value="${searchCode}"/>
         <button type="submit" value="검색" class="btn btn-secondary" id="delete-btn"  style="width:100px;">검색</button>
       </form>
 
@@ -117,7 +117,7 @@
                 <li class="page-item page-action"><a class="page-link" href="/product/search?page=${pageNum}&startDate=${startDate }&endDate=${endDate}&searchCode=${searchCode}">${pageNum}</a></li>
             </c:if>
             <c:if test="${pageVO.cri.page == pageNum}">
-                <li class="active page-item page-action"><a class="page-link" href="/product/search?page=${pageNum}&startDate=${startDate }&endDate=${endDate}&searchCode=${searchCode}">${pageNum}</a></li>
+                <li class="active page-item page-action"><a class="page-link" href="/product/search?page=${pageNum}&startDate=${startDate}&endDate=${endDate}&searchCode=${searchCode}">${pageNum}</a></li>
             </c:if>
         </c:forEach>
 
