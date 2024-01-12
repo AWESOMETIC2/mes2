@@ -47,6 +47,7 @@
 			<mapping path="/materials/*"/>
 			<mapping path="/sales/*"/>
 			<mapping path="/shipping/*"/>
+			<mapping path="/system/*"/>
 			<exclude-mapping path="/system/login"/>
 			<exclude-mapping path="/platform/*"/>
 			<beans:ref bean="loginInterceptor" />
