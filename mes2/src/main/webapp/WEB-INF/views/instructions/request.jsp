@@ -49,9 +49,9 @@
 
 							<thead>
 								<tr class="table-success">
+									<th scope="col">요청번호</th>
 									<th scope="col">제품번호</th>
-									<th scope="col">수주번호</th>
-									<th></th>
+									<th scope="col">요청상태</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -79,10 +79,9 @@
 						
 				</div>
 			</div>
+	
 			
-		</section>
-		
-		 <!-- 페이징  -->
+					 <!-- 페이징  -->
         <div class="page-nav">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
@@ -120,8 +119,10 @@
       </nav>
       </div>
          <!-- 페이징 끝 -->
-         
-		<section class="section1">
+			
+		</section>
+	         
+		<section class="section2">
 			<div id="bottomContent">
 		
 		
