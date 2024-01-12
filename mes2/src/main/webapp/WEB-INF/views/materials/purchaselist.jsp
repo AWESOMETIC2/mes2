@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link
+	href="${pageContext.request.contextPath}/resources/img/favicon.ico"
+	rel="shortcut icon" type="image/x-icon">
 <title>발주목록</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -17,20 +19,24 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/searchList.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/materials/purchaselist.css">
-<script src="https://kit.fontawesome.com/11da345fca.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/11da345fca.js"
+	crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- 글씨체 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 <!-- 글씨체 -->
 </head>
 <body>
-	<%@ include file="../system/sidehead.jsp" %>
+	<%@ include file="../system/sidehead.jsp"%>
 
 	<div class="container">
 		<section class="section1">
+			<h2>발주목록</h2>
 			<form action="/materials/purchaselist" method="get" class="search">
 
 				<select name="searchType" id="searchType" class="form-select"
@@ -39,16 +45,16 @@
 					<option value="name">품목명</option>
 					<option value="category">자재유형</option>
 				</select>
-				
+
 				<div class="input-group searchSub" style="width: 50%;">
 					<input type="text" name="keyword" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
 						aria-describedby="button-addon2">
 					<button class="btn btn-secondary" type="submit" id="button-addon2"
-					onclick="return check();">검색</button>
+						onclick="return check();">검색</button>
 				</div>
 			</form>
-			
+
 			<script>
 	
 		function check() {
@@ -60,25 +66,29 @@
 					  icon: "warning"
 					}).then((result) => {
 						$("#keyword").focus();
-					});
-			}
+});
 				
 				return false;
+			}
+				
 		}
 	</script>
-			
-	<div style="display: flex; justify-content: flex-end;">
-			<div class="col-md-13" style="margin-right: 10px;">
-				<button type="button" onclick="openInputOrder();" style="border: none; background: none;"> 
-				<i class="fa-solid fa-pen" style="font-size:25px; margin: 10px; color: #A2C6A8;"></i>
-				</button>
+
+			<div style="display: flex; justify-content: flex-end;">
+				<div class="col-md-13" style="margin-right: 10px;">
+					<button type="button" onclick="openInputOrder();"
+						style="border: none; background: none;">
+						<i class="fa-solid fa-pen"
+							style="font-size: 25px; margin: 10px; color: #A2C6A8;"></i>
+					</button>
+				</div>
+
+				<div class="col-md-13" style="margin-right: 10px;">
+					<a href="/materials/materials"> <i
+						class="fa-solid fa-file-arrow-down"
+						style="font-size: 25px; margin: 10px; color: #A2C6A8;"></i></a>
+				</div>
 			</div>
-			
-			<div class="col-md-13" style="margin-right: 10px;">
-				<a href="/materials/materials"> 
-				<i class="fa-solid fa-file-arrow-down" style="font-size:25px; margin: 10px; color: #A2C6A8;" ></i></a>
-			</div>
-   	</div>
 
 
 
@@ -127,7 +137,8 @@
 				</table>
 			</div>
 
-			<nav aria-label="Page navigation example" style="padding: 5px; margin : 0 auto;">
+			<nav aria-label="Page navigation example"
+				style="padding: 5px; margin: 0 auto;">
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageVO.prev }">
 						<li class="page-item"><a class="page-link"
