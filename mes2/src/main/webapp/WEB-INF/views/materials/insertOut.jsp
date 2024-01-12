@@ -27,6 +27,7 @@
 <body>
 	<div class="container">
 		<section class="section1">
+			<h2>출고 등록</h2>
 			<div class="list">
 				<form action="/materials/insertOut" method="post" class="list-form" id="frm">
 					<input type="hidden" name="out_index" value="${outDTO.out_index}">

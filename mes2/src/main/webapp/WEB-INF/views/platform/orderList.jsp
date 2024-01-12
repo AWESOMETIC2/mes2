@@ -32,6 +32,7 @@
 	<!-- 검색창 -->
 	<div class="container">
 		<section class="section1">
+			<h2>발주 목록</h2>
 			<form class="search">
 					<select name="sales_status" id="sales_status" class="form-select" aria-label="Default select example">
 						<option value="">-- 진행상태 --</option>
@@ -119,7 +120,7 @@
 					
 					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
 						<c:if test="${searchDTO.cri.page ne i }">
-							<li class="page-item page-action"><a class="page-link" href="/platform/orderList?page=${i }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">${i }</a></li>
+							<li class="page-item page-action"><a class="page-link" href="/platform/orderList?page=${i }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}"  style="color: black;">${i }</a></li>
 						</c:if>
 						<c:if test="${searchDTO.cri.page eq i }">
 							<li class="active page-item page-action"><a class="page-link" href="/platform/orderList?page=${i }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">${i }</a></li>

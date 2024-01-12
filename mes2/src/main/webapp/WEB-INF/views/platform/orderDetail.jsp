@@ -30,7 +30,7 @@
 	<div class="container">
 		<section class="section2">
 			<hr>
-			<h1>상세 조회</h1>
+			<h2>상세 조회</h2>
 				<span class="list-btn2">
 					<c:if test="${soiDTO.sales_status eq 'requested'}">
 						<button type="button" class="btn btn-secondary" id="addBtn" onclick="modifyOrder('${soiDTO.order_code}', '${soiDTO.order_date }', '${soiDTO.sales_status }');">발주 수정</button>

@@ -24,6 +24,7 @@
 	<!-- 검색창 -->
 	<div class="container">
 		<section class="section1">
+		<h2>생산라인 관리</h2>
 			<form class="search" action="/productionLine/search">
 				<select id="boundary" name="searchStatus" class="form-select"  style="width:300px;">
 					<option value="">-- 검색선택 --</option>
@@ -82,7 +83,18 @@
 										<td>${item.isCode}</td>
 										<td>${item.startDate}</td>
 										<td>${item.endDate}</td>
-										<td>${item.status}</td>
+										<td>
+										<c:if test="${item.status.equals('WAITING')}">
+											<i class="fa-solid fa-circle fa-2xs" style="color: #416ca4;"></i>생산시작
+										</c:if>
+										<c:if test="${item.status.equals('COMPLETE')}">
+											<i class="fa-solid fa-circle fa-2xs" style="color: #6b6b6b;"></i>생산완료
+										</c:if>
+										<c:if test="${item.status.equals('PROGRESSING')}">
+											<i class="fa-solid fa-circle fa-2xs" style="color: #ff9924;"></i>생산중
+										</c:if>
+										
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -90,31 +102,10 @@
 					</form>
 				</div>
 			</div>
-			
-			      <!-- 페이징 -->
-			<div class="box-footer clearfix">
-				<div style="margin: 0 auto; width: fit-content;">
-				<ul class="pagination pagination-sm no-margin pull-right">
-				
-					<c:if test="${pageVO.prev }">
-						<li><a href="/productionLine/search?page=${pageVO.startPage - 1 }&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">«</a></li>
-					</c:if>
-					
-					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-						<li><a href="/productionLine/search?page=${i }&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">${i }</a></li>
-					</c:forEach>
-					
-					<c:if test="${pageVO.next }">
-						<li><a href="/productionLine/search?page=${pageVO.endPage + 1 }&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">»</a></li>
-					</c:if>
-				</ul>
-				</div>
-			</div>
-			<!-- 페이징 끝 -->
-			
-					<!-- -------------------------------------------------------- -->
-		
-		<!-- 페이징  -->
+						
+		</section>
+
+				<!-- 페이징  -->
 		  <div class="page-nav">
 		  <nav aria-label="Page navigation example">
 		    <ul class="pagination">
@@ -122,7 +113,7 @@
 		    <!-- 이전페이지 -->
 		    <c:if test="${pageVO.prev }">
 		        <li class="page-item page-action">
-		            <a class="page-link" href="/productionLine/search?page=${i }&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}" aria-label="Previous">
+		            <a class="page-link" href="/productionLine/search?page=${pageVO.startPage - 1 }&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}" aria-label="Previous">
 		                <span aria-hidden="true">&laquo;</span>
 		            </a>
 		        </li>
@@ -133,17 +124,17 @@
 		
         <c:forEach var="pageNum" begin="${pageVO.startPage}" end="${pageVO.endPage}">
             <c:if test="${pageVO.cri.page != pageNum}">
-                <li class="page-item page-action"><a class="page-link" href="/instructions/search?page=${pageNum}&searchType=${searchType}&startDate=${startDate }&searchState=${searchState}&endDate=${endDate}">${pageNum}</a></li>
+                <li class="page-item page-action"><a class="page-link" href="/productionLine/search?page=${pageNum}&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">${pageNum}</a></li>
             </c:if>
             <c:if test="${pageVO.cri.page == pageNum}">
-                <li class="active page-item page-action"><a class="page-link" href="/instructions/search?page=${pageNum}&searchType=${searchType}&startDate=${startDate }&searchState=${searchState}&endDate=${endDate}">${pageNum}</a></li>
+                <li class="active page-item page-action"><a class="page-link" href="/productionLine/search?page=${pageNum}&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}">${pageNum}</a></li>
             </c:if>
         </c:forEach>
 
 		<!-- 다음페이지 -->
 			<c:if test="${pageVO.next }">
 		        <li class="page-item">
-		            <a class="page-link" href="/instructions/search?page=${pageVO.endPage + 1 }&searchType=${searchType}&searchState=${searchState}&startDate=${startDate }&endDate=${endDate} aria-label="Next">
+		            <a class="page-link" href="/productionLine/search?page=${pageVO.endPage + 1 }&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}" aria-label="Next">
 		                <span aria-hidden="true">&raquo;</span>
 		            </a>
 		        </li>
@@ -151,9 +142,6 @@
 		    </ul>
 		</nav>
 		</div>
-			
-			
-		</section>
 
 		<div id="bottomContent"></div>
 	</div>

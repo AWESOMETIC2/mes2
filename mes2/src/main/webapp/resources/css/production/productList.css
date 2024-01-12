@@ -57,3 +57,8 @@
     color: #ffffff; /* 활성화된 페이지 번호 텍스트 색상 (흰색) */
     border-color: #81b189;
   }
+  
+  
+.page-nav {
+	margin-top: 100px;
+}

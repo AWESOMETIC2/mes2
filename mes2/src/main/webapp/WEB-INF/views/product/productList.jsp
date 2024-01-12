@@ -24,6 +24,7 @@
 	<!-- 검색창 -->
 	<div class="container">
 		<section class="section1">
+		<h2>생산품 관리</h2>
       <form action="/product/search" class="search" method="GET">
 
         <div>
@@ -64,7 +65,6 @@
                 <col style="width: 30%" />
                 <col style="width: 10%" />
                 <col style="width: 10%" />
-                <col style="width: 15%" />
               </colgroup>
               <thead>
                 <tr class="table-success">
@@ -73,7 +73,6 @@
                   <th scope="col">생산품</th>
                   <th scope="col">수주번호</th>
                   <th scope="col">수량</th>
-                  <th scope="col">사용기한</th>
                   <th scope="col">생산날짜</th>
               
                 </tr>
@@ -82,11 +81,10 @@
               <c:forEach var="product" items="${productList}">
               	<tr>
                   <td scope="row"><input type="checkbox" class="ck" name="lot" value="${product.pd_lot}"/></td>
-                  <td><a href="상세보기확인">${product.pd_lot}</a></td>
+                  <td>${product.pd_lot}</a></td>
                   <td>${product.pd_mdp_code}</td>
                   <td>${product.pd_soi_id}</td>
                   <td>${product.pd_quantity}</td>
-                  <td>${product.pd_period}</td>
                   <td>${product.pd_date}</td>
                 </tr>
               </c:forEach>
@@ -95,31 +93,11 @@
           </form>
         </div>
       </div>
-      
-      <!-- 페이징 -->
-			<div class="box-footer clearfix">
-				<div style="margin: 0 auto; width: fit-content;">
-				<ul class="pagination pagination-sm no-margin pull-right">
-				
-					<c:if test="${pageVO.prev }">
-						<li><a href="/instructions/search?page=${pageVO.startPage - 1 }&searchType=${searchType }&startDate=${startDate }&endDate=${endDate}">«</a></li>
-					</c:if>
-					
-					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-						<li><a href="/instructions/search?page=${i }&searchType=${searchType}&startDate=${startDate }&searchState=${searchState}&endDate=${endDate}">${i }</a></li>
-					</c:forEach>
-					
-					<c:if test="${pageVO.next }">
-						<li><a href="/instructions/search?page=${pageVO.endPage + 1 }&searchType=${searchType}&searchState=${searchState}&startDate=${startDate }&endDate=${endDate}">»</a></li>
-					</c:if>
-				</ul>
-				</div>
-			</div>
-			<!-- 페이징 끝 -->
+      			
 			
-		<!-- -------------------------------------------------------- -->
-		
-		<!-- 페이징  -->
+    </section>
+
+	<!-- 페이징  -->
 		  <div class="page-nav">
 		  <nav aria-label="Page navigation example">
 		    <ul class="pagination">
@@ -127,7 +105,7 @@
 		    <!-- 이전페이지 -->
 		    <c:if test="${pageVO.prev }">
 		        <li class="page-item page-action">
-		            <a class="page-link" href="/instructions/search?page=${pageVO.startPage - 1 }&searchType=${searchType }&startDate=${startDate }&endDate=${endDate}" aria-label="Previous">
+		            <a class="page-link" href="/product/search?page=${pageVO.startPage - 1 }&startDate=${startDate }&endDate=${endDate}" aria-label="Previous">
 		                <span aria-hidden="true">&laquo;</span>
 		            </a>
 		        </li>
@@ -138,17 +116,17 @@
 		
         <c:forEach var="pageNum" begin="${pageVO.startPage}" end="${pageVO.endPage}">
             <c:if test="${pageVO.cri.page != pageNum}">
-                <li class="page-item page-action"><a class="page-link" href="/instructions/search?page=${pageNum}&searchType=${searchType}&startDate=${startDate }&searchState=${searchState}&endDate=${endDate}">${pageNum}</a></li>
+                <li class="page-item page-action"><a class="page-link" href="/product/search?page=${pageNum}&startDate=${startDate }&endDate=${endDate}&name=${name}">${pageNum}</a></li>
             </c:if>
             <c:if test="${pageVO.cri.page == pageNum}">
-                <li class="active page-item page-action"><a class="page-link" href="/instructions/search?page=${pageNum}&searchType=${searchType}&startDate=${startDate }&searchState=${searchState}&endDate=${endDate}">${pageNum}</a></li>
+                <li class="active page-item page-action"><a class="page-link" href="/product/search?page=${pageNum}&startDate=${startDate }&endDate=${endDate}&name=${name}">${pageNum}</a></li>
             </c:if>
         </c:forEach>
 
 		<!-- 다음페이지 -->
 			<c:if test="${pageVO.next }">
 		        <li class="page-item">
-		            <a class="page-link" href="/instructions/search?page=${pageVO.endPage + 1 }&searchType=${searchType}&searchState=${searchState}&startDate=${startDate }&endDate=${endDate} aria-label="Next">
+		            <a class="page-link" href="/product/search?page=${pageVO.endPage + 1 }&startDate=${startDate }&endDate=${endDate}&name=${name}"  aria-label="Next">
 		                <span aria-hidden="true">&raquo;</span>
 		            </a>
 		        </li>
@@ -156,9 +134,7 @@
 		    </ul>
 		</nav>
 		</div>
-			
-			
-    </section>
+	
 
 		<div id="bottomContent"></div>
 	</div>
