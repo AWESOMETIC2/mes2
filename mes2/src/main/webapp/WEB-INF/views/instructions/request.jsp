@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Document</title>
+<title>생산관리</title>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -18,6 +18,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 </head>
 
 <body>
@@ -81,25 +82,49 @@
 			
 		</section>
 		<br><br><br><br>
-		<!-- 페이징 -->
-			<div class="box-footer clearfix">
-				<div style="margin: 0 auto; width: fit-content;">
-				<ul class="pagination pagination-sm no-margin pull-right">
-				
-					<c:if test="${pageVO.prev }">
-						<li><a href="/instructions/request?page=${pageVO.startPage - 1 }&searchType=${searchType }&searchStartDate=${startDate }&searchEndDate=${endDate}">«</a></li>
-					</c:if>
-					
-					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
-						<li><a href="/instructions/request?page=${i }&searchType=${searchType}&searchStartDate=${startDate }&code=${code}&searchEndDate=${endDate}"> ${i }&nbsp;  </a></li>
-					</c:forEach>
-					
-					<c:if test="${pageVO.next }">
-						<li><a href="/instructions/request?page=${pageVO.endPage + 1 }&searchType=${searchType}&code=${code}&searchStartDate=${startDate}&searchEndDate=${endDate}">»</a></li>
-					</c:if>
-				</ul>
-				</div>
-			</div>
+
+								  
+     <!-- 페이징  -->
+		  <div class="page-nav">
+		  <nav aria-label="Page navigation example">
+		    <ul class="pagination">
+		    
+		    <!-- 이전페이지 -->
+		    <c:if test="${pageVO.prev }">
+		        <li class="page-item page-action">
+		            <a class="page-link" href="/instructions/request?page=${pageVO.startPage - 1 }&searchType=${searchType }&searchStartDate=${startDate }&searchEndDate=${endDate}" aria-label="Previous">
+		                <span aria-hidden="true">&laquo;</span>
+		            </a>
+		        </li>
+		    </c:if>
+		    
+		    
+		<!-- 페이지 번호 -->
+		
+        <c:forEach var="pageNum" begin="${pageVO.startPage}" end="${pageVO.endPage}">
+            <c:if test="${pageVO.cri.page != pageNum}">
+                <li class="page-item page-action"><a class="page-link" href="/instructions/request?page=${pageNum}&searchType=${searchType}&searchStartDate=${startDate }&code=${code}&searchEndDate=${endDate}">${pageNum}</a></li>
+            </c:if>
+            <c:if test="${pageVO.cri.page == pageNum}">
+                <li class="active page-item page-action"><a class="page-link" href="/instructions/search?page=${pageNum }&searchType=${searchType}&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchState=${searchState}&searchEndDate=${searchEndDate}">${pageNum}</a></li>
+            </c:if>
+        </c:forEach>
+
+		<!-- 다음페이지 -->
+		<c:if test="${pageVO.next }">
+		        <li class="page-item">
+		            <a class="page-link" href="/instructions/request?page=${pageVO.endPage + 1 }&searchType=${searchType}&code=${code}&searchStartDate=${startDate}&searchEndDate=${endDate}" aria-label="Next">
+		                <span aria-hidden="true">&raquo;</span>
+		            </a>
+		        </li>
+		        </c:if>
+		    </ul>
+		</nav>
+		</div>
+			
+			
+			
+			
 			<!-- 페이징 끝 -->
 		
 		<section class="section1">
