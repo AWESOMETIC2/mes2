@@ -58,7 +58,17 @@
     border-color: #81b189;
   }
   
-  
-.page-nav {
-	margin-top: 100px;
+  .page-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px; /* 원하는 간격 조절 */
+}
+
+.page-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

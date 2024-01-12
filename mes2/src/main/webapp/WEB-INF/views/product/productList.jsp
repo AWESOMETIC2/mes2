@@ -43,7 +43,7 @@
           />
         </div>
 
-        <input type="text"  placeholder="생산품 코드를 입력하세요" name="name"  class="form-control" style="width:400px;"/>
+        <input type="text"  placeholder="검색어를 입력하세요" name="searchCode"  class="form-control" style="width:400px;"/>
         <button type="submit" value="검색" class="btn btn-secondary" id="delete-btn"  style="width:100px;">검색</button>
       </form>
 
@@ -93,11 +93,9 @@
           </form>
         </div>
       </div>
-      			
-			
-    </section>
 
-	<!-- 페이징  -->
+	
+		<!-- 페이징  -->
 		  <div class="page-nav">
 		  <nav aria-label="Page navigation example">
 		    <ul class="pagination">
@@ -116,17 +114,17 @@
 		
         <c:forEach var="pageNum" begin="${pageVO.startPage}" end="${pageVO.endPage}">
             <c:if test="${pageVO.cri.page != pageNum}">
-                <li class="page-item page-action"><a class="page-link" href="/product/search?page=${pageNum}&startDate=${startDate }&endDate=${endDate}&name=${name}">${pageNum}</a></li>
+                <li class="page-item page-action"><a class="page-link" href="/product/search?page=${pageNum}&startDate=${startDate }&endDate=${endDate}&searchCode=${searchCode}">${pageNum}</a></li>
             </c:if>
             <c:if test="${pageVO.cri.page == pageNum}">
-                <li class="active page-item page-action"><a class="page-link" href="/product/search?page=${pageNum}&startDate=${startDate }&endDate=${endDate}&name=${name}">${pageNum}</a></li>
+                <li class="active page-item page-action"><a class="page-link" href="/product/search?page=${pageNum}&startDate=${startDate }&endDate=${endDate}&searchCode=${searchCode}">${pageNum}</a></li>
             </c:if>
         </c:forEach>
 
 		<!-- 다음페이지 -->
 			<c:if test="${pageVO.next }">
 		        <li class="page-item">
-		            <a class="page-link" href="/product/search?page=${pageVO.endPage + 1 }&startDate=${startDate }&endDate=${endDate}&name=${name}"  aria-label="Next">
+		            <a class="page-link" href="/product/search?page=${pageVO.endPage + 1 }&startDate=${startDate }&endDate=${endDate}&searchCode=${searchCode}"  aria-label="Next">
 		                <span aria-hidden="true">&raquo;</span>
 		            </a>
 		        </li>
@@ -134,7 +132,11 @@
 		    </ul>
 		</nav>
 		</div>
-	
+	      			
+			
+    </section>
+
+
 
 		<div id="bottomContent"></div>
 	</div>
