@@ -14,7 +14,7 @@
    margin-top: 40px;
    border: solid 2px #a2c6a8; 
    border-radius: 10px;  
-   margin-bottom : 20px;
+
 }
 
 .section1 {
@@ -40,6 +40,7 @@
 }
 #search {
 	width: 200px;
+	margin-bottom: 0 ;
 }
 .searchSub {
   width: 80%;
