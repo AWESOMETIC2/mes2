@@ -348,3 +348,34 @@ function selectunit2() {
 });			
 
 }
+
+
+
+
+
+
+function selectunit3(ths) {
+	var row = $(ths).closest("tr");
+
+    var materialCode = row.find('select[name="material_code"]').val();    
+    var unit = row.find('#Unit3');    
+        console.log(materialCode);
+
+        $.ajax({
+            url: '/amount/amount2/updunit',
+            method: 'GET',
+            data: {
+                product_code: materialCode
+            },
+            success: function (data) {
+                console.log(data);
+                $(unit).html(data);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', status, error);
+            }
+        });
+
+}
+
+

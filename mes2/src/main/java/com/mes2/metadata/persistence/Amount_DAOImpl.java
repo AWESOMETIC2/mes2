@@ -77,6 +77,10 @@ private static final Logger logger = LoggerFactory.getLogger(PlatformDAOImpl.cla
 		return sqlSession.selectOne(NAMESPACE + ".selectbox3", product_code);
 	}
 
-
+	@Override
+	public String selectbox4(String product_code) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE + ".selectbox4", product_code);
+	}
 	
 }
