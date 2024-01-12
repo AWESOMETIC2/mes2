@@ -43,7 +43,7 @@
           />
         </div>
 
-        <input type="text"  placeholder="검색어를 입력하세요" name="name"  class="form-control" style="width:400px;"/>
+        <input type="text"  placeholder="생산품 코드를 입력하세요" name="name"  class="form-control" style="width:400px;"/>
         <button type="submit" value="검색" class="btn btn-secondary" id="delete-btn"  style="width:100px;">검색</button>
       </form>
 

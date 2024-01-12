@@ -54,7 +54,7 @@
 				</div>
 				
 				<div class="input-group searchSub">					
-				<input type="text" name="search" placeholder="검색어를 입력하세요" class="form-control"
+				<input type="text" name="search" placeholder="품명을 입력하세요" class="form-control"
 				 aria-label="Recipient's username" aria-describedby="button-addon2"/>
 				<input type="submit" value="검색" class="btn btn-secondary" id="button-addon2"/>
 				

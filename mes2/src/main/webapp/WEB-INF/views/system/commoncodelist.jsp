@@ -223,8 +223,8 @@
 								  <div class="mb-3">
 								    <label for="exampleInputPassword1" class="form-label">코드사용여부</label><br>
 								    <select name="code_usestatus">
-								    	<option>YES</option>
-								    	<option>NO</option>
+								    	<option value="1">YES</option>
+								    	<option value="0">NO</option>
 								    </select>
 								  </div>  
 
@@ -291,8 +291,8 @@
 								  <div class="mb-3">
 								    <label for="exampleInputPassword1" class="form-label">코드사용여부</label><br>
 								    <select name="code_usestatus">
-								    	<option>YES</option>
-								    	<option>NO</option>
+								    	<option value="1">YES</option>
+								    	<option value="0">NO</option>
 								    </select>
  								  </div>  
   

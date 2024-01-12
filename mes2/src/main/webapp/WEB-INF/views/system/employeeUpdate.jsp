@@ -66,7 +66,7 @@
 									<option value="인사">인사</option>
 									<option value="영업">영업</option>
 									<option value="자재">자재</option>
-									<option value="재고">재고</option>
+									<option value="생산">생산</option>
 						    </select>
 						 </div>		           
 				         <div class="mb-3">

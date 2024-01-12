@@ -151,7 +151,7 @@
 		
 		if(quantitySum != "") {
 			Swal.fire({
-				text: '${product_code} 재고가 ${quantitySum}개, 생산 지시 수량이 ${insSum}개 입니다.<br> 생산 지시 하시겠습니까?',
+				html: '${product_code} 재고가 ${quantitySum}개, 생산 지시 수량이 ${insSum}개 입니다.<br> 생산 지시 하시겠습니까?',
 				icon: "question",
 				showCancelButton: true,
 				confirmButtonColor: "#577D71", // confirm 버튼 색상
