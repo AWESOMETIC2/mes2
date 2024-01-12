@@ -72,9 +72,9 @@ private static final Logger logger = LoggerFactory.getLogger(PlatformDAOImpl.cla
 	}
 	
 	@Override
-	public List<common_DTO> selectbox3() throws Exception {
+	public String selectbox3(String product_code) throws Exception {
 		
-		return sqlSession.selectList(NAMESPACE + ".selectbox3");
+		return sqlSession.selectOne(NAMESPACE + ".selectbox3", product_code);
 	}
 
 
