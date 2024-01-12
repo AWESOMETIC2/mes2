@@ -57,3 +57,18 @@
     color: #ffffff; /* 활성화된 페이지 번호 텍스트 색상 (흰색) */
     border-color: #81b189;
   }
+  
+  .page-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* 원하는 간격 조절 */
+}
+
+.page-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
