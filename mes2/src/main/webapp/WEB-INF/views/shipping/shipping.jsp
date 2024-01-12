@@ -77,6 +77,7 @@
     <!-- 검색창 -->
     <div class="container" >
     <section class="section1">
+    <h2>출하목록</h2>
          <form action="shipping" method="post" id="sfrm" class="search" onsubmit="return checkSearchSub()">     	
       	  <input type="hidden"  id="frmId" name="userId" value="${pm.cri.userId }"/>
       	  <input type="hidden" id="progressStatus" name="progressStatus" value="${pm.cri.progressStatus }"/>
