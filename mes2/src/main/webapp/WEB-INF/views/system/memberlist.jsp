@@ -170,7 +170,7 @@
 				<c:forEach var="member" items="${memberlist}">
                     <tbody>
 	                    <td>${member.user_num}</td>
-						<td><img src="${pageContext.request.contextPath}/resources/img/members/${member.user_img}" class="profile-img" width="20" height="20"></td>
+						<td><img src="${pageContext.request.contextPath}/resources/img/members/${member.user_img}" onerror="this.onerror=null; this.src='/resources/img/members/default.jpg';" class="profile-img" width="20" height="20"></td>
 						<td>${member.user_id}</td>
 						<td>${member.user_pw}</td>
 						<td>${member.user_name}</td>
@@ -182,8 +182,8 @@
 						<td>${member.user_tel}</td>
 						 
 					<td>
-						<a href="/system/adminupdate?user_id=${member.user_id}"data-bs-toggle="modal" data-bs-target="#updateForm" href="javascript:void(0);">
-							<button class="btn btn-success" type="button"><i class="bi bi-pencil-square"></i></button>
+						<a href="/system/adminupdate?user_id=${member.user_id}" data-bs-toggle="modal" data-bs-target="#updateForm" href="javascript:void(0);">
+							<button class="btn btn-success" type="button" ><i class="bi bi-pencil-square"></i></button>
 						</a>
 					</td>
 						
@@ -220,13 +220,13 @@
  
   
     
-  <c:if test="${pageVO.next }">  
-    <li class="page-item">
-      <a class="page-link" href="/system/memberlist?page=${pageVO.endPage + 1 }" aria-label="Next" >
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-   </c:if>
+	  <c:if test="${pageVO.next }">  
+	    <li class="page-item">
+	      <a class="page-link" href="/system/memberlist?page=${pageVO.endPage + 1 }" aria-label="Next" >
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+	   </c:if>
     
   </ul>
 </nav>	
@@ -319,10 +319,23 @@
 
 
 <!-- sidehead.jsp 의 로그아웃/상세정보보기 토글이 안되는거 보완 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
-    $(document).ready(function(){
-        $('.dropdown-toggle').dropdown();
-    });
+     $(document).ready(function(){
+         $('.dropdown-toggle').dropdown();
+     });
     
     
     
@@ -450,6 +463,18 @@
     });
   });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script src="${pageContext.request.contextPath}/resources/img/address2.js"></script>
