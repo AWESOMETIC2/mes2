@@ -103,6 +103,13 @@ public class OutDAOImpl implements OutDAO {
 		return sqlSession.selectOne(NAMESPACE + ".getQuantitySum", product_code);
 	}
 	
+	// 생산 지시 수량 확인
+	@Override
+	public int getInsSum(String product_code) throws Exception {
+		logger.debug("DAO: getInsSum() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".getInsSum", product_code);
+	}
+	
 	// 생산 지시 등록
 	@Override
 	public void insertIns(InsDTO insDTO) throws Exception {
