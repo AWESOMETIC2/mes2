@@ -89,7 +89,7 @@
 											<li class="page-item page-action"><a class="page-link" href="/platform/searchList?page=${i }&searchType=${searchType }&search=${search }">${i }</a></li>
 										</c:if>
 										<c:if test="${cri.page eq i }">
-											<li class="active page-item page-action"><a class="page-link" href="/platform/searchList?page=${i }&searchType=${searchType }&search=${search }">${i }</a></li>
+											<li class="active page-item page-action"><a class="page-link" href="/platform/searchList?page=${i }&searchType=${searchType }&search=${search }" style="color: black;">${i }</a></li>
 										</c:if>
 									</c:forEach>
 									

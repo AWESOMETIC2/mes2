@@ -26,6 +26,7 @@
 	<!-- 검색창 -->
 	<div class="container">
 		<section class="section1">
+		<h2>생산요청 관리</h2>
 			<form class="search" action="/instructions/request">
 
 				
