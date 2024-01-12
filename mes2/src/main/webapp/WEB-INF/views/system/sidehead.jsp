@@ -458,7 +458,7 @@
 	  <li>
 	    <div class="profile-details">
 	      <div class="profile-content">
-	        <img src="${pageContext.request.contextPath}/resources/img/members/${img}" class="user-img">
+	        <img src="${pageContext.request.contextPath}/resources/img/members/${img}" onerror="this.onerror=null; this.src='/resources/img/members/default.jpg';"  class="user-img">
 	      </div>
 	      	<div class="name-job">
 		        <div class="profile_name">${name}(${department})</div>
@@ -487,7 +487,7 @@
         </button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="/system/logout">로그아웃</a></li>
-          <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#myModal" href="javascript:void(0);">상세정보</a></li>
+          <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#myModal" href="javascript:void(0);" >상세정보</a></li>
         </ul>
        </div>
        

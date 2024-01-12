@@ -64,7 +64,7 @@
 											<tr>
 												<td scope="row"><input type="radio" name="idx" value="${loop.index}"></td>
 												<td><input type="hidden" name="product_code${loop.index}" value="${mdpDTO.product_code}">${mdpDTO.product_code}</td>
-												<td><input type="hidden" name="image${loop.index}" ><img alt="형상정보" src="<%=request.getContextPath() %>/resources/img/metadata/${mdpDTO.ofileName }"  onerror="this.onerror=null; this.src='/resources/img/metadata/default.png';"></td>
+												<td><input type="hidden" name="image${loop.index}" ><img alt="형상정보" src="<%=request.getContextPath() %>/resources/img/metadata/${mdpDTO.ofileName }" onerror="this.onerror=null; this.src='/resources/img/metadata/default.png';"></td>
 												<td><input type="hidden" name="name${loop.index}" value="${mdpDTO.name}">${mdpDTO.name}</td>
 												<td><input type="hidden" name="price${loop.index}" value="${mdpDTO.price}"><fmt:formatNumber value="${mdpDTO.price}" />원</td>
 											</tr>
@@ -86,7 +86,7 @@
 									
 									<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
 										<c:if test="${cri.page ne i }">
-											<li class="page-item page-action"><a class="page-link" href="/platform/searchList?page=${i }&searchType=${searchType }&search=${search }">${i }</a></li>
+											<li class="page-item page-action"><a class="page-link" href="/platform/searchList?page=${i }&searchType=${searchType }&search=${search }" style="color: black;">${i }</a></li>
 										</c:if>
 										<c:if test="${cri.page eq i }">
 											<li class="active page-item page-action"><a class="page-link" href="/platform/searchList?page=${i }&searchType=${searchType }&search=${search }">${i }</a></li>

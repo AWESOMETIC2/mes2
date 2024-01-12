@@ -54,7 +54,7 @@ public class controller1 {
 
 	@Inject
 	private MemberService mService;
-
+	
 	@Inject
 	private CommonCodeService cService;
 	
@@ -68,7 +68,7 @@ public class controller1 {
 	
 	
 	
-
+	
 	 // http://localhost:8088/system/login
 	 // http://localhost:8088/system/sidehead
 	 

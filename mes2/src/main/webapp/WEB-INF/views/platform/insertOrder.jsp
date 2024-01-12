@@ -29,7 +29,7 @@
 	<div class="container">
 		<section class="section2">
 			<hr>
-			<h1>발주 신청</h1>
+			<h2>발주 신청</h2>
 			<form action="/platform/insertOrder" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<span class="list-btn2">

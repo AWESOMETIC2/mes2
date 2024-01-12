@@ -82,22 +82,14 @@
 
 
 
-	<body style ="background-color: #F5FBF0;">
-	
-
-	
-	
-	
-	
-	
-	
-	
+	<body>
 	
 	 	<%@ include file="sidehead.jsp" %>	
 	 	
 	 	
 	 	<!-- 전체를 감싸는 div -->
-	 		<div class="list">
+	 	<h2 style ="margin-left: 100px;">공지사항</h2> 	
+	 		<div class="list" style="margin-top: 10px;">
 	 		
 	 		<!-- 등록하기 버튼(상단의) -->
 			  <div class="d-flex justify-content-end">
@@ -229,7 +221,16 @@
 <!--글등록 모달자바스크립트 -->
 	
 <script>
+
+
+
+
+
+
     $(document).ready(function(){
+    	
+    	
+    	
         // "등록하기" 버튼에 대한 클릭 이벤트 핸들러
         $("#insertBoardButton").click(function(){
             $("#insertBoardForm").modal("show");
@@ -261,33 +262,11 @@
     });
 </script>	
 <!--글등록 모달자바스크립트 -->
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 	
 	
 	
-	
-	
-	
-	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>	
 	</body>
 </html>

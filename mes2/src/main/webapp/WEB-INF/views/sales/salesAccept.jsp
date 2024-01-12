@@ -79,7 +79,7 @@
     <!-- 검색창 -->
     <div class="container">
     <section class="section1">
-    
+      <h2>수주목록</h2>
       <form action="salesAccept" method="post" id="sfrm" class="search" onsubmit="return checkSearchSub()">
             
             <input type="hidden"  name="instructions" value="${pm.cri.instructions }"/>
@@ -141,7 +141,7 @@
               <thead>
                 <tr class="table-success">
                   
-                  <th colspan="2" style="text-align: center;">주문번호</th>
+                  <th style="text-align: center;">주문번호</th>
                   <th>수주처</th>
                   <th>납품요청일</th>
                   <th>수주신청일</th>
@@ -153,7 +153,7 @@
               <c:forEach var="dto" items="${list }">
                 <tr>
                   
-                  <td scope="row"><input type="checkbox" class="ck" value="${dto.order_code }" name="order_code"/></td>
+                  
                   <td onclick="goContent('${dto.order_code }')"><span class="od-content">${dto.order_code }</span></td>
                   <td>${dto.company_name }</td>         
                   <td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.order_date}"/></td>

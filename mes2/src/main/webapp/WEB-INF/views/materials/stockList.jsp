@@ -31,6 +31,7 @@
 	<div class="container2">
 		<%@ include file="../system/sidehead.jsp" %>
 		<section class="section1">
+			<h2>재고 조회</h2>
 			<form class="search" id="searchForm">
 				<select name="searchType" id="searchType" class="form-select" aria-label="Default select example">
 					<option value="">구분</option>
@@ -85,7 +86,7 @@
 									
 									<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
 										<c:if test="${searchDTO.cri.page ne i }">
-											<li class="page-item page-action"><a class="page-link" href="/materials/stockList?page=${i }&searchType=${searchDTO.searchType }&search=${searchDTO.search }">${i }</a></li>
+											<li class="page-item page-action"><a class="page-link" href="/materials/stockList?page=${i }&searchType=${searchDTO.searchType }&search=${searchDTO.search }" style="color: black;">${i }</a></li>
 										</c:if>
 										<c:if test="${searchDTO.cri.page eq i }">
 											<li class="active page-item page-action"><a class="page-link" href="/materials/stockList?page=${i }&searchType=${searchDTO.searchType }&search=${searchDTO.search }">${i }</a></li>
