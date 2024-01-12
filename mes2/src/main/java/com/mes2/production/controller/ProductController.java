@@ -108,6 +108,7 @@ public class ProductController {
 		model.addAttribute("productList", productDTOList);
 		model.addAttribute("startDate" , productSearchParam.getStartDate());
 		model.addAttribute("endDate" , productSearchParam.getEndDate());
+		model.addAttribute("searchCode", searchCode);
 		
 		return "/product/productList";
 	}
