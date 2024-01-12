@@ -63,7 +63,7 @@
 											<tr onclick="getStockDetail('${stockDTO.product_code}');" class="selectStock">
 												<td><input type="hidden" name="product_code${loop.index}" value="${stockDTO.product_code}">${stockDTO.product_code}</td>
 												<td><input type="hidden" name="product_code${loop.index}" value="${stockDTO.name}">${stockDTO.name}</td>
-												<td><input type="hidden" name="image${loop.index}" ><img alt="형상정보" src="<%=request.getContextPath() %>/resources/img/metadata/${stockDTO.ofileName }" ></td>
+												<td><input type="hidden" name="image${loop.index}" ><img alt="형상정보" src="<%=request.getContextPath() %>/resources/img/metadata/${stockDTO.ofileName }" onerror="this.onerror=null; this.src='/resources/img/metadata/default.png';"></td>
 												<td><input type="hidden" name="name${loop.index}" value="${stockDTO.category}">${stockDTO.category}</td>
 												<td><input type="hidden" name="price${loop.index}" value="${stockDTO.quantity}">${stockDTO.quantity} ${stockDTO.unit}</td>
 											</tr>

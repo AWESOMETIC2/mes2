@@ -20,6 +20,7 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/inDetailList.css">
 <script src="https://kit.fontawesome.com/11da345fca.js"
 	crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- 글씨체 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,15 +38,36 @@
 			<form action="/materials/inDetailList" method="get" class="search">
 				<select name="searchType" id="searchType" class="form-select"
 					aria-label="Default select example">
+					<option>검색선택</option>
 					<option value="pd_lot">품목코드</option>
 				</select>
-				<div class="input-group searchSub">
+				<div class="input-group searchSub" style="width: 50%; text-align: center;">
 					<input type="text" name="search" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
 						aria-describedby="button-addon2">
-					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
+					<button class="btn btn-secondary" type="submit" id="button-addon2"
+					onclick="return check();">검색</button>
 				</div>
 			</form>
+			
+				<script>
+	
+		function check() {
+			
+			var key = $("#keyword").val();
+			if(key == null || key == ""){
+				Swal.fire({
+					  title: "검색어를 입력하세요!",
+					  icon: "warning"
+					}).then((result) => {
+						$("#keyword").focus();
+					});
+			}
+				
+				return false;
+		}
+	</script>
+			
 		<div style="display: flex; justify-content: flex-end;">
 			<div class="col-md-13" style="margin-right: 10px;">
 				<a href="/materials/inlist">
@@ -133,15 +155,6 @@
 			</nav>
 		</section>
 	</div>
-
-
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous">
-		
-	</script>
 
 
 

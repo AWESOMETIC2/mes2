@@ -18,6 +18,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/materials/purchaselist.css">
 <script src="https://kit.fontawesome.com/11da345fca.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- 글씨체 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,6 +35,7 @@
 
 				<select name="searchType" id="searchType" class="form-select"
 					aria-label="Default select example">
+					<option>검색선택</option>
 					<option value="name">품목명</option>
 					<option value="category">자재유형</option>
 				</select>
@@ -42,12 +44,32 @@
 					<input type="text" name="keyword" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
 						aria-describedby="button-addon2">
-					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
+					<button class="btn btn-secondary" type="submit" id="button-addon2"
+					onclick="return check();">검색</button>
 				</div>
 			</form>
+			
+			<script>
+	
+		function check() {
+			
+			var key = $("#keyword").val();
+			if(key == null || key == ""){
+				Swal.fire({
+					  title: "검색어를 입력하세요!",
+					  icon: "warning"
+					}).then((result) => {
+						$("#keyword").focus();
+					});
+			}
+				
+				return false;
+		}
+	</script>
+			
 	<div style="display: flex; justify-content: flex-end;">
 			<div class="col-md-13" style="margin-right: 10px;">
-				<button type="button" onclick="openInputOrder();"  style="border: none; background: none;"> 
+				<button type="button" onclick="openInputOrder();" style="border: none; background: none;"> 
 				<i class="fa-solid fa-pen" style="font-size:25px; margin: 10px; color: #A2C6A8;"></i>
 				</button>
 			</div>
@@ -133,20 +155,14 @@
 		</section>
 	</div>
 
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous">
-		
-	</script>
-
 	<script>
 		function openInputOrder() {
 			window.open("/materials/inputOrder", "order",
 					"width=500,height=720");
 		}
 	
+	
+		
 	</script>
 
 
