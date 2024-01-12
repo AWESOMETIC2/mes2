@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <title>품목 추가</title>
 <sec:csrfMetaTags/>
 <link
@@ -63,7 +64,7 @@
 											<tr>
 												<td scope="row"><input type="radio" name="idx" value="${loop.index}"></td>
 												<td><input type="hidden" name="product_code${loop.index}" value="${mdpDTO.product_code}">${mdpDTO.product_code}</td>
-												<td><input type="hidden" name="image${loop.index}" ><img alt="형상정보" src="../../../../resources/img/metadata/${mdpDTO.ofileName }" ></td>
+												<td><input type="hidden" name="image${loop.index}" ><img alt="형상정보" src="<%=request.getContextPath() %>/resources/img/metadata/${mdpDTO.ofileName }"  onerror="this.onerror=null; this.src='/resources/img/metadata/default.png';"></td>
 												<td><input type="hidden" name="name${loop.index}" value="${mdpDTO.name}">${mdpDTO.name}</td>
 												<td><input type="hidden" name="price${loop.index}" value="${mdpDTO.price}"><fmt:formatNumber value="${mdpDTO.price}" />원</td>
 											</tr>

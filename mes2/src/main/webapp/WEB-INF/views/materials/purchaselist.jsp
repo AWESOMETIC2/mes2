@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<title>발주목록</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -17,6 +18,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/materials/purchaselist.css">
 <script src="https://kit.fontawesome.com/11da345fca.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- 글씨체 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +35,7 @@
 
 				<select name="searchType" id="searchType" class="form-select"
 					aria-label="Default select example">
+					<option>검색선택</option>
 					<option value="name">품목명</option>
 					<option value="category">자재유형</option>
 				</select>
@@ -47,13 +50,13 @@
 	<div style="display: flex; justify-content: flex-end;">
 			<div class="col-md-13" style="margin-right: 10px;">
 				<button type="button" onclick="openInputOrder();"  style="border: none; background: none;"> 
-				<i class="fa-solid fa-pen" style="font-size:30px; color: #A2C6A8;"></i>
+				<i class="fa-solid fa-pen" style="font-size:25px; margin: 10px; color: #A2C6A8;"></i>
 				</button>
 			</div>
 			
 			<div class="col-md-13" style="margin-right: 10px;">
 				<a href="/materials/materials"> 
-				<i class="fa-solid fa-file-arrow-down" style="font-size:30px; color: #A2C6A8;"></i></a>
+				<i class="fa-solid fa-file-arrow-down" style="font-size:25px; margin: 10px; color: #A2C6A8;" ></i></a>
 			</div>
    	</div>
 
@@ -131,14 +134,6 @@
 
 		</section>
 	</div>
-
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous">
-		
-	</script>
 
 	<script>
 		function openInputOrder() {

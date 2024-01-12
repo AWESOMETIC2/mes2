@@ -46,6 +46,9 @@ public interface OutDAO {
 	// 품목 재고 가져오기
 	public int getQuantitySum(String product_code) throws Exception;
 	
+	// 생산 지시 수량 확인
+	public int getInsSum(String product_code) throws Exception;
+	
 	// 생산 지시 등록
 	public void insertIns(InsDTO insDTO) throws Exception;
 }

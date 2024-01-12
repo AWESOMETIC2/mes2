@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<title>입고 목록</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -18,6 +19,7 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/inlist.css">
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- 글씨체 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,16 +34,26 @@
 			<form action="/materials/inlist" method="get" class="search">
 				<select name="searchType" id="searchType" class="form-select"
 					aria-label="Default select example">
+					<option>검색선택</option>
 					<option value="name">품목명</option>
 					<option value="category">자재유형</option>
 				</select>
-				<div class="input-group searchSub" style="width: 50%;">
+				<div class="input-group searchSub" style="width: 50%; text-align: center;">
 					<input type="text" name="keyword" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
 						aria-describedby="button-addon2">
 					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
 				</div>
 			</form>
+			
+			<div style="display: flex; justify-content: flex-end;">
+			<div class="col-md-13" style="margin-right: 10px;">
+				<a href="/materials/inDetailList">
+			<i class="fa-solid fa-circle-check" style="font-size:25px; margin: 10px; color: #A2C6A8;"></i>
+				</a>
+
+			</div>
+			</div>
 
 			<div class="list-box">
 				<a href="/materials/in"></a>
@@ -124,19 +136,6 @@
 
 		</section>
 	</div>
-
-
-
-
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous">
-		
-	</script>
-
-
 
 </body>
 </html>

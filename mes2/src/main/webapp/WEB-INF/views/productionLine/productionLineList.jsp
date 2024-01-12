@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Document</title>
+<title>생산라인관리</title>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -16,6 +16,7 @@
 
 <link rel="stylesheet" href="/resources/css/platform/orderList.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 </head>
 
 <body>
@@ -24,23 +25,23 @@
 	<div class="container">
 		<section class="section1">
 			<form class="search" action="/productionLine/search">
-				<select id="boundary" name="searchStatus">
+				<select id="boundary" name="searchStatus" class="form-select"  style="width:300px;">
 					<option value="">-- 검색선택 --</option>
 					<option value="WAITING">작업대기</option>
 					<option value="PROGRESSING">작업중</option>
 					<option value="COMPLETE">작업완료</option>
 				</select>
 				
-				<input type="text" name="searchCode" value="${searchCode }" placeholder="작업지시코드" />
+				<input type="text" name="searchCode" value="${searchCode }" placeholder="작업지시코드"  class="form-control "   style="width:300px;"/>
 				<div>
-					<span class="search-font">검색시작일</span>
-					<input id="dtIp" type="date" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"/>
-					<span class="search-font">검색종료일</span>
-					<input id="dtIp" type="date" name="searchEndDate" min="2020-01-01" max="2030-12-31" value="${searchEndDate}" width="100px" />
+					<input id="dtIp" type="date" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"  class="form-control" />
+				</div>
+				<div>
+					<input id="dtIp" type="date" name="searchEndDate" min="2020-01-01" max="2030-12-31" value="${searchEndDate}" width="100px"   class="form-control" />
 				</div>
 
-				
-				<input type="submit" value="검색" />
+
+	        	<button type="submit" value="검색" class="btn btn-secondary" id="delete-btn"  style="width:100px;">검색</button>				
 			</form>
 
 			<!-- 표 -->
@@ -56,19 +57,15 @@
 						
 							
 							<colgroup>
-								<col style="width: 3%" /> 
                     			<col style="width: 15%" /> 
                     			<col style="width: 10%" />
                     			<col style="width: 10%" />
                     			<col style="width: 10%" />
                     			<col style="width: 10%" />
-                    			<col style="width: 15%" />
                     			<col style="width: 10%" />
-								<col style="width: 7%" />
                 			</colgroup>
 							<thead>
 								<tr class="table-success">
-									<th></th>
 									<th scope="col">No</th>
 									<th scope="col">생산라인</th>
 									<th scope="col">작업번호</th>
@@ -80,7 +77,6 @@
 							<tbody>
 								<c:forEach var="item" items="${productionLineList}">
 									<tr>
-										<td scope="row"><input type="checkbox" class="ck" /></td>
 										<td>${item.index}</td>
 										<td>${item.line}</td>
 										<td>${item.isCode}</td>
@@ -115,6 +111,47 @@
 				</div>
 			</div>
 			<!-- 페이징 끝 -->
+			
+					<!-- -------------------------------------------------------- -->
+		
+		<!-- 페이징  -->
+		  <div class="page-nav">
+		  <nav aria-label="Page navigation example">
+		    <ul class="pagination">
+		    
+		    <!-- 이전페이지 -->
+		    <c:if test="${pageVO.prev }">
+		        <li class="page-item page-action">
+		            <a class="page-link" href="/productionLine/search?page=${i }&searchStatus=${searchStatus }&searchCode=${searchCode}&searchStartDate=${searchStartDate }&searchEndDate=${searchEndDate}" aria-label="Previous">
+		                <span aria-hidden="true">&laquo;</span>
+		            </a>
+		        </li>
+		    </c:if>
+		    
+		    
+		<!-- 페이지 번호 -->
+		
+        <c:forEach var="pageNum" begin="${pageVO.startPage}" end="${pageVO.endPage}">
+            <c:if test="${pageVO.cri.page != pageNum}">
+                <li class="page-item page-action"><a class="page-link" href="/instructions/search?page=${pageNum}&searchType=${searchType}&startDate=${startDate }&searchState=${searchState}&endDate=${endDate}">${pageNum}</a></li>
+            </c:if>
+            <c:if test="${pageVO.cri.page == pageNum}">
+                <li class="active page-item page-action"><a class="page-link" href="/instructions/search?page=${pageNum}&searchType=${searchType}&startDate=${startDate }&searchState=${searchState}&endDate=${endDate}">${pageNum}</a></li>
+            </c:if>
+        </c:forEach>
+
+		<!-- 다음페이지 -->
+			<c:if test="${pageVO.next }">
+		        <li class="page-item">
+		            <a class="page-link" href="/instructions/search?page=${pageVO.endPage + 1 }&searchType=${searchType}&searchState=${searchState}&startDate=${startDate }&endDate=${endDate} aria-label="Next">
+		                <span aria-hidden="true">&raquo;</span>
+		            </a>
+		        </li>
+		        </c:if>
+		    </ul>
+		</nav>
+		</div>
+			
 			
 		</section>
 

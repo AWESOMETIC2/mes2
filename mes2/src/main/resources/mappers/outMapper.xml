@@ -131,6 +131,12 @@
 		WHERE product_code = #{product_code}
 	</select>
 	
+	<!-- 생산 지시 수량 가져오기 -->
+	<select id="getInsSum" resultType="int">
+		SELECT sum(sales_quantity) FROM instructions 
+		WHERE mdp_code = #{product_code}
+	</select>
+	
 	<!-- 생산 지시 등록 -->
 	<insert id="insertIns">
 		INSERT INTO instructions (mdp_code, type, sop_code, state, sales_quantity) 

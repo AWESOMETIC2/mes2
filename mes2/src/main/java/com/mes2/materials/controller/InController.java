@@ -46,13 +46,6 @@ public class InController {
 			  
 			 iService.insertStock(idto.getQuantity(), idto.getProduct_code(), idto.getPd_lot());
 			 
-
-			
-		
-			/*
-			 * pService.updateQuantity(idto.getProduct_code(), idto.getQuantity(),
-			 * idto.getCategory(), pd_lot);
-			 */
 			 idto.setPd_lot(iService.createRmLOT(idto.getProduct_code()));
 			 
 
