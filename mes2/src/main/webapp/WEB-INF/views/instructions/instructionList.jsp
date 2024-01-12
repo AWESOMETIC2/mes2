@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="/resources/css/production/instructionList.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 </head>
 
@@ -122,9 +122,6 @@
 				</div>
 			</div>
 			
-		</section>
-		
-								  
      <!-- 페이징  -->
 		<div class="page-nav">
 		  <nav aria-label="Page navigation example">
@@ -162,9 +159,7 @@
 		    </ul>
 		</nav>
 		</div>
-						
-		
-
+		</section>
 
 		<div id="bottomContent"></div>
 	</div>
