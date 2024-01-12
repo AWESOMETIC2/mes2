@@ -51,12 +51,6 @@
 		(#{orders_code},#{product_code},#{quantity})
 	</insert>
 
-	<!-- <insert id="PurchaseupdateQuantity"
-		parameterType="java.util.Map">
-        INSERT into stock (product_code, quantity, category, pd_lot) 
-        values (#{product_code},#{quantity},#{category},#{pd_lot})
-	</insert> -->
-
 	<insert id="insertMaterialReceipt" parameterType="java.util.Map">
 		INSERT into
 		in_warehouse (product_code, quantity, pd_lot)
@@ -274,7 +268,7 @@
 		<if test="keyword!=null and !keyword.equals('')">
 			AND pd_lot LIKE concat('%' , #{keyword}, '%')
 		</if>
-		ORDER BY in_index
+		ORDER BY in_index DESC
 		<if test="startPage != null and pageSize != null ">
 			LIMIT #{startPage}, #{pageSize}
 		</if>
@@ -286,6 +280,7 @@
 		<if test="keyword!=null and !keyword.equals('')">
 			AND pd_lot LIKE concat('%' , #{keyword}, '%')
 		</if>
+		ORDER BY in_index DESC
 		<if test="startPage != null and pageSize != null ">
 			LIMIT #{startPage}, #{pageSize}
 		</if>
