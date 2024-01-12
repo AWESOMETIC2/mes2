@@ -73,6 +73,7 @@
     <!-- 검색창 -->
     <div class="container">
     <section class="section1">
+    <h2>수주관리</h2>
       <form action="salesPlan" method="post" class="search" onsubmit="return checkSearchSub()">      
       	 <input type="hidden"  name="newOrder" value="${pm.cri.newOrder }"/>
       	 
