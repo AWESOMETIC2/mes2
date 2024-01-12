@@ -26,6 +26,7 @@
 	<!-- 검색창 -->
 	<div class="container">
 		<section class="section1">
+			<h2>작업지시 관리</h2>
 			<form class="search" action="/instructions/search" onsubmit="return validateSearchForm()">
 				
 				<select id="state" name="searchState" class="form-select" aria-label="Default select example" style="width:150px;">
@@ -46,11 +47,9 @@
 				
 				<input type="text" name="searchCode" placeholder="작업지시코드"  class="form-control aria-label="Recipient's username" aria-describedby="button-addon2" style="width:200px;"/>
 				<div>
-					<span class="search-font">검색시작일</span>
 					<input id="dtIp" type="date" aria-label="First name" class="form-control" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"/>
 				</div>
 				<div>				
-					<span class="search-font">검색종료일</span>
 					<input id="dtIp" type="date" aria-label="Last name" class="form-control" name="searchEndDate" min="2020-01-01" max="2030-12-31" width="100px" value="${searchEndDate}"/>
 				</div>
 				
@@ -70,20 +69,18 @@
 						
 							
 							<colgroup>
-								<col style="width: 3%" /> 
                     			<col style="width: 10%" /> 
                     			<col style="width: 3%" />
                     			<col style="width: 8%" />
                     			<col style="width: 15%" />
-                    			<col style="width: 10%" />
-                    			<col style="width: 15%" />
+                    			<col style="width: 13%" />
+                    			<col style="width: 13%" />
                     			<col style="width: 5%" />
 								<col style="width: 5%" />
-								<col style="width: 5%" />
+								<col style="width: 7%" />
                 			</colgroup>
 							<thead>
 								<tr class="table-success">
-									<th></th>
 									<th scope="col">작업지시번호</th>
 									<th scope="col">라인</th>
 									<th scope="col">제품번호</th>
@@ -98,8 +95,7 @@
 							<tbody>
 								<c:forEach var="item" items="${instructions}">
 									<tr>
-										<td scope="row"><input type="checkbox" class="ck" /></td>
-										<td><a href="">${item.code}</a></td>
+										<td>${item.code}</td>
 										<td>${item.line}</td>
 										<td>${item.mdpCode}</td>
 										<td>${item.sopCode}</td>
@@ -126,7 +122,9 @@
 				</div>
 			</div>
 			
-						  
+		</section>
+		
+								  
      <!-- 페이징  -->
 		<div class="page-nav">
 		  <nav aria-label="Page navigation example">
@@ -165,7 +163,8 @@
 		</nav>
 		</div>
 						
-		</section>
+		
+
 
 		<div id="bottomContent"></div>
 	</div>
