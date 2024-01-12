@@ -28,6 +28,9 @@ public interface OutService {
 	// 출고 상세 조회(출고코드 O)
 	public List<OpDTO> getOutDetail(String out_code) throws Exception;
 	
+	// 생산 지시 수량 확인
+	public int getInsSum(String product_code) throws Exception;
+	
 	// 생산 지시 등록
 	public void insertIns(InsDTO insDTO) throws Exception;
 }
