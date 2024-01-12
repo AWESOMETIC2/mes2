@@ -79,7 +79,7 @@
     <!-- 검색창 -->
     <div class="container">
     <section class="section1">
-    
+      <h2>수주목록</h2>
       <form action="salesAccept" method="post" id="sfrm" class="search" onsubmit="return checkSearchSub()">
             
             <input type="hidden"  name="instructions" value="${pm.cri.instructions }"/>

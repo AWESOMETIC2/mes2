@@ -31,5 +31,5 @@ public interface Amount_Service {
 		public List<md_productDTO> selectbox2() throws Exception;
 				
 		//bom  단위 공통코드 가져오기
-		public List<common_DTO> selectbox3() throws Exception;
+		public String selectbox3(String product_code) throws Exception;
 }

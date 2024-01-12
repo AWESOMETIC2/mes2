@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link
+	href="${pageContext.request.contextPath}/resources/img/favicon.ico"
+	rel="shortcut icon" type="image/x-icon">
 <title>입고 목록</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -19,11 +21,16 @@
 	href="${pageContext.request.contextPath}/resources/css/materials/inlist.css">
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- 글씨체 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 <!-- 글씨체 -->
+
+	
 </head>
 <body>
 	<%@ include file="../system/sidehead.jsp"%>
@@ -33,16 +40,46 @@
 			<form action="/materials/inlist" method="get" class="search">
 				<select name="searchType" id="searchType" class="form-select"
 					aria-label="Default select example">
+					<option>검색선택</option>
 					<option value="name">품목명</option>
 					<option value="category">자재유형</option>
 				</select>
-				<div class="input-group searchSub" style="width: 50%;">
+				<div class="input-group searchSub"
+					style="width: 50%; text-align: center;">
 					<input type="text" name="keyword" id="keyword"
 						class="form-control fm" aria-label="Recipient's username"
 						aria-describedby="button-addon2">
-					<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
+					<button class="btn btn-secondary" type="submit" id="button-addon2"
+						onclick="return check();">검색</button>
 				</div>
 			</form>
+			<script>
+	
+		function check() {
+			
+			var key = $("#keyword").val();
+			if(key == null || key == ""){
+				Swal.fire({
+					  title: "검색어를 입력하세요!",
+					  icon: "warning"
+					}).then((result) => {
+						$("#keyword").focus();
+					});
+			}
+				
+				return false;
+		}
+	</script>
+
+			<div style="display: flex; justify-content: flex-end;">
+				<div class="col-md-13" style="margin-right: 10px;">
+					<a href="/materials/inDetailList"> <i
+						class="fa-solid fa-circle-check"
+						style="font-size: 25px; margin: 10px; color: #A2C6A8;"></i>
+					</a>
+
+				</div>
+			</div>
 
 			<div class="list-box">
 				<a href="/materials/in"></a>
@@ -98,7 +135,8 @@
 			</div>
 
 
-			<nav aria-label="Page navigation example" style="padding: 5px; margin : 0 auto;">
+			<nav aria-label="Page navigation example"
+				style="padding: 5px; margin: 0 auto;">
 				<ul class="pagination justify-content-center">
 					<c:if test="${pageVO.prev }">
 						<li class="page-item"><a class="page-link"

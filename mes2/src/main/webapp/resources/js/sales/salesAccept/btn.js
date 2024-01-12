@@ -53,25 +53,46 @@ function checkSearchSub(e){
 		return true;
 	}
 	
-	else if($("#searchType").val() === ""){
-		alert("검색타입을 선택하세요.");
-		$("#searchType").focus();
-		return false;
+	else if ($("#searchType").val() === "") {
+	    Swal.fire({
+	        title: "검색타입을 선택하세요.",
+	        icon: "warning"
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            $("#searchType").focus();
+	        }       
+	    });
+             return false;
 	}
 	
-	else if($("#searchType").val() == "order_code" && $("#putSearch").val() == ""){
-		alert("검색어를 입력하세요.");
-		$("#putSearch").focus();
-		return false;
+	else if($("#searchType").val() == "order_code" && $("#putSearch").val() == "") {
+	    Swal.fire({
+	        title: "검색어를 입력하세요.",
+	        icon: "warning"
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            $("#putSearch").focus();
+	        }       
+	    });
+             return false;
 	}
 	
-	else if($("#searchType").val() == "company_name" && $("#putSearch").val() == ""){
-		alert("검색어를 입력하세요.");
-		$("#putSearch").focus();
-		return false;
+	
+	else if($("#searchType").val() == "company_name" && $("#putSearch").val() == "") {
+	    Swal.fire({
+	        title: "검색어를 입력하세요.",
+	        icon: "warning"
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            $("#putSearch").focus();
+	        }       
+	    });
+             return false;
 	}
+	
 	
 
+	
 	
 	
 }

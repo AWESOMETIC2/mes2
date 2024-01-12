@@ -35,7 +35,7 @@ td{
 
 .list-box {
 /* 	width: 800px; */
-	height: 345px;
+	height: 400px;
 	margin: 0 auto;
 	overflow-y: auto; /* auto로 설정하여 필요할 때만 수직 스크롤바를 표시합니다 */
 	overflow-x: hidden; /* hidden으로 설정하여 수평 스크롤바를 숨깁니다 */

@@ -74,6 +74,7 @@
     <!-- 검색창 -->
     <div class="container">
     <section class="section1">
+    <h2>출하계획</h2>
       <form action="shipPlan" method="post" class="search" id="sfrm" onsubmit="return checkSearchSub()">
       	   <input type="hidden"  id="frmId" name="userId" value="${pm.cri.userId }"/>
       	   <input type="hidden"  name="shipStatus" value="${pm.cri.shipStatus }"/>      	  
