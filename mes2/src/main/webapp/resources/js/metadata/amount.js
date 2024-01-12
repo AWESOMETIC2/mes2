@@ -127,7 +127,7 @@ function submitData() {
     var amount = $("#amount").val();
     var amountUnit = $("#Unit").html();
     
-    alert(amountUnit);
+    
 
     // 추가 행에서 완제품코드, 원재료 코드, 단위 확인 alert 창
     if (productCode === "완제품코드" || materialCode == "원재료코드") {
@@ -338,7 +338,7 @@ function selectunit2() {
 	success: function(data) {
 		
 		console.log(data);		
-		alert(data);
+		
 		$("#Unit").html(data);
 		
 	},
