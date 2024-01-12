@@ -27,6 +27,7 @@
 <body>
 	<div class="container">
 		<section class="section1">
+			<h2>상세 조회</h2>
 			<div class="list">
 				<form action="/insertOut" method="post" class="list-form">
 					<div class="list-btn">
