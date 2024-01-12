@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Document</title>
+<title>생산품 관리</title>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -16,6 +16,7 @@
 
 <link rel="stylesheet" href="/resources/css/production/productList.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 </head>
 
 <body>
@@ -24,21 +25,11 @@
 	<div class="container">
 		<section class="section1">
       <form action="/product/search" class="search" method="GET">
-        <select id="boundary">
-          <option value="">-- 검색선택 --</option>
-          <option value="ship">수주번호</option>
-          <option value="order">주문번호</option>
-          <option value="order">거래항목</option>
-          <option value="order">수주처</option>
-          <option value="order">수주일</option>
-          <option value="order">납기요청일</option>
-        </select>
 
         <div>
-          <span class="search-font">검색시작일</span>
-          <input id="startDate" type="date" min="2023-12-01" max="2024-12-31" name="startDate" value="${startDate}"/>
-
-          <span class="search-font">검색종료일</span>
+          <input id="startDate" type="date" min="2023-12-01" max="2024-12-31" name="startDate" value="${startDate}" class="form-control" />
+		</div>
+		<div>
           <input
             id="endDate"
             type="date"
@@ -47,18 +38,19 @@
             width="100px"
             name="endDate"
             value="${endDate}"
+            class="form-control" 
           />
         </div>
 
-        <input type="text"  placeholder="검색어를 입력하세요" name="name"/>
-        <input type="submit" value="검색" />
+        <input type="text"  placeholder="검색어를 입력하세요" name="name"  class="form-control" style="width:400px;"/>
+        <button type="submit" value="검색" class="btn btn-secondary" id="delete-btn"  style="width:100px;">검색</button>
       </form>
 
       <!-- 표 -->
       <div class="list">
       
         <div class="list-btn">
-          <button type="button" class="btn btn-secondary" id="delete-btn">긴급탈출버튼</button>
+          <button type="button" class="btn btn-secondary" id="delete-btn" style="visibility:hidden;  ">긴급탈출버튼</button>
         </div>
 
         <div class="list-box">
@@ -124,6 +116,48 @@
 				</div>
 			</div>
 			<!-- 페이징 끝 -->
+			
+		<!-- -------------------------------------------------------- -->
+		
+		<!-- 페이징  -->
+		  <div class="page-nav">
+		  <nav aria-label="Page navigation example">
+		    <ul class="pagination">
+		    
+		    <!-- 이전페이지 -->
+		    <c:if test="${pageVO.prev }">
+		        <li class="page-item page-action">
+		            <a class="page-link" href="/instructions/search?page=${pageVO.startPage - 1 }&searchType=${searchType }&startDate=${startDate }&endDate=${endDate}" aria-label="Previous">
+		                <span aria-hidden="true">&laquo;</span>
+		            </a>
+		        </li>
+		    </c:if>
+		    
+		    
+		<!-- 페이지 번호 -->
+		
+        <c:forEach var="pageNum" begin="${pageVO.startPage}" end="${pageVO.endPage}">
+            <c:if test="${pageVO.cri.page != pageNum}">
+                <li class="page-item page-action"><a class="page-link" href="/instructions/search?page=${pageNum}&searchType=${searchType}&startDate=${startDate }&searchState=${searchState}&endDate=${endDate}">${pageNum}</a></li>
+            </c:if>
+            <c:if test="${pageVO.cri.page == pageNum}">
+                <li class="active page-item page-action"><a class="page-link" href="/instructions/search?page=${pageNum}&searchType=${searchType}&startDate=${startDate }&searchState=${searchState}&endDate=${endDate}">${pageNum}</a></li>
+            </c:if>
+        </c:forEach>
+
+		<!-- 다음페이지 -->
+			<c:if test="${pageVO.next }">
+		        <li class="page-item">
+		            <a class="page-link" href="/instructions/search?page=${pageVO.endPage + 1 }&searchType=${searchType}&searchState=${searchState}&startDate=${startDate }&endDate=${endDate} aria-label="Next">
+		                <span aria-hidden="true">&raquo;</span>
+		            </a>
+		        </li>
+		        </c:if>
+		    </ul>
+		</nav>
+		</div>
+			
+			
     </section>
 
 		<div id="bottomContent"></div>

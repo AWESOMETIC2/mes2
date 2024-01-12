@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-* {
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 17px;
-}
+/* * { */
+/* 	font-family: 'Noto Sans KR', sans-serif; */
+/* 	font-size: 17px; */
+/* } */
 
 th {
 	text-align: center;
@@ -31,7 +31,7 @@ td{
 
 .section1 {
 	padding: 1px;
-	width: 1500px;
+	width: 100%;
 	height: 500px;
 	/* margin: 0 auto; */
 	margin-top: 30px;

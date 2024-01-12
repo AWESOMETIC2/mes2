@@ -125,10 +125,12 @@ function submitData() {
     var productCode = $("#ins_pcode").val();
     var materialCode = $("#ins_mcode").val();
     var amount = $("#amount").val();
-    var amountUnit = $("#ins_unit").val();
+    var amountUnit = $("#Unit").html();
+    
+    alert(amountUnit);
 
     // 추가 행에서 완제품코드, 원재료 코드, 단위 확인 alert 창
-    if (productCode === "완제품코드" || materialCode == "원재료코드" || amountUnit == "단위") {
+    if (productCode === "완제품코드" || materialCode == "원재료코드") {
                 
         Swal.fire({
             text: "드롭박스 옵션을 선택해주세요",
@@ -182,19 +184,19 @@ function submitData2(submitbtn2) {
     var productCode = row.find('.b select[name="product_code"] option:selected').text();
     var materialCode = row.find('.b select[name="material_code"] option:selected').text();
     var amount = row.find('.b input[name="amount"]').val();
-    var amountUnit = row.find('.b select[name="amount_unit"] option:selected').text();
+    //var amountUnit = row.find('.b select[name="amount_unit"] option:selected').text();
     
     var data = {
         index: index,
         product_code: productCode,
         material_code: materialCode,
         amount: amount,
-        amount_unit: amountUnit
+        //amount_unit: amountUnit
         
     };
     
  // 추가 행에서 완제품코드, 원재료 코드, 단위 확인 alert 창
-    if (productCode === "완제품코드" || materialCode == "원재료코드" || amountUnit == "단위") {
+    if (productCode === "완제품코드" || materialCode == "원재료코드") {
                 
         Swal.fire({
             text: "드롭박스 옵션을 선택해주세요",
@@ -320,32 +322,29 @@ $.ajax({
     }
 });
 
-//단위 공통코드 가져오는 ajax -->
-function processAjaxData3(data) {
+
+
+function selectunit2() {
+		
+	var materialCode = $("#ins_mcode").val();
 	
-    var options = '';
-    var options = '<option>단위</option>';
-    $.each(data, function(index, item) {
-        options += '<option>' + item.code_code + '</option>';
-    });
+	$.ajax({
+	url: '/amount/amount2/unit',
+	method: 'GET',
+	//dataType: 'json',
+	data: {
+		product_code : materialCode,
+	},
+	success: function(data) {
+		
+		console.log(data);		
+		alert(data);
+		$("#Unit").html(data);
+		
+	},
+	error: function(xhr, status, error) {
+		console.error('Error:', status, error);
+	}
+});			
 
-    $('#ins_unit, #upd_unit').html(options);
 }
-
-$.ajax({
-    url: '/amount/amount2/unit',
-    method: 'GET',
-    dataType: 'json',
-    success: function(data) {
-        
-        console.log(data);
-        processAjaxData3(data);
-    },
-    error: function(xhr, status, error) {
-        console.error('Error:', status, error);
-    }
-});
-
-
-
-

@@ -6,7 +6,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<title>거래처기준정보</title>
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<title>거래처 관리</title>
 
 <!--  sweetalert cdn입니다. -->
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
@@ -26,12 +27,7 @@
 <!-- 추가 css 입니다. -->
 <link rel="stylesheet" href="/resources/css/metadata/business.css?after">
 
-<!--  부트스트랩 js cdn입니다. -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-	crossorigin="anonymous">
-</script>
+
 
 <!-- 추가 js 입니다. -->
 <script src="/resources/js/metadata/business.js?after"></script>
@@ -99,7 +95,7 @@
 					<option>유통업체</option>
 					</select>
 					</td>										    								      												
-					<td><input type="text" name="pw" size="5"></td>
+					<td><input type="text" name="pw" size="5" value="1234" readonly></td>
 					<td><input type="text" name="name" size="5"></td>
 					<td><input type="text" name="manager" size="5"></td>				
 					

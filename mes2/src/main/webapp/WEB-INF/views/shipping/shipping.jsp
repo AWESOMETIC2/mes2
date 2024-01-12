@@ -8,7 +8,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>shipping</title>
+    <link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <title>출하 목록</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -17,9 +18,13 @@
       crossorigin="anonymous"
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://kit.fontawesome.com/38bf29a217.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/38bf29a217.js" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <link rel="stylesheet" href="/resources/css/sales/salesPlan.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sales/salesPlan.css">
+    
+    
+ 
+    
     <!-- 글씨체 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,27 +32,13 @@
 <!-- 글씨체 -->
   
     
-    <script type="text/javascript">
-    //페이지번호클릭시이동하기 
-    $(document).ready(function() {
-        var pageFrm = $("#pageForm");
 
-        $(".page-item a").on("click", function(e) {
-            
-            e.preventDefault(); //a태그기능막기
-            var page = $(this).attr("href"); //페이지번호
-            pageFrm.find("#page").val(page);
-            pageFrm.submit();
-        });
-    });
-</script>
 
   </head>
   
   <body>
   <%@ include file="../system/sidehead.jsp" %>
-  <script src="/resources/js/shipping/ship/btn.js"></script>
-  <script src="/resources/js/shipping/ship/details.js"></script>
+ 
   
   
 <!-- Modal -->
@@ -226,10 +217,29 @@
    
       </section>
       </div>
-<!--     <script
+      
+<!--       <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
-    ></script> -->
+    ></script>  -->
+    
+<script type="text/javascript">
+    //페이지번호클릭시이동하기 
+    $(document).ready(function() {
+        var pageFrm = $("#pageForm");
+
+        $(".page-item a").on("click", function(e) {
+            
+            e.preventDefault(); //a태그기능막기
+            var page = $(this).attr("href"); //페이지번호
+            pageFrm.find("#page").val(page);
+            pageFrm.submit();
+        });
+    });
+</script>
+
+  <script src="${pageContext.request.contextPath}/resources/js/shipping/ship/btn.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/shipping/ship/details.js"></script>
   </body>
 </html>

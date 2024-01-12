@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <title>재고 현황</title>
 <sec:csrfMetaTags/>
 <link
@@ -28,7 +29,7 @@
 
 <body>
 	<div class="container2">
-		<h3 id="h3">${stockList[0].product_code }재고현황</h3>
+		<h3 id="h3">${stockList[0].product_code } 재고현황</h3>
 		<section class="section1">
 			<!-- 표 -->
 			<div class="list">

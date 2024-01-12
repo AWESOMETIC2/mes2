@@ -5,6 +5,25 @@ var token = $("meta[name='_csrf']").attr("content");
 function insertOrder2() {
 	var order_date = document.querySelector('[name="order_date"]').value;
 	var allProduct_code = document.querySelectorAll('[name="product_code"]');
+	var sq = $("input[name=sales_quantity]").length;
+	var sqArr = new Array(sq);
+	
+	for(var i=0; i<sq; i++) {
+		sqArr[i] = $("input[name=sales_quantity]").eq(i).val();
+	}
+	
+	// 수량 0 제어
+	for(var i=0; i<sq; i++) {
+		if(sqArr[i] == "" || sqArr[i] == 0) {
+			Swal.fire({
+				text: "수량을 입력하세요",
+				confirmButtonColor: "#577D71",
+				icon: "warning"
+			});
+			return false;
+		}
+	}
+	
 
 	// 날짜 선택 제어
 	if(order_date == undefined || order_date === null || order_date === '') {
@@ -15,6 +34,7 @@ function insertOrder2() {
 		});
 		return false;
 	}
+	
 	// 품목 1개 이상 선택 제어
 	if(allProduct_code.length === 0) {
 		Swal.fire({
@@ -32,7 +52,6 @@ function insertOrder2() {
 		var row = productTable.rows[i];
 		var sopDTO = {
 			product_code: row.querySelector('[name="product_code"]').value,
-//			name: row.querySelector('[name="name"]').value,
 			price: row.querySelector('[name="price"]').value,
 			sales_quantity: row.querySelector('[name="sales_quantity"]').value
 		};
@@ -41,7 +60,7 @@ function insertOrder2() {
 	}
 	
 //	var jsonSopList = JSON.stringify(sopList);
-	console.log(order_date, sopList);
+//	console.log(order_date, sopList);
 	
 	if(sopList != null) {
 		$.ajax({

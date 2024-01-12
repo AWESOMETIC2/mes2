@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LoginForm</title>
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<title>로그인</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
@@ -48,7 +49,7 @@
 
     <header class="header">
       <nav class="nav">
-        <a href="#" class="logo" style= "text-decoration: none;">Awsometic</a>
+        <a href="#" class="logo" style= "text-decoration: none;"><img src="${pageContext.request.contextPath}/resources/img/icons/AWESOMETIC.png" id="login-icon"></a>
         <button class="btn" id="show-form">Login</button>
       </nav>
     </header>
@@ -58,7 +59,7 @@
         <i class="fas fa-xmark close-form"></i>
         <div class="form login-form">
           <form action="" method="post">
-            <img src="${pageContext.request.contextPath}/resources/img/icons/awesometic2.jpg" id="login-icon">
+            <img src="${pageContext.request.contextPath}/resources/img/icons/AWESOMETIC.png" id="login-icon">
             
            
             <div class="input-box">

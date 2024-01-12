@@ -326,11 +326,13 @@ function handleTypeSelect() {
         // 선택된 값이 "유통업체"인 경우 pwInput을 비활성화하고 내용을 지움
         pwInput.disabled = true;
         pwInput.value = "";
+        pwInput.style.display = "none";
         
     } else {
-        // 다른 경우 pwInput을 활성화하고 저장 버튼을 보이게 함
+        // 다른 경우 pwInput을 활성화dd
         pwInput.disabled = false;
-        
+        pwInput.value = "1234";
+        pwInput.style.display = "block";
     }
 }
 

@@ -14,7 +14,7 @@
    margin-top: 40px;
    border: solid 2px #a2c6a8; 
    border-radius: 10px;  
-   margin-bottom : 20px;
+
 }
 
 .section1 {
@@ -28,16 +28,21 @@
 
 
 .list-box {
-   width: 85%; 
-   height: 700px;  
-   margin: 0 auto; 
-   overflow-y: hidden;
+ height: 600px;
+	/* margin: 0 auto; */
+	/* overflow-y: auto; auto로 설정하여 필요할 때만 수직 스크롤바를 표시합니다
+	overflow-x: hidden; */
+	margin-bottom: 70px;
 }
 
 #searchType {
-	width: 10%;
+	width: 150px;
+	margin-left: 200px;
 }
-
+#search {
+	width: 200px;
+	margin-bottom: 0 ;
+}
 .searchSub {
   width: 80%;
 }

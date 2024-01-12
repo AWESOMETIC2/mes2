@@ -6,7 +6,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<title>BOM기준정보</title>
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<title>BOM 관리</title>
 
 <!--  sweetalert cdn입니다. -->
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
@@ -26,12 +27,6 @@
 <!-- 추가 css 입니다. -->
 <link rel="stylesheet" href="/resources/css/metadata/amount.css?after">
 
-<!--  부트스트랩 js cdn입니다. -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-	crossorigin="anonymous">
-</script>
 
 <!-- 추가 js 입니다. -->
 <script src="/resources/js/metadata/amount.js"></script>
@@ -75,7 +70,7 @@
 					<th scope="col">완제품코드</th>
 					<th scope="col">원재료코드</th>
 					<th scope="col">용량</th>
-					<th scope="col">단위</th>
+					
 					<th scope="col">등록날짜</th>
 					<th scope="col">수정날짜</th>													
 					<th scope="col"></th>									
@@ -89,9 +84,10 @@
 					<td></td>							
 					<td></td>																				
 					<td><select id="ins_pcode" name="ins_productcode"></select></td>
-					<td><select id="ins_mcode" name="ins_meterialcode"></select></td>										    								      												
-					<td><input type="text" id="amount" name="amount" size="5"></td>
-					<td><select id="ins_unit" name="ins_unit"></select></td>
+					<td><select id="ins_mcode" name="ins_meterialcode" onchange="selectunit2()"></select></td>										    								      												
+					<td><input type="text" id="amount" name="amount" size="5"><span id="Unit"></span> </td>
+					
+					<!--  <td><select id="ins_unit" name="ins_unit"></select></td>-->
 					<td>[등록날짜]</td>				
 					<td>[수정날짜]</td>																															
 					<td><button type="button" class="btn btn-secondary" id="submitbtn" onclick="submitData()" style="display: none;">저장</button></td>														
@@ -106,8 +102,8 @@
 					<td class="a"></td>
 					<td class="a">${alist.product_code }</td>
 					<td class="a">${alist.material_code }</td>
-					<td class="a">${alist.amount }</td>
-					<td class="a">${alist.amount_unit }</td>
+					<td class="a">${alist.amount }${alist.amount_unit }</td>
+					
 					<td class="a">${alist.registration_date }</td>
 					<td class="a">${alist.modification_date }</td>					
 					<td class="a" style="content: '\00a0'"></td>				
@@ -116,8 +112,8 @@
 					<td class="b" style="display: none;"><input type="hidden" name="index" value="${alist.index }"></td>
 					<td class="b" style="display: none;"><select id="upd_pcode" name="product_code"></select></td>
 					<td class="b" style="display: none;"><select id="upd_mcode" name="material_code"></select></td>
-					<td class="b" style="display: none;"><input type="text" name="amount" size="5" value="${alist.amount }"></td>
-					<td class="b" style="display: none;"><select id="upd_unit" name="amount_unit"></select></td>
+					<td class="b" style="display: none;"><input type="text" name="amount" size="5" value="${alist.amount }">${alist.amount_unit }</td>
+					<!--<td class="b" style="display: none;"> <select id="upd_unit" name="amount_unit"></select> </td>-->
 					<td class="b" style="display: none;">${alist.registration_date }</td>
 					<td class="b" style="display: none;">${alist.modification_date }</td>					
 					<td class="b" style="display: none; width: 80px; ">

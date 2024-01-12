@@ -115,6 +115,13 @@ public class OutServiceImpl implements OutService {
 		return odao.getOutDetail(out_code);
 	}
 	
+	// 생산 지시 수량 확인
+	@Override
+	public int getInsSum(String product_code) throws Exception {
+		logger.debug("S: getInsSum() 호출");
+		return odao.getInsSum(product_code);
+	}
+	
 	// 생산 지시 등록
 	@Override
 	public void insertIns(InsDTO insDTO) throws Exception {
