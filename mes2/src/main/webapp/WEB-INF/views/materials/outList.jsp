@@ -109,10 +109,10 @@
 					
 					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
 						<c:if test="${osDTO.cri.page ne i }">
-							<li class="page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">${i }</a></li>
+							<li class="page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}" style="color: black;">${i }</a></li>
 						</c:if>
 						<c:if test="${osDTO.cri.page eq i }">
-							<li class="active page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}" style="color: black;">${i }</a></li>
+							<li class="active page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">${i }</a></li>
 						</c:if>
 					</c:forEach>
 					

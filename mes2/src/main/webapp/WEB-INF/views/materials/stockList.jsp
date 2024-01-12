@@ -86,10 +86,10 @@
 									
 									<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
 										<c:if test="${searchDTO.cri.page ne i }">
-											<li class="page-item page-action"><a class="page-link" href="/materials/stockList?page=${i }&searchType=${searchDTO.searchType }&search=${searchDTO.search }">${i }</a></li>
+											<li class="page-item page-action"><a class="page-link" href="/materials/stockList?page=${i }&searchType=${searchDTO.searchType }&search=${searchDTO.search }" style="color: black;">${i }</a></li>
 										</c:if>
 										<c:if test="${searchDTO.cri.page eq i }">
-											<li class="active page-item page-action"><a class="page-link" href="/materials/stockList?page=${i }&searchType=${searchDTO.searchType }&search=${searchDTO.search }" style="color: black;">${i }</a></li>
+											<li class="active page-item page-action"><a class="page-link" href="/materials/stockList?page=${i }&searchType=${searchDTO.searchType }&search=${searchDTO.search }">${i }</a></li>
 										</c:if>
 									</c:forEach>
 									

@@ -65,10 +65,10 @@
 												<button type="submit" class="btn btn-secondary" id="accept" onclick="window.open('/instructions/accept/${item.sopCode}','result','width=800px, height=640px')">수락</button>
 											</c:if>
 											<c:if test="${item.materialStatus.equals('N')}">
-												자재필요
+												<i class="fa-solid fa-circle fa-2xs" style="color: #a44141;"></i>자재필요
 											</c:if>
 											<c:if test="${item.materialStatus.equals('R')}">
-												자재준비중
+												<i class="fa-solid fa-circle fa-2xs" style="color: #ff9924;"></i>자재준비중
 											</c:if>
 										</td>
 					

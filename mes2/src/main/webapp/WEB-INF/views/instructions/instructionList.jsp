@@ -105,13 +105,13 @@
 										<td>${item.fault}</td>
 										<td>
 										<c:if test="${item.state.equals('WAITING')}">
-											<i class="fa-solid fa-circle fa-2xs" style="color: #577D71;"></i><button type="button" onclick="updateProgressing('${item.code}');" style="border:none; background-color:none;">생산시작</button>
+											<button type="button" class="btn btn-secondary" onclick="updateProgressing('${item.code}');" >생산시작</button>
 										</c:if>
 										<c:if test="${item.state.equals('COMPLETE')}">
 											<i class="fa-solid fa-circle fa-2xs" style="color: #416ca4;"></i>생산완료
 										</c:if>
 										<c:if test="${item.state.equals('PROGRESSING')}">
-											<i class="fa-solid fa-circle fa-2xs" style="color: #577D71;"></i><button type="button" onclick="window.open('/instructions/resultInfo/${item.code}','result','width=800px, height=640px')" style="border:none">생산중</button>
+											<button type="button" class="btn btn-secondary" onclick="window.open('/instructions/resultInfo/${item.code}','result','width=800px, height=640px')">생산중</button>
 										</c:if>
 										</td>
 									</tr>
