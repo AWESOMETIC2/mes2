@@ -55,7 +55,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center; 
-    margin-right: 1280px;
+    margin-right: 1230px;
 }
 
  .page-item {
@@ -70,6 +70,19 @@
 
 
 
+<script>
+        function openCodeUpdateModal(userId) {
+            console.log('모달을 열 때 사용할 userId:', userId);
+
+            var userNumInput = document.getElementById('commoncode_index_input');
+            if (userNumInput) {
+                userNumInput.value = userId;
+            }
+
+        }
+</script>
+
+
 
 </head>
 	<body>
@@ -77,6 +90,7 @@
 	 	
 	 	
 	 		<!-- 등록하기 버튼(상단의) -->
+	 	<h2 style ="margin-left: 125px;">공통코드리스트</h2>
 	 		<div class="list">
 			  <div class="d-flex justify-content-end">
 			  	<div class="searchInputdiv">
@@ -90,7 +104,7 @@
 				</form>
 			 	</div>
 			   <a href="/system/commoncodejoin" data-bs-toggle="modal" data-bs-target="#CodeJoinForm" href="javascript:void(0);">
-			 	<button type="button" class="btn btn-success first" style="margin-right: 10px;">코드등록</button>
+			 	<button type="button" class="btn btn-success first" style="margin-right: 20px;">코드등록</button>
 			   </a>	
 			 </div>
 	 	
@@ -118,7 +132,7 @@
 						<td>${commoncode.code_code}</td>
 						<td>${commoncode.code_name}</td>
 	 					<td>
-							<a href="/system/commoncodeupdate?code_index=${commoncode.code_index}" data-bs-toggle="modal" data-bs-target="#CodeUpdateForm" href="javascript:void(0);">
+							<a href="/system/commoncodeupdate?code_index=${commoncode.code_index}" data-bs-toggle="modal" data-bs-target="#CodeUpdateForm" href="javascript:void(0);" onclick="openCodeUpdateModal('${commoncode.code_index}')">
 								<button class="btn btn-success" type="button"><i class="bi bi-pencil-square"></i></button>							
 							</a>
 						</td>
@@ -250,7 +264,7 @@
 				    		               <div class="card-body">
 				    		        <div class="mb-3">
 									    <label for="exampleInputPassword1" class="form-label">코드인덱스</label><br>
-									    <input type="text" placeholder="코드인덱스입력" name="code_index">
+									    <input type="text" placeholder="코드인덱스입력" name="code_index" id="commoncode_index_input" readonly>
 									</div><br>
 									
 			

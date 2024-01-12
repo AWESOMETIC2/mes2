@@ -57,7 +57,7 @@
 	<body>
 	 	<%@ include file="sidehead.jsp" %>	
 	 
-				
+	<h2 style ="margin-left: 125px; margin-top: 5px;">메뉴상태리스트</h2>
 			<!-- 수정하기 버튼(상단의) -->
 	 		<div class="list">
 			  <div class="d-flex justify-content-end">
@@ -89,13 +89,13 @@
 	</div>			
 				
 <!-- 메뉴상태수정 모달 -->	
-		<div class="modal fade" id="MenuUpdateForm">
+		<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="MenuUpdateForm">
 		 <div class="modal-dialog" style="max-width: 1100px;">
 		  <div class="modal-content" style="max-width: 1100px;">
 		   <div class="modal-header">
 		   	<h4 class="modal-title">메뉴상태수정</h4>
-		   	 <button type="button" class="close" data-dismiss="modal">
-		   	 	&times;
+		   	 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+		   	 	닫기
 		   	 </button>
 		   </div>
 		    <form method="post" action="/system/menuupdate">
