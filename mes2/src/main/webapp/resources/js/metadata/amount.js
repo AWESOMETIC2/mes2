@@ -127,7 +127,7 @@ function submitData() {
     var amount = $("#amount").val();
     var amountUnit = $("#Unit").html();
     
-    alert(amountUnit);
+    
 
     // 추가 행에서 완제품코드, 원재료 코드, 단위 확인 alert 창
     if (productCode === "완제품코드" || materialCode == "원재료코드") {
@@ -338,7 +338,7 @@ function selectunit2() {
 	success: function(data) {
 		
 		console.log(data);		
-		alert(data);
+		
 		$("#Unit").html(data);
 		
 	},
@@ -348,3 +348,34 @@ function selectunit2() {
 });			
 
 }
+
+
+
+
+
+
+function selectunit3(ths) {
+	var row = $(ths).closest("tr");
+
+    var materialCode = row.find('select[name="material_code"]').val();    
+    var unit = row.find('#Unit3');    
+        console.log(materialCode);
+
+        $.ajax({
+            url: '/amount/amount2/updunit',
+            method: 'GET',
+            data: {
+                product_code: materialCode
+            },
+            success: function (data) {
+                console.log(data);
+                $(unit).html(data);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', status, error);
+            }
+        });
+
+}
+
+

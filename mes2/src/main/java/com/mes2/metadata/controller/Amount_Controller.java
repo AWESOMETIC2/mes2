@@ -100,7 +100,7 @@ private static final Logger logger = LoggerFactory.getLogger(Amount_Controller.c
 		public ResponseEntity<List<md_productDTO>> product_code() throws Exception{
 				
 			List<md_productDTO> abc = aService.selectbox();
-			logger.debug("완제품코드들" + abc);
+			logger.debug("완제품코드들1" + abc);
 			
 			return new ResponseEntity<List<md_productDTO>>(abc,HttpStatus.OK);		
 		}
@@ -110,7 +110,7 @@ private static final Logger logger = LoggerFactory.getLogger(Amount_Controller.c
 		public ResponseEntity<List<md_productDTO>> product_code2() throws Exception{
 				
 			List<md_productDTO> abc2 = aService.selectbox2();
-			logger.debug("원재료코드들" + abc2);
+			logger.debug("원재료코드들2" + abc2);
 			
 			return new ResponseEntity<List<md_productDTO>>(abc2,HttpStatus.OK);		
 		}
@@ -121,8 +121,19 @@ private static final Logger logger = LoggerFactory.getLogger(Amount_Controller.c
 						
 			
 			String abc3 = aService.selectbox3(dto.getProduct_code());
-			logger.debug("단위코드들" +abc3);
+			logger.debug("단위코드들3" +abc3);
 			
 			return new ResponseEntity<String>(abc3,HttpStatus.OK);		
+		}
+		
+		@ResponseBody	
+		@RequestMapping(value = "/amount2/updunit", method = RequestMethod.GET)
+		public ResponseEntity<String> updunit(md_amountDTO dto) throws Exception{
+						
+			
+			String abc4 = aService.selectbox4(dto.getProduct_code());
+			logger.debug("단위코드들4" +abc4);
+			
+			return new ResponseEntity<String>(abc4,HttpStatus.OK);		
 		}
 }

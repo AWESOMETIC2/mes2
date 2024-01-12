@@ -39,7 +39,8 @@
 			
 	
 	<!-- 내용 칸 -->
-	<div class="son_container">	
+	<div class="son_container">
+	<h2>품목 기준 정보</h2>
 		<!-- 검색창,추가 버튼,취소 버튼 -->	
 		<div class="form-container">					
 			<form action="/product/firstpage" method="POST" class="search">
