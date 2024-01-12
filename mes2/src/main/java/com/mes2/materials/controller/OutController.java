@@ -105,10 +105,12 @@ public class OutController {
 		}
 		
 		int quantitySum = oService.insertOut(out_index, stockList);
+		int insSum = oService.getInsSum(product_code); // 생산 지시 수량 확인하기
 
 		if(product_code.contains("PS")) {
 			rttr.addFlashAttribute("quantitySum", quantitySum);
 			rttr.addFlashAttribute("product_code", product_code);
+			rttr.addFlashAttribute("insSum", insSum);
 		}
 		
 		rttr.addFlashAttribute("result", "SUCCESS");
