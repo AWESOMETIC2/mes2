@@ -70,4 +70,10 @@ private static final Logger logger = LoggerFactory.getLogger(Business_ServiceImp
 		
 		return adao.selectbox3(product_code);
 	}
+	
+	@Override
+	public String selectbox4(String product_code) throws Exception {
+		
+		return adao.selectbox4(product_code);
+	}
 }

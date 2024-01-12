@@ -35,9 +35,13 @@
 <body>
 <%@ include file="../system/sidehead.jsp" %>
 	<!-- 내용 칸 -->
+	
 	<div class="son_container">
+	
 		<!-- 검색창,추가 버튼,취소 버튼 -->	
-		<div class="form-container">		
+		<h2>소요량 기준 정보</h2>	
+		<div class="form-container">
+				
 			<form action="/amount/firstpage" method="POST" class="search">
 						
 				<input type="text" name="search" placeholder="완제품 코드를 입력하세요" class="form-control"
@@ -102,8 +106,7 @@
 					<td class="a"></td>
 					<td class="a">${alist.product_code }</td>
 					<td class="a">${alist.material_code }</td>
-					<td class="a">${alist.amount }${alist.amount_unit }</td>
-					
+					<td class="a">${alist.amount }${alist.amount_unit }</td>					
 					<td class="a">${alist.registration_date }</td>
 					<td class="a">${alist.modification_date }</td>					
 					<td class="a" style="content: '\00a0'"></td>				
@@ -111,8 +114,8 @@
 					<!-- 거래처 수정 시 나타나는 행 -->									
 					<td class="b" style="display: none;"><input type="hidden" name="index" value="${alist.index }"></td>
 					<td class="b" style="display: none;"><select id="upd_pcode" name="product_code"></select></td>
-					<td class="b" style="display: none;"><select id="upd_mcode" name="material_code"></select></td>
-					<td class="b" style="display: none;"><input type="text" name="amount" size="5" value="${alist.amount }">${alist.amount_unit }</td>
+					<td class="b" style="display: none;"><select id="upd_mcode" name="material_code" onchange="selectunit3(this)"></select></td>
+					<td class="b" style="display: none;"><input type="text" name="amount" size="5" value="${alist.amount }"><span id="Unit3"></span></td>
 					<!--<td class="b" style="display: none;"> <select id="upd_unit" name="amount_unit"></select> </td>-->
 					<td class="b" style="display: none;">${alist.registration_date }</td>
 					<td class="b" style="display: none;">${alist.modification_date }</td>					

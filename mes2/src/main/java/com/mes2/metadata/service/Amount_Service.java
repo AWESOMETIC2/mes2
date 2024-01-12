@@ -30,6 +30,9 @@ public interface Amount_Service {
 		//bom  원재료코드 가져오기
 		public List<md_productDTO> selectbox2() throws Exception;
 				
-		//bom  단위 공통코드 가져오기
+		//bom
 		public String selectbox3(String product_code) throws Exception;
+		
+		//bom
+		public String selectbox4(String product_code) throws Exception;
 }

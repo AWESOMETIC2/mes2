@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="/resources/css/production/instructionList.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 </head>
 
@@ -45,7 +45,7 @@
 				</div>
 				
 				
-				<input type="text" name="searchCode" placeholder="작업지시코드"  class="form-control aria-label="Recipient's username" aria-describedby="button-addon2" style="width:200px;"/>
+				<input type="text" name="searchCode" placeholder="검색어를 입력하세요"  class="form-control aria-label="Recipient's username" aria-describedby="button-addon2" style="width:200px;"/>
 				<div>
 					<input id="dtIp" type="date" aria-label="First name" class="form-control" name="searchStartDate" min="2023-12-01" max="2024-12-31" value="${searchStartDate}"/>
 				</div>
@@ -105,13 +105,13 @@
 										<td>${item.fault}</td>
 										<td>
 										<c:if test="${item.state.equals('WAITING')}">
-											<i class="fa-solid fa-circle fa-2xs" style="color: #577D71;"></i><button type="button" onclick="updateProgressing('${item.code}');" style="border:none; background-color:none;">생산시작</button>
+											<button type="button" class="btn btn-secondary" onclick="updateProgressing('${item.code}');" >생산시작</button>
 										</c:if>
 										<c:if test="${item.state.equals('COMPLETE')}">
 											<i class="fa-solid fa-circle fa-2xs" style="color: #416ca4;"></i>생산완료
 										</c:if>
 										<c:if test="${item.state.equals('PROGRESSING')}">
-											<i class="fa-solid fa-circle fa-2xs" style="color: #577D71;"></i><button type="button" onclick="window.open('/instructions/resultInfo/${item.code}','result','width=800px, height=640px')" style="border:none">생산중</button>
+											<button type="button" class="btn btn-secondary" onclick="window.open('/instructions/resultInfo/${item.code}','result','width=800px, height=640px')">생산중</button>
 										</c:if>
 										</td>
 									</tr>
@@ -122,9 +122,6 @@
 				</div>
 			</div>
 			
-		</section>
-		
-								  
      <!-- 페이징  -->
 		<div class="page-nav">
 		  <nav aria-label="Page navigation example">
@@ -162,9 +159,7 @@
 		    </ul>
 		</nav>
 		</div>
-						
-		
-
+		</section>
 
 		<div id="bottomContent"></div>
 	</div>

@@ -81,6 +81,12 @@
 		where product_code = #{product_code};	
 	</select>
 	
+	<select id="selectbox4" resultType="String">
+		SELECT unit
+		FROM meta_data_product
+		where product_code = #{product_code};	
+	</select>
+	
   		
 	
   </mapper>

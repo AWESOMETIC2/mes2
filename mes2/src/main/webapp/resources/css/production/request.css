@@ -70,3 +70,6 @@
     border-color: #81b189;
   }
   
+tr:hover {
+	cursor: pointer;
+}

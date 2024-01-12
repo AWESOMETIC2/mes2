@@ -96,7 +96,7 @@
 									<option value="인사">인사</option>
 									<option value="영업">영업</option>
 									<option value="자재">자재</option>
-									<option value="재고">재고</option>
+									<option value="생산">생산</option>
 						    </select>
 						 </div>		           
 				         <div class="mb-3">
@@ -145,13 +145,13 @@
 										<option value="플랫폼관리" ${memberDTO.user_auth eq '플랫폼관리' ? 'selected' : ''}>플랫폼관리</option>
 							    </select>
 							  </div>
-							  	  <div class="mb-3">
-									 <label for="user_auth" class="form-label">권한메뉴상태</label>
-										<select  name="menu_status" id="menu_status">
-											<option value="Y">Y</option>  
-									  		<option value="N">N</option> 
-									   </select>
-								  </div>
+<!-- 							  	  <div class="mb-3"> -->
+<!-- 									 <label for="user_auth" class="form-label">권한메뉴상태</label> -->
+<!-- 										<select  name="menu_status" id="menu_status"> -->
+<!-- 											<option value="Y">Y</option>   -->
+<!-- 									  		<option value="N">N</option>  -->
+<!-- 									   </select> -->
+<!-- 								  </div> -->
 								   </div>
 							   </div>
 							</div>

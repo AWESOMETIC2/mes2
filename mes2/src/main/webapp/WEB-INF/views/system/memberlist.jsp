@@ -22,18 +22,18 @@
 
  
 
-  .list {	
-  			 margin-left: 100px;
-  			 margin-top: 10px;
-             box-sizing: border-box;
-   			 width: 93%;
+ .list {	
+  	margin-left: 100px;
+  	margin-top: 10px;
+    box-sizing: border-box;
+   	width: 93%;
         }
 
  .table th, .table td {
-          text-align: center;
-          vertical-align: middle; 
-          border : none;
-       }
+    text-align: center;
+    vertical-align: middle; 
+    border : none;
+        }
 
 
 .table tr td {
@@ -61,7 +61,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center; 
-    margin-right: 1300px;
+    margin-right: 1250px;
 }
 
 
@@ -71,14 +71,19 @@
  }
 
 
-
-
-
-
-
 </style>
 
+<script>
+        function openUpdateModal(userId) {
+            console.log('모달을 열 때 사용할 userId:', userId);
 
+            var userNumInput = document.getElementById('user_num_input');
+            if (userNumInput) {
+                userNumInput.value = userId;
+            }
+
+        }
+</script>
 
 
 
@@ -87,7 +92,7 @@
 
 
 
-<body style ="background-color: #F5FBF0;">
+<body>
 
 
 
@@ -127,6 +132,7 @@
 
 			
 		   <!-- 등록하기 버튼(상단의) -->
+		   <h2 style ="margin-left: 125px;">사원리스트</h2>
 			<div class="list">
 			  <div class="d-flex justify-content-end">
 			   <div class="searchInputdiv">
@@ -141,7 +147,7 @@
 				</form>
 			 	</div>
 			    <a href="/system/join" data-bs-toggle="modal" data-bs-target="#joinForm" href="javascript:void(0);">
-			 	<button type="button" class="btn btn-success first" style="margin-right: 10px;">사원등록</button>
+			 	<button type="button" class="btn btn-success first" style="margin-right: 20px;">사원등록</button>
 			   </a>	
 			 </div>
 			 
@@ -182,7 +188,7 @@
 						<td>${member.user_tel}</td>
 						 
 					<td>
-						<a href="/system/adminupdate?user_id=${member.user_id}" data-bs-toggle="modal" data-bs-target="#updateForm" href="javascript:void(0);">
+						<a href="/system/adminupdate?user_id=${member.user_id}" data-bs-toggle="modal" data-bs-target="#updateForm" href="javascript:void(0);" onclick="openUpdateModal('${member.user_num}')">
 							<button class="btn btn-success" type="button" ><i class="bi bi-pencil-square"></i></button>
 						</a>
 					</td>
@@ -410,6 +416,9 @@
 </script>
 
 <script>
+
+
+
     $(document).ready(function(){
         // "등록하기" 버튼에 대한 클릭 이벤트 핸들러
         $("#updateButton").click(function(){

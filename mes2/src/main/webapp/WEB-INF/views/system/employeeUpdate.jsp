@@ -1,3 +1,4 @@
+<%@page import="com.mes2.system.domain.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
@@ -36,6 +37,7 @@
 </head>
 <body>
 
+
 		<form method="post" action="/system/adminupdate" enctype="multipart/form-data">
 		    	<div class="modal-body"style="max-width: 1100px;">
 		    		<br>
@@ -48,7 +50,7 @@
            						 <div class="card-body">					
 		    		     <label for="exampleInputEmail1" class="form-label">사번</label>
 						      <div class="input-box">
-							      <input type="text"  placeholder="사번을입력하세요" name="user_num" >
+							      <input type="text"  placeholder="사번을입력하세요" name="user_num" id="user_num_input" readonly>
 				   			 </div>
 		    		   	 <label for="exampleInputEmail1" class="form-label">비밀번호</label>
 						   <div class="input-box">
@@ -64,7 +66,7 @@
 									<option value="인사">인사</option>
 									<option value="영업">영업</option>
 									<option value="자재">자재</option>
-									<option value="재고">재고</option>
+									<option value="생산">생산</option>
 						    </select>
 						 </div>		           
 				         <div class="mb-3">

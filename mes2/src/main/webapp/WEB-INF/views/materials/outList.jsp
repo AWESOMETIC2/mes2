@@ -109,10 +109,10 @@
 					
 					<c:forEach var="i" begin="${pageVO.startPage }" end="${pageVO.endPage }" step="1">
 						<c:if test="${osDTO.cri.page ne i }">
-							<li class="page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">${i }</a></li>
+							<li class="page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}" style="color: black;">${i }</a></li>
 						</c:if>
 						<c:if test="${osDTO.cri.page eq i }">
-							<li class="active page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}" style="color: black;">${i }</a></li>
+							<li class="active page-item page-action"><a class="page-link" href="/materials/outList?page=${i }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">${i }</a></li>
 						</c:if>
 					</c:forEach>
 					
@@ -151,7 +151,7 @@
 		
 		if(quantitySum != "") {
 			Swal.fire({
-				text: '${product_code} 재고가 ${quantitySum}개, 생산 지시 수량이 ${insSum}개 입니다.<br> 생산 지시 하시겠습니까?',
+				html: '${product_code} 재고가 ${quantitySum}개, 생산 지시 수량이 ${insSum}개 입니다.<br> 생산 지시 하시겠습니까?',
 				icon: "question",
 				showCancelButton: true,
 				confirmButtonColor: "#577D71", // confirm 버튼 색상
