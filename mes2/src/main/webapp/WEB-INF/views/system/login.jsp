@@ -18,6 +18,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login/login.css">
 <!-- css 불러오기 (경로설정 중요!!) -->
+<!-- 글씨체 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<!-- 글씨체 -->
 </head>
 
 
@@ -50,7 +55,7 @@
     <header class="header">
       <nav class="nav">
         <a href="#" class="logo" style= "text-decoration: none;"><img src="${pageContext.request.contextPath}/resources/img/icons/AWESOMETIC.png" id="login-icon"></a>
-        <button class="btn" id="show-form">Login</button>
+        <button class="btn" id="show-form" style="background: #577D71;">Login</button>
       </nav>
     </header>
 
@@ -80,7 +85,7 @@
               </span>
             </div>
 
-            <button class="btn" id="btn-post" type="submit" style="background: #3CB371;">로그인하기</button>
+            <button class="btn" id="btn-post" type="submit" style="background: #577D71;">로그인하기</button>
             
           </form>
         </div>
