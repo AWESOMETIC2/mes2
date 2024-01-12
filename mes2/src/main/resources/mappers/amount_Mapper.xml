@@ -19,7 +19,7 @@
     	product_code = #{product_code},
         material_code = #{material_code},
         amount = #{amount},
-        amount_unit = #{amount_unit},
+        <!-- amount_unit = #{amount_unit}, -->
         modification_date = NOW()    
     WHERE
         `index` = #{index }
@@ -75,10 +75,10 @@
 	</select>
 	
 	<!-- 단위 공통코드 가져가기 -->
-	<select id="selectbox3" resultType="com.mes2.metadata.domain.common_DTO">
-		SELECT *
-		FROM common_code
-		where code_group_name ="기준단위";	
+	<select id="selectbox3" resultType="String">
+		SELECT unit
+		FROM meta_data_product
+		where product_code = #{product_code};	
 	</select>
 	
   		

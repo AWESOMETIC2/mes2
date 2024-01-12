@@ -23,5 +23,5 @@ public int amountinsert(md_amountDTO dto) throws Exception;
 	
 	public List<md_productDTO> selectbox2() throws Exception;
 	
-	public List<common_DTO> selectbox3() throws Exception;
+	public String selectbox3(String product_code) throws Exception;
 }
