@@ -13,8 +13,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Gn5384xqQ1b8f1PIt4IxlGZhRa7Cf8d/Jw2g9rMzRc5lFf5L2X3+r5g1eU/3eDpP4fAq2Mv8Gf9lCJhCnRZGAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-<title>BoardList</title>
+<link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<title>공지사항</title>
 
 <style text="text/css">
 
