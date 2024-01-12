@@ -29,6 +29,7 @@
 	<!-- 검색창 -->
 	<div class="container">
 		<section class="section1">
+			<h2>출고 목록</h2>
 			<form class="search">
 					<select name="status" id="status" class="form-select" aria-label="Default select example">
 						<option value="">-- 진행상태 --</option>

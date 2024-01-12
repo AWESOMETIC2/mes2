@@ -32,7 +32,7 @@
 	<div class="container">
 		<section class="section2">
 			<hr>
-			<h1>발주 수정</h1>
+			<h2>발주 수정</h2>
 			<form method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<span class="list-btn2">

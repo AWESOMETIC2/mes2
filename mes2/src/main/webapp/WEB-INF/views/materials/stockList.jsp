@@ -31,6 +31,7 @@
 	<div class="container2">
 		<%@ include file="../system/sidehead.jsp" %>
 		<section class="section1">
+			<h2>재고 조회</h2>
 			<form class="search" id="searchForm">
 				<select name="searchType" id="searchType" class="form-select" aria-label="Default select example">
 					<option value="">구분</option>
