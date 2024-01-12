@@ -26,12 +26,7 @@
 <!-- 추가 css 입니다. -->
 <link rel="stylesheet" href="/resources/css/metadata/business.css?after">
 
-<!--  부트스트랩 js cdn입니다. -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-	crossorigin="anonymous">
-</script>
+
 
 <!-- 추가 js 입니다. -->
 <script src="/resources/js/metadata/business.js?after"></script>
