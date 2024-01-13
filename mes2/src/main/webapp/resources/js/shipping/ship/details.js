@@ -141,7 +141,7 @@ function goContent(order_code){
 			  listHtml += "재고출하"; 
 		  }else if(obj.processing_reg=="production"){
 		  listHtml += "생산처리";  
-		  }else if(obj.processing_reg==" mult"){
+		  }else if(obj.processing_reg=="multi"){
 		  listHtml += "복합처리";  
 		  }
 		  listHtml += "</td>"	  

@@ -94,8 +94,10 @@ td{
     background-color: #95c4a2;
     color: #ffffff;
     border-color: #81b189;
+    z-index: 2;
 }
 
 .page-nav {
 	margin-top: 100px;
+	z-index: 2;
 }

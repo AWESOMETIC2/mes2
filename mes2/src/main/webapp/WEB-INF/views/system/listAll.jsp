@@ -94,14 +94,14 @@
 	 		<!-- 등록하기 버튼(상단의) -->
 			  <div class="d-flex justify-content-end">
 			  	<div class="searchInputdiv">
-			 	<form action="/system/searchboardlist" method="GET" style="display: flex;" class="d-flex">
-			 	 	<select name="searchOption">
-				        <option value="option1">글쓴이</option>
-				        <option value="option2">글제목</option>
-   					 </select>
-				    <input type="text" class="form-control searchInput" name="searchWord">
-				    <button class="btn btn-outline-success" type="submit">검색</button>
-				</form>
+<!-- 			 	<form action="/system/searchboardlist" method="GET" style="display: flex;" class="d-flex"> -->
+<!-- 			 	 	<select name="searchOption"> -->
+<!-- 				        <option value="option1">글쓴이</option> -->
+<!-- 				        <option value="option2">글제목</option> -->
+<!--    					 </select> -->
+<!-- 				    <input type="text" class="form-control searchInput" name="searchWord"> -->
+<!-- 				    <button class="btn btn-outline-success" type="submit">검색</button> -->
+<!-- 				</form> -->
 			 	</div>
 			 <c:if test="${!empty id && id.equals('admin')}">	
 			   <a href="/system/insertBoard" data-bs-toggle="modal" data-bs-target="#insertBoardForm" href="javascript:void(0);">

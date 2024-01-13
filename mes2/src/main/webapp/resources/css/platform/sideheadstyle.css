@@ -310,5 +310,5 @@ body{
 }
 
 #updateModal {
-    z-index: 9999; /* 페이징 위로 */
+    z-index: 3 !important; /* 페이징 위로 */
 }

@@ -86,7 +86,7 @@
 					<th scope="col">재고단위</th>
 					<th scope="col">원가</th>
 					<th scope="col">단가</th>
-					<th scope="col">생산여부</th>
+					<th scope="col">취급여부</th>
 					<th scope="col">등록일</th>
 					<th scope="col" width="100px">사진</th>
 					<th scope="col"></th>									
@@ -104,7 +104,7 @@
 					<td><select id="ins_unit" name="ins_unit"></select></td>
 					<td><input type="text" name="cost" size="5">원</td>
 					<td><input type="text" name="price" size="5">원</td>				
-					<td><i class="fa-solid fa-circle fa-2xs" style="color: #439f1d;"></i>생산 중</td>				
+					<td><i class="fa-solid fa-circle fa-2xs" style="color: #439f1d;"></i>사용</td>				
 					<td>[현재날짜]</td>				
 					<td>													
 						<img id="img" width="250px"/> 						
@@ -128,10 +128,10 @@
 					<td class="a">
 					<c:choose>
                        <c:when test="${plist.production_status eq '1' }">
-                          <i class="fa-solid fa-circle fa-2xs" style="color: #439f1d;"></i> 생산 중
+                          <i class="fa-solid fa-circle fa-2xs" style="color: #439f1d;"></i> 사용
                        </c:when>
                        <c:when test="${plist.production_status eq '0' }">
-                          <i class="fa-solid fa-circle fa-2xs" style="color: #848484;"></i> 생산 중단
+                          <i class="fa-solid fa-circle fa-2xs" style="color: #848484;"></i> 미사용
                        </c:when>
                     </c:choose>					
 					</td>
@@ -152,9 +152,9 @@
 					<td class="b" style="display: none;"><input type="text" name="price" size="5" value="${plist.price }"></td>
 					<td class="b" style="display: none;">
 						<select id="upd_status" name="upd_status">
-							<option>생산유무</option>
-							<option value="1">생산 중</option>
-							<option value="0">생산 중단</option>
+							<option>취급여부</option>
+							<option value="1">사용</option>
+							<option value="0">미사용</option>
 						</select>
 					</td>
 					<td class="b" style="display: none;">${plist.regdate }</td>
@@ -164,7 +164,7 @@
 					</td>
 					<td class="b" style="display: none; width: 80px; ">
 						<button type="button" style="margin: 10px 0;" class="btn btn-secondary" id="submitbtn2" onclick="submitData2(this)" >수정</button>
-						<button type="button" style="margin: 10px 0;" class="btn btn-secondary" id="submitbtn3" onclick="submitData3(this)" >삭제</button>																		 									
+						<input type="hidden" style="margin: 10px 0; display:none;" class="btn btn-secondary" id="submitbtn3" onclick="submitData3(this)" >																		 									
 					</td>									
 				</tr>
 				</c:forEach>
