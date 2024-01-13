@@ -75,7 +75,7 @@ input[type="number"] {
 		<br>
 		<br>
 		<label id="quantityLabel">양품 수량 입력 <input type="number" name ="quantity" id="quantity"></label>
-		<label id="faultLabel">불량품 수량 입력 <input type="number" name ="fault" id="fault"></label>
+		<label id="faultLabel">불량품 수량 입력 <input type="number" name ="fault" id="fault" value="0"></label>
 		<input type="hidden" name="isCode" value="${instruction.code}">
 				
 		<input type="submit" value="완료" id="submit">
