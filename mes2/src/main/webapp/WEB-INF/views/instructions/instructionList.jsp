@@ -89,7 +89,7 @@
 									<th scope="col">종료시간</th>
 									<th scope="col">양품</th>
 									<th scope="col">불량품</th>
-									<th scope="col"></th>
+									<th scope="col">생산상태</th>
 								</tr>
 							</thead>
 							<tbody>
