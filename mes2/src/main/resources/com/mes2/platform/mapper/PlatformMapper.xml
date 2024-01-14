@@ -43,7 +43,8 @@
 				AND name LIKE concat('%' , #{search}, '%')
 			</if>
 		</where>
-		AND category = '완제품'
+		AND category = '완제품' 
+		AND production_status = 1
 		ORDER BY product_code
 		<if test="cri != null">
 			LIMIT #{cri.startPage}, #{cri.pageSize}
@@ -61,7 +62,8 @@
 				AND name LIKE concat('%' , #{search}, '%')
 			</if>
 		</where>
-		AND category = '완제품'
+		AND category = '완제품' 
+		AND production_status = 1
 	</select>
 	
 	<!-- 품목 하나 선택 -->
