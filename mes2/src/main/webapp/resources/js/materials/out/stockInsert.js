@@ -6,12 +6,51 @@ function registProduct() {
 		stock_indexList.push($(this).val());
 	});
 	
+	var outQuantity = true;
+	
+	// 출고 수량 제어
+	if(stock_indexList.length != 0) {
+		$.each(stock_indexList, function(idx, val){
+			var stock_index = val;
+			var quantity = document.querySelector("input[name='quantity" + stock_index + "']").value;
+			var useQuantity = document.querySelector("input[name='useQuantity" + stock_index + "']").value;
+			
+			if(parseInt(quantity) < parseInt(useQuantity)) {
+				outQuantity = false;
+				Swal.fire({
+					text: "출고 수량이 재고를 초과할 수 없습니다.",
+					confirmButtonColor: "#577D71",
+					icon: "error"
+				}).then(function(){
+					return false;
+				});
+			}
+			
+			if(parseInt(useQuantity) <= 0) {
+				outQuantity = false;
+				Swal.fire({
+					text: "출고 수량은 1개 이상이어야합니다.",
+					confirmButtonColor: "#577D71",
+					icon: "error"
+				}).then(function(){
+					return false;
+				});
+			}
+		});
+	}
+	
+	if (outQuantity === false) {
+		return false;
+	}
+	// 출고 수량 제어 끝
+	
 	var index = 0;
 	if(stock_indexList.length != 0) {
 		$.each(stock_indexList, function(idx, val){
 			var stock_index = val;
 			var pd_lot = document.querySelector("input[name='pd_lot" + stock_index + "']").value;
 			var product_code= document.querySelector("input[name='product_code']").value;
+			var quantity = document.querySelector("input[name='quantity" + stock_index + "']").value;
 			var useQuantity = document.querySelector("input[name='useQuantity" + stock_index + "']").value;
 			
 			$("#outProductList", opener.document).append(
