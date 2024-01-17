@@ -67,8 +67,17 @@
 
 </style>
 
-
-
+	<script>
+	    function updateTitle() {
+	         var postTypeSelect = document.getElementById("postType");
+	         var titleInput = document.getElementById("join-id");
+	
+	         var selectedOptionText = "[" + postTypeSelect.options[postTypeSelect.selectedIndex].text + "]";
+	
+	         // 글제목 입력란에 설정
+	         titleInput.value = selectedOptionText;
+	     }
+	</script>
 
 
 </head>
@@ -151,7 +160,7 @@
 	
 
 	
-<!-- 코드수정 모달 -->
+<!-- 게시글수정 모달 -->
 		<div class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  id="updateBoardForm">
 		 <div class="modal-dialog" style="max-width: 1100px;">
 		  <div class="modal-content" style="max-width: 1100px;">
@@ -171,12 +180,21 @@
 				    		               <div class="card-body">
 				    		        <div class="mb-3">
 									    <label for="exampleInputPassword1" class="form-label">글번호</label><br>
-									    <input type="text" placeholder="수정할글번호입력" name="bno">
+									    <input type="text" placeholder="수정할글번호입력" name="bno" id="title_update">
 									</div><br>              
 				    		      <label for="exampleInputEmail1" class="form-label">제목</label><br>
 								      <div class="input-box">
-									      <input type="text" placeholder="수정할제목을입력하세요" name="title">
+									      <input type="text" placeholder="수정할제목을입력하세요" name="title" id="join-id">
 						   			 </div><br>
+								   <label for="postType" class="form-label">게시글 종류</label>
+									<div class="input-box">
+									    <select name="postType" id="postType" onchange="updateTitle()">
+									        <option value="normal">일반</option>
+									        <option value="notice">공지</option>
+									        <option value="alert">알림</option>
+									        <!-- 다른 종류의 게시글이 필요하다면 추가 가능 -->
+									    </select>
+							</div>	 
 				    		   	  <label for="exampleInputEmail1" class="form-label">내용</label><br>
 								   <div class="input-box">
 										<textarea class="form-control" rows="3" name="content" placeholder="수정할내용을입력하세요"></textarea>						           
@@ -300,26 +318,6 @@ $(document).ready(function(){
 </script>	
 <!--공통코드삭제 모달자바스크립트 -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>	
 	</body>
 </html>

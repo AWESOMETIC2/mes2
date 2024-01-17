@@ -24,7 +24,7 @@
 
 .list-box {
 	/*       width: 800px; */
-	height: 500px;
+/* 	height: 500px; */
 	margin: 0 auto;
 	overflow-y: auto; /* auto로 설정하여 필요할 때만 수직 스크롤바를 표시합니다 */
 	overflow-x: hidden; /* hidden으로 설정하여 수평 스크롤바를 숨깁니다 */
@@ -58,7 +58,17 @@
     border-color: #81b189;
   }
   
-  
-.page-nav {
-	margin-top: 100px;
+  .page-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* 원하는 간격 조절 */
+}
+
+.page-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

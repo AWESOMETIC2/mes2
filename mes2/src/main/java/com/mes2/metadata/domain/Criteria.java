@@ -27,7 +27,7 @@ public class Criteria {
 	public void setPageSize(int pageSize) {
 		
 		if(pageSize <= 0 || pageSize > 100) {
-			this.pageSize = 10;
+			this.pageSize = 5;
 			return;
 		}
 		

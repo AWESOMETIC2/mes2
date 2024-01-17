@@ -122,7 +122,7 @@
 	        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	        <input type="hidden" name="nowPw" id="nowPw" value="${mdto.pw}">
 	        <div class="modal-header">
-	            <h5 class="modal-title">회원 정보 수정</h5>
+	            <h5 class="modal-title">회사 정보 수정</h5>
 	        </div>
 	        <div class="modal-body">
 	            <div class="form-group">

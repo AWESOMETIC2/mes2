@@ -1,14 +1,16 @@
 @charset "UTF-8";
 
-@font-face {
-    font-family: 'MaplestoryOTFBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+/* @font-face { */
+/*     font-family: 'MaplestoryOTFBold'; */
+/*     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff'); */
+/*     font-weight: normal; */
+/*     font-style: normal; */
+/* } */
 
 * {
-  font-family: 'MaplestoryOTFBold';
+/*   font-family: 'MaplestoryOTFBold'; */
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 18px;
   text-decoration: none;
   margin: 0;
   padding: 0;

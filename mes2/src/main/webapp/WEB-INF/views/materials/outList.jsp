@@ -118,7 +118,7 @@
 					
 					<c:if test="${pageVO.next }">
 						<li class="page-item">
-							<a href="/materials/outList?page=${pageVO.endPage + 1 }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}">
+							<a class="page-link" href="/materials/outList?page=${pageVO.endPage + 1 }&status=${osDTO.status }&startDate=${osDTO.startDate }&endDate=${osDTO.endDate}&product_code=${osDTO.product_code}" aria-label="Next">
 							    <span aria-hidden="true">&raquo;</span>
 							</a>
 						</li>
