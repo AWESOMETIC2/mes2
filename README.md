@@ -31,7 +31,7 @@ CSS3
 JavaScript  
 jQuery  
 Ajax  
-JDK 11
+JDK 11  
 Spring Framework 5.0.6
 
 
