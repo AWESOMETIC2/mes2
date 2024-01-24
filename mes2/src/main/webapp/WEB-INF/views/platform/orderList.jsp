@@ -129,7 +129,7 @@
 					
 					<c:if test="${pageVO.next }">
 						<li class="page-item">
-							<a href="/platform/orderList?page=${pageVO.endPage + 1 }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}">
+							<a  class="page-link" href="/platform/orderList?page=${pageVO.endPage + 1 }&sales_status=${searchDTO.sales_status }&startDate=${searchDTO.startDate }&endDate=${searchDTO.endDate}" aria-label="Next">
 							    <span aria-hidden="true">&raquo;</span>
 							</a>
 						</li>

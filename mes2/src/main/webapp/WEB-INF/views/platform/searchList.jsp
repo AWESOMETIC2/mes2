@@ -31,7 +31,7 @@
 	<div class="container2">
 <!-- 		<h3 id="h3">발주 품목 등록</h3> -->
 		<section class="section1">
-			<form class="search" id="searchForm">
+			<form class="search" id="searchForm" onsubmit="searchProduct(); return false;">
 				<select name="searchType" id="searchType" class="form-select" aria-label="Default select example">
 					<option value="">구분</option>
 					<option value="품목코드">품목코드</option>
@@ -40,7 +40,7 @@
 				<div class="input-group searchSub">
 					<input type="text" name="search" id="search" class="form-control" value="${search }"placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
 				</div>
-				<button class="btn btn-secondary" type="button" id="button-addon2" onclick="searchProduct();">검색</button>
+				<button class="btn btn-secondary" type="submit" id="button-addon2">검색</button>
 			</form>
 
 			<!-- 표 -->

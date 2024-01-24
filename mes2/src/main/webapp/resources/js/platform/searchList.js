@@ -8,7 +8,7 @@ function searchProduct() {
 	
 	console.log(search);
 	
-	if(searchType.value == 'default') {
+	if(searchType.value == '') {
 		Swal.fire({
 			text: "구분을 선택하세요.",
 			confirmButtonColor: "#577D71",

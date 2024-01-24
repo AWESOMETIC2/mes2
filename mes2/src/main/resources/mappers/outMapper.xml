@@ -51,7 +51,7 @@
                 AND out_warehouse.out_request_date BETWEEN CAST(#{startDate} as DATE) AND CAST(#{endDate} as DATE) + 1
 			</if>
 			<if test="product_code != null and !product_code.equals('')">
-				AND out_warehouse.product_code = #{product_code}
+				AND out_warehouse.product_code LIKE concat('%' , #{product_code}, '%')
 			</if>
 		</where>
 		ORDER BY status DESC, out_request_date
@@ -69,7 +69,7 @@
                 AND out_request_date BETWEEN CAST(#{startDate} as DATE) AND CAST(#{endDate} as DATE) + 1
 			</if>
 			<if test="product_code != null and !product_code.equals('')">
-				AND product_code = #{product_code}
+				AND product_code LIKE concat('%' , #{product_code}, '%')
 			</if>
 		</where>
 	</select>
@@ -133,8 +133,8 @@
 	
 	<!-- 생산 지시 수량 가져오기 -->
 	<select id="getInsSum" resultType="int">
-		SELECT sum(sales_quantity) FROM instructions 
-		WHERE mdp_code = #{product_code}
+		SELECT IFNULL(sum(sales_quantity),0) FROM instructions 
+		WHERE mdp_code = #{product_code} AND state = 'requested'
 	</select>
 	
 	<!-- 생산 지시 등록 -->

@@ -308,3 +308,7 @@ body{
 	background-color: #577D71;
 	border: none;
 }
+
+#updateModal {
+    z-index: 3 !important; /* 페이징 위로 */
+}

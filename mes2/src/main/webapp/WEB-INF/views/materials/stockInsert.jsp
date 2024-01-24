@@ -57,7 +57,7 @@
 														-
 													</c:if>
 													<c:if test="${!empty stockDTO.pd_lot}">
-														${stockDTO.product_code}
+														${stockDTO.pd_lot}
 													</c:if>
 												</td>
 												<td><input type="hidden" name="regdate${stockDTO.stock_index}" value="${stockDTO.regdate }">${stockDTO.regdate }</td>

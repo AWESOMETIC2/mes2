@@ -50,7 +50,7 @@ public class ProductController {
 	// http://localhost:8088/product/search
 	@GetMapping("/search")
 	public String searchGet(Model model,@RequestParam(value = "startDate", required = false) String startDate
-			,@RequestParam(value="endDate", required = false) String endDate, @RequestParam(value = "name", required = false)String name,
+			,@RequestParam(value="endDate", required = false) String endDate, @RequestParam(value = "searchCode", required = false)String searchCode,
 			Criteria cri) {
 
 		//@ModelAttribute("searchParam") SearchParam searchParam
@@ -69,7 +69,7 @@ public class ProductController {
 			productSearchParam.setEndDate(Date.valueOf(endDate));
 		}
 		
-		productSearchParam.setName(name);
+		productSearchParam.setName(searchCode);
 		
 		//
 		PageVO pageVO = new PageVO();
@@ -108,6 +108,7 @@ public class ProductController {
 		model.addAttribute("productList", productDTOList);
 		model.addAttribute("startDate" , productSearchParam.getStartDate());
 		model.addAttribute("endDate" , productSearchParam.getEndDate());
+		model.addAttribute("searchCode", searchCode);
 		
 		return "/product/productList";
 	}
