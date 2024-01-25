@@ -1,8 +1,5 @@
 package com.mes2.config;
 
-import javax.inject.Inject;
-import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -13,13 +10,14 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.mes2.security.CustomLoginSuccessHandler;
 import com.mes2.security.CustomUserDetailsService;
-import com.mes2.security.CustomnoopPasswordEncoder;
+import com.mes2.security.CustomNoopPasswordEncoder;
 
 
 @Configuration
@@ -27,9 +25,6 @@ import com.mes2.security.CustomnoopPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
-	
-	@Inject
-	private DataSource dataSource;
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
@@ -45,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/platform/login")
 				.usernameParameter("company_code")
 				.passwordParameter("pw")
-				.successHandler(loginSuccesshandler())
+				.successHandler(loginSuccessHandler())
 				.permitAll()
 				.and()
 			.logout()
@@ -59,34 +54,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**", "/css/**", "/js/**", "/images/**");
 	}
-
-	@Bean
-	public AuthenticationSuccessHandler loginSuccesshandler() {
-		return new CustomLoginSuccessHandler();
-	}
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new CustomnoopPasswordEncoder();
-	}
-	
-	@Bean
-	public UserDetailsService customUserService() {
-		return new CustomUserDetailsService();
-	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		logger.debug("권한 확인");
 		
-//		String query = "select company_code, pw, contract_status, auth where company_code = ?";
-//		
-//		auth.jdbcAuthentication()
-//			.dataSource(dataSource)
-//			.passwordEncoder(passwordEncoder())
-//			.authoritiesByUsernameQuery(query);
-		
 		auth.userDetailsService(customUserService())
-			.passwordEncoder(passwordEncoder());
+		.passwordEncoder(passwordEncoder());
+	}
+
+	@Bean
+	public AuthenticationSuccessHandler loginSuccessHandler() {
+		return new CustomLoginSuccessHandler();
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+//		return new CustomNoopPasswordEncoder();
+		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public UserDetailsService customUserService() {
+		return new CustomUserDetailsService();
 	}
 }

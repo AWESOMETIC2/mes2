@@ -176,6 +176,12 @@
 		WHERE order_code = #{order_code}
 	</delete>
 	
+	<!-- 비밀번호 조회 -->
+	<select id="getPw" resultType="String">
+		SELECT pw FROM meta_data_business
+		WHERE company_code = #{company_code}
+	</select>
+	
 	<!-- 비밀번호 변경 -->
 	<update id="modifyPw">
 		UPDATE meta_data_business 
