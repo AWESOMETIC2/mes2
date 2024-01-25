@@ -183,14 +183,6 @@ public class PlatformController {
 		return "redirect:/platform/orderList";
 	}
 	
-	// 비밀번호 수정
-	@ResponseBody
-	@PostMapping(value="/modifyPw")
-	public void modifyPwPOST(@RequestBody ModifyPwDTO mpDTO, HttpSession session) throws Exception{
-		logger.debug("modifyPwPOST() 호출");
-		mpDTO.setCompany_code((String)session.getAttribute("company_code"));
-		pService.modifyPw(mpDTO);
-	}
 	
 	// 수령 완료 처리(버튼으로)
 	@GetMapping(value="/completeOrder")

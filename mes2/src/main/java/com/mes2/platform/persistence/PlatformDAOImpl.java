@@ -154,11 +154,18 @@ public class PlatformDAOImpl implements PlatformDAO {
 		sqlSession.delete(NAMESPACE + ".deleteOrder", order_code);
 	}
 
+	// 현재 비밀번호 조회
+	@Override
+	public String getPw(String company_code) throws Exception {
+		logger.debug("DAO: getPw() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".getPw", company_code);
+	}
+	
 	// 비밀번호 변경
 	@Override
-	public void modifyPw(ModifyPwDTO mdDTO) throws Exception {
+	public int modifyPw(ModifyPwDTO mdDTO) throws Exception {
 		logger.debug("DAO: modifyPw() 호출");
-		sqlSession.update(NAMESPACE + ".modifyPw", mdDTO);
+		return sqlSession.update(NAMESPACE + ".modifyPw", mdDTO);
 	}
 	
 	// 수령 완료(출하 테이블 업데이트)

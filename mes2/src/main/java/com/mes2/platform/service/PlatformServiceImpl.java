@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,9 @@ public class PlatformServiceImpl implements PlatformService {
 	
 	@Inject
 	private PlatformDAO pdao;
+	
+	@Inject
+	private BCryptPasswordEncoder pwEncoder;
 	
 	// 로그인
 	@Override
@@ -178,9 +182,27 @@ public class PlatformServiceImpl implements PlatformService {
 
 	// 비밀번호 변경
 	@Override
-	public void modifyPw(ModifyPwDTO mpDTO) throws Exception {
+	public int modifyPw(ModifyPwDTO mpDTO) throws Exception {
 		logger.debug("S: modifyPw() 호출");
-		pdao.modifyPw(mpDTO);
+		
+		// 현재 암호화 된 비밀번호 가져오기
+		String pw = pdao.getPw(mpDTO.getCompany_code());
+		logger.debug("조회한 pw: " + pw);
+		
+		// 입력된 비밀번호(평문)과 조회한 비밀번호(암호화) 일치시 업데이트
+		if(pwEncoder.matches(mpDTO.getPw(), pw)) {
+			// 암호화 된 비밀번호 set
+			mpDTO.setPw(pw);
+			
+			// 새로운 비밀번호 암호화 하고 dto에 set
+			mpDTO.setCheckPw(pwEncoder.encode(mpDTO.getCheckPw()));
+			
+			// 새 비밀번호로 update
+			return pdao.modifyPw(mpDTO);
+		}
+		
+		return 0;
+		
 	}
 	
 	// 수령 완료(서명으로)
