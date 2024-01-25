@@ -123,7 +123,7 @@
 					<td><input type="checkbox" class="updatecheckbox" style="display: none;" onchange="a(this)"/></td>															
 					<td class="a">${blist.company_code }</td>
 					<td class="a">${blist.category }</td>
-					<td class="a">${blist.pw }</td>
+					<td class="a">****<%-- ${blist.pw } --%></td>
 					<td class="a">${blist.name }</td>
 					<td class="a">${blist.manager }</td>
 					<td class="a">${blist.address }</td>
@@ -147,7 +147,7 @@
 					<td class="b" style="display: none;">${blist.category }</td>
 					<td class="b" style="display: none;">
 					<c:if test="${blist.category eq '고객사'}">
-					<input type="text" name="pw" size="5" value="${blist.pw }">
+					<input type="text" name="pw" size="5">
 					</c:if>
 					</td>
 					<td class="b" style="display: none;"><input type="text" name="name" size="5" value="${blist.name }"></td>
