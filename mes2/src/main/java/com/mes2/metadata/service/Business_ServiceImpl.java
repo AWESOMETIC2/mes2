@@ -59,6 +59,11 @@ public class Business_ServiceImpl implements Business_Service {
 	@Override
 	public int businessupdate(md_businessDTO dto) throws Exception {
 		
+		if(!dto.getPw().isEmpty()) {
+		dto.setPw(pwEncoder.encode(dto.getPw()));
+		logger.debug("암호화 후2: " + dto.getPw());
+		}
+		
 		return bdao.businessupdate(dto);
 	}
 	
