@@ -60,22 +60,50 @@ function goContent(order_code){
  }
  
  function moStock(data, sales_quantity) {
-	 $("#salesModalLabel").html('재고조회');
-	 var listHtml = "<div>제품명 : <input type='text' value='"+data.product_name+"' readonly/></div>";
-		 listHtml += "<div>제품코드 : <input type='text' value='"+data.product_code+"' readonly/></div>";
-		 listHtml += "<div>보유수량 : <input type='text' value='"+data.stock_quantity+"' readonly/></div>";
-		 if((sales_quantity - data.stock_quantity)<=0){
-			 listHtml += "<div>부족수량 : <input type='text' value='0' readonly/></div>"; 
-		 }else{
-			 listHtml += "<div>부족수량 : <input type='text' value='"+(sales_quantity - data.stock_quantity )+"' readonly/></div>";	
-			 listHtml += "<button type='button' class='btn btn-danger'>재고부족</button>"; // 수정된 라인
-
-			 
-		 }
-		 
-		 $("#sales-modal").html(listHtml);
+	 
+	 $("#salesStockCheck").modal('show');
+	 $("#product_name").val(data.product_name);
+	 $("#product_code").val(data.product_code);
+	
+	 if(data.stock_quantity < 0 ){
+		 $("#stock_quantity").val('0');
+	 }else{
+		 $("#stock_quantity").val(data.stock_quantity); 
+	 }
+	 
+	 if((sales_quantity - data.stock_quantity)<=0){
+		 $("#lack_quantity").val('0');	
+	 }else{
+		 $("#lack_quantity").val(sales_quantity - data.stock_quantity );
+		 $("#salesStockCheckModal").append("<button type='button' id='stockLack-btn' class='btn btn-danger'>재고부족</button>");
+				 
+	 }
+	 
  }
  
+function stockClear() {
+	 $("#product_name").val('');
+	 $("#product_code").val('');
+	 $("#stock_quantity").val('');
+	 $("#lack_quantity").val('');
+	 
+	 if ($("#stockLack-btn").length > 0) {
+		  $("#stockLack-btn").remove();
+		}
+	 
+	
+}
+
+function infoClear(){
+	
+	 $("#checkUser").val('');
+	 $("#user_pw").val('');
+	
+	 if ($("#reg-btn").length > 0) {
+		  $("#reg-btn").remove();
+		}
+	 
+	}
 
  function SalesDTO(order_code, sales_code, product_code, sales_quantity, processing_reg) {
 	  this.order_code = order_code;
@@ -170,15 +198,15 @@ function goContent(order_code){
  }
  
  function moReg(data,order_code){
-	 $("#salesModal").modal("show");
-	 $("#salesModalLabel").html('비밀번호 확인');
-	 var listHtml = "<div>아이디 : <input type='text' id='user_id' value='"+data.user_id+"' disabled/> </div>";
-	 listHtml += "<div>비밀번호: <input type='password' id='user_pw'/></div>"
-	 listHtml += "<button type='button' class='btn dark-green-btn' onclick='return regPw(\""+data.user_id+"\")'>비밀번호 확인</button>";
-	 $("#sales-modal").html(listHtml);
+	 
+	 $("#salesCheck").modal('show');
+     $("#checkUser").val(data.user_id);
+	 $("#salesCheckModal").append("<button type='button' class='btn dark-green-btn' id='reg-btn' onclick='return regPw(\""+data.user_id+"\")'>비밀번호 확인</button>");
+	 
  }
  
  function regPw(user_id){
+	 
 	 var user_pw = $("#user_pw").val();
 	  $.ajax({
 		  url:"getRegPw", 
@@ -220,7 +248,6 @@ function goContent(order_code){
 		  success: function (data) {
 			  
 		      moInfo(data,order_code); 
-		      $("#salesModal").modal("show");
 		    },
 		    error: function(){
 				  Swal.fire({
@@ -233,24 +260,22 @@ function goContent(order_code){
  }
  
  function moInfo(data, order_code){
+	
+	 $("#salesInfo").modal('show');
 	 var title = "<div>주문번호 : "+order_code+"</div>";
-	 $("#salesModalLabel").html(title);
-	 var listHtml = "<p>&lt;회사정보></p>"
-		 
-	     listHtml += "<div>회사명 : <input type='text' value='"+data.company_name+"' readonly/></div>";
-		 listHtml += "<div>회사코드 : <input type='text' value='"+data.company_code+"' readonly/></div>";
-		 listHtml += "<div>회사주소 : <input type='text' value='"+data.company_address+"' readonly/></div>";
-		 listHtml += "<div>회사전화번호 : <input type='text' value='"+data.company_call+"' readonly/></div>";
-		 listHtml += "<hr>"
-		 listHtml += "<p>&lt;담당자정보></p>"
-		 listHtml += "<div>담당자id : <input type='text' value='"+data.user_id+"' readonly/></div>";
-		 listHtml += "<div>담당자이름 : <input type='text' value='"+data.user_name+"' readonly/></div>";
-		 listHtml += "<div>담당자부서 : <input type='text' value='"+data.user_department+"' readonly/></div>";
-		 listHtml += "<div>담당자직책: <input type='text' value='"+data.user_position+"' readonly/></div>";
-		 listHtml += "<div>담당자부서 : <input type='text' value='"+data.user_auth+"' readonly/></div>";	 
-		 
-	      
-		 $("#sales-modal").html(listHtml);
+	
+	 $("#salesInfoLabel").html(title);
+	 $("#company_name").val(data.company_name);
+	 $("#company_code").val(data.company_code);
+	 $("#company_address").val(data.company_address);
+	 $("#company_call").val(data.company_call);
+	 $("#ifo_id").val(data.user_id);
+	 $("#user_name").val(data.user_name);
+	 $("#user_department").val(data.user_department);
+	 $("#user_position").val(data.user_position);
+	 $("#user_auth").val(data.user_auth);
+	 
+
  }
  
  
@@ -267,20 +292,20 @@ function goContent(order_code){
 			  
 			  listHtml += " <button type='button' class='btn' style='background-color:#619e6b; color: white;' id='save-btn' onclick='return saveCheck(\""+order_code+"\")'>저장</button>";
 		  }
-	  listHtml += "<div class='list-box'>";  
-	  listHtml += "<table class='table table-hover'>";	  
-	  listHtml += "<table class='table table-hover'>";
-	  listHtml += "<thead>";
-	  listHtml += "<tr class='table-success' >";
-	  listHtml += "<th style='text-align: center;'>수주번호</th>";
-	  listHtml += "<th>제품명</th>";
-	  listHtml += "<th>수량</th>";
-	  listHtml += "<th>재고조회</th>";
-	  listHtml += "<th>처리상태</th>";
-	  listHtml += "<th>수주처리</th>"; 
-	  listHtml += "</tr>";
-	  listHtml += "</thead>";  
-	  listHtml += "<tbody>";  
+		  listHtml += "<div class='list-box'>";  
+		  listHtml += "<table class='table table-hover'>";	  
+		  listHtml += "<table class='table table-hover'>";
+		  listHtml += "<thead>";
+		  listHtml += "<tr class='table-success' >";
+		  listHtml += "<th style='text-align: center;'>수주번호</th>";
+		  listHtml += "<th>제품명</th>";
+		  listHtml += "<th>수량</th>";
+		  listHtml += "<th>재고조회</th>";
+		  listHtml += "<th>처리상태</th>";
+		  listHtml += "<th>수주처리</th>"; 
+		  listHtml += "</tr>";
+		  listHtml += "</thead>";  
+		  listHtml += "<tbody>";  
 	  
 	  $.each(data,function(index,obj){
 		  

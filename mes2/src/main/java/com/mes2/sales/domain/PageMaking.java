@@ -3,7 +3,7 @@ package com.mes2.sales.domain;
 import lombok.Data;
 
 @Data
-public class pageMaking {
+public class PageMaking {
 
 	private Criteria cri;
 	private int startPage; //시작 페이지

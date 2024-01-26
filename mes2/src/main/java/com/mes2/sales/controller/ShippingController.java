@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mes2.sales.domain.AcceptSaveDTO;
 import com.mes2.sales.domain.Criteria;
 import com.mes2.sales.domain.ShippingDTO;
-import com.mes2.sales.domain.pageMaking;
+import com.mes2.sales.domain.PageMaking;
 import com.mes2.sales.service.ShippingService;
 
 @Controller
@@ -31,8 +31,7 @@ public class ShippingController {
 	@Inject
 	private ShippingService pService;
 
-	// http://localhost:8080/shipping/shipPlan
-	// http://localhost:8088/shipping/shipPlan
+	
 
 	@RequestMapping(value = "/shipPlan")
 	public String salesPlan(HttpSession session, Model model, Criteria cri, @RequestParam(name = "user", required = false) String user) {	
@@ -47,7 +46,7 @@ public class ShippingController {
 		model.addAttribute("status", sdto);
 		model.addAttribute("list", list);
 		
-		pageMaking pm = new pageMaking();
+		PageMaking pm = new PageMaking();
 		pm.setCri(cri);
 		pm.setTotalCount(pService.totalCount(cri));
 		model.addAttribute("pm", pm);		
@@ -108,8 +107,7 @@ public class ShippingController {
 	}
 	
 	
-	// http://localhost:8080/shipping/shipping
-	// http://localhost:8088/shipping/shipping
+	
 	@RequestMapping(value = "/shipping")
 	public String shipping(HttpSession session, Model model, Criteria cri, @RequestParam(name = "user", required = false) String user)  {	
 		
@@ -121,7 +119,7 @@ public class ShippingController {
 		cri.setUserId(user_id);
 		List<ShippingDTO> list = pService.instructionList(cri);
 		ShippingDTO sdto = pService.countShipProgressing();
-		pageMaking pm = new pageMaking();
+		PageMaking pm = new PageMaking();
 		pm.setCri(cri);
 		pm.setTotalCount(pService.shippingTotalCount(cri));
 		model.addAttribute("pm", pm);

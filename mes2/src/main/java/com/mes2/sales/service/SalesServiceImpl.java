@@ -182,11 +182,13 @@ public class SalesServiceImpl implements SalesService {
 		SalesDTO dto = new SalesDTO();
 		Criteria cri = new Criteria();
 		cri.setSales_status("accept");
-        cri.setNewOrder("true");
-        dto.setNewCnt(sdao.getPlanNewCnt(cri));	
+
 		
-		cri.setNewOrder("false");
-					
+		cri.setProNewOrder("true");
+		dto.setNewCnt(sdao.getPlanNewCnt(cri));	
+		
+		cri.setProNewOrder("false");
+		
 		cri.setInstructions("Y");
 		dto.setCompleteCnt(sdao.getPlanNewCnt(cri));	
 	
