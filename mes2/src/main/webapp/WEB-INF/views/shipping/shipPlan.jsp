@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="${pageContext.request.contextPath}/resources/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <title>출하 계획</title>
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,46 +18,20 @@
       crossorigin="anonymous"
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <!--  <script src="https://kit.fontawesome.com/38bf29a217.js" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sales/salesPlan.css">
 
-<!-- 글씨체 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<!-- 글씨체 -->
-
- 
-    
-
+	<!-- 글씨체 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<!-- 글씨체 -->
 
   </head>
   
   <body>
    <%@ include file="../system/sidehead.jsp" %>
- 
-  
-  
-<!-- Modal -->
-<div id="modalcon">
-<div class="modal fade" id="shippngPlanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body mo" id="shippngPlan-modal">
-       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="mo-close" >닫기</button>
-       
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+   <%@ include file="./shipModal.jsp" %>
+   
 
 
 	<!-- 페이징 정보 저장 -->
@@ -111,8 +85,8 @@
         <div class="list-btn">
          <c:if test="${not empty pm.cri.userId}">
        <button type="button" class="btn fg-btn" onclick="showStatus()">처리</button>     	 
-      	 </c:if>
-         <button type='button' class='btn dark-green-btn' data-bs-toggle='modal' data-bs-target='#shippngPlanModal'  onclick="return update()">수정</button>  
+      	 </c:if> 
+         <button type='button' class='btn dark-green-btn'  onclick="return update()">수정</button> 
          <!-- 현황버튼 -->
 			<div class="btn-group">
 			  <button type="button" class="btn mint-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">현황</button>
@@ -213,11 +187,7 @@
       </section>
       </div>
       
-   <!--     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>  -->
+
     
 <script type="text/javascript">
     //페이지번호클릭시이동하기 

@@ -48,6 +48,10 @@ public class Criteria {
 	
 	private String newO;
 	
+	private String proNewOrder;
+	
+	private String proNewO;
+	
 	// 글 1~10 , 11~20 ...
 	public int getPageStart() {
 		return (page-1)*perPageNum;

@@ -20,7 +20,7 @@ import com.mes2.sales.domain.Criteria;
 import com.mes2.sales.domain.PlanRegisterDTO;
 import com.mes2.sales.domain.SalesDTO;
 
-import com.mes2.sales.domain.pageMaking;
+import com.mes2.sales.domain.PageMaking;
 import com.mes2.sales.service.SalesService;
 
 @Controller
@@ -31,9 +31,7 @@ public class SalesController {
 
 	@Inject
 	private SalesService sService;
-	// http://localhost:8088/system/login
-	// http://localhost:8080/sales/salesPlan
-	// http://localhost:8088/sales/salesPlan
+	
 	@RequestMapping(value = "/salesPlan")
 	public String salesPlan(Model model, Criteria cri) {	
 		
@@ -44,7 +42,7 @@ public class SalesController {
 		SalesDTO sdt = sService.salesPlanCnt();
 		model.addAttribute("status", sdt);
 		
-		pageMaking pm = new pageMaking();
+		PageMaking pm = new PageMaking();
 		pm.setCri(cri);
 		pm.setTotalCount(sService.totalCount(cri));
 		model.addAttribute("pm", pm);
@@ -99,8 +97,7 @@ public class SalesController {
 	}
 	
 	
-	// http://localhost:8080/sales/salesAccept
-	// http://localhost:8088/sales/salesAccept
+
 	
 	
 	@RequestMapping (value = "/salesAccept" )
@@ -116,7 +113,7 @@ public class SalesController {
 		List<SalesDTO> list = sService.salesList(cri);	
 		
 		SalesDTO status = sService.proCnt();
-		pageMaking pm = new pageMaking();
+		PageMaking pm = new PageMaking();
 		pm.setCri(cri);
 		pm.setTotalCount(sService.totalCount(cri));
 		model.addAttribute("pm", pm);

@@ -33,15 +33,10 @@ function goContent(order_code){
 		      moInfo(data,order_code); 
 		    },
 		  error: function(){
-			  $("#mo-close").trigger('click');
+			 
 			  Swal.fire({
 				    title: "관계자에게 문의하십시오.",
 				    icon: "warning"
-				}).then((result) => {
-				    if (result.isConfirmed) {
-				        
-				        $("#mo-close").trigger('click');
-				    }
 				});
 				
 		  }
@@ -49,25 +44,20 @@ function goContent(order_code){
  }
  
  function moInfo(data, order_code){
-	 
+	 $("#shippingInfo").modal('show');
 	 var title = "<div>주문번호 : "+order_code+"</div>";
-	 $("#exampleModalLabel").html(title);
-	 var listHtml = "<p>&lt;회사정보></p>"
-		 
-	     listHtml += "<div>회사명 : <input type='text' value='"+data.company_name+"' readonly/></div>";
-		 listHtml += "<div>회사코드 : <input type='text' value='"+data.company_code+"' readonly/></div>";
-		 listHtml += "<div>회사주소 : <input type='text' value='"+data.company_address+"' readonly/></div>";
-		 listHtml += "<div>회사전화번호 : <input type='text' value='"+data.company_call+"' readonly/></div>";
-		 listHtml += "<hr>"
-		 listHtml += "<p>&lt;담당자정보></p>"
-		 listHtml += "<div>담당자id : <input type='text' value='"+data.user_id+"' readonly/></div>";
-		 listHtml += "<div>담당자이름 : <input type='text' value='"+data.user_name+"' readonly/></div>";
-		 listHtml += "<div>담당자부서 : <input type='text' value='"+data.user_department+"' readonly/></div>";
-		 listHtml += "<div>담당자직책: <input type='text' value='"+data.user_position+"' readonly/></div>";
-		 listHtml += "<div>담당자부서 : <input type='text' value='"+data.user_auth+"' readonly/></div>";	 
-		 
-	      
-		 $("#shippngPlan-modal").html(listHtml);
+	 
+	 $("#shippingInfoLabel").html(title);
+	 $("#company_name").val(data.company_name);
+	 $("#company_code").val(data.company_code);
+	 $("#company_address").val(data.company_address);
+	 $("#company_call").val(data.company_call);
+	 $("#ifo_id").val(data.user_id);
+	 $("#user_name").val(data.user_name);
+	 $("#user_department").val(data.user_department);
+	 $("#user_position").val(data.user_position);
+	 $("#user_auth").val(data.user_auth);
+
  }
 
   function content(data,order_code){
@@ -76,7 +66,7 @@ function goContent(order_code){
 		  listHtml += "<div class='content-container'>"
 	      listHtml += "<div class='content-title'>"		  
 		  listHtml += "<div>"
-		  listHtml += "<p class='list-font' data-bs-toggle='modal' data-bs-target='#shippngPlanModal' onclick='info(\""+order_code+"\")'>주문번호: "+order_code+"</p>";	  
+		  listHtml += "<p class='list-font' onclick='info(\""+order_code+"\")'>주문번호: "+order_code+"</p>";	  
 		  listHtml += "</div>"
 		  listHtml += " <button type='button' class='btn-close' aria-label='Close' onclick='cancle()'></button>"
 		  listHtml += "</div>";

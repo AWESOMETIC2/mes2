@@ -46,13 +46,24 @@ function register(){
  }
  
  function moReg(data){
-	 $("#salesModal").modal("show");
-	 $("#salesModalLabel").html('비밀번호 확인');
-	 var listHtml = "<div>아이디 : <input type='text' id='user_id' value='"+data+"' disabled/> </div>";
-	 listHtml += "<div>비밀번호: <input type='password' id='user_pw'/></div>"
-	 listHtml += "<button type='button' class='btn dark-green-btn' onclick='return regPw(\""+data+"\")'>비밀번호 확인</button>";
-	 $("#sales-modal").html(listHtml);
+	    $("#salesCheck").modal('show');
+		$("#checkUser").val(data);
+		$("#salesCheckModal").append("<button type='button' class='btn dark-green-btn' id='reg-btn' onclick='return regPw(\""+data+"\")'>비밀번호 확인</button>");
+	 
  }
+ 
+ function infoClear(){
+		
+	 $("#checkUser").val('');
+	 $("#user_pw").val('');
+	 if ($("#reg-btn").length > 0) {
+		  $("#reg-btn").remove();
+		}	
+	 if($("#reject-btn").length > 0){
+		 $("#reject-btn").remove();
+	 }
+	 
+	}
  
  function regPw(user_id){
 	 var user_pw = $("#user_pw").val();
@@ -79,7 +90,8 @@ function register(){
  function moRegPwCheck(data, user_id){
 	 
 	 if(data == "true"){
-          $("#mo-close").trigger("click");	 
+          $("#mo-close").trigger("click");
+          infoClear();
 		 Swal.fire({
 			  title: "수주등록하시겠습니까?",
 			  icon: "question",
@@ -144,12 +156,11 @@ function register(){
 	}
 
 	function moRej(data) {
-		$("#salesModal").modal("show");
-		$("#salesModalLabel").html('비밀번호 확인');
-	    var listHtml = "<div>아이디 : <input type='text' id='user_id' value='" + data + "' disabled/> </div>";
-	    listHtml += "<div>비밀번호: <input type='password' id='user_pw'/></div>"
-	    listHtml += "<button type='button' class='btn dark-green-btn' onclick='return rejPw()'>비밀번호 확인</button>";
-	    $("#sales-modal").html(listHtml);
+				
+		$("#salesCheck").modal('show');
+		$("#checkUser").val(data);
+		$("#salesCheckModal").append("<button type='button' class='btn dark-green-btn' id='reject-btn' onclick='return rejPw()'>비밀번호 확인</button>");
+		
 	}
 
 	function rejPw() {
@@ -173,6 +184,7 @@ function register(){
 	function moRejPwCheck(data) {
 	    if (data === "true") {	      
 	    	  $("#mo-close").trigger("click");	
+	    	  infoClear();
 	    	Swal.fire({
 	    		  title: "해당 수주를 거절하시겠습니까?",	    		
 	    		  icon: "question",
@@ -196,6 +208,7 @@ function register(){
 	    }
 	}
 
+	
  function refuse(){
 	 var newAction = "rejectSales";
 	 $("#planListForm").attr("action", newAction); 

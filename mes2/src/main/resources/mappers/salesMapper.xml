@@ -121,6 +121,14 @@
 	<if test="instruct != null and instruct != ''">
 	    and I.instructions = #{instruct}
 	</if>
+	
+    <if test="proNewOrder == 'true'">
+    and DATE(I.acceptance_date) = DATE(NOW())
+    </if>
+    
+    <if test="proNewO == 'true'">
+    and DATE(I.acceptance_date) = DATE(NOW())
+    </if>
   </sql>
   
  

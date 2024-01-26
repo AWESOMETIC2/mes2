@@ -3,18 +3,22 @@ var radioCnt;
 $(document).ready(function() {
   
 	radioCnt =0;
+	
 	$('.waite-btn').each(function(index, element) {
 		  var shipDateValue = $(element).closest('tr').find('.ship-date').text();
 		  var shipDate = moment(shipDateValue, 'YYYY-MM-DD');
 		  var today = moment();
-
-	  if (shipDate.isSame(today, 'day')) {
-		    // 오늘과 일치하는 경우 처리할 작업 수행
-		    // 대기 버튼 클래스 변경
+		  
+		  console.log('shipDate:', shipDate.format('YYYY-MM-DD'));
+		  console.log('today:', today.format('YYYY-MM-DD'));
+		  
+	  if (shipDate.isSame(today, 'day')||shipDate.isBefore(today, 'day')) {
+		    // 대기 버튼 클래스 활성화
 		   $(element).removeClass('btn-secondary').addClass('btn-warning');
 
 		    
 		  }
+	
 		  
 		});
 
@@ -69,24 +73,21 @@ function showStatus() {
 
 function complete(order_code,ship_date){
 	
-	 var shipDate = moment(ship_date, "ddd MMM DD HH:mm:ss Z YYYY").format("YYYY-MM-DD");
-	    var today = moment(); 
-	    if (moment(shipDate).isAfter(today)) {
+	   var shipDate = moment(ship_date, "ddd MMM DD HH:mm:ss Z YYYY").format("YYYY-MM-DD");
+	   var today = moment(); 
+	    
+	   if (moment(shipDate).isAfter(today)) {
 	
 	        Swal.fire({
 			    title: "대기상태",
 			    text: "배송을 지시할 수 없습니다.",
 			    icon: "error"
-			}).then(() => {
-				$("#mo-close").trigger('click');
-				
 			});
-	        return false;
-	    } 
+	        return;
+	    }
+	    
 	  else{ 
 		  
-  
-
 	 Swal.fire({
 		  title: "배송처리",
 		  text: "주문번호 "+order_code+"의 배송처리하시겠습니까?",
@@ -116,27 +117,25 @@ function complete(order_code,ship_date){
 	 			  }
 	 		  });
 			 
-		  }else{
-			moClear();	 		 
-		    $("#mo-close").trigger('click');
 		  }
+
+		  
 		});
 }
 }
 
 function deliverReg(data,order_code){
-	 $("#exampleModalLabel").html('비밀번호 확인');
-	 var listHtml = "<div>담당자 아이디 : <input type='text' id='deliver_id' value='"+data.user_id+"' disabled/> </div>";
-	 listHtml += "<div>담당자 이름 : <input type='text' id='deliver_name' value='"+data.user_name+"' disabled/> </div>";
-	 listHtml += "<div>비밀번호: <input type='password' id='deliver_pw'/></div>"
-	 listHtml += "<button type='button' class='btn dark-green-btn' onclick='return deliverPw(\"" + order_code + "\")'>비밀번호 확인</button>";
+	
+	$("#shippingCheck").modal('show');
+	$("#checkUser").val(data.user_id);
+	$("#checkName").val(data.user_name);
+	$("#shippingCheckModal").append("<button type='button' class='btn dark-green-btn' id='deliver-btn' onclick='return deliverPw(\"" + order_code + "\")'>비밀번호 확인</button>");
 
-		 $("#shippng-modal").html(listHtml);
 }
 
 function deliverPw(order_code){
-	 var user_id = $("#deliver_id").val();
-	 var user_pw = $("#deliver_pw").val();
+	 var user_id = $("#checkUser").val();
+	 var user_pw = $("#user_pw").val();
 	 $.ajax({
 		  url: "updatePwCheck",
 		  type:"post",
@@ -161,6 +160,7 @@ function deliverCheck(data,order_code){
 	 if(data.check=="true"){
 		
 		 $("#mo-close").trigger('click');
+		 infoClear();
 		 $.ajax({
 			  url:"outComplete", 
 			  type: "POST",
@@ -186,139 +186,14 @@ function deliverCheck(data,order_code){
 		  });
 	 }else{
 		 Swal.fire({
-			  title: "비밀번호 오류",				
-			  icon: "warning"
+			  title: "비밀번호 오류",
+			  text: "담당자 비밀번호를 확인하세요.",
+			  icon: "error"
 			});
 		 
 	 }
 }
 
-
-
- function reg(order_code){
-	 Swal.fire({
-		  title: "출하지시등록",
-		  text: "주문번호 "+order_code+"의 출하지시등록을 진행하시겠습니까?",
-		  icon: "info",
-		  showCancelButton: true,
-		  cancelButtonText: "취소",
-		  confirmButtonColor: "#6e9888",
-		  cancelButtonColor: "#666666",
-		  confirmButtonText: "진행"
-		}).then((result) => {
-		  if (result.isConfirmed) {
-			  $.ajax({
-	 			  url:"updateIdCheck", 
-	 			  type:"post",
-	 			  dataType:"json",
-	 			  data: {"order_code":order_code},
-	 			  success: function(data) {
-	 				
-	 				 $('#exampleModal').modal('show');
-
-	 				    moReg(data,order_code);
-	 			  }, 
-	 			  error: function(){
-	 				 Swal.fire({
-	 					  title: "관계자에게 문의하세요",				
-	 					  icon: "warning"
-	 					});
-	 			  }
-	 		  });
-		  }
-		});
- }
- 
- 
- function moReg(data,order_code){
-	 $("#exampleModalLabel").html('비밀번호 확인');
-	 var listHtml = "<div>담당자 아이디 : <input type='text' id='reg_id' value='"+data.user_id+"' disabled/> </div>";
-	 listHtml += "<div>담당자 이름 : <input type='text' id='reg_name' value='"+data.user_name+"' disabled/> </div>";
-	 listHtml += "<div>비밀번호: <input type='password' id='reg_pw'/></div>"
-	 listHtml += "<button type='button' class='btn dark-green-btn' onclick='return regPw(\"" + order_code + "\")'>비밀번호 확인</button>";
-
-		 $("#shippng-modal").html(listHtml);
- }
- 
- function regPw(order_code){
-	 var user_id = $("#reg_id").val();
-	 var user_pw = $("#reg_pw").val();
-	 $.ajax({
-		  url: "updatePwCheck",
-		  type:"post",
-		  dataType: "json",
-		  data: {"user_pw": user_pw, "order_code":order_code, "user_id": user_id},
-		  success: function(data) {
-			    register(data,order_code);
-		  }, 
-		  error: function() {
-			  Swal.fire({
-				  title: "관계자에게 문의하세요",				
-				  icon: "warning"
-				});
-		  }
-		});
-	 
- }
- 
- function register(data,order_code){
-	 $("#mo-close").trigger('click');
-	 
-	 var schedule = new Date(data.scheduled_date);
-	 var options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-	 var date = schedule.toLocaleDateString('ko-KR', options).replace(/\./g, '-').slice(0, -1);
-	 
-	 if(data.scheduled_date == null ){
-		 Swal.fire({
-			  title: "출하예정일 등록필요",
-			  text: "의 출하예정일이 등록되지 않았습니다. 출하예정일을 등록해주세요",
-			  icon: "warning"
-			});
-	 }
-	 else{
-	 Swal.fire({
-		  title: "출하지시등록",
-		  text: order_code+" 의 출하예정일은"+ date+"입니다. 출하지시등록을 진행하시겠습니까?",
-		  icon: "info",
-		  showCancelButton: true,
-		  cancelButtonText: "취소",
-		  confirmButtonColor: "#6e9888",
-		  cancelButtonColor: "#666666",
-		  confirmButtonText: "등록"
-		}).then((result) => {
-		  if (result.isConfirmed) {
-			  
-			  $.ajax({
-				  url:"regShipping", 
-				  type:"post",
-				  dataType:"text",
-				  data: {"order_code":order_code},
-				  success: function(data) {
-					 Swal.fire({
-					    title: "지시완료",
-					    text: "주문번호 " + data + "의 출하지시가 완료되었습니다.",
-					    icon: "success"
-					}).then(() => {
-						$("#pageForm").submit();
-						
-					});
-
-					
-				  }, 
-				  error: function(){
-					 Swal.fire({
-						  title: "등록오류",
-						  text: "등록오류 발생, 관계자에게 문의하세요.",
-						  icon: "warning"
-						});
-				  }
-			  });
-
-		  }
-		});
-	 }
- }
- 
 
 
  function update(){
@@ -337,32 +212,21 @@ function deliverCheck(data,order_code){
 			  title: "수정 불가능",
 			  text:"이미 출하처리되었습니다.",
 			  icon: "error"
-			}).then((result) => {
-	 			  if (result.isConfirmed) {
-	 				
-	 				 
-	 				$("#mo-close").trigger('click');
-	 		 
-	 	 }
-	 });
-	     return false;
+			});
+
+	     return;
 	 } 
 	 if (pfText === '배송') {
-	     // 처리 로직 추가
-	    
+
 	     Swal.fire({
 			  title: "수정 불가능",
 			  text:"배송 중입니다.",
 			  icon: "error"
-			}).then((result) => {
-	 			  if (result.isConfirmed) {
-	 				 $("#mo-close").trigger('click');
-	 				
-	 		 
-	 	 }
-	 });
-	     return false;
+			});
+
+	     return;
 	 }
+	 
 	 
 	 
 	 
@@ -370,14 +234,11 @@ function deliverCheck(data,order_code){
 		 Swal.fire({
 			  title: "선택된 항목이 없습니다.",
 			  icon: "warning"
-			}).then((result) => {
-	 			  if (result.isConfirmed) {
-	 				 $("#mo-close").trigger('click');
-	 		 
-	 	 }
-	 });
+			});
 	 	
-	 }else{
+	 }
+	 
+	 else{
 	 	 if(count==1){
 	 		Swal.fire({
 	 			  title: "출하일정을 수정하시겠습니까?",
@@ -406,13 +267,8 @@ function deliverCheck(data,order_code){
 	 				  }	 
 	 				 });
 	 		 
-	 	 }else {
-		    moClear();	 		 
-	 		$("#mo-close").trigger('click');
-	 
-	 
-	 		 
-	        }
+	 	 }
+
 	 });
  }
  
@@ -420,25 +276,34 @@ function deliverCheck(data,order_code){
  
  }
  
-function moClear(){
- var listHtml = "";
- $("#shippng-modal").html(listHtml);
-}
 
+
+function infoClear(){
+	
+	 $("#checkUser").val('');
+	 $("#checkName").val('');
+	 $("#user_pw").val('');
+	
+	 if ($("#update-btn").length > 0) {
+		  $("#update-btn").remove();
+		}
+	 if($("#deliver-btn").length > 0){
+		 $("#deliver-btn").remove();
+	 }
+	 
+	}
  
  function moUpdate(data){
-	
-	 $("#exampleModalLabel").html('비밀번호 확인');
-	 var listHtml = "<div>담당자 아이디 : <input type='text' id='user_id' value='"+data.user_id+"' disabled/> </div>";
-	 listHtml += "<div>담당자 이름 : <input type='text' id='user_name' value='"+data.user_name+"' disabled/> </div>";
-	 listHtml += "<div>비밀번호: <input type='password' id='user_pw'/></div>"
-	 listHtml += "<button type='button' class='btn dark-green-btn' onclick='return updatePw()'>비밀번호 확인</button>";
-		 $("#shippng-modal").html(listHtml);
+	$("#shippingCheck").modal('show');
+	$("#checkUser").val(data.user_id);
+	$("#checkName").val(data.user_name);
+	$("#shippingCheckModal").append("<button type='button' class='btn dark-green-btn' id='update-btn' onclick='return updatePw()'>비밀번호 확인</button>");
+
 		
  }
  
  function updatePw(){
-	 var user_id = $("#user_id").val();
+	 var user_id = $("#checkUser").val();
 	 var user_pw = $("#user_pw").val();
 	 $.ajax({
 		  url: "updatePwCheck",
@@ -465,16 +330,9 @@ function moClear(){
 	 if(data.check == "true"){	
 		 $("#mo-close").trigger('click');
 		 // 오늘 날짜
-		 var today = new Date();
-
-		 // 시작일 설정 (신청일 3주후)
-		 	var requestDate = new Date(data.request_date);
-		 	
-		 	var minDate = new Date(requestDate);
-		    minDate.setDate(requestDate.getDate());
-		 
+		 var today = new Date();	 
 		    
-		// 마지막일 설정 (납품요청일 4일전)    
+		// 마지막일 설정 
 		    var orderDate = new Date(data.order_date);
           
 		    var maxDate = new Date(orderDate);
@@ -494,7 +352,7 @@ function moClear(){
 		            input.attr('max', maxDate.toISOString().split('T')[0]);
 		            
 		         // date input의 min 속성 설정
-		            input.attr('min', minDate.toISOString().split('T')[0]);
+		            input.attr('min', today.toISOString().split('T')[0]);
 		        }
 		    }).then((result) => {
 			  if (result.value) {
@@ -592,7 +450,7 @@ function checkSearchSub(e){
 	}
 	else if($("#searchType").val() === ""){
 		 Swal.fire({
-		        title: "검색어를 입력하세요.",
+		        title: "검색타입을 선택하세요.",
 		        icon: "warning"
 		    }).then((result) => {
 		        if (result.isConfirmed) {
@@ -606,7 +464,7 @@ function checkSearchSub(e){
 	
 	else if($("#searchType").val() == "ship_code" && $("#putSearch").val() == ""){
 		Swal.fire({
-	        title: "검색타입을 선택하세요.",
+	        title: "검색어를 입력하세요.",
 	        icon: "warning"
 	    }).then((result) => {
 	        if (result.isConfirmed) {
@@ -618,7 +476,7 @@ function checkSearchSub(e){
 	
 	else if($("#searchType").val() == "company_name" && $("#putSearch").val() == ""){
 		Swal.fire({
-	        title: "검색타입을 선택하세요.",
+			title: "검색어를 입력하세요.",
 	        icon: "warning"
 	    }).then((result) => {
 	        if (result.isConfirmed) {
