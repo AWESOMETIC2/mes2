@@ -4,6 +4,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.mes2.metadata.domain.alllistDTO;
 import com.mes2.metadata.domain.common_DTO;
@@ -18,6 +19,8 @@ public class Business_ServiceImpl implements Business_Service {
 	@Inject
 	private Business_DAO bdao;
 	
+	@Inject
+	private BCryptPasswordEncoder pwEncoder;
 
 	@Override
 	public int businessinsert(md_businessDTO dto) throws Exception {
@@ -44,13 +47,22 @@ public class Business_ServiceImpl implements Business_Service {
 		logger.debug("이제 끝!" + code2);
 		
 		dto.setCompany_code(code2);
-		
+
+		// 비밀번호 암호화 된 걸로 set
+		logger.debug("암호화 전: " + dto.getPw());
+		dto.setPw(pwEncoder.encode(dto.getPw()));
+		logger.debug("암호화 후: " + dto.getPw());
 		
 		return bdao.businessinsert(dto);
 	}
 
 	@Override
 	public int businessupdate(md_businessDTO dto) throws Exception {
+		
+		if(!dto.getPw().isEmpty()) {
+		dto.setPw(pwEncoder.encode(dto.getPw()));
+		logger.debug("암호화 후2: " + dto.getPw());
+		}
 		
 		return bdao.businessupdate(dto);
 	}

@@ -16,15 +16,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mes2.platform.domain.MdpDTO;
 import com.mes2.platform.domain.SoiDTO;
+import com.mes2.platform.etc.ModifyPwDTO;
 import com.mes2.platform.service.PlatformService;
 import com.mes2.platform.service.PlatformServiceImpl;
 
@@ -48,6 +51,14 @@ public class PlatformRestController {
 		logger.debug("product_code" + product_code);
 		MdpDTO mdpDTO = pService.registProduct(product_code);
 		return mdpDTO;
+	}
+	
+	// 비밀번호 수정
+	@PostMapping(value="/modifyPw")
+	public int modifyPwPOST(@RequestBody ModifyPwDTO mpDTO, HttpSession session) throws Exception{
+		logger.debug("modifyPwPOST() 호출");
+		mpDTO.setCompany_code((String)session.getAttribute("company_code"));
+		return pService.modifyPw(mpDTO);
 	}
 	
 	// 수령 완료 처리(서명으로)

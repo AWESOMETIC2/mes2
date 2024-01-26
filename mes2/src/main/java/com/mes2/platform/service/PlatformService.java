@@ -45,7 +45,7 @@ public interface PlatformService {
 	public void deleteOrder(String order_code) throws Exception;
 	
 	// 비밀번호 변경
-	public void modifyPw(ModifyPwDTO mpDTO) throws Exception;
+	public int modifyPw(ModifyPwDTO mpDTO) throws Exception;
 
 	// 수령 완료(서명으로)
 	public void completeOrder(SoiDTO sdto) throws Exception;

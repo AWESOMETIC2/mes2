@@ -38,7 +38,9 @@
   	
   	UPDATE meta_data_business
     SET
-    	pw = #{pw},
+    	<if test="pw != null and pw != ''">
+            pw = #{pw},
+        </if>
         name = #{name},
         manager = #{manager},
         address = #{address},
@@ -76,7 +78,7 @@
 	  		and name like '%${search }%'
 	  		</if>
   		</where>
-  		order by contract_status desc
+  		order by company_code
   		<if test="cri != null">
   		limit #{cri.startPage},#{cri.pageSize} 	
   		</if>

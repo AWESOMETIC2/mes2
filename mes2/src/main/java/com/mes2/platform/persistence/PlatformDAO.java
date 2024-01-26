@@ -60,8 +60,11 @@ public interface PlatformDAO {
 	// 주문 삭제
 	public void deleteOrder(String order_code) throws Exception;
 	
+	// 현재 비밀번호 조회
+	public String getPw(String company_code) throws Exception;
+	
 	// 비밀번호 변경
-	public void modifyPw(ModifyPwDTO mdDTO) throws Exception;
+	public int modifyPw(ModifyPwDTO mdDTO) throws Exception;
 	
 	// 수령 완료(출하 테이블 업데이트)
 	public void completeShipping(SoiDTO sdto) throws Exception;
